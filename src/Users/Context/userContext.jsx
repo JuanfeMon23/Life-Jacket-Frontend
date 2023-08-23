@@ -44,6 +44,7 @@ export function UserProvider ({children}) {
         try {
             const res = await createUserRequest(user);
             console.log(res.data);
+            return res.data;
         } catch (error) {
             throw new Error(error.message);
         }

@@ -1,17 +1,23 @@
 import React from 'react'
 import {Modal, ModalContent, ModalHeader, ModalBody, ModalFooter, useDisclosure} from "@nextui-org/react";
 import {Input} from "@nextui-org/react";
+import {Select, SelectSection, SelectItem} from "@nextui-org/react";
 import {Button} from "@nextui-org/react";
 import { ButtonAccept } from '../../components/ButtonAccept';
 import {useForm} from 'react-hook-form';
+import { useUsers } from '../Context/userContext';
 
 export  function UserRegister() {
 const {isOpen, onOpen, onOpenChange} = useDisclosure();
 const {register , handleSubmit, formState:{errors}} = useForm();
+const {createUser } = useUsers();
 
 const onSubmit = (data) => {
+  createUser(data);
   console.log(data);
-}
+};
+
+
 
 
   return (
@@ -76,13 +82,17 @@ const onSubmit = (data) => {
                     {errors.Direccion && <p className=' text-red-600  '>Campo requerido</p>}
                     </div>
 
-{/* 
+                    
+                    <Select label="Seleccione rol" ></Select>
+                    </div>
+                    
+{/*                   
                     <div className='flex-col m-3'> 
                       <Input label="Rol" variant="underlined" id='Rol' 
                     {...register("Rol" , {required : true})}/>
                     {errors.Rol && <p className=' text-red-600 '>Campo requerido</p>}
                     </div> */}
-                  </div>
+
 
 
                   <div className=' text-center my-3 '>
