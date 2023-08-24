@@ -11,20 +11,20 @@ export const useUsers = () => {
  };
 
 export function UserProvider ({children}) {
-    const [user, setUser] = useState([]);
+    const [users, setUsers] = useState([]);
 
     const getUsers = async () => {
         try {
             const res = await getUsersRequest();
-            setUser(res.data);
+            setUsers(res.data);
         } catch (error) {
             throw new Error(error.message);
         }
     };
 
-    const getUser = async (idUser) => {
+    const getUser = async (user) => {
         try {
-            const res = await getUserRequest(idUser);
+            const res = await getUserRequest(user);
             return res.data;
         } catch (error) {
             throw new Error(error.message);
@@ -40,10 +40,9 @@ export function UserProvider ({children}) {
         }
     };
 
-    const createUser = async (User) => {
+    const createUser = async (user) => {
         try {
             const res = await createUserRequest(user);
-            console.log(res.data);
             return res.data;
         } catch (error) {
             throw new Error(error.message);
@@ -61,7 +60,7 @@ export function UserProvider ({children}) {
     const deleteUser = async (idUser) => {
         try {
             const res = await deleteUserRequest(idUser);
-            if(res.status === 204) setUser(user.filter((user) => user.id !== idUser));
+            if(res.status === 204) setUsers(users.filter((user) => user.id !== idUser));
         } catch (error) {
             throw new Error(error.message);
         }
@@ -69,7 +68,7 @@ export function UserProvider ({children}) {
 
     return (
         <UserContext.Provider
-        value={{user,getUser,getUsers,createUser,updateUser,deleteUser,searchUser
+        value={{users,getUser,getUsers,createUser,updateUser,deleteUser,searchUser
         }}
         >
             {children}         

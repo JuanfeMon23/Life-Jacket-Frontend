@@ -2,12 +2,12 @@ import axios from '../../api/axios.js';
 
 export const getUsersRequest = async () => axios.get('/Users');
 
-export const getUserRequest =  async (idUser) => axios.get(`/Users/${idUser}`);
+export const getUserRequest =  async (user) => axios.get(`/Users/${user}`);
 
-export const createUserRequest = async (User) => axios.post('/Users', User);
+export const createUserRequest = async (user) => axios.post('/Users', user);
 
-export const updateUserRequest = async (User) => axios.put(`/Users/${User.id}`, User);
+export const updateUserRequest = async (user) => axios.put(`/Users/${user.id}`, user);
 
-export const deleteUserRequest = async (idUser) => axios.delete(`/Users/${idUser}`);
+export const deleteUserRequest = async (id) => axios.delete(`/Users/${id}`);
 
 export const searchUserRequest = async (idUser, userEmail, userName) => axios.get(`/Users/${idUser, userEmail, userName}`);

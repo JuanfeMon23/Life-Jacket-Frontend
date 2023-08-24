@@ -17,9 +17,6 @@ const onSubmit = (data) => {
   console.log(data);
 };
 
-
-
-
   return (
     <div className='flex'>
     <Button onPress={onOpen}className='absolute right-0 mx-6 my-20 bg-gradient-to-r from-cyan-500 to-blue-800 text-white font-bold'>Registrar usuario</Button>
@@ -32,58 +29,58 @@ const onSubmit = (data) => {
                 <form onSubmit={handleSubmit(onSubmit)}>
                   <div className="flex ">
                     <div className=' flex-col mx-3'>
-                      <Input type="text" variant="underlined" label='Nombres' id='Nombres'
-                      {...register("Nombres" , {required : true})}/>
-                      {errors.Nombres && <p className=' text-red-600'>Campo requerido</p>}
+                      <Input type="text" variant="underlined" label='Nombres' id='userName'
+                      {...register("userName" , {required : true})}/>
+                      {errors.userName && <p className=' text-red-600'>Campo requerido</p>}
                     </div>
 
                     <div className=' flex-col mx-3'>
-                    <Input type="text" label="Apellidos"  variant="underlined" id="Apellidos"
-                    {...register("Apellidos" , {required : true})}/>
-                    {errors.Apellidos && <p className=' text-red-600 '>Campo requerido</p>}
+                    <Input type="text" label="Apellidos"  variant="underlined" id="userLastName"
+                    {...register("userLastName" , {required : true})}/>
+                    {errors.userLastName && <p className=' text-red-600 '>Campo requerido</p>}
                     </div>
                     
                   </div>
 
                   <div className=" flex">
                     <div className='flex-col m-3'>
-                    <Input type="email" label="Email" variant="underlined" id='Email'
-                    {...register("Email" , {required : true})}/>
-                    {errors.Email && <p className=' text-red-600  '>Campo requerido</p>}
+                    <Input type="email" label="Email" variant="underlined" id='userEmail'
+                    {...register("userEmail" , {required : true})}/>
+                    {errors.userEmail && <p className=' text-red-600  '>Campo requerido</p>}
                     </div>
 
 
                     <div className='flex-col m-3'> 
-                      <Input type="password" label="Password" variant="underlined" id='Password'
-                    {...register("Password" , {required : true})}/>
-                    {errors.Password && <p className=' text-red-600 '>Campo requerido</p>}
+                      <Input type="password" label="Password" variant="underlined" id='userPassword'
+                    {...register("userPassword" , {required : true})}/>
+                    {errors.userPassword && <p className=' text-red-600 '>Campo requerido</p>}
                     </div>
                   </div>
 
                   <div className=" flex">
                     <div className='flex-col m-3'>
-                    <Input type="text" label="Telefono" variant="underlined" id='Telefono'
-                    {...register("Telefono" , {required : true})}/>
-                    {errors.Telefono && <p className=' text-red-600  '>Campo requerido</p>}
+                    <Input type="text" label="Telefono" variant="underlined" id='userPhoneNumber'
+                    {...register("userPhoneNumber" , {required : true})}/>
+                    {errors.userPhoneNumber && <p className=' text-red-600  '>Campo requerido</p>}
                     </div>
 
 
                     <div className='flex-col m-3'> 
-                      <Input type="text" label="Otro Telefono" variant="underlined" id='OtroTelefono'
-                    {...register("OtroTelefono" , {required : true})}/>
-                    {errors.otroTelefono && <p className=' text-red-600'>Campo requerido</p>}
+                      <Input type="text" label="Otro Telefono" variant="underlined" id='userOtherPhoneNumber'
+                    {...register("userOtherPhoneNumber" , {required : true})}/>
+                    {errors.userOtherPhoneNumber && <p className=' text-red-600'>Campo requerido</p>}
                     </div>
                   </div>
 
                   <div className=" flex">
                     <div className='flex-col m-3'>
-                    <Input type="text" label="Dirección" variant="underlined" id='Direccion'
-                    {...register("Direccion" , {required : true})}/>
-                    {errors.Direccion && <p className=' text-red-600  '>Campo requerido</p>}
+                    <Input type="text" label="Dirección" variant="underlined" id='userAddress'
+                    {...register("userAddress" , {required : true})}/>
+                    {errors.userAddress && <p className=' text-red-600  '>Campo requerido</p>}
                     </div>
 
                     
-                    <Select label="Seleccione rol" ></Select>
+                    {/* <Select label="Seleccione rol" ></Select> */}
                     </div>
                     
 {/*                   
@@ -96,7 +93,7 @@ const onSubmit = (data) => {
 
 
                   <div className=' text-center my-3 '>
-                    <ButtonAccept onPress={onClose}/>
+                    <ButtonAccept/>
                   </div>
                   
                 </form>
