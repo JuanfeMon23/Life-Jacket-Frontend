@@ -24,7 +24,7 @@ const onSubmit = (data) => {
                 <form onSubmit={handleSubmit(onSubmit)}>
                   <div className="flex ">
                     <div className=' flex-col mx-3'>
-                      <Input type="text" variant="underlined" label='Documento' id='clientDocument'
+                      <Input type="text" variant="underlined" isClearable label='Documento' id='clientDocument'
                       {...register("clientDocument" , {required : true})}/>
                       {errors.clientDocument && <p className=' text-red-600'>Campo requerido</p>}
                     </div>

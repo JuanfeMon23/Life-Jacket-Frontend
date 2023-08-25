@@ -6,6 +6,7 @@ import {Button} from "@nextui-org/react";
 import { ButtonAccept } from '../../components/ButtonAccept';
 import {useForm} from 'react-hook-form';
 import { useRoles } from '../context/rolesContext';
+import {Switch} from "@nextui-org/react";
 
 export  function RolesRegister() {
 const {isOpen, onOpen, onOpenChange} = useDisclosure();
@@ -26,18 +27,24 @@ const onSubmit = (data) => {
               <ModalHeader className="flex flex-col gap-3">Datos del rol</ModalHeader>
               <ModalBody>
                 <form onSubmit={handleSubmit(onSubmit)}>
-               
-                <Input type="text" label="Nombre del rol" variant='underlined' id="rolName"
+             
+                <div className=' my-2 flex-row'>
+                  <Switch defaultSelected color="success">Usuarios</Switch>
+                  <Switch defaultSelected color="success">Vehiculos</Switch>
+                  <Switch defaultSelected color="success">Compras</Switch>
+                </div>
+                <div className=' my-2 flex-row'>       
+                  <Switch defaultSelected color="success">Ventas</Switch>
+                  <Switch defaultSelected color="success">Clientes</Switch>
+                  <Switch defaultSelected color="success">Mejoras</Switch>
+                </div>
+                <Input type="text" label="Nombre del rol" isClearable variant='underlined' id="rolName"
                 {...register("rolName", {required : true})}/>
                 {errors.rol && <p className=' text-red-600'>Campo requerido</p>}
                   
                 <div className=' text-center my-3 '>
                     <ButtonAccept/>
-                    {/* <Button color='primary' type='submit' onPress={onClose}>
-                        Registrar
-                    </Button> */}
-                </div>
-                  
+                </div>       
                 </form>
               </ModalBody>
             </>
