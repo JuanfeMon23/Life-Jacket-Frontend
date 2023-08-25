@@ -3,27 +3,45 @@ import { Navigation } from "../../components/globalComponents/Navigation";
 import { Title } from "../../components/globalComponents/Title";
 import { UserRegister } from "../components/userRegister";
 import { useUsers } from "../Context/userContext";
-import { UserCard } from "../components/userCard";
+import { CardUsers } from "../components/CardUsers";
+import { RolesRegister } from "../../Roles/components/rolesRegister";
+import { useRoles } from "../../Roles/context/rolesContext";
+import { CardRoles } from "../../Roles/components/CardRoles";
 
 export function Users() {
-      const {users, getUsers} = useUsers();
+      const {getUsers} = useUsers();
+      const {getRoles} = useRoles();
 
       useEffect(() => {
         getUsers();
       },[]);
 
+      useEffect(() => {
+        getRoles();
+      },[]);
+
 
     return (
-      <div className='flex'>
+      <div className='flex '>
+        <div>
           <Navigation/>
+        </div>
+        
+        <div>
           {<Title Title='Usuarios'/>}
+          
           <UserRegister/>
+          <RolesRegister/>
 
-          <div className=" grid md:grid-cols-2 lg:grid-cols-3 gap-2 bg-slate-500 ">
-            {users.map((user) => (
-              <UserCard  key={user.id} user={user} />
-            ) )}
+          <div className=" flex">
+            <CardRoles/>
           </div>
+          
+          <div className="flex">
+            <CardUsers/>
+          </div>
+          
+        </div>
           
       </div>
     )

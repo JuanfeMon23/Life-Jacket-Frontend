@@ -4,7 +4,7 @@ import { createRolRequest, getRolRequest, getRolesRequest, updateRolRequest , de
 
 const RolesContext = createContext();
 
-export const userRoles = () => {
+export const useRoles = () => {
     const context = useContext(RolesContext);
     return context;
 };
@@ -38,4 +38,29 @@ export function RolesProvider({children}) {
             throw new Error(error.message);
         }
     };
+
+    const updateRol = async (idroles, roles) => {
+        try {
+            await updateRolRequest(idroles, roles);
+        } catch (error) {
+            throw new Error(error.message);
+        }
+    };
+
+    const deleteRol = async (roles) => {
+        try {
+            const res = await deleteRolRequest(roles);
+            if(res.status === 204) setRoles(roles.filter((roles) => roles.id !== roles))
+        } catch (error) {
+            
+        }
+    };
+
+    return(
+        <RolesContext.Provider 
+        value={{roles, getRol, getRoles, createRol, updateRol, deleteRol}}
+        >
+            {children}
+        </RolesContext.Provider>
+    )
 }

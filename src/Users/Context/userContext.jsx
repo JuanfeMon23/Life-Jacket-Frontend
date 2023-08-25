@@ -49,9 +49,9 @@ export function UserProvider ({children}) {
         }
     };
 
-    const updateUser = async (idUser, User) => {
+    const updateUser = async (idUser, user) => {
         try {
-            await updateUserRequest(idUser, User);
+            await updateUserRequest(idUser, user);
         } catch (error) {
             throw new Error(error.message);
         }
