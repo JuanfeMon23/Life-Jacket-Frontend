@@ -1,7 +1,6 @@
 import React from 'react'
 import {Modal, ModalContent, ModalHeader, ModalBody, ModalFooter, useDisclosure} from "@nextui-org/react";
 import {Input} from "@nextui-org/react";
-import {Select, SelectSection, SelectItem} from "@nextui-org/react";
 import {Button} from "@nextui-org/react";
 import { ButtonAccept } from '../../components/ButtonAccept';
 import {useForm} from 'react-hook-form';
@@ -15,7 +14,6 @@ const {createUser } = useUsers();
 
 const onSubmit = (data) => {
   createUser(data);
-  console.log(data);
 };
 
   return (

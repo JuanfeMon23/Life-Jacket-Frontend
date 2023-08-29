@@ -2,7 +2,7 @@ import axios from '../../api/axios.js';
 
 export const getUsersRequest = async () => axios.get('/Users');
 
-export const getUserRequest =  async (user) => axios.get(`/Users/${user}`);
+export const getUserRequest =  async (id) => axios.get(`/Users/${id}`);
 
 export const createUserRequest = async (user) => axios.post('/Users', user);
 

@@ -33,11 +33,11 @@ export function Users() {
           <UserRegister/>
           <RolesRegister/>
 
-          <div className=" flex">
+          <div className=" flex flex-wrap">
             <CardRoles/>
           </div>
           
-          <div className="flex">
+          <div className="flex flex-wrap">
             <CardUsers/>
           </div>
           

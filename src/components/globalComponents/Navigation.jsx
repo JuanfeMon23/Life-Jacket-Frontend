@@ -1,5 +1,6 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
+import {FiUser} from 'react-icons/fi'
 
 export function Navigation() {
   return (
@@ -14,6 +15,7 @@ export function Navigation() {
 
             <li className=' w-full items-center cursor-pointer my-1 py-2 px-2 hover:bg-gradient-to-r from-cyan-500 to-blue-500 rounded-lg'>
                 <div className=' flex'>
+                    <FiUser className='text-white'/>
                     <Link className="text-white items-center" to='/Users'>Usuarios</Link>
                 </div>
             </li>
