@@ -2,13 +2,15 @@ import React, { useEffect } from "react";
 import {Modal, ModalContent, ModalHeader, ModalBody, ModalFooter, Button, useDisclosure} from "@nextui-org/react";
 import { useUsers } from "../Context/userContext";
 import {FiEye}from "react-icons/fi";
-export function WatchUser() {
-  const {isOpen, onOpen, onOpenChange} = useDisclosure();
-  const {getUser, users} = useUsers();
 
-  useEffect(() => {
-    getUser();
-  },[]);
+export function WatchUser(props) {
+  const {isOpen, onOpen, onOpenChange} = useDisclosure();
+  // const {getUser, users} = useUsers();
+  const user = props.user
+  const id = props.id
+  // useEffect(() => {
+  //   getUser();
+  // },[]);
 
   return (
     <>
@@ -18,11 +20,12 @@ export function WatchUser() {
           {(onClose) => (
             <>
               <ModalHeader className=" bg-indigo-950 text-white text-center">Informacion del usuario</ModalHeader>
-              {users.map((users) => (
-                <ModalBody key={users.id}>
-                    <p>{users.userName}</p>
+                <ModalBody key={user.id}>
+                    <p>{user.userName}</p>
+                    <p>{user.id}</p>
                 </ModalBody>
-                ))}
+              {/* {users.map((users) => (
+                ))} */}
             </>
           )}
         </ModalContent>

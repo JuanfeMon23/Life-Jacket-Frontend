@@ -5,6 +5,20 @@ import { WatchUser } from './WatchUser';
 
 export function CardUsers() {
   const {users} = useUsers();
+  // const users = [
+  //   {
+  //     id: 1,
+  //     userName: "sdcsdc",
+  //     userLastName: "sdcsdc",
+  //     userEmail: "sdcsdcsd"
+  //   },
+  //   {
+  //     id: 2,
+  //     userName: "luis",
+  //     userLastName: "montiel",
+  //     userEmail: "luis@gmail.com"
+  //   }
+  // ]
   return (
     users.map((users) => (
      <Card key={users.id} className=' h-30 w-13 mx-2 my-2'>
@@ -28,7 +42,7 @@ export function CardUsers() {
         </div>
 
         <div className=' flex'>
-              <button> <WatchUser/></button>
+              <button> <WatchUser user={users} id={users.id}/></button>
               <button> Editar </button>
               <button> Estado </button>
         </div>

@@ -11,10 +11,14 @@ export function CardRoles() {
             <CardHeader>
                 <p className="text-md font-bold ">{roles.rolName}</p>
             </CardHeader>
+            <CardBody className=" flex  bg-slate-900">
+              <button> Ver </button>
+              <button> Editar </button>
+              <button> Estado </button>
+            </CardBody>
         </Card>
         </div>
 
     ))
-
   )
 }
