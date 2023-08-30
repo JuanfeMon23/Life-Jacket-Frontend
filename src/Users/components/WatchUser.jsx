@@ -9,37 +9,34 @@ export function WatchUser(props) {
 
   return (
     <>
-      <Button onPress={onOpen}><FiEye className="text-white"/></Button>
+      <Button  className='bg-gradient-to-r from-[#2D78BE] to-[#6D2CC0] ' onPress={onOpen}><FiEye className="text-white text-2xl"/></Button>
       <Modal isOpen={isOpen} onOpenChange={onOpenChange} size="2xl">
         <ModalContent>
           {(onClose) => (
             <>
-              <ModalHeader className=" bg-indigo-950 text-white text-center">Informacion del usuario</ModalHeader>
+              <ModalHeader className=" bg-gradient-to-r from-[#252525] to-[#231949] text-white text-center">Informacion del usuario</ModalHeader>
                 <ModalBody key={user.id}>
-                  <div className=" flex justify-around mx-2 my-2">
-                    <div className=" w-100 border-2 border-indigo-500/75 rounded-lg p-1  ">
-                      <p >{user.userName}</p>
+                  
+                    <div className=" border-2 border-indigo-500/75 rounded-lg p-1 w-1/3 ">
+                      <p className=" text-center">{user.userName}</p>
                     </div>
                     
                     <div className="border-2 border-indigo-500/75 rounded-lg p-1 w-auto">
                       <p>{user.userLastName}</p>
-                    </div>
-                    
-                  </div>
+                    </div>                   
 
                   <div className=" flex justify-center border-2 border-indigo-500/75 rounded-lg p-1 w-auto">
                     <p className="">{user.userEmail}</p>
                   </div>
                     
-                  <div className="flex justify-around mx-2 my-2">
-                    <p className="border-2 border-indigo-500/75 rounded-lg p-1">{user.userPhoneNumber}</p>
-                    <p className="border-2 border-indigo-500/75 rounded-lg p-1">{user.userOtherPhoneNumber}</p>
+                  <div className="flex justify-around mx-2 my-2 ">
+                  <div className="border-2 border-indigo-500/75 rounded-lg">
+                    <p>{user.userPhoneNumber}</p>
+                  </div>
+                    
+                    <p className=" p-2">{user.userOtherPhoneNumber}</p>
                   </div>
 
-                  <div className="flex justify-around mx-2 my-2">
-                    <p className="border-2 border-indigo-500/75 rounded-lg p-1">{user.userAddress}</p>
-                    <p className="border-2 border-indigo-500/75 rounded-lg p-1">{user.userRol}</p>
-                  </div>
 
 
                 </ModalBody>

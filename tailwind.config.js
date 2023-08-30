@@ -9,6 +9,8 @@ module.exports = {
     './src/**/*.{js,ts,jsx,tsx}'
   ] , 
   theme: {
+    AzulButton : '#2D78BE' ,
+    PurpleButton : '#6D2CC0' ,
     extend: {},
   },
   darkMode: "class",

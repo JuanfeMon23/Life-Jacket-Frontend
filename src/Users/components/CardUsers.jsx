@@ -5,24 +5,11 @@ import { WatchUser } from './WatchUser';
 
 export function CardUsers() {
   const {users} = useUsers();
-  // const users = [
-  //   {
-  //     id: 1,
-  //     userName: "sdcsdc",
-  //     userLastName: "sdcsdc",
-  //     userEmail: "sdcsdcsd"
-  //   },
-  //   {
-  //     id: 2,
-  //     userName: "luis",
-  //     userLastName: "montiel",
-  //     userEmail: "luis@gmail.com"
-  //   }
-  // ]
+
   return (
     users.map((users) => (
      <Card key={users.id} className=' h-30 w-13 mx-2 my-2'>
-      <div className='bg-indigo-950 h-10 text-white justify-around flex mx-3 rounded-lg' >
+      <div className='bg-gradient-to-r from-[#252525] to-[#231949] h-10 text-white justify-around flex mx-3 rounded-lg' >
         <p>Rol:</p>
         <p>{users.userName}</p>  
       </div>

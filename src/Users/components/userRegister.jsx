@@ -5,15 +5,19 @@ import {Button} from "@nextui-org/react";
 import { ButtonAccept } from '../../components/ButtonAccept';
 import {useForm} from 'react-hook-form';
 import { useUsers } from '../Context/userContext';
+import {Select, SelectSection, SelectItem} from "@nextui-org/react";
+import { useRoles } from '../../Roles/context/rolesContext';
 import { SelectRoles } from '../../Roles/components/SelectRoles';
 
 export  function UserRegister() {
 const {isOpen, onOpen, onOpenChange} = useDisclosure();
 const {register , handleSubmit, formState:{errors}} = useForm();
 const {createUser } = useUsers();
+const {roles} = useRoles();
 
 const onSubmit = (data) => {
   createUser(data);
+  console.log(data);
 };
 
   return (
@@ -78,9 +82,10 @@ const onSubmit = (data) => {
                       {errors.userAddress && <p className=' text-red-600'>Campo requerido</p>}
                     </div>      
                   </div>
-                  <SelectRoles id='idRolName'
-                  {...register("idRolName", {required : true})}/>
-                  {errors.idRolName && <p className=' text-red-600'>Campo requerido</p>}
+
+                  <div className='flex-col m-3'>
+                      <SelectRoles/>
+                  </div>
                   <div className=' text-center my-3 '>
                     <ButtonAccept/>
                   </div>
