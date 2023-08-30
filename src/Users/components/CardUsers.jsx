@@ -28,17 +28,17 @@ export function CardUsers() {
       </div>
 
       <CardBody className=' bg-white'>
-        <div className=' bg-white flex '>
-            <p className=' text-zinc-950 mx-3'>Nombre Completo:</p>
+        <div className=' bg-white flex '> 
+            <p className=' text-zinc-950 mx-3 text-sm '>Nombre Completo:</p>
             <div className=' border-2 border-indigo-500/75 rounded-lg py-1 px-1 flex w-40'>
-              <p className=' text-zinc-950 text-center'>{users.userName}&nbsp;</p>
-              <p className=' text-zinc-950 '>{users.userLastName}</p>
+              <p className=' text-zinc-950 text-center text-sm'>{users.userName}&nbsp;</p>
+              <p className=' text-zinc-950 text-sm'>{users.userLastName}</p>
 
             </div>
         </div>
         <div className=' flex my-2'>
-            <p className=' mx-3 '>Correo Electronico: </p>
-            <p className='border-2 border-indigo-500/75 rounded-lg py-1 px-1 w-40'>{users.userEmail}</p>
+            <p className=' mx-3 text-sm'>Correo Electronico: </p>
+            <p className='border-2 border-indigo-500/75 rounded-lg py-1 px-1 w-40 text-sm'>{users.userEmail}</p>
         </div>
 
         <div className=' flex'>

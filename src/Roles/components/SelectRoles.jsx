@@ -8,7 +8,7 @@ export  function SelectRoles() {
         <div className='max-w-xs'>
             <Select label='Seleccione un rol' variant='underlined'>
                 {roles.map((roles) => (
-                <SelectItem key={roles.id} value={roles.value}>
+                <SelectItem key={roles.id} value={roles.rolName}>
                     {roles.rolName}
                 </SelectItem>
                 ))}
