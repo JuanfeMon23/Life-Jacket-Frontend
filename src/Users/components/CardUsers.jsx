@@ -2,6 +2,7 @@ import React from 'react';
 import { useUsers } from '../Context/userContext';
 import {Card, CardHeader, CardBody} from "@nextui-org/react";
 import { WatchUser } from './WatchUser';
+import {AiTwotoneEdit} from 'react-icons/Ai'
 
 export function CardUsers() {
   const {users} = useUsers();
@@ -28,9 +29,12 @@ export function CardUsers() {
             <p className='border-2 border-indigo-500/75 rounded-lg py-1 px-1 w-40 text-sm'>{users.userEmail}</p>
         </div>
 
-        <div className=' flex'>
-              <button> <WatchUser user={users} id={users.id}/></button>
-              <button> Editar </button>
+        <div className='flex justify-center pt-3'>
+          <div>
+            <button className=''> <WatchUser user={users} id={users.id}/></button>
+          </div>
+              
+              <button className=' bg-gradient-to-r from-[#D99C23] to-[#D45229] rounded-lg text-white w-12' > <AiTwotoneEdit/>  </button>
               <button> Estado </button>
         </div>
       </CardBody>
