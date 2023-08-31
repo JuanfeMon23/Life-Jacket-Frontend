@@ -2,6 +2,8 @@ import React, { useEffect } from "react";
 import {Modal, ModalContent, ModalHeader, ModalBody, ModalFooter, Button, useDisclosure} from "@nextui-org/react";
 import {FiEye}from "react-icons/fi";
 
+
+
 export function WatchUser(props) {
   const {isOpen, onOpen, onOpenChange} = useDisclosure();
   const user = props.user
@@ -14,30 +16,66 @@ export function WatchUser(props) {
         <ModalContent>
           {(onClose) => (
             <>
-              <ModalHeader className=" bg-gradient-to-r from-[#252525] to-[#231949] text-white text-center">Informacion del usuario</ModalHeader>
+              <ModalHeader className=" bg-gradient-to-r from-[#252525] to-[#231949] text-white flex items-center ">Informacion del usuario</ModalHeader>
                 <ModalBody key={user.id}>
                   
-                    <div className=" border-2 border-indigo-500/75 rounded-lg p-1 w-1/3 ">
-                      <p className=" text-center">{user.userName}</p>
+                  <div className="m-5 flex justify-around">
+                    <div className=" flex flex-col">
+                      <p className="font-bold">Nombres</p> 
+                      <div className=" border-2 border-indigo-500/75 rounded-lg w-[15rem] p-1 ">
+                          <p className=" text-center">{user.userName}</p>
+                      </div>
                     </div>
-                    
-                    <div className="border-2 border-indigo-500/75 rounded-lg p-1 w-auto">
-                      <p>{user.userLastName}</p>
-                    </div>                   
 
-                  <div className=" flex justify-center border-2 border-indigo-500/75 rounded-lg p-1 w-auto">
-                    <p className="">{user.userEmail}</p>
-                  </div>
-                    
-                  <div className="flex justify-around mx-2 my-2 ">
-                  <div className="border-2 border-indigo-500/75 rounded-lg">
-                    <p>{user.userPhoneNumber}</p>
-                  </div>
-                    
-                    <p className=" p-2">{user.userOtherPhoneNumber}</p>
-                  </div>
+                    <div className=" flex flex-col">
+                    <p className="font-bold">Apellidos</p> 
+                      <div className=" items-end border-2 border-indigo-500/75 rounded-lg w-[15rem] p-1">
+                          <p className=" text-center">{user.userLastName}</p>
+                      </div>
+                    </div>
+                  </div>                  
 
 
+                <div className=" flex justify-center m-3 ">
+                  <div className=" flex flex-col">
+                    <p className="font-bold">Correo Electronico</p>
+                    <div className="border-2 border-indigo-500/75 rounded-lg p-1 w-[20rem]">
+                        <p className=" text-center">{user.userEmail}</p>
+                    </div>
+                  </div>
+                </div>
+                    
+                <div className="m-5 flex justify-around">
+                    <div className=" flex flex-col">
+                      <p className="font-bold">Telefono</p> 
+                      <div className=" border-2 border-indigo-500/75 rounded-lg w-[15rem] p-1 ">
+                          <p className=" text-center">{user.userPhoneNumber}</p>
+                      </div>
+                    </div>
+
+                    <div className=" flex flex-col">
+                    <p className="font-bold">Otro Telefono</p> 
+                      <div className=" items-end border-2 border-indigo-500/75 rounded-lg w-[15rem] p-1">
+                          <p className=" text-center">{user.userOtherPhoneNumber}</p>
+                      </div>
+                    </div>
+                  </div>  
+
+                  <div className="m-5 flex justify-around">
+                    <div className=" flex flex-col">
+                      <p className="font-bold">Dirección</p> 
+                      <div className=" border-2 border-indigo-500/75 rounded-lg w-[15rem] p-1 ">
+                          <p className=" text-center">{user.userAddress}</p>
+                      </div>
+                    </div>
+
+                    <div className=" flex flex-col">
+                    <p className="font-bold">Rol</p> 
+                      <div className=" items-end border-2 border-indigo-500/75 rounded-lg w-[15rem] p-1">
+                          <p className=" text-center">{user.userIdRolName}</p>
+                      </div>
+                    </div>
+                  </div>  
 
                 </ModalBody>
             </>
