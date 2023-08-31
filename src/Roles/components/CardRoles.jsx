@@ -6,17 +6,19 @@ export function CardRoles() {
     const {roles} = useRoles();
   return (
     roles.map((roles) => (
-        <div key={roles.id}>
-        <Card className="h-12 w-21 my-2 mx-2 flex">
-            <CardHeader>
-                <p className="text-md font-bold ">{roles.rolName}</p>
-            </CardHeader>
-            <CardBody className=" flex  bg-slate-900">
-              <button> Ver </button>
-              <button> Editar </button>
-              <button> Estado </button>
-            </CardBody>
-        </Card>
+        <div key={roles.id} >
+          <div className="h-[7rem] w-[20rem] my-2 mx-2 flex flex-row border-3 border-[#252525] rounded-lg bg-white">
+              <div className="">
+                <div className=" flex">
+                  <p className="text-md font-bold">{roles.rolName}</p>
+                </div> 
+                  <div className=" flex justify-center">
+                      <button>ver</button>
+                      <button>actualizar</button>
+                      <button>estado</button>
+                  </div>
+              </div>
+          </div>
         </div>
 
     ))

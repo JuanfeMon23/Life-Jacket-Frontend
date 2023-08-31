@@ -9,7 +9,7 @@ export function WatchUser(props) {
 
   return (
     <>
-      <Button  className=' h-[35px] w-[20px] bg-gradient-to-r from-[#2D78BE] to-[#6D2CC0] ' onPress={onOpen}><FiEye className="text-white text-2xl"/></Button>
+      <Button  className=' h-[35px] w-[20px] bg-gradient-to-r from-[#2D78BE] to-[#6D2CC0]' onPress={onOpen}><FiEye className="text-white text-2xl"/></Button>
       <Modal isOpen={isOpen} onOpenChange={onOpenChange} size="2xl">
         <ModalContent>
           {(onClose) => (
@@ -70,7 +70,7 @@ export function WatchUser(props) {
                     <div className=" flex flex-col">
                     <p className="font-bold">Rol</p> 
                       <div className=" items-end border-2 border-indigo-500/75 rounded-lg w-[15rem] p-1">
-                          <p className=" text-center">{user.idRolUser}</p>
+                          <p className=" text-center">{user.rolName}</p>
                       </div>
                     </div>
                   </div>  

@@ -32,11 +32,13 @@ export function Users() {
           
           <UserRegister/>
           <RolesRegister/>
-
+          <p className=" mt-3 font-bold text-[20px]"> Roles creados</p>
           <div className=" flex flex-wrap">
+            
             <CardRoles/>
           </div>
-          
+          <p className=" mt-3 font-bold text-[20px]"> Usuarios creados</p>
+          <div className=' w-[99rem] h-1.5 border-3 border-[#252525]'> </div> 
           <div className="flex flex-wrap">
             <CardUsers/>
           </div>
