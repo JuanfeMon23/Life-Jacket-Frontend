@@ -74,7 +74,6 @@ export function WatchUser(props) {
                       </div>
                     </div>
                   </div>  
-
                 </ModalBody>
             </>
           )}

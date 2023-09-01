@@ -1,7 +1,7 @@
 import { useEffect } from "react";
 import { Navigation } from "../../components/globalComponents/Navigation";
 import { Title } from "../../components/globalComponents/Title";
-import { VehicleRegister } from "../context/VehicleRegister";
+import { VehicleRegister } from "../components/VehicleRegister";
 
 export function Vehicles() {
 

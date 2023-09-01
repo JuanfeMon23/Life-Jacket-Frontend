@@ -24,6 +24,7 @@ export function ClientProvider({children}){
     const getClient =  async (client) => {
         try {
             const res = await getClientRequest(client);
+            return res.data;
         } catch (error) {
             throw new Error(error.message);
         }

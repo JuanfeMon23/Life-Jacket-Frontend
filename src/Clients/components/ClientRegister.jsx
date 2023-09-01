@@ -4,12 +4,15 @@ import {Input} from "@nextui-org/react";
 import {Button} from "@nextui-org/react";
 import { ButtonAccept } from '../../components/ButtonAccept';
 import {useForm} from 'react-hook-form';
+import { useClients } from '../context/clientsContext';
 
 export  function ClientRegister() {
 const {isOpen, onOpen, onOpenChange} = useDisclosure();
 const {register , handleSubmit, formState:{errors}} = useForm();
+const {createClient} = useClients();
 
 const onSubmit = (data) => {
+  createClient(data);
 };
 
   return (
@@ -47,7 +50,7 @@ const onSubmit = (data) => {
                     </div>
 
                     <div className='flex-col mx-3'>
-                        <Input type="email" label="Apellidos" variant="underlined" id='clientLastName'
+                        <Input type="text" label="Apellidos" variant="underlined" id='clientLastName'
                         {...register("clientLastName" , {required : true})}/>
                         {errors.clientLastName && <p className=' text-red-600  '>Campo requerido</p>}
                     </div>
