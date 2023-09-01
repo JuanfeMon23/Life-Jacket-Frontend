@@ -5,8 +5,7 @@ import {FiEye}from "react-icons/fi";
 export function WatchUser(props) {
   const {isOpen, onOpen, onOpenChange} = useDisclosure();
   const user = props.user
-
-
+ 
   return (
     <>
       <Button  className=' h-[35px] w-[20px] bg-gradient-to-r from-[#2D78BE] to-[#6D2CC0]' onPress={onOpen}><FiEye className="text-white text-2xl"/></Button>

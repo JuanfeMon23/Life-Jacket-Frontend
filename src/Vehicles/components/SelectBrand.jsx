@@ -9,7 +9,7 @@ export  function SelectBrand() {
   return (
         <div className="flex w-full flex-wrap md:flex-nowrap gap-4">
             <Select label='Vehiculo'>
-                {Object.keys(Data['vehicleType']).map((type) => (
+                {/* {Object.keys(Data['vehicleType']).map((type) => (
                     <optgroup label={type}> 
                         {Object.keys(Data['vehicleType']['type']).map((item) => (
                             <optgroup>
@@ -21,7 +21,7 @@ export  function SelectBrand() {
                             </optgroup>
                         ))}
                     </optgroup>
-                ))}
+                ))} */}
             </Select>
         </div>
   )

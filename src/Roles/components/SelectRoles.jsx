@@ -10,12 +10,12 @@ export  function SelectRoles() {
         <div className='max-w-xs'>
             <Select label='Seleccione un rol' variant='underlined'>
                 {roles.map((roles) => (
-                <SelectItem key={roles.id} value={roles.idRol} {...register('idUserRol', {required : true})}>
+                <SelectItem key={roles.id} value={roles.idRol} {...register('idRolUser', {required : true})}>
                     {roles.rolName}
                 </SelectItem>
                 ))}
             </Select>
-            {errors.idUserRol && <p className=' text-red-600'>Campo requerido</p>}
+            {errors.idRolUser && <p className=' text-red-600'>Campo requerido</p>}
         </div>
     
   )
