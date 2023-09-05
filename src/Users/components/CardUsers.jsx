@@ -3,13 +3,14 @@ import { useUsers } from '../Context/userContext';
 import {Card, CardHeader, CardBody} from "@nextui-org/react";
 import { WatchUser } from './WatchUser';
 import {AiTwotoneEdit} from 'react-icons/Ai'
+import { Link } from 'react-router-dom';
 
 export function CardUsers() {
   const {users} = useUsers();
 
   return (
     users.map((users) => (
-     <Card key={users.id} className=' h-30 w-13 mx-2 my-2 shadow-2xl'>
+     <Card key={users.idUser} className=' h-30 w-13 mx-2 my-2 shadow-2xl'>
       <div className='bg-gradient-to-r from-[#252525] to-[#231949] h-10 text-white justify-around flex mx-3 rounded-lg' >
         <p>Rol:</p>
         <p>{users.userName}</p>  
@@ -33,7 +34,8 @@ export function CardUsers() {
           <div>
             <button className=''> <WatchUser user={users} id={users.id}/></button>
           </div>
-              <button className=' bg-gradient-to-r from-[#D99C23] to-[#D45229] rounded-lg text-white w-12' ><AiTwotoneEdit/></button>
+              {/* <button className=' bg-gradient-to-r from-[#D99C23] to-[#D45229] rounded-lg text-white w-12' link={''} ></button> */}
+              <Link to={`/Users/${users.idUser}`} className=' bg-gradient-to-r from-[#D99C23] to-[#D45229] rounded-lg text-white w-12'><AiTwotoneEdit/></Link>
               <button> Estado </button>
         </div>
       </CardBody>

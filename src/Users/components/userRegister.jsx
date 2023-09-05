@@ -1,24 +1,42 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import {Modal, ModalContent, ModalHeader, ModalBody, ModalFooter, useDisclosure} from "@nextui-org/react";
 import {Input} from "@nextui-org/react";
 import {Button} from "@nextui-org/react";
-import { ButtonAccept } from '../../components/ButtonAccept';
 import {useForm} from 'react-hook-form';
 import { useUsers } from '../Context/userContext';
-import {Select, SelectSection, SelectItem} from "@nextui-org/react";
+import {Select, SelectItem} from "@nextui-org/react";
 import { useRoles } from '../../Roles/context/rolesContext';
-import { SelectRoles } from '../../Roles/components/SelectRoles';
+import { useParams, useNavigate } from 'react-router-dom';
+
 
 export  function UserRegister() {
 const {isOpen, onOpen, onOpenChange} = useDisclosure();
 const {register , handleSubmit, formState:{errors}} = useForm();
-const {createUser } = useUsers();
+const {createUser , getUser, updateUser } = useUsers();
 const {roles} = useRoles();
 
 const onSubmit = (data) => {
-  createUser(data);
-  console.log(data);
+  try {
+    if(params.idUser) {
+      updateUser(params.idUser, {data})
+      console.log(data);
+    } else {
+      createUser({data});
+      console.log(data);
+    }
+  } catch (error) {
+    throw new Error;
+  }
 };
+
+useEffect(() => {
+  const loadUser = async () => {
+    if (params.idUser) {
+      const user = await getUser(params.id);
+    };
+    loadUser();
+  }
+},[])
 
   return (
     <div className='flex'>
@@ -83,13 +101,27 @@ const onSubmit = (data) => {
                     </div>      
                   </div>
 
-                  {/* <div className='flex-col m-3'>
-                      <SelectRoles type="text" id='idRolName' value={roles.rolName}
-                      {...register("idRolName", {required : true})}/>
-                      {errors.idRolName && <p className=' text-red-600'>Campo requerido</p>}
-                  </div> */}
+                  <div className='flex-col m-3'>
+                      {/* <SelectRoles type="text" id='idRol' 
+                      {...register("idRol", {required : true})}/> */}
+
+
+                      <Select label='Seleccione un rol' variant='underlined' {...register("idRolUser", {required : true})}>
+                          {roles.map((roles) => (
+                          <SelectItem key={roles.idRol} value={roles.idRol}>
+                              {/* {console.log(idRolUser)} */}
+                              {roles.rolName}
+                          </SelectItem>
+                          ))}
+                      </Select>
+
+
+                      {errors.idRol && <p className=' text-red-600'>Campo requerido</p>}
+                  </div>
                   <div className=' text-center my-3 '>
-                    <ButtonAccept/>
+                    {/* <ButtonAccept/> */}
+
+                    <button type='submit'>Crear</button>
                   </div>
                   
                 </form>

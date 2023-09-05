@@ -6,7 +6,7 @@ export function CardRoles() {
     const {roles} = useRoles();
   return (
     roles.map((roles) => (
-        <div key={roles.id} >
+        <div key={roles.idRol} >
           <div className="h-[7rem] w-[20rem] my-2 mx-2 flex flex-row border-3 border-[#252525] rounded-lg bg-white">
               <div className="">
                 <div className=" flex">

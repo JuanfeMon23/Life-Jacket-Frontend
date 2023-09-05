@@ -7,19 +7,22 @@ import { CardUsers } from "../components/CardUsers";
 import { RolesRegister } from "../../Roles/components/rolesRegister";
 import { useRoles } from "../../Roles/context/rolesContext";
 import { CardRoles } from "../../Roles/components/CardRoles";
+import { Navigate } from "react-router-dom";
 
 export function Users() {
-      const {getUsers} = useUsers();
+      const {getUsers , createUser} = useUsers();
       const {getRoles} = useRoles();
 
       useEffect(() => {
         getUsers();
-      },[]);
-
-      useEffect(() => {
         getRoles();
       },[]);
 
+
+
+      // useEffect(() => {
+      //   if (createUser) Navigate('/Users')
+      // } , [createUser]);
 
     return (
       <div className='flex '>

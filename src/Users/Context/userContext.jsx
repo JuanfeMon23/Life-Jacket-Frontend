@@ -1,6 +1,7 @@
 import { createContext, useContext, useState } from "react";
 
 import { createUserRequest, getUserRequest, getUsersRequest, updateUserRequest, deleteUserRequest, searchUserRequest } from "../api/Users.js";
+import { data } from "autoprefixer";
 
 const UserContext = createContext();
 
@@ -43,6 +44,7 @@ export function UserProvider ({children}) {
     const createUser = async (user) => {
         try {
             const res = await createUserRequest(user);
+            console.log(data);
             return res.data;
         } catch (error) {
             throw new Error(error.message);

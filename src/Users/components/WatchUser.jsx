@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import {Modal, ModalContent, ModalHeader, ModalBody, ModalFooter, Button, useDisclosure} from "@nextui-org/react";
 import {FiEye}from "react-icons/fi";
-
+import { getUserRequest } from "../api/Users";
 export function WatchUser(props) {
   const {isOpen, onOpen, onOpenChange} = useDisclosure();
   const user = props.user
@@ -69,7 +69,7 @@ export function WatchUser(props) {
                     <div className=" flex flex-col">
                     <p className="font-bold">Rol</p> 
                       <div className=" items-end border-2 border-indigo-500/75 rounded-lg w-[15rem] p-1">
-                          <p className=" text-center">{user.rolName}</p>
+                          <p className=" text-center">{user.idRolUser}</p>
                       </div>
                     </div>
                   </div>  
