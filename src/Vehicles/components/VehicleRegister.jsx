@@ -25,9 +25,8 @@ export function VehicleRegister () {
                 <>
                   <ModalHeader className="flex flex-col gap-3">Datos del vehiculo</ModalHeader>
                   <ModalBody>
-                    <SelectVehicle/>
-                    <SelectBrand/>
-                      
+                    <SelectVehicle/>                   
+                    {/* <SelectAA/> */}
                   </ModalBody>
                 </>
               )}

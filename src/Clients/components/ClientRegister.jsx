@@ -13,6 +13,7 @@ const {createClient} = useClients();
 
 const onSubmit = (data) => {
   createClient(data);
+  console.log(data);
 };
 
   return (

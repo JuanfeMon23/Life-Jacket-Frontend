@@ -1,6 +1,8 @@
 import React from 'react'
 import { useClients } from '../context/clientsContext'
 import { WatchClient } from './WatchClient';
+import {Card, CardHeader, CardBody} from "@nextui-org/react";
+
 
 export  function CardClient() {
     const {clients} = useClients();
@@ -28,9 +30,9 @@ export  function CardClient() {
    
            <div className='flex justify-center pt-3'>
              <div>
-               <button className=''> <WatchClient user={clients} id={clients.id}/></button>
+               <button className=''> <WatchClient client={clients} id={clients.id}/></button>
              </div>
-                 <button className=' bg-gradient-to-r from-[#D99C23] to-[#D45229] rounded-lg text-white w-12' ><AiTwotoneEdit/></button>
+                 {/* <button className=' bg-gradient-to-r from-[#D99C23] to-[#D45229] rounded-lg text-white w-12' ><AiTwotoneEdit/></button> */}
                  <button> Estado </button>
            </div>
          </CardBody>

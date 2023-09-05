@@ -83,9 +83,11 @@ const onSubmit = (data) => {
                     </div>      
                   </div>
 
-                  <div className='flex-col m-3'>
-                      <SelectRoles/>
-                  </div>
+                  {/* <div className='flex-col m-3'>
+                      <SelectRoles type="text" id='idRolName' value={roles.rolName}
+                      {...register("idRolName", {required : true})}/>
+                      {errors.idRolName && <p className=' text-red-600'>Campo requerido</p>}
+                  </div> */}
                   <div className=' text-center my-3 '>
                     <ButtonAccept/>
                   </div>

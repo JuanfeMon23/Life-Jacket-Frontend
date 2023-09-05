@@ -1,6 +1,6 @@
 import axios from '../../api/axios.js';
 
-export const getClientsRequest = async (client) => axios.get('/Clients');
+export const getClientsRequest = async () => axios.get('/Clients');
 
 export const getClientRequest = async (client) => axios.get(`/Clients${client}`);
 

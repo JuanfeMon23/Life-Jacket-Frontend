@@ -13,8 +13,8 @@ export function WatchClient (props) {
           <ModalContent>
             {(onClose) => (
               <>
-                <ModalHeader className=" bg-gradient-to-r from-[#252525] to-[#231949] text-white flex items-center ">Informacion del usuario</ModalHeader>
-                  <ModalBody key={user.id}>
+                <ModalHeader className=" bg-gradient-to-r from-[#252525] to-[#231949] text-white flex items-center ">Informacion del cliente</ModalHeader>
+                  <ModalBody key={client.id}>
                     
                     <div className="m-5 flex justify-around">
                       <div className=" flex flex-col">
@@ -36,14 +36,14 @@ export function WatchClient (props) {
                   <div className=" m-5 flex justify-around ">
                     <div className=" flex flex-col">
                       <p className="font-bold">Cedula</p>
-                      <div className="border-2 border-indigo-500/75 rounded-lg p-1 w-[20rem]">
+                      <div className="border-2 border-indigo-500/75 rounded-lg p-1 w-[15rem]">
                           <p className=" text-center">{client.clientDocument}</p>
                       </div>
                     </div>
 
                     <div className=" flex flex-col">
                       <p className="font-bold">lugar de expedicion</p>
-                      <div className="border-2 border-indigo-500/75 rounded-lg p-1 w-[20rem]">
+                      <div className="border-2 border-indigo-500/75 rounded-lg p-1 w-[15rem]">
                           <p className=" text-center">{client.clientExpeditionPlace}</p>
                       </div>
                     </div>

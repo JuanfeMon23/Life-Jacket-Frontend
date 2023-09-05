@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react'
 import Data from '../../../vehicles.json'
 import {Select, SelectItem} from "@nextui-org/react";
 
+
 const vehicles = [{
   "vehicleType": [
     {
@@ -2330,14 +2331,14 @@ const vehicles = [{
     2023
   ],
   "fuel" : [
-    "Gasolina",
-    "Gasolina Corriente",
-    "Gasolina Extra",
-    "Diésel",
-    "Gas Natural Vehicular",
-    "Gas Propano",
-    "Energía electrica",
-    "Hibrido"
+    { label :"Gasolina", value : "Gasolina"},
+    {label : "Gasolina Corriente",  value  : "Gasolina Corriente"},
+    { label : "Gasolina Extra" , value : "Gasolina Extra"},
+    { label : "Diésel" , value : "Diésel"},
+    { label : "Gas Natural Vehicular", value : "Gas Natural"},
+    { label : "Gas Propano" , value : "Gas Propano"},
+    { label : "Energía electrica" , value : "Energíae lectrica"},
+    { label : "Hibrido" , value : "Hibrido"},
   ],
   "color": [
     "Rojo",
@@ -2391,30 +2392,20 @@ const vehicles = [{
   ]
 }]
 
+
 export function SelectVehicle() {
-  const [data, setData] = useState([])
-  useEffect(() => {
-    fetch('http://localhost:3000/vehicleType')
-    .then(response => response.json())
-    .then(data => setData(data.vehicleType));
-  }, [])
+    const [brands, setBrands] = useState(Data);
+//   const [data, setData] = useState([])
+//   useEffect(() => {
+//     fetch('http://localhost:3000/vehicleType')
+//     .then(response => response.json())
+//     .then(data => setData(data.vehicleType));
+//   }, [])
+
+
   return (
     <div className='className="flex w-full flex-wrap md:flex-nowrap gap-4"'>
-        <Select label='Seleccione un tipo' variant='underlined'>
-          
         {/* {
-            Array.isArray(data[0].brand) && data.map( ( item, index) => {
-              console.log(item)
-            }
-                // (
-                //         <SelectItem key={index} value={item.type}>
-                //             {item.type}
-                //         </SelectItem>
-                // )
-            )
-        }, */}
-        </Select>
-        {
             vehicles.map((item) => {
               item.vehicleType.map((subitem) => {
                 subitem['brand'].map((brand) => {
@@ -2425,7 +2416,9 @@ export function SelectVehicle() {
                 })
               })
             })
-          }
+          } */}
+
+
     </div>
 
   )
