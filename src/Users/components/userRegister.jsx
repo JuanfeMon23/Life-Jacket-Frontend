@@ -11,31 +11,41 @@ import { useParams, useNavigate } from 'react-router-dom';
 
 export  function UserRegister() {
 const {isOpen, onOpen, onOpenChange} = useDisclosure();
-const {register , handleSubmit, formState:{errors}} = useForm();
+const {register , setValue, handleSubmit, formState:{errors}} = useForm();
 const {createUser , getUser, updateUser } = useUsers();
+const params = useParams();
 const {roles} = useRoles();
 
 const onSubmit = (data) => {
+  // createUser(data);
   try {
-    if(params.idUser) {
-      updateUser(params.idUser, {data})
-      console.log(data);
+   if(params.idUser) {
+     updateUser(params.idUser, {...data})
+     console.log(data);
     } else {
-      createUser({data});
-      console.log(data);
-    }
-  } catch (error) {
-    throw new Error;
-  }
+      createUser(data);
+       console.log(data);
+     }
+   } catch (error) {
+   throw new Error;
+   }
 };
 
 useEffect(() => {
   const loadUser = async () => {
-    if (params.idUser) {
-      const user = await getUser(params.id);
+   if (params.idUser) {
+      const user = await getUser(params.idUser);
+      setValue('userName', user.userName);
+      setValue('userLastName', user.userName);
+      setValue('userEmail', user.userEmail);
+      setValue('userPassword', user.userPassword);
+      setValue('userPhoneNumber', user.userPhoneNumber);
+      setValue('userOtherPhoneNumber', user.userOtherPhoneNumber);
+      setValue('userAddress', user.userAddress);
+      // setValue('Rol', user.idRol);
     };
     loadUser();
-  }
+   }
 },[])
 
   return (
@@ -67,14 +77,14 @@ useEffect(() => {
                     <div className='flex-col m-3'>
                     <Input type="email" label="Email" isClearable variant="underlined" id='userEmail'
                     {...register("userEmail" , {required : true})}/>
-                    {errors.userEmail && <p className=' text-red-600  '>Campo requerido</p>}
+                    {errors.userEmail && <p className=' text-red-600'>Campo requerido</p>}
                     </div>
 
 
                     <div className='flex-col m-3'> 
                       <Input type="password" label="Password"isClearable  variant="underlined" id='userPassword'
                     {...register("userPassword" , {required : true})}/>
-                    {errors.userPassword && <p className=' text-red-600 '>Campo requerido</p>}
+                    {errors.userPassword && <p className=' text-red-600'>Campo requerido</p>}
                     </div>
                   </div>
 
@@ -82,7 +92,7 @@ useEffect(() => {
                     <div className='flex-col m-3'>
                     <Input type="text" label="Telefono" isClearable variant="underlined" id='userPhoneNumber'
                     {...register("userPhoneNumber" , {required : true})}/>
-                    {errors.userPhoneNumber && <p className=' text-red-600  '>Campo requerido</p>}
+                    {errors.userPhoneNumber && <p className=' text-red-600'>Campo requerido</p>}
                     </div>
 
 
@@ -94,34 +104,27 @@ useEffect(() => {
                   </div>
 
                   <div className=" flex">
-                    <div className='flex-col m-3'>
+                    <div className='flex-col '>
                       <Input type="text" label="Dirección" isClearable variant="underlined" id='userAddress'
                       {...register("userAddress" , {required : true})}/>
                       {errors.userAddress && <p className=' text-red-600'>Campo requerido</p>}
-                    </div>      
-                  </div>
+                    </div>     
 
-                  <div className='flex-col m-3'>
-                      {/* <SelectRoles type="text" id='idRol' 
-                      {...register("idRol", {required : true})}/> */}
-
-
-                      <Select label='Seleccione un rol' variant='underlined' {...register("idRolUser", {required : true})}>
+                    <div className='flex-col mx-3 w-60'>
+                      <Select label='Rol' variant='underlined' {...register("idRolUser", {required : true})}>
                           {roles.map((roles) => (
-                          <SelectItem key={roles.idRol} value={roles.idRol}>
-                              {/* {console.log(idRolUser)} */}
+                          <SelectItem key={roles.idRol} value={roles.rolName}>
                               {roles.rolName}
                           </SelectItem>
                           ))}
                       </Select>
-
-
-                      {errors.idRol && <p className=' text-red-600'>Campo requerido</p>}
+                      {errors.idRolUser && <p className=' text-red-600'>Campo requerido</p>}
+                  </div> 
                   </div>
-                  <div className=' text-center my-3 '>
-                    {/* <ButtonAccept/> */}
 
-                    <button type='submit'>Crear</button>
+
+                  <div className=' text-center my-3 '>
+                    <button type='submit' className='bg-gradient-to-r from-cyan-500 to-blue-800 text-white font-bold w-20 h-10 rounded-lg'>Crear</button>
                   </div>
                   
                 </form>

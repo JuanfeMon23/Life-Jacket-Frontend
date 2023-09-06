@@ -69,7 +69,7 @@ export function WatchUser(props) {
                     <div className=" flex flex-col">
                     <p className="font-bold">Rol</p> 
                       <div className=" items-end border-2 border-indigo-500/75 rounded-lg w-[15rem] p-1">
-                          <p className=" text-center">{user.idRolUser}</p>
+                          <p className=" text-center">{user.Role.rolName}</p>
                       </div>
                     </div>
                   </div>  
