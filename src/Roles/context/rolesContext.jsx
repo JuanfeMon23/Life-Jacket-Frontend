@@ -58,8 +58,7 @@ export function RolesProvider({children}) {
 
     return(
         <RolesContext.Provider 
-        value={{roles, getRol, getRoles, createRol, updateRol, deleteRol}}
-        >
+        value={{roles, getRol, getRoles, createRol, updateRol, deleteRol}}>
             {children}
         </RolesContext.Provider>
     )

@@ -1,5 +1,5 @@
 import { createContext, useContext, useState } from "react";
-
+import { toast } from "react-toastify";
 import { createUserRequest, getUserRequest, getUsersRequest, updateUserRequest, deleteUserRequest, searchUserRequest } from "../api/Users.js";
 import { data } from "autoprefixer";
 
@@ -18,6 +18,7 @@ export function UserProvider ({children}) {
         try {
             const res = await getUsersRequest();
             setUsers(res.data);
+            
         } catch (error) {
             throw new Error(error.message);
         }
@@ -44,9 +45,14 @@ export function UserProvider ({children}) {
     const createUser = async (user) => {
         try {
             const res = await createUserRequest(user);
-            console.log(data);
+            toast.success('Usuario Creado con extio!',{
+                position: toast.POSITION.TOP_CENTER
+            });
             return res.data;
         } catch (error) {
+            toast.error('Error al crear un suario.' ,{
+                position: toast.POSITION.TOP_CENTER
+            });
             throw new Error(error.message);
         }
     };
@@ -54,9 +60,13 @@ export function UserProvider ({children}) {
     const updateUser = async (idUser, user) => {
         try {
             await updateUserRequest(idUser, user);
-            
+            toast.success('Usuario actualizado con exito!',{
+                position: toast.POSITION.TOP_CENTER
+            });
         } catch (error) {
-            console.log(error)
+            toast.error('Error al actualizar.' ,{
+                position: toast.POSITION.TOP_CENTER
+            });
             throw new Error(error.message);
             
         }

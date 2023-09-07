@@ -13,18 +13,22 @@ export  function UserRegister() {
 const {isOpen, onOpen, onOpenChange} = useDisclosure();
 const {register , setValue, handleSubmit, formState:{errors}} = useForm();
 const {createUser , getUser, updateUser } = useUsers();
+const navigate = useNavigate();
 const params = useParams();
 const {roles} = useRoles();
 
+function reload () {
+  window.location.reload();
+};
+
 const onSubmit = (data) => {
-  // createUser(data);
   try {
    if(params.idUser) {
-     updateUser(params.idUser, {...data})
-     console.log(data);
+     updateUser(params.idUser, {...data});
+     navigate('/Users');
     } else {
       createUser(data);
-       console.log(data);
+      
      }
    } catch (error) {
    throw new Error;
@@ -42,7 +46,7 @@ useEffect(() => {
       setValue('userPhoneNumber', user.userPhoneNumber);
       setValue('userOtherPhoneNumber', user.userOtherPhoneNumber);
       setValue('userAddress', user.userAddress);
-      // setValue('Rol', user.idRol);
+      setValue('idRolUser', user.Role.rolName);
     };
     loadUser();
    }
@@ -51,7 +55,7 @@ useEffect(() => {
   return (
     <div className='flex'>
     <Button onPress={onOpen}className='absolute right-0 top-40 mx-6 my-20 bg-gradient-to-r from-cyan-500 to-blue-800 text-white font-bold'>Registrar usuario</Button>
-      <Modal isOpen={isOpen} onOpenChange={onOpenChange}>
+      <Modal isOpen={isOpen} onOpenChange={onOpenChange} isDismissable={false}>
         <ModalContent>
           {(onClose) => (
             <>

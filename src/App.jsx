@@ -7,6 +7,8 @@ import { UserProvider } from "../src/Users/Context/userContext.jsx";
 import { RolesProvider } from "./Roles/context/rolesContext.jsx";
 import { ClientProvider } from "./Clients/context/clientsContext.jsx";
 import { UserRegister } from "./Users/components/userRegister.jsx";
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 function App() {  
   return (
@@ -16,12 +18,14 @@ function App() {
       <ClientProvider>
         <BrowserRouter>
           <Routes>
-            <Route path='/' element={<Login/>}/>       
+              <Route path='/' element={<Login/>}/>       
               <Route path='/Users' element={<Users/>}/>
               <Route path='/Users/:idUser' element={<UserRegister/>}/>
               <Route path='/Clients' element={<Clients/>}/>
-              <Route path='/Vehicles' element={<Vehicles/>}/>           
-          </Routes>       
+              <Route path='/Vehicles' element={<Vehicles/>}/>
+                         
+          </Routes>
+          <ToastContainer/>       
         </BrowserRouter>
       </ClientProvider>
       </RolesProvider>
