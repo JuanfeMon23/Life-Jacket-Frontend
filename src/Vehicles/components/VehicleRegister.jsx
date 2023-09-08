@@ -5,6 +5,7 @@ import { Select, SelectItem, Button } from '@nextui-org/react';
 import { ButtonAccept } from '../../components/ButtonAccept';
 import { useForm  } from 'react-hook-form';
 import { useVehicles } from '../context/vehiclesContext.jsx';
+import { useState , useEffect} from 'react';
 
 export  function VehicleRegister() {
     const [scrollBehavior, setScrollBehavior] = React.useState("inside");
@@ -26,6 +27,24 @@ export  function VehicleRegister() {
     };
 
 
+    const [selectedType, setSelectedType] = useState(null);
+    const [selectedBrand, setSelectedBrand] = useState(null);
+    const [selectedLine, setSelectedLine] = useState(null);
+    
+    const handleTypeChange = (value) => {
+      setSelectedType(value);
+      setSelectedBrand(null);
+      setSelectedLine(null);
+    }
+    
+    const handleBrandChange = (value) => {
+      setSelectedBrand(value);
+      setSelectedLine(null);
+    }
+    
+    const handleLineChange = (value) => {
+      setSelectedLine(value);
+    }
 
   return (
     <div className='flex'>
@@ -37,14 +56,32 @@ export  function VehicleRegister() {
               <ModalHeader className="flex flex-col gap-3">Datos del Vehiculo</ModalHeader>
               <ModalBody>
                 <form onSubmit={handleSubmit(onSubmit)}>
-                    <Select label='Tipo de vehiculo' variant='underlined'>
-                        {vehicle.vehicleType.map((vehicleType, index) => {
-                            console.log(vehicleType);
-                            <SelectItem key={index} value={vehicleType.type}>
-                                {vehicleType.type}
-                            </SelectItem>
-                        })}
+
+                    <Select label='Tipo de vehiculo' variant='underlined' value={selectedType} onChange={handleTypeChange} {...register('type')}>
+                      {vehicle.vehicleType.map((type, index) => (
+                        <SelectItem key={index} value={type.type}>{type.type}</SelectItem>
+                      ))}
                     </Select>
+
+
+                  {selectedType && (
+                    
+                      <Select label='Marca' value={selectedBrand} onChange={handleBrandChange} {...register('brand')}>
+                        {vehicle.vehicleType.find((type) => type.type === selectedType)?.brand.map((brand, index) => (
+                          <SelectItem key={index} value={brand.name}>{brand.name}</SelectItem>
+                        ))}
+                      </Select>
+                    
+                  )}
+                  {selectedBrand && (
+                    
+                      <Select label='Linea' value={selectedLine} onChange={handleLineChange} {...register('line')}>
+                        {vehicle.vehicleType.find((type) => type.type === selectedType)?.brand.find((brand) => brand.name === selectedBrand)?.line.map((line, index) => (
+                          <SelectItem key={index} value={line}>{line}</SelectItem>
+                        ))}
+                      </Select>
+                    
+                  )}
 
                   <div className=" flex">
                     

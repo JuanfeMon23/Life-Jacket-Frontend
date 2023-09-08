@@ -5,7 +5,7 @@ export function ButtonAccept() {
   return (
       <Button type="submit"
       className="bg-gradient-to-r from-cyan-500 to-blue-800 text-white my-2 mx-3">
-        Registrar
+        Confirmar
     </Button>
     
   );

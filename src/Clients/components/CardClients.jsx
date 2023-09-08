@@ -11,7 +11,7 @@ export  function CardClient() {
     const {clients} = useClients();
   return (
     clients.map((clients) => (
-        <Card key={clients.id} className=' h-30 w-13 mx-2 my-2 shadow-2xl'>
+        <Card key={clients.idClient} className=' h-30 w-13 mx-2 my-2 shadow-2xl'>
          <div className='bg-gradient-to-r from-[#252525] to-[#231949] h-10 text-white justify-around flex mx-3 rounded-lg' >
            <p>Cedula</p>
            <p>{clients.clientDocument}</p>  
@@ -35,7 +35,6 @@ export  function CardClient() {
              <div>
                <button className=''> <WatchClient client={clients} id={clients.id}/></button>
              </div>
-                 {/* <button className=' bg-gradient-to-r from-[#D99C23] to-[#D45229] rounded-lg text-white w-12' ><AiTwotoneEdit/></button> */}
                  <Button className=' bg-gradient-to-r from-[#D99C23] to-[#D45229] rounded-lg'><Link to={`/Clients/${clients.idClient}`}><AiTwotoneEdit className='text-white text-2xl'/></Link></Button>
            </div>
          </CardBody>
