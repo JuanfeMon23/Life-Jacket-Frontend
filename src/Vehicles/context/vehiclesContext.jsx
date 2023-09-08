@@ -1,6 +1,6 @@
 import { createContext, useContext, useState } from "react";
 
-import { getVehiclesRequest, getVehicleRequest, createVehiclesRequest } from "../api/Vehicles";
+import { getVehiclesRequest, getVehicleRequest, createVehiclesRequest, updateVehicleRequest } from "../api/Vehicles";
 
 const VehiclesContext = createContext();
 
@@ -23,9 +23,9 @@ export function VehicleProvider({children}){
     };
 
 
-    const getVehicle = async () => {
+    const getVehicle = async (idVehicle, vehicle) => {
         try {
-            const res = await getVehicleRequest();
+            const res = await getVehicleRequest(idVehicle, vehicle);
             setVehicles(res.data);
         } catch (error) {
             throw new Error(error.message);
@@ -35,14 +35,34 @@ export function VehicleProvider({children}){
     const createVehicle = async (data) => {
         try {
             const res = await createVehiclesRequest(data);
+            toast.success('Vehiculo creado con exito!',{
+                position: toast.POSITION.TOP_CENTER
+            });
             return res.data;
         } catch (error) {
+            toast.error('Error al crear.' ,{
+                position: toast.POSITION.TOP_CENTER
+            });
+            throw new Error(error.message);
+        }
+    };
+
+    const updateVehicle = async (idVehicle, vehicle) => {
+        try {
+            await updateVehicleRequest(idVehicle, vehicle);
+            toast.success('Vehiculo actualizado con exito!',{
+                position: toast.POSITION.TOP_CENTER
+            });
+        } catch (error) {
+            toast.error('Error al actualizar.' ,{
+                position: toast.POSITION.TOP_CENTER
+            });
             throw new Error(error.message);
         }
     };
 
     return(
-        <VehiclesContext.Provider value={{vehicles, getVehicle, getVehicles, createVehicle}}>
+        <VehiclesContext.Provider value={{vehicles, getVehicle, getVehicles, createVehicle, updateVehicle}}>
             {children}
         </VehiclesContext.Provider>
     )

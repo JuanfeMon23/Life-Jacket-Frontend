@@ -18,12 +18,6 @@ export function Users() {
         getRoles();
       },[]);
 
-
-
-      // useEffect(() => {
-      //   if (createUser) Navigate('/Users')
-      // } , [createUser]);
-
     return (
       <div className='flex '>
         <div>

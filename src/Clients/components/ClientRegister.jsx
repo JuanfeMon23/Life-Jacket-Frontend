@@ -1,24 +1,51 @@
-import React from 'react'
-import {Modal, ModalContent, ModalHeader, ModalBody, ModalFooter, useDisclosure} from "@nextui-org/react";
+import React, { useEffect } from 'react'
+import {Modal, ModalContent, ModalHeader, ModalBody, useDisclosure} from "@nextui-org/react";
 import {Input} from "@nextui-org/react";
 import {Button} from "@nextui-org/react";
 import { ButtonAccept } from '../../components/ButtonAccept';
 import {useForm} from 'react-hook-form';
 import { useClients } from '../context/clientsContext';
+import { useParams, useNavigate } from 'react-router-dom';
 
 export  function ClientRegister() {
 const {isOpen, onOpen, onOpenChange} = useDisclosure();
-const {register , handleSubmit, formState:{errors}} = useForm();
-const {createClient} = useClients();
+const {register , handleSubmit, setValue,  formState:{errors}} = useForm();
+const navigate = useNavigate();
+const params = useParams();
+const {createClient , updateClient, getClient} = useClients();
 
 const onSubmit = (data) => {
-  createClient(data);
-  console.log(data);
+  try {
+    if(params.idClient){
+      updateClient(params.idClient, {...data});
+    } else {
+      createClient({...data});
+     }
+  } catch (error) {
+    throw new Error;
+  }
 };
+
+useEffect(() => {
+  const loadClient = async () => {
+    if(params.idClient) {
+      const client = await getClient(params.idClient);
+      setValue('clientDocument', client.clientDocument);
+      setValue('clientExpeditionPlace', client.clientExpeditionPlace);
+      setValue('clientName', client.clientName);
+      setValue('clientLastName', client.clientLastName);
+      setValue('clientAddress', client.clientAddress);
+      setValue('clientPhoneNumber', client.clientPhoneNumber);
+      setValue('clientOtherPhoneNumber', client.clientOtherPhoneNumber);
+      setValue('clientOtherContact', client.clientOtherContact);
+    }
+    loadClient();
+  };
+},[])
 
   return (
     <div className='flex'>
-    <Button onPress={onOpen}className='absolute right-0 top-40 mx-6 my-20 bg-gradient-to-r from-cyan-500 to-blue-800 text-white font-bold'>Registrar</Button>
+    <Button onPress={onOpen}className='absolute right-0 top-5 mx-6 my-20 bg-gradient-to-r from-cyan-500 to-blue-800 text-white font-bold'>Registrar</Button>
       <Modal isOpen={isOpen} onOpenChange={onOpenChange}>
         <ModalContent>
           {(onClose) => (

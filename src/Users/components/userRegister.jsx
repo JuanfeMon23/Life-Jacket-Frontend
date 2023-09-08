@@ -28,7 +28,6 @@ const onSubmit = (data) => {
      navigate('/Users');
     } else {
       createUser(data);
-      
      }
    } catch (error) {
    throw new Error;

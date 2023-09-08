@@ -2,6 +2,9 @@ import React from 'react'
 import { useClients } from '../context/clientsContext'
 import { WatchClient } from './WatchClient';
 import {Card, CardHeader, CardBody} from "@nextui-org/react";
+import { Button } from '@nextui-org/react';
+import { Link } from 'react-router-dom';
+import {AiTwotoneEdit} from 'react-icons/Ai'; 
 
 
 export  function CardClient() {
@@ -33,7 +36,7 @@ export  function CardClient() {
                <button className=''> <WatchClient client={clients} id={clients.id}/></button>
              </div>
                  {/* <button className=' bg-gradient-to-r from-[#D99C23] to-[#D45229] rounded-lg text-white w-12' ><AiTwotoneEdit/></button> */}
-                 <button> Estado </button>
+                 <Button className=' bg-gradient-to-r from-[#D99C23] to-[#D45229] rounded-lg'><Link to={`/Clients/${clients.idClient}`}><AiTwotoneEdit className='text-white text-2xl'/></Link></Button>
            </div>
          </CardBody>
         </Card> 

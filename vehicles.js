@@ -1,10 +1,5 @@
-import React, { useEffect, useState } from 'react'
-import Data from '../../../vehicles.json'
-import {Select, SelectItem} from "@nextui-org/react";
-
-
-const vehicles = [{
-  "vehicleType": [
+ export const vehicle = {
+  "vehicleType" : [
     {
       "type": "Automovil",
       "brand": [
@@ -2294,7 +2289,7 @@ const vehicles = [{
       ]
     }
   ],
-  "model": [
+  "model" : [
     1990, 
     1991, 
     1992, 
@@ -2331,16 +2326,16 @@ const vehicles = [{
     2023
   ],
   "fuel" : [
-    { label :"Gasolina", value : "Gasolina"},
-    {label : "Gasolina Corriente",  value  : "Gasolina Corriente"},
-    { label : "Gasolina Extra" , value : "Gasolina Extra"},
-    { label : "Diésel" , value : "Diésel"},
-    { label : "Gas Natural Vehicular", value : "Gas Natural"},
-    { label : "Gas Propano" , value : "Gas Propano"},
-    { label : "Energía electrica" , value : "Energíae lectrica"},
-    { label : "Hibrido" , value : "Hibrido"},
+    "Gasolina",
+    "Gasolina Corriente",
+    "Gasolina Extra",
+    "Diésel",
+    "Gas Natural Vehicular",
+    "Gas Propano",
+    "Energía electrica",
+    "Hibrido"
   ],
-  "color": [
+  "color" : [
     "Rojo",
     "Azul",
     "Blanco",
@@ -2390,36 +2385,5 @@ const vehicles = [{
     "Público",
     "Privado"
   ]
-}]
 
-
-export function SelectVehicle() {
-    const [brands, setBrands] = useState(Data);
-//   const [data, setData] = useState([])
-//   useEffect(() => {
-//     fetch('http://localhost:3000/vehicleType')
-//     .then(response => response.json())
-//     .then(data => setData(data.vehicleType));
-//   }, [])
-
-
-  return (
-    <div className='className="flex w-full flex-wrap md:flex-nowrap gap-4"'>
-        {/* {
-            vehicles.map((item) => {
-              item.vehicleType.map((subitem) => {
-                subitem['brand'].map((brand) => {
-                  console.log(brand['name'])
-                  return (
-                    <p>{brand['name']}</p>
-                  )
-                })
-              })
-            })
-          } */}
-
-
-    </div>
-
-  )
 }

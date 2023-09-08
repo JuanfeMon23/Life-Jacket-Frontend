@@ -8,7 +8,9 @@ import { RolesProvider } from "./Roles/context/rolesContext.jsx";
 import { ClientProvider } from "./Clients/context/clientsContext.jsx";
 import { UserRegister } from "./Users/components/userRegister.jsx";
 import { ToastContainer } from 'react-toastify';
+import { ClientRegister } from "./Clients/components/ClientRegister.jsx";
 import 'react-toastify/dist/ReactToastify.css';
+import { VehicleProvider } from "./Vehicles/context/vehiclesContext.jsx";
 
 function App() {  
   return (
@@ -16,17 +18,20 @@ function App() {
       <UserProvider>
       <RolesProvider>
       <ClientProvider>
+      <VehicleProvider>
         <BrowserRouter>
           <Routes>
               <Route path='/' element={<Login/>}/>       
               <Route path='/Users' element={<Users/>}/>
               <Route path='/Users/:idUser' element={<UserRegister/>}/>
               <Route path='/Clients' element={<Clients/>}/>
+              <Route path='/Clients/:idClient' element={<ClientRegister/>}/>
               <Route path='/Vehicles' element={<Vehicles/>}/>
                          
           </Routes>
           <ToastContainer/>       
         </BrowserRouter>
+      </VehicleProvider>
       </ClientProvider>
       </RolesProvider>
       </UserProvider>

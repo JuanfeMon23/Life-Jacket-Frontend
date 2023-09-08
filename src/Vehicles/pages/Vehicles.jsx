@@ -1,7 +1,7 @@
-import { useEffect } from "react";
 import { Navigation } from "../../components/globalComponents/Navigation";
 import { Title } from "../../components/globalComponents/Title";
 import { VehicleRegister } from "../components/VehicleRegister";
+
 
 export function Vehicles() {
 
@@ -13,9 +13,9 @@ export function Vehicles() {
         
         <div>
           {<Title Title='Vehículos'/>}
-
+          <VehicleRegister/>
           <div className=" flex">
-            <VehicleRegister/>
+            
           </div>
            
         </div>

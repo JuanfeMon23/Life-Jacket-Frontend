@@ -1,5 +1,5 @@
 import { createContext, useContext, useState } from "react";
-
+import { toast } from "react-toastify";
 import { createRolRequest, getRolRequest, getRolesRequest, updateRolRequest , deleteRolRequest } from "../api/Roles";
 
 const RolesContext = createContext();
@@ -33,8 +33,14 @@ export function RolesProvider({children}) {
     const createRol = async (roles) => {
         try {
             const res = await createRolRequest(roles);
+            toast.success('Rol creado con exito!',{
+                position: toast.POSITION.TOP_CENTER
+            });
             return res.data;
         } catch (error) {
+            toast.error('Error al crear un rol.' ,{
+                position: toast.POSITION.TOP_CENTER
+            });
             throw new Error(error.message);
         }
     };

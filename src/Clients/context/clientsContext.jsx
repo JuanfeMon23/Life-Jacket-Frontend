@@ -1,6 +1,6 @@
 import { createContext, useContext, useState } from "react";
-
-import { createClientRequest, getClientRequest, getClientsRequest } from "../api/Clients";
+import { toast } from "react-toastify";
+import { createClientRequest, getClientRequest, getClientsRequest, updateClientRequest } from "../api/Clients";
 
 const ClientContext = createContext();
 
@@ -21,9 +21,9 @@ export function ClientProvider({children}){
         }
     };
 
-    const getClient =  async (client) => {
+    const getClient =  async (idClient,client) => {
         try {
-            const res = await getClientRequest(client);
+            const res = await getClientRequest(idClient,client);
             return res.data;
         } catch (error) {
             throw new Error(error.message);
@@ -33,14 +33,34 @@ export function ClientProvider({children}){
     const createClient = async (client) => {
         try {
             const res = await createClientRequest(client);
+            toast.success('Cliente creado con exito!',{
+                position: toast.POSITION.TOP_CENTER
+            });
             return res.data;
         } catch (error) {
+            toast.error('Error al crear.' ,{
+                position: toast.POSITION.TOP_CENTER
+            });
+            throw new Error(error.message);
+        }
+    };
+
+    const updateClient = async (idClient, client) => {
+        try {
+            await updateClientRequest(idClient, client);
+            toast.success('Cliente actualizado con exito!',{
+                position: toast.POSITION.TOP_CENTER
+            });
+        } catch (error) {
+            toast.error('Error al actualizar.' ,{
+                position: toast.POSITION.TOP_CENTER
+            });
             throw new Error(error.message);
         }
     };
 
     return(
-        <ClientContext.Provider value={{clients, getClient, getClients, createClient}}>
+        <ClientContext.Provider value={{clients, getClient, getClients, createClient, updateClient}}>
             {children}
         </ClientContext.Provider>
     )
