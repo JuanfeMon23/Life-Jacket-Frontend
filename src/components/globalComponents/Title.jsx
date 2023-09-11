@@ -5,7 +5,7 @@ export  function Title(props) {
     <>
     <div className=''>
         <div>
-            <h1 className=' text-5xl font-bold my-3'>{props.Title}</h1>
+            <h1 className=' text-5xl font-bold m-7'>{props.Title}</h1>
         </div>       
     </div>
     
