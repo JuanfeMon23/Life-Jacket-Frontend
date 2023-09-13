@@ -10,4 +10,4 @@ export const updateUserRequest = async (idUser, user) => axios.put(`/Users/${idU
 
 export const deleteUserRequest = async (id) => axios.delete(`/Users/${id}`);
 
-export const searchUserRequest = async (idUser, userEmail, userName) => axios.get(`/Users/${idUser, userEmail, userName}`);
+export const searchUserRequest = async (search) => axios.get(`/Clients/SearchE/${search}`);

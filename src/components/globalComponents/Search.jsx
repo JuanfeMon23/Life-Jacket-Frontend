@@ -1,11 +1,17 @@
 import React from "react";
 import {Input} from "@nextui-org/react";
-import {FaSearch} from 'react-icons/fa'
+import {FaSearch} from 'react-icons/fa';
+import { useUsers } from "../../Users/Context/userContext";
+import { useState } from "react";
 
 export function Search(props) {
+  const {users} = useUsers;
+
+
   return (
     <div className="w-[340px] h-[100px] px-5 rounded-2xl flex justify-center items-centertext-white">
       <Input
+        onChange={(e) => setquery(e.target.value)}
         label={props.label}
         isClearable
         radius="lg"

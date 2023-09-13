@@ -1,7 +1,6 @@
 import { createContext, useContext, useState } from "react";
 import { toast } from "react-toastify";
 import { createUserRequest, getUserRequest, getUsersRequest, updateUserRequest, deleteUserRequest, searchUserRequest } from "../api/Users.js";
-import { data } from "autoprefixer";
 
 const UserContext = createContext();
 
@@ -33,9 +32,9 @@ export function UserProvider ({children}) {
         }
     };
 
-    const searchUser = async (idUser, idEmal, userName) => {
+    const searchUser = async (search) => {
         try {
-            const res = await searchUserRequest(idUser, idEmal, userName);
+            const res = await searchUserRequest(search);
             return res.data;
         } catch (error) {
             throw new Error(error.message);
