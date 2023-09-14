@@ -38,7 +38,7 @@ export function Users() {
           <p className=" m-8 font-bold text-[20px]"> Usuarios creados</p>
 
           <div>
-            {<CardUsers/>}
+            <CardUsers/>
           </div>
           
         </div>

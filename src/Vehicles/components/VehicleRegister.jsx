@@ -26,25 +26,10 @@ export  function VehicleRegister() {
           }
     };
 
+    const [selectedVehicleType, setSelectedVehicleType] = useState('');
+    const [selectedBrand, setSelectedBrand] = useState('');
+    const [selectedLine, setSelectedLine] = useState('');
 
-    const [selectedType, setSelectedType] = useState(null);
-    const [selectedBrand, setSelectedBrand] = useState(null);
-    const [selectedLine, setSelectedLine] = useState(null);
-    
-    const handleTypeChange = (value) => {
-      setSelectedType(value);
-      setSelectedBrand(null);
-      setSelectedLine(null);
-    }
-    
-    const handleBrandChange = (value) => {
-      setSelectedBrand(value);
-      setSelectedLine(null);
-    }
-    
-    const handleLineChange = (value) => {
-      setSelectedLine(value);
-    }
 
   return (
     <div className='flex'>
@@ -56,36 +41,59 @@ export  function VehicleRegister() {
               <ModalHeader className="flex flex-col gap-3">Datos del Vehiculo</ModalHeader>
               <ModalBody>
                 <form onSubmit={handleSubmit(onSubmit)}>
+                    <div  className=' flex'>
+                        <Select 
+                            variant='underlined'
+                            placeholder='Tipo de vehiculo'
+                            id="vehicleType"
+                            value={selectedVehicleType}
+                            onChange={(e) => setSelectedVehicleType(e.target.value)}>
+                              {vehicle.vehicleType.map((type) => (
+                                <SelectItem key={type.type} value={type.type}  >  
+                                  {type.type}
+                                </SelectItem>
+                              ))}
+                          </Select>
 
-                    <Select label='Tipo de vehiculo' variant='underlined' value={selectedType} onChange={handleTypeChange} {...register('type')}>
-                      {vehicle.vehicleType.map((type, index) => (
-                        <SelectItem key={index} value={type.type}>{type.type}</SelectItem>
-                      ))}
-                    </Select>
-
-
-                  {selectedType && (
-                    
-                      <Select label='Marca' value={selectedBrand} onChange={handleBrandChange} {...register('brand')}>
-                        {vehicle.vehicleType.find((type) => type.type === selectedType)?.brand.map((brand, index) => (
-                          <SelectItem key={index} value={brand.name}>{brand.name}</SelectItem>
-                        ))}
+                      <Select
+                        id="brand"
+                        placeholder='Marca'
+                        variant='underlined'
+                        value={selectedBrand}
+                        onChange={(e) => setSelectedBrand(e.target.value)}
+                        disabled={!selectedVehicleType}
+                      >
+                        {selectedVehicleType &&
+                          vehicle.vehicleType
+                            .find((type) => type.type === selectedVehicleType)
+                            .brand.map((brand) => (
+                              <SelectItem key={brand.name} value={brand.name}>
+                                {brand.name}
+                              </SelectItem>
+                            ))}
                       </Select>
-                    
-                  )}
-                  {selectedBrand && (
-                    
-                      <Select label='Linea' value={selectedLine} onChange={handleLineChange} {...register('line')}>
-                        {vehicle.vehicleType.find((type) => type.type === selectedType)?.brand.find((brand) => brand.name === selectedBrand)?.line.map((line, index) => (
-                          <SelectItem key={index} value={line}>{line}</SelectItem>
-                        ))}
-                      </Select>
-                    
-                  )}
+                    </div>
 
-                  <div className=" flex">
-                    
-                  </div>
+
+                      <Select
+                        id="line"
+                        variant='underlined'
+                        placeholder='Linea'
+                        value={selectedLine}
+                        onChange={(e) => setSelectedLine(e.target.value)}
+                        disabled={!selectedBrand}
+                      >
+                        {selectedBrand &&
+                          vehicle.vehicleType
+                            .find((type) => type.type === selectedVehicleType)
+                            .brand.find((brand) => brand.name === selectedBrand)
+                            .line.map((line) => (
+                              <SelectItem key={line} value={line}>
+                                {line}
+                              </SelectItem>
+                            ))}
+                      </Select>
+ 
                   <div className=' text-center my-3 '>
                     <ButtonAccept/>
                   </div>

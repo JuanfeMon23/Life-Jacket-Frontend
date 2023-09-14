@@ -64,14 +64,17 @@ useEffect(() => {
                 <form onSubmit={handleSubmit(onSubmit)}>
                   <div className="flex ">
                     <div className=' flex-col mx-3'>
-                      <Input type="text" variant="underlined" isClearable  label='Nombres' id='userName'
-                      {...register("userName" , {required : true})}/>
+                      <Input type="text" variant="underlined" isClearable label='Nombres' id='userName'
+                      {...register("userName" , {required : true})}  
+                      />
                       {errors.userName && <p className=' text-red-600'>Campo requerido</p>}
+
+                      
                     </div>
 
                     <div className=' flex-col mx-3'>
                     <Input type="text" label="Apellidos" isClearable variant="underlined" id="userLastName"
-                    {...register("userLastName" , {required : true})}/>
+                    {...register("userLastName" , {required : true})}  />
                     {errors.userLastName && <p className=' text-red-600 '>Campo requerido</p>}
                     </div>
                     
@@ -79,14 +82,14 @@ useEffect(() => {
 
                   <div className=" flex">
                     <div className='flex-col m-3'>
-                    <Input type="email" label="Email" isClearable variant="underlined" id='userEmail'
+                    <Input type="email" label="Email"  isClearable variant="underlined" id='userEmail'
                     {...register("userEmail" , {required : true})}/>
                     {errors.userEmail && <p className=' text-red-600'>Campo requerido</p>}
                     </div>
 
 
                     <div className='flex-col m-3'> 
-                      <Input type="password" label="Password"isClearable  variant="underlined" id='userPassword'
+                      <Input type="password" label="Password"isClearable   variant="underlined" id='userPassword'
                     {...register("userPassword" , {required : true})}/>
                     {errors.userPassword && <p className=' text-red-600'>Campo requerido</p>}
                     </div>
@@ -94,14 +97,14 @@ useEffect(() => {
 
                   <div className=" flex">
                     <div className='flex-col m-3'>
-                    <Input type="text" label="Telefono" isClearable variant="underlined" id='userPhoneNumber'
+                    <Input type="text" label="Telefono"  isClearable variant="underlined" id='userPhoneNumber'
                     {...register("userPhoneNumber" , {required : true})}/>
                     {errors.userPhoneNumber && <p className=' text-red-600'>Campo requerido</p>}
                     </div>
 
 
                     <div className='flex-col m-3'> 
-                      <Input type="text" label="Otro Telefono" isClearable  variant="underlined" id='userOtherPhoneNumber'
+                      <Input type="text" label="Otro Telefono"  isClearable  variant="underlined" id='userOtherPhoneNumber'
                     {...register("userOtherPhoneNumber" , {required : true})}/>
                     {errors.userOtherPhoneNumber && <p className=' text-red-600'>Campo requerido</p>}
                     </div>
@@ -109,13 +112,13 @@ useEffect(() => {
 
                   <div className=" flex">
                     <div className='flex-col '>
-                      <Input type="text" label="Dirección" isClearable variant="underlined" id='userAddress'
+                      <Input type="text" label="Dirección"  isClearable variant="underlined" id='userAddress'
                       {...register("userAddress" , {required : true})}/>
                       {errors.userAddress && <p className=' text-red-600'>Campo requerido</p>}
                     </div>     
 
                     <div className='flex-col mx-3 w-60'>
-                      <Select label='Rol' variant='underlined' {...register("idRolUser", {required : true})}>
+                      <Select label='Rol'  variant='underlined' {...register("idRolUser", {required : true})}>
                           {roles.map((roles) => (
                           <SelectItem key={roles.idRol} value={roles.rolName}>
                               {roles.rolName}
