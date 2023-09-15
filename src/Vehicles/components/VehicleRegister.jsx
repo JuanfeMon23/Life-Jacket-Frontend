@@ -27,6 +27,7 @@ export  function VehicleRegister() {
     };
 
     const [selectedVehicleType, setSelectedVehicleType] = useState('');
+    const [selectedModel, setSelectModel] = useState('');
     const [selectedBrand, setSelectedBrand] = useState('');
     const [selectedLine, setSelectedLine] = useState('');
 
@@ -41,8 +42,8 @@ export  function VehicleRegister() {
               <ModalHeader className="flex flex-col gap-3">Datos del Vehiculo</ModalHeader>
               <ModalBody>
                 <form onSubmit={handleSubmit(onSubmit)}>
-                    <div  className=' flex'>
-                        <Select 
+                    <div className=' flex'> 
+                        <Select className='m-1'
                             variant='underlined'
                             placeholder='Tipo de vehiculo'
                             id="vehicleType"
@@ -53,29 +54,30 @@ export  function VehicleRegister() {
                                   {type.type}
                                 </SelectItem>
                               ))}
-                          </Select>
-
-                      <Select
-                        id="brand"
-                        placeholder='Marca'
-                        variant='underlined'
-                        value={selectedBrand}
-                        onChange={(e) => setSelectedBrand(e.target.value)}
-                        disabled={!selectedVehicleType}
-                      >
-                        {selectedVehicleType &&
-                          vehicle.vehicleType
-                            .find((type) => type.type === selectedVehicleType)
-                            .brand.map((brand) => (
-                              <SelectItem key={brand.name} value={brand.name}>
-                                {brand.name}
-                              </SelectItem>
-                            ))}
-                      </Select>
+                          </Select>     
+          
+                        <Select className='m-1'
+                          id="brand"
+                          placeholder='Marca'
+                          variant='underlined'
+                          value={selectedBrand}
+                          onChange={(e) => setSelectedBrand(e.target.value)}
+                          disabled={!selectedVehicleType}
+                        >
+                          {selectedVehicleType &&
+                            vehicle.vehicleType
+                              .find((type) => type.type === selectedVehicleType)
+                              .brand.map((brand) => (
+                                <SelectItem key={brand.name} value={brand.name}>
+                                  {brand.name}
+                                </SelectItem>
+                              ))}
+                        </Select>                      
                     </div>
 
-
+                    <div className='flex'>
                       <Select
+                      className=' m-1'
                         id="line"
                         variant='underlined'
                         placeholder='Linea'
@@ -93,6 +95,19 @@ export  function VehicleRegister() {
                               </SelectItem>
                             ))}
                       </Select>
+
+                      <Select className='m-1'
+                            id="model"
+                            variant='underlined'
+                            placeholder='Modelo'
+                            >
+                              {vehicle.model.map((model) => (
+                                <SelectItem key={model} value={model}  >  
+                                  {model}
+                                </SelectItem>
+                              ))}
+                      </Select>                    
+                    </div>              
  
                   <div className=' text-center my-3 '>
                     <ButtonAccept/>
