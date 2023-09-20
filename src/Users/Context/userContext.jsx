@@ -44,12 +44,12 @@ export function UserProvider ({children}) {
     const createUser = async (user) => {
         try {
             const res = await createUserRequest(user);
-            toast.success('Usuario Creado con extio!',{
+            toast.success('Usuario Creado con exito!',{
                 position: toast.POSITION.TOP_CENTER
             });
             return res.data;
         } catch (error) {
-            toast.error('Error al crear un suario.' ,{
+            toast.error('Error al crear un usuario.' ,{
                 position: toast.POSITION.TOP_CENTER
             });
             throw new Error(error.message);

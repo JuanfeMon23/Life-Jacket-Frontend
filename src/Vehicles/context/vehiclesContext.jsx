@@ -43,6 +43,7 @@ export function VehicleProvider({children}){
             toast.error('Error al crear.' ,{
                 position: toast.POSITION.TOP_CENTER
             });
+            console.log(error)
             throw new Error(error.message);
         }
     };
