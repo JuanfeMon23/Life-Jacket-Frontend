@@ -33,18 +33,27 @@ export function WatchClient (props) {
                     </div>                  
   
   
-                  <div className=" m-5 flex justify-around ">
-                    <div className=" flex flex-col">
+                  <div className=" flex justify-center m-5 ">
+                    <div className="flex flex-col">
                       <p className="font-bold">Cedula</p>
                       <div className="border-2 border-indigo-500/75 rounded-lg p-1 w-[15rem]">
                           <p className=" text-center">{client.clientDocument}</p>
                       </div>
                     </div>
+                  </div>
+
+                  <div className=" m-5 flex justify-around ">
+                    <div className=" flex flex-col">
+                      <p className="font-bold">Departamento</p>
+                      <div className="border-2 border-indigo-500/75 rounded-lg p-1 w-[15rem]">
+                          <p className=" text-center">{client.clientDepartment}</p>
+                      </div>
+                    </div>
 
                     <div className=" flex flex-col">
-                      <p className="font-bold">lugar de expedicion</p>
+                      <p className="font-bold">Ciudad o municipio</p>
                       <div className="border-2 border-indigo-500/75 rounded-lg p-1 w-[15rem]">
-                          <p className=" text-center">{client.clientExpeditionPlace}</p>
+                          <p className=" text-center">{client.clientMunicipality}</p>
                       </div>
                     </div>
                   </div>

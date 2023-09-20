@@ -24,7 +24,7 @@ export function Clients() {
           <ClientRegister/>
 
 
-          <div className=" flex flex-wrap">
+          <div>
             <CardClient/>
           </div>
            

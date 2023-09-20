@@ -7,7 +7,7 @@ import { Link } from 'react-router-dom';
 import { Button } from '@nextui-org/react';
 import {FaSearch} from 'react-icons/fa';
 import {Input} from "@nextui-org/react";
-import { UserRegister } from './userRegister';
+import { UserRegister } from './UserRegister';
 
 export function CardUsers() {
   const {users} = useUsers();
@@ -96,7 +96,6 @@ export function CardUsers() {
             <div className='flex  justify-around pt-3'>
               <div>
                 <button className=''> <WatchUser user={data} id={data.id}/></button>
-                <button> <UserRegister user={data} id={data.id}></UserRegister></button>
               </div>
                   {/* <button className=' bg-gradient-to-r from-[#D99C23] to-[#D45229] rounded-lg text-white w-12' link={''} ></button> */}
                   <Button className=' bg-gradient-to-r from-[#D99C23] to-[#D45229] rounded-lg'><Link to={`/Users/${data.idUser}`}><AiTwotoneEdit className='text-white text-2xl'/></Link></Button>

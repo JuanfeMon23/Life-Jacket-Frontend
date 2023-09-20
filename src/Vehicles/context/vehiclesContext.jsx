@@ -1,5 +1,5 @@
 import { createContext, useContext, useState } from "react";
-
+import { toast } from "react-toastify";
 import { getVehiclesRequest, getVehicleRequest, createVehiclesRequest, updateVehicleRequest } from "../api/Vehicles";
 
 const VehiclesContext = createContext();
@@ -32,9 +32,9 @@ export function VehicleProvider({children}){
         }
     };
 
-    const createVehicle = async (data) => {
+    const createVehicle = async (vehicle) => {
         try {
-            const res = await createVehiclesRequest(data);
+            const res = await createVehiclesRequest(vehicle);
             toast.success('Vehiculo creado con exito!',{
                 position: toast.POSITION.TOP_CENTER
             });

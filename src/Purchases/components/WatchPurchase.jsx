@@ -3,9 +3,9 @@ import {Modal, ModalContent, ModalHeader, ModalBody, ModalFooter, Button, useDis
 import {FiEye}from "react-icons/fi";
 
 
-export function WatchUser(props) {
+export function WatchPurchase(props) {
   const {isOpen, onOpen, onOpenChange} = useDisclosure();
-  const user = props.user
+  const purchase = props.purchase
  
   return (
     <>
@@ -14,98 +14,73 @@ export function WatchUser(props) {
         <ModalContent>
           {(onClose) => (
             <>
-              <ModalHeader className=" bg-gradient-to-r from-[#252525] to-[#231949] text-white flex items-center ">Informacion del usuario</ModalHeader>
-                <ModalBody key={user.id}>
+              <ModalHeader className=" bg-gradient-to-r from-[#252525] to-[#231949] text-white flex items-center ">Informacion de la compra</ModalHeader>
+                <ModalBody key={purchase.idPurchase}>
                   
                 <div className="m-5 flex justify-around">
                     <div className=" flex flex-col">
-                      <p className="font-bold">Tipo de documento</p> 
+                      <p className="font-bold">Fecha</p> 
                       <div className=" border-2 border-indigo-500/75 rounded-lg w-[15rem] p-1 ">
-                          <p className=" text-center">{user.userDocumentType}</p>
+                          <p className=" text-center">{purchase.purchaseDate}</p>
                       </div>
                     </div>
 
                     <div className=" flex flex-col">
-                    <p className="font-bold">Numero de documento</p> 
+                    <p className="font-bold">Placa del vehículo</p> 
                       <div className=" items-end border-2 border-indigo-500/75 rounded-lg w-[15rem] p-1">
-                          <p className=" text-center">{user.userDocumentNumber}</p>
+                          <p className=" text-center">{purchase.vehicle.licensePlate}</p>
                       </div>
                     </div>
                   </div> 
 
                   <div className="m-5 flex justify-around">
                     <div className=" flex flex-col">
-                      <p className="font-bold">Departamento del documento</p> 
+                      <p className="font-bold">Departamento de la compra</p> 
                       <div className=" border-2 border-indigo-500/75 rounded-lg w-[15rem] p-1 ">
-                          <p className=" text-center">{user.userDepartment}</p>
+                          <p className=" text-center">{purchase.purchaseDepartment}</p>
                       </div>
                     </div>
 
                     <div className=" flex flex-col">
-                    <p className="font-bold">Ciudad o municipio</p> 
+                    <p className="font-bold">Cíudad o municipio</p> 
                       <div className=" items-end border-2 border-indigo-500/75 rounded-lg w-[15rem] p-1">
-                          <p className=" text-center">{user.userMunicipality}</p>
+                          <p className=" text-center">{purchase.purchaseMunicipality}</p>
                       </div>
                     </div>
                   </div>     
 
                   <div className="m-5 flex justify-around">
                     <div className=" flex flex-col">
-                      <p className="font-bold">Nombres</p> 
+                      <p className="font-bold">Nombres del cliente</p> 
                       <div className=" border-2 border-indigo-500/75 rounded-lg w-[15rem] p-1 ">
-                          <p className=" text-center">{user.userName}</p>
+                          <p className=" text-center">{purchase.client.clientName}</p>
                       </div>
                     </div>
 
                     <div className=" flex flex-col">
-                    <p className="font-bold">Apellidos</p> 
+                    <p className="font-bold">Apellidos del cliente</p> 
                       <div className=" items-end border-2 border-indigo-500/75 rounded-lg w-[15rem] p-1">
-                          <p className=" text-center">{user.userLastName}</p>
+                          <p className=" text-center">{purchase.client.clientLastName}</p>
                       </div>
-                    </div>
-                  </div>                  
-
-
-                <div className=" flex justify-center m-3 ">
-                  <div className=" flex flex-col">
-                    <p className="font-bold">Correo Electronico</p>
-                    <div className="border-2 border-indigo-500/75 rounded-lg p-1 w-[20rem]">
-                        <p className=" text-center">{user.userEmail}</p>
                     </div>
                   </div>
-                </div>
-                    
+
                 <div className="m-5 flex justify-around">
                     <div className=" flex flex-col">
-                      <p className="font-bold">Telefono</p> 
+                      <p className="font-bold">Precio de la compra</p> 
                       <div className=" border-2 border-indigo-500/75 rounded-lg w-[15rem] p-1 ">
-                          <p className=" text-center">{user.userPhoneNumber}</p>
+                          <p className=" text-center">{`$${purchase.purchaseFinalPrice}`}</p>
                       </div>
                     </div>
 
                     <div className=" flex flex-col">
-                    <p className="font-bold">Otro Telefono</p> 
+                    <p className="font-bold">Limitaciones</p> 
                       <div className=" items-end border-2 border-indigo-500/75 rounded-lg w-[15rem] p-1">
-                          <p className=" text-center">{user.userOtherPhoneNumber}</p>
+                          <p className=" text-center">{purchase.purchaseLimitations}</p>
                       </div>
                     </div>
-                  </div>  
+                  </div>                     
 
-                  <div className="m-5 flex justify-around">
-                    <div className=" flex flex-col">
-                      <p className="font-bold">Dirección</p> 
-                      <div className=" border-2 border-indigo-500/75 rounded-lg w-[15rem] p-1 ">
-                          <p className=" text-center">{user.userAddress}</p>
-                      </div>
-                    </div>
-
-                    <div className=" flex flex-col">
-                    <p className="font-bold">Rol</p> 
-                      <div className=" items-end border-2 border-indigo-500/75 rounded-lg w-[15rem] p-1">
-                          <p className=" text-center">{user.Role.rolName}</p>
-                      </div>
-                    </div>
-                  </div>  
                 </ModalBody>
             </>
           )}

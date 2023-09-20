@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import {Modal, ModalContent, ModalHeader, ModalBody, ModalFooter, useDisclosure} from "@nextui-org/react";
 import {Input} from "@nextui-org/react";
 import {Button} from "@nextui-org/react";
@@ -7,7 +7,8 @@ import { useUsers } from '../Context/userContext';
 import {Select, SelectItem} from "@nextui-org/react";
 import { useRoles } from '../../Roles/context/rolesContext';
 import { useParams, useNavigate } from 'react-router-dom';
-import {AiTwotoneEdit} from 'react-icons/Ai'
+import {AiTwotoneEdit} from 'react-icons/Ai';
+import { Deparments } from '../../../departments.js';
 
 
 export  function UserRegister() {
@@ -29,28 +30,33 @@ const onSubmit = (data) => {
      navigate('/Users');
     } else {
       createUser(data);
+      console.log(data);
      }
    } catch (error) {
    throw new Error;
    }
 };
 
-useEffect(() => {
-  const loadUser = async () => {
-   if (params.idUser) {
-      const user = await getUser(params.idUser);
-      setValue('userName', user.userName);
-      setValue('userLastName', user.userName);
-      setValue('userEmail', user.userEmail);
-      setValue('userPassword', user.userPassword);
-      setValue('userPhoneNumber', user.userPhoneNumber);
-      setValue('userOtherPhoneNumber', user.userOtherPhoneNumber);
-      setValue('userAddress', user.userAddress);
-      setValue('idRolUser', user.Role.rolName);
-    };
-    loadUser();
-   }
-},[])
+const [userDepartment, setUserDepartment] = useState('');
+const [userMunicipality, setUserMunicipality] = useState(''); 
+
+
+// useEffect(() => {
+//   const loadUser = async () => {
+//    if (params.idUser) {
+//       const user = await getUser(params.idUser);
+//       setValue('userName', user.userName);
+//       setValue('userLastName', user.userName);
+//       setValue('userEmail', user.userEmail);
+//       setValue('userPassword', user.userPassword);
+//       setValue('userPhoneNumber', user.userPhoneNumber);
+//       setValue('userOtherPhoneNumber', user.userOtherPhoneNumber);
+//       setValue('userAddress', user.userAddress);
+//       setValue('idRolUser', user.Role.rolName);
+//     };
+//     loadUser();
+//    }
+// },[])
 
   return (
     <div className='flex'>
@@ -63,20 +69,86 @@ useEffect(() => {
               <ModalBody>
                 <form onSubmit={handleSubmit(onSubmit)}>
                   <div className="flex ">
-                    <div className=' flex-col mx-3'>
-                      <Input type="text" variant="underlined" isClearable label='Nombres' id='userName'
-                      {...register("userName" , {required : true})}  
-                      />
-                      {errors.userName && <p className=' text-red-600'>Campo requerido</p>}
+                      <div className=' flex-col m-3 w-[200px]'>
+                        <Select variant="underlined" label='Tipo de documento' id='userDocumentType' {...register("userDocumentType" , {required : true})} >
+                          <SelectItem key='Cedula de ciudadania'>Cedula de ciudadanía</SelectItem>
+                          <SelectItem key='Cedula de extranjería'>Cedula de extranjería</SelectItem>
+                          <SelectItem key='Pasaporte'>Pasaporte</SelectItem>
+                        </Select>
+                        {errors.userDocumentType && <p className=' text-red-600'>Campo requerido</p>}
+                      </div>
 
+                      <div className=' flex-col m-3'>
+                        <Input type="number" label="Numero documento" isClearable variant="underlined" id="userDocumentNumber"
+                        {...register("userDocumentNumber" , {required : true})}  />
+                        {errors.userDocumentNumber && <p className=' text-red-600 '>Campo requerido</p>}
+                      </div>
                       
-                    </div>
+                  </div>
 
-                    <div className=' flex-col mx-3'>
-                    <Input type="text" label="Apellidos" isClearable variant="underlined" id="userLastName"
-                    {...register("userLastName" , {required : true})}  />
-                    {errors.userLastName && <p className=' text-red-600 '>Campo requerido</p>}
-                    </div>
+                  <div className=' flex'> 
+                      <div className='flex-col m-3 w-[200px]'>
+                      <Input type="text" variant="underlined" isClearable label='Departamento' id='userDepartment'
+                        {...register("userDepartment" , {required : true})}  
+                        />
+                          {/* <Select
+                            id='userDepartment'
+                            {...register("userDepartment" , {required : true})}
+                            onChange={(e) => setUserDepartment(e.target.value)}
+                            value={userDepartment}
+                            className='m-1'
+                            variant='underlined'
+                            label='Departamento'
+                            >
+                              {Deparments.map((index) => (
+                                <SelectItem key={index.departamento} value={index.departamento}  >  
+                                  {index.departamento}
+                                </SelectItem>
+                              ))}
+                          </Select> */}
+                          {errors.userDepartment && <p className=' text-red-600'>Campo requerido</p>} 
+                      </div>
+
+                      <div className='flex-col m-3 w-[200px]'>
+                      <Input type="text" variant="underlined" isClearable label='Ciudad o municipio' id='userMunicipality'
+                        {...register("userMunicipality" , {required : true})} /> 
+                      
+                        {/* <Select
+                            className='m-1'
+                            label='Ciudad o municipio'
+                            variant='underlined'
+                            disabled={!userDepartment}
+                            id='userMunicipality'
+                            onChange={(e) => setUserMunicipality(e.target.value)}
+                            value={userMunicipality}
+                            {...register("userMunicipality" , {required : true})}
+                            >
+                            {userDepartment &&
+                                Deparments.find((department) => department.departamento === userDepartment)
+                                    .ciudades.map((ciudad) => (
+                                        <SelectItem key={ciudad} value={ciudad}>
+                                            {ciudad}
+                                        </SelectItem>
+                                ))}
+                        </Select> */}
+                        {errors.userMunicipality && <p className=' text-red-600'>Campo requerido</p>} 
+                      </div>
+                  </div>
+
+
+                    <div className="flex ">
+                      <div className=' flex-col m-3'>
+                        <Input type="text" variant="underlined" isClearable label='Nombres' id='userName'
+                        {...register("userName" , {required : true})}  
+                        />
+                        {errors.userName && <p className=' text-red-600'>Campo requerido</p>}                      
+                      </div>
+
+                      <div className=' flex-col m-3'>
+                        <Input type="text" label="Apellidos" isClearable variant="underlined" id="userLastName"
+                        {...register("userLastName" , {required : true})}  />
+                        {errors.userLastName && <p className=' text-red-600 '>Campo requerido</p>}
+                      </div>
                     
                   </div>
 
@@ -111,13 +183,13 @@ useEffect(() => {
                   </div>
 
                   <div className=" flex">
-                    <div className='flex-col '>
+                    <div className='flex-col m-3 '>
                       <Input type="text" label="Dirección"  isClearable variant="underlined" id='userAddress'
                       {...register("userAddress" , {required : true})}/>
                       {errors.userAddress && <p className=' text-red-600'>Campo requerido</p>}
                     </div>     
 
-                    <div className='flex-col mx-3 w-60'>
+                    <div className='flex-col m-3 w-[200px]'>
                       <Select label='Rol'  variant='underlined' {...register("idRolUser", {required : true})}>
                           {roles.map((roles) => (
                           <SelectItem key={roles.idRol} value={roles.rolName}>

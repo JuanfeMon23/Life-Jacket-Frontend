@@ -1,14 +1,12 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { Navigation } from "../../components/globalComponents/Navigation";
 import { Title } from "../../components/globalComponents/Title";
-import { UserRegister } from "../components/userRegister";
+import { UserRegister } from "../components/UserRegister";
 import { useUsers } from "../Context/userContext";
 import { CardUsers } from "../components/CardUsers";
 import { RolesRegister } from "../../Roles/components/rolesRegister";
 import { useRoles } from "../../Roles/context/rolesContext";
 import { CardRoles } from "../../Roles/components/CardRoles";
-
-import { useState } from "react";
 
 export function Users() {
       const {getUsers, users, setUsers} = useUsers();
