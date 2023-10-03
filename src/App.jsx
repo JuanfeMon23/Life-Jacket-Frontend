@@ -18,6 +18,8 @@ import { ImprovementProvider } from "./Improvements/context/improvementsContext.
 import { DashBoard } from "./Dashboard/pages/DashBoard.jsx";
 import { Improvements } from "./Improvements/pages/Improvements.jsx";
 import 'react-toastify/dist/ReactToastify.css';
+import { EditUser } from "./Users/components/EditUser.jsx";
+import { EditUserContent } from "./Users/components/EditUserContent.jsx";
 
 function App() {  
   return (

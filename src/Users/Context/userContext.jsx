@@ -23,9 +23,9 @@ export function UserProvider ({children}) {
         }
     };
 
-    const getUser = async (user) => {
+    const getUser = async (idUser, user) => {
         try {
-            const res = await getUserRequest(user);
+            const res = await getUserRequest(idUser, user);
             return res.data;
         } catch (error) {
             throw new Error(error.message);
@@ -63,6 +63,7 @@ export function UserProvider ({children}) {
                 position: toast.POSITION.TOP_CENTER
             });
         } catch (error) {
+            console.log(error)
             toast.error('Error al actualizar.' ,{
                 position: toast.POSITION.TOP_CENTER
             });

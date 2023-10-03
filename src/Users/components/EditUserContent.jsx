@@ -1,77 +1,50 @@
 import React, { useEffect, useState } from 'react'
-import {Modal, ModalContent, ModalHeader, ModalBody, ModalFooter, useDisclosure, user} from "@nextui-org/react";
 import {Input} from "@nextui-org/react";
 import {Button} from "@nextui-org/react";
 import {useForm} from 'react-hook-form';
-import { useUsers } from '../Context/userContext';
 import {Select, SelectItem} from "@nextui-org/react";
+import { useParams} from 'react-router-dom';
+import { useUsers } from '../Context/userContext';
 import { useRoles } from '../../Roles/context/rolesContext';
-import { useParams, useNavigate } from 'react-router-dom';
-import {AiTwotoneEdit} from 'react-icons/Ai';
 
+export function EditUserContent() {
+    const {updateUser, getUser} = useUsers();
+    const {register , setValue, handleSubmit, formState:{errors}} = useForm();
+    const {roles} = useRoles();
+    const params = useParams();
 
+    const onSubmit = (data) => {
+        try {
+            if(params.idUser) {
+                updateUser(params.idUser, {...data});
+            }
+        } catch (error) {
+            
+        }
+           updateUser();
+    }
 
-export  function UserRegister({id}) {
-const {isOpen, onOpen, onOpenChange} = useDisclosure();
-const {register , setValue, handleSubmit, formState:{errors}} = useForm();
-const {createUser , getUser, updateUser } = useUsers();
-const navigate = useNavigate();
-const params = useParams();
-const {roles} = useRoles();
-
-
-useEffect(() => {
-  const loadUser = async () => {
-   if (id) {
-      const user = await getUser(id);
-      setValue('userName', user.userName);
-      setValue('userLastName', user.userName);
-      setValue('userEmail', user.userEmail);
-      setValue('userPassword', user.userPassword);
-      setValue('userPhoneNumber', user.userPhoneNumber);
-      setValue('userOtherPhoneNumber', user.userOtherPhoneNumber);
-      setValue('userAddress', user.userAddress);
-      setValue('idRolUser', user.Roles);
-    };
-
-    loadUser();
-   }
-},[params.idUser])
-
-const onSubmit = (data) => {
-  try {
-   if(params.idUser) {
-     updateUser(params.idUser, {...data}).then(response => {
-      console.log(response);
-     });
-     navigate('/Users');
-    } else {
-      createUser(data);
-      console.log(data);
-     }
-   } catch (error) {
-   throw new Error;
-   }
-};
-
-const [userDepartment, setUserDepartment] = useState('');
-const [userMunicipality, setUserMunicipality] = useState(''); 
-
-
-
+    // useEffect(() => {
+    //     const loadUser = async () => {
+    //     if (params.idUser) {
+    //         const user = await getUser(params.idUser);
+    //         setValue('userName', user.userName);
+    //         setValue('userLastName', user.userName);
+    //         setValue('userEmail', user.userEmail);
+    //         setValue('userPassword', user.userPassword);
+    //         setValue('userPhoneNumber', user.userPhoneNumber);
+    //         setValue('userOtherPhoneNumber', user.userOtherPhoneNumber);
+    //         setValue('userAddress', user.userAddress);
+    //         setValue('idRolUser', user.Role.rolName);
+    //         };
+    //     }
+    //     loadUser();
+    //     },[])
   return (
-    <div className='flex'>
-      <Button onPress={onOpen} className='absolute right-0 top-40 mx-6 my-20 bg-gradient-to-r from-cyan-500 to-blue-800 text-white font-bold'>{id ? <AiTwotoneEdit className='text-white text-2xl'/> : 'Registrar usuario' }</Button>
-      <Modal isOpen={isOpen} onOpenChange={onOpenChange} isDismissable={false}>
-        <ModalContent>
-          {(onClose) => (
-            <>
-              <ModalHeader className="flex flex-col gap-3">Datos del usuario</ModalHeader>
-              <ModalBody>
-                <form onSubmit={handleSubmit(onSubmit)}>
+    <form onSubmit={handleSubmit(onSubmit)}>
                   <div className="flex ">
                       <div className=' flex-col m-3 w-[200px]'>
-                        <Select variant="underlined" label='Tipo de documento' id='userDocumentType' {...register("userDocumentType" , {required : true})} >
+                        <Select variant="underlined" label='Tipo de documento' id='userDocumentType'  onChange={(e) => data.userDocumentType} {...register("userDocumentType" , {required : true})} >
                           <SelectItem key='Cedula de ciudadania'>Cedula de ciudadanía</SelectItem>
                           <SelectItem key='Cedula de extranjería'>Cedula de extranjería</SelectItem>
                           <SelectItem key='Pasaporte'>Pasaporte</SelectItem>
@@ -80,7 +53,7 @@ const [userMunicipality, setUserMunicipality] = useState('');
                       </div>
 
                       <div className=' flex-col m-3'>
-                        <Input type="number" label="Numero documento" isClearable variant="underlined" id="userDocumentNumber"
+                        <Input type="number" label="Numero documento" isClearable variant="underlined" id="userDocumentNumber" onChange={(e) => data.userDocumentNumber}
                         {...register("userDocumentNumber" , {required : true})}  />
                         {errors.userDocumentNumber && <p className=' text-red-600 '>Campo requerido</p>}
                       </div>
@@ -208,11 +181,5 @@ const [userMunicipality, setUserMunicipality] = useState('');
                   </div>
                   
                 </form>
-              </ModalBody>
-            </>
-          )}
-        </ModalContent>
-      </Modal>
-    </div>
   )
 }
