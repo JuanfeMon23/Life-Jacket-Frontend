@@ -45,74 +45,77 @@ export  function VehicleRegister() {
               <ModalHeader className="flex flex-col gap-3">Datos del Vehiculo</ModalHeader>
               <ModalBody>
                 <form onSubmit={handleSubmit(onSubmit)}>
-                    {/* <div className=' flex'> 
-                        <Select className='m-1'
-                            {...register("vehicleType" , {required : true})}
-                            variant='underlined'
-                            placeholder='Tipo de vehiculo'
-                            id="vehicleType"
-                            value={selectedVehicleType}
-                            onChange={(e) => setSelectedVehicleType(e.target.value)}
-                            >
-                              {vehicle.vehicleType.map((type) => (
-                                <SelectItem key={type.type} value={type.type}  >  
-                                  {type.type}
-                                </SelectItem>
-                              ))}
-                          </Select>     
-          
-                        <Select className='m-1'
-                          id="brand"
-                          placeholder='Marca'
-                          variant='underlined'
-                          value={selectedBrand}
-                          onChange={(e) => setSelectedBrand(e.target.value)}
-                          disabled={!selectedVehicleType}
-                        >
-                          {selectedVehicleType &&
-                            vehicle.vehicleType
-                              .find((type) => type.type === selectedVehicleType)
-                              .brand.map((brand) => (
-                                <SelectItem key={brand.name} value={brand.name}>
-                                  {brand.name}
-                                </SelectItem>
-                              ))}
-                        </Select>                      
-                    </div>
+                <div className='flex'>
+                  <Select className='m-1'
+                    {...register("vehicleType", { required: true })}
+                    variant='underlined'
+                    placeholder='Tipo de vehiculo'
+                    id="vehicleType"
+                    value={selectedVehicleType}
+                    onChange={(e) => setSelectedVehicleType(e.target.value)}
+                  >
+                    {vehicleTypes.map((type) => (
+                      <SelectItem key={type.VehicleType} value={type.VehicleType}>
+                        {type.VehicleType}
+                      </SelectItem>
+                    ))}
+                  </Select>
 
-                    <div className='flex'>
-                      <Select
-                      className=' m-1'
-                        id="line"
-                        variant='underlined'
-                        placeholder='Linea'
-                        value={selectedLine}
-                        onChange={(e) => setSelectedLine(e.target.value)}
-                        disabled={!selectedBrand}
-                      >
-                        {selectedBrand &&
-                          vehicle.vehicleType
-                            .find((type) => type.type === selectedVehicleType)
-                            .brand.find((brand) => brand.name === selectedBrand)
-                            .line.map((line) => (
-                              <SelectItem key={line} value={line}>
-                                {line}
-                              </SelectItem>
-                            ))}
-                      </Select>
+                  {selectedVehicleType && (
+                    <Select className='m-1'
+                      id="brand"
+                      placeholder='Marca'
+                      variant='underlined'
+                      value={selectedBrand}
+                      onChange={(e) => setSelectedBrand(e.target.value)}
+                      disabled={!selectedVehicleType}
+                    >
+                      {/* Aquí debes reemplazar "vehicle.vehicleType" con el valor correcto obtenido del servidor */}
+                      {vehicleTypes
+                        .find((type) => type.VehicleType === selectedVehicleType)
+                        ?.brand.map((brand) => (
+                          <SelectItem key={brand} value={brand}>
+                            {brand}
+                          </SelectItem>
+                        ))}
+                    </Select>
+                  )}
+                </div>  
 
-                      <Select className='m-1'
-                            id="model"
-                            variant='underlined'
-                            placeholder='Modelo'
-                            >
-                              {vehicle.model.map((model) => (
-                                <SelectItem key={model} value={model}  >  
-                                  {model}
-                                </SelectItem>
-                              ))}
-                      </Select>                    
-                    </div>               */}
+              <div className='flex'>
+                {selectedBrand && (
+                  <Select
+                    className=' m-1'
+                    id="line"
+                    variant='underlined'
+                    placeholder='Linea'
+                    value={selectedLine}
+                    onChange={(e) => setSelectedLine(e.target.value)}
+                    disabled={!selectedBrand}
+                  >
+                    {vehicle.vehicleType
+                      .find((type) => type.type === selectedVehicleType)
+                      .brand.find((brand) => brand.name === selectedBrand)
+                      .line.map((line) => (
+                        <SelectItem key={line} value={line}>
+                          {line}
+                        </SelectItem>
+                      ))}
+                  </Select>
+                )}
+
+                <Select className='m-1'
+                  id="model"
+                  variant='underlined'
+                  placeholder='Modelo'
+                >
+                  {vehicle.model.map((model) => (
+                    <SelectItem key={model} value={model}>
+                      {model}
+                    </SelectItem>
+                  ))}
+                </Select>
+              </div>   
  
 
                   <div className=" flex">

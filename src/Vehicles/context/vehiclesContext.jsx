@@ -1,6 +1,6 @@
 import { createContext, useContext, useState } from "react";
 import { toast } from "react-toastify";
-import { getVehiclesRequest, getVehicleRequest, createVehiclesRequest, updateVehicleRequest } from "../api/Vehicles";
+import { getVehiclesRequest, getVehicleRequest, createVehiclesRequest, updateVehicleRequest, getVehicleTypeRequest } from "../api/Vehicles";
 
 const VehiclesContext = createContext();
 
@@ -22,7 +22,14 @@ export function VehicleProvider({children}){
 
     };
 
-
+    const getVehicletype = async () => {
+        try {
+            const res = await getVehicleTypeRequest();
+            return res.data;
+        } catch (error) {
+            throw new Error(error.message);
+        }
+    };
     const getVehicle = async (idVehicle, vehicle) => {
         try {
             const res = await getVehicleRequest(idVehicle, vehicle);
@@ -31,6 +38,8 @@ export function VehicleProvider({children}){
             throw new Error(error.message);
         }
     };
+
+
 
     const createVehicle = async (vehicle) => {
         try {
@@ -62,7 +71,7 @@ export function VehicleProvider({children}){
     };
 
     return(
-        <VehiclesContext.Provider value={{vehicles, getVehicle, getVehicles, createVehicle, updateVehicle}}>
+        <VehiclesContext.Provider value={{vehicles, getVehicle, getVehicles, createVehicle, updateVehicle, getVehicletype}}>
             {children}
         </VehiclesContext.Provider>
     )
