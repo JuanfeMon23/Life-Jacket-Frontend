@@ -208,7 +208,7 @@ export  function VehicleRegister() {
                         {...register("timingBelt")}/>
                   </div>
 
-                  <ModalHeader className='flex flex-col gap-3 m-5'>Más información del vehículo</ModalHeader>
+                  {/* <ModalHeader className='flex flex-col gap-3 m-5'>Más información del vehículo</ModalHeader>
 
                   <div className=' flex'>
                     <div className='flex-col m-3'>
@@ -265,7 +265,7 @@ export  function VehicleRegister() {
                           <SelectItem key='Privado'>Privado</SelectItem>
                         </Select>
                     </div>
-                  </div>
+                  </div> */}
 
                   <div className=' text-center my-3 '>
                     <ButtonAccept/>
