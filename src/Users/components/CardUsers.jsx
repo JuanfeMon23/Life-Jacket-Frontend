@@ -8,7 +8,6 @@ import { Button } from '@nextui-org/react';
 import {FaSearch} from 'react-icons/fa';
 import {Input, useDisclosure} from "@nextui-org/react";
 import { EditUser } from './EditUser';
-import { UserRegister } from './UserRegister';
 
 
 export function CardUsers() {
@@ -100,7 +99,7 @@ export function CardUsers() {
                 <button className=''> <WatchUser user={data} id={data.id}/></button>
               </div>
               <div>
-                <button><EditUser user={data} id={data.id} /></button>            
+                <button><EditUser/></button>            
               </div>
                   {/* <button className=' bg-gradient-to-r from-[#D99C23] to-[#D45229] rounded-lg text-white w-12' link={''} ></button> */}
                   {/* <EditUser/> */}

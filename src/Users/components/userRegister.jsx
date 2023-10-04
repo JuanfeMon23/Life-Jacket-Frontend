@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react'
 import {Modal, ModalContent, ModalHeader, ModalBody, ModalFooter, useDisclosure, user} from "@nextui-org/react";
 import {Input} from "@nextui-org/react";
 import {Button} from "@nextui-org/react";
-import {useForm} from 'react-hook-form';
+import {useForm, Controller} from 'react-hook-form';
 import { useUsers } from '../Context/userContext';
 import {Select, SelectItem} from "@nextui-org/react";
 import { useRoles } from '../../Roles/context/rolesContext';
@@ -13,7 +13,7 @@ import {AiTwotoneEdit} from 'react-icons/Ai';
 
 export  function UserRegister() {
 const {isOpen, onOpen, onOpenChange} = useDisclosure();
-const {register , setValue, handleSubmit, formState:{errors}} = useForm();
+const {register , setValue, handleSubmit, formState:{errors}, control} = useForm();
 const {createUser , getUser, updateUser } = useUsers();
 const navigate = useNavigate();
 const params = useParams();
@@ -74,6 +74,20 @@ const [userMunicipality, setUserMunicipality] = useState('');
                 <form onSubmit={handleSubmit(onSubmit)}>
                   <div className="flex ">
                       <div className=' flex-col m-3 w-[200px]'>
+                      {/* <Controller
+                            name="userDocument"
+                            control={control}
+                            defaultValue=""
+                            rules={{ required: 'Este campo es requerido' }}
+                            render={({ field }) => (
+                              <Select {...field} variant="underlined" label='Tipo de documento'>
+                                <SelectItem value="opcion1">Cedula de ciudadanía</SelectItem>
+                                <SelectItem value="opcion2">Cedula de extranjería</SelectItem>
+                                <SelectItem value="opcion2">Cedula de extranjería</SelectItem>
+                              </Select>
+                            )}
+                          />
+                          {errors.userDocument && <p className="text-red-500">{errors.userDocument.message}</p>} */}
                         <Select variant="underlined" label='Tipo de documento' id='userDocumentType' {...register("userDocumentType" , {required : true})} >
                           <SelectItem key='Cedula de ciudadania'>Cedula de ciudadanía</SelectItem>
                           <SelectItem key='Cedula de extranjería'>Cedula de extranjería</SelectItem>
@@ -142,55 +156,217 @@ const [userMunicipality, setUserMunicipality] = useState('');
 
                     <div className="flex ">
                       <div className=' flex-col m-3'>
-                        <Input type="text" variant="underlined" isClearable label='Nombres' id='userName'
-                        {...register("userName" , {required : true})}  
+                      <Controller
+                          name="userName"
+                          control={control}
+                          rules={{
+                            required: "Nombres requeridos",
+                            minLength: {
+                              value: 3,
+                              message: "Almenos 3 caracteres"
+                            },
+                            maxLength: {
+                              value: 40,
+                              message: "Maximo 40 caracteres"
+                            },
+                            pattern: {
+                              value: /^[a-zA-Z\s]*$/,
+                              message: "Solo letras"
+                            }
+                          }}
+                          render={({ field }) => (
+                            <Input
+                              {...field}
+                              type="text"
+                              label="Nombres"
+                              variant="bordered"
+                              color={errors.userName ? "danger" : ""}
+                              errorMessage={errors.userName?.message}
+                              className="max-w-xs"
+                            />
+                          )}
                         />
-                        {errors.userName && <p className=' text-red-600'>Campo requerido</p>}                      
                       </div>
 
                       <div className=' flex-col m-3'>
-                        <Input type="text" label="Apellidos" isClearable variant="underlined" id="userLastName"
-                        {...register("userLastName" , {required : true})}  />
-                        {errors.userLastName && <p className=' text-red-600 '>Campo requerido</p>}
+                      <Controller
+                          name="userLastName"
+                          control={control}
+                          rules={{
+                            required: "Apellidos requeridos",
+                            minLength: {
+                              value: 3,
+                              message: "Almenos 6 caracteres"
+                            },
+                            maxLength: {
+                              value: 40,
+                              message: "Maximo 40 caracteres"
+                            },
+                            pattern: {
+                              value: /^[a-zA-Z\s]*$/,
+                              message: "Solo letras"
+                            }
+                          }}
+                          render={({ field }) => (
+                            <Input
+                              {...field}
+                              type="text"
+                              label="Apellidos"
+                              variant="bordered"
+                              color={errors.userLastName ? "danger" : ""}
+                              errorMessage={errors.userLastName?.message}
+                              className="max-w-xs"
+                            />
+                          )}
+                        />
                       </div>
                     
                   </div>
 
                   <div className=" flex">
                     <div className='flex-col m-3'>
-                    <Input type="email" label="Email"  isClearable variant="underlined" id='userEmail'
-                    {...register("userEmail" , {required : true})}/>
-                    {errors.userEmail && <p className=' text-red-600'>Campo requerido</p>}
+                    <Controller
+                        name="userEmail"
+                        control={control}
+                        rules={{
+                          required: "Email requerido",
+                          pattern: {
+                            value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i,
+                            message: "Email invalido"
+                          }
+                        }}
+                        render={({ field }) => (
+                          <Input
+                            {...field}
+                            type="email"
+                            label="Email"
+                            variant="bordered"
+                            color={errors.userEmail ? "danger" : ""}
+                            errorMessage={errors.userEmail?.message}
+                            className="max-w-xs"
+                          />
+                        )}
+                      />
                     </div>
 
 
                     <div className='flex-col m-3'> 
-                      <Input type="password" label="Password"isClearable   variant="underlined" id='userPassword'
-                    {...register("userPassword" , {required : true})}/>
-                    {errors.userPassword && <p className=' text-red-600'>Campo requerido</p>}
+                    <Controller
+                      name="userPassword"
+                      control={control}
+                      rules={{
+                        required: "Contraseña requerida",
+                        minLength: {
+                          value: 8,
+                          message: "Al menos 8 caracteres"
+                        },
+                        pattern: {
+                          value: /^(?=.*[A-Z])/,
+                          message: "Al menos una letra mayúscula"
+                        },
+                        pattern : {
+                          value :  /^(?=.*[!@#$%^&*])/,
+                          message : 'Almenos un caracter especial'
+                        }
+                      }}
+                      render={({ field }) => (
+                        <Input
+                          {...field}
+                          type="password"
+                          label="Contraseña"
+                          variant="bordered"
+                          color={errors.userPassword ? "danger" : ""}
+                          errorMessage={errors.userPassword?.message}
+                          className="max-w-xs"
+                        />
+                      )}
+                    />
                     </div>
                   </div>
 
                   <div className=" flex">
                     <div className='flex-col m-3'>
-                    <Input type="text" label="Telefono"  isClearable variant="underlined" id='userPhoneNumber'
-                    {...register("userPhoneNumber" , {required : true})}/>
-                    {errors.userPhoneNumber && <p className=' text-red-600'>Campo requerido</p>}
+                        <Controller
+                        name="userPhoneNumber"
+                        control={control}
+                        rules={{
+                          required: "Campo requerido",
+                          minLength : {
+                            value : 7 ,
+                            message : 'Al menos 7 numeros'
+                          },
+
+                          pattern: {
+                            value: /^[0-9]*$/, // This pattern will only match numbers
+                            message: "Solo números"
+                          }
+                        }}
+                        render={({ field }) => (
+                          <Input
+                            {...field}
+                            type="number"
+                            label="Telefono"
+                            variant="bordered"
+                            color={errors.userPhoneNumber? "danger" : ""}
+                            errorMessage={errors.userPhoneNumber?.message}
+                            className="max-w-xs"
+                          />
+                        )}
+                      />
                     </div>
 
 
                     <div className='flex-col m-3'> 
-                      <Input type="text" label="Otro Telefono"  isClearable  variant="underlined" id='userOtherPhoneNumber'
-                    {...register("userOtherPhoneNumber" , {required : true})}/>
-                    {errors.userOtherPhoneNumber && <p className=' text-red-600'>Campo requerido</p>}
+                    <Controller
+                        name="userOtherPhoneNumber"
+                        control={control}
+                        rules={{
+                          required: "Campo requerido",
+                          minLength : {
+                            value : 7 ,
+                            message : 'Al menos 7 numeros'
+                          },
+
+                          pattern: {
+                            value: /^[0-9]*$/, // This pattern will only match numbers
+                            message: "Solo números"
+                          }
+                        }}
+                        render={({ field }) => (
+                          <Input
+                            {...field}
+                            type="number"
+                            label="Otro Telefono"
+                            variant="bordered"
+                            color={errors.userOtherPhoneNumber? "danger" : ""}
+                            errorMessage={errors.userOtherPhoneNumber?.message}
+                            className="max-w-xs"
+                          />
+                        )}
+                      />
                     </div>
                   </div>
 
                   <div className=" flex">
                     <div className='flex-col m-3 '>
-                      <Input type="text" label="Dirección"  isClearable variant="underlined" id='userAddress'
-                      {...register("userAddress" , {required : true})}/>
-                      {errors.userAddress && <p className=' text-red-600'>Campo requerido</p>}
+                    <Controller
+                          name="userAddress"
+                          control={control}
+                          rules={{
+                            required: "Campo requerido"
+                          }}
+                          render={({ field }) => (
+                            <Input
+                              {...field}
+                              type="text"
+                              label="Dirreción"
+                              variant="bordered"
+                              color={errors.userAddress ? "danger" : ""}
+                              errorMessage={errors.userAddress?.message}
+                              className="max-w-xs"
+                            />
+                          )}
+                        />
                     </div>     
 
                     <div className='flex-col m-3 w-[200px]'>

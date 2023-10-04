@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import {Input, ModalContent, ModalBody, useDisclosure, Modal} from "@nextui-org/react";
 import {Button} from "@nextui-org/react";
-import {useForm} from 'react-hook-form';
+import {useForm, Controller} from 'react-hook-form';
 import {Select, SelectItem} from "@nextui-org/react";
 import { useParams} from 'react-router-dom';
 import { useUsers } from '../Context/userContext';
@@ -9,7 +9,7 @@ import { useRoles } from '../../Roles/context/rolesContext';
 
 export function EditUserContent() {
     const {updateUser, getUser} = useUsers();
-    const {register , setValue, handleSubmit, formState:{errors}} = useForm();
+    const {register , setValue, handleSubmit, formState:{errors}, control} = useForm();
     const {roles} = useRoles();
     const params = useParams();
     const {isOpen, onOpen, onOpenChange} = useDisclosure();
@@ -41,14 +41,26 @@ export function EditUserContent() {
         },[])
 
   return (
-    <Modal isOpen={isOpen} onOpenChange={onOpenChange}>
       <ModalBody>
       <form onSubmit={handleSubmit(onSubmit)}>
                     <div className="flex ">
                         <div className=' flex-col m-3 w-[200px]'>
+                        <Controller
+                            name="nombre"
+                            control={control}
+                            defaultValue=""
+                            rules={{ required: 'Este campo es requerido' }}
+                            render={({ field }) => (
+                              <Select {...field} variant="underlined" label='Tipo de documento'>
+                                <SelectItem value="opcion1">Cedula de ciudadanía</SelectItem>
+                                <SelectItem value="opcion2">Cedula de extranjería</SelectItem>
+                                <SelectItem value="opcion2">Cedula de extranjería</SelectItem>
+                              </Select>
+                            )}
+                          />
                           <Select variant="underlined" label='Tipo de documento' id='userDocumentType'  onChange={(e) => data.userDocumentType} {...register("userDocumentType" , {required : true})} >
                             <SelectItem key='Cedula de ciudadania'>Cedula de ciudadanía</SelectItem>
-                            <SelectItem key='Cedula de extranjería'>Cedula de extranjería</SelectItem>
+                            <SelectItem key='Cedula de extranjería'></SelectItem>
                             <SelectItem key='Pasaporte'>Pasaporte</SelectItem>
                           </Select>
                           {errors.userDocumentType && <p className=' text-red-600'>Campo requerido</p>}
@@ -184,6 +196,5 @@ export function EditUserContent() {
                     
                   </form>
       </ModalBody>
-    </Modal>
   )
 }

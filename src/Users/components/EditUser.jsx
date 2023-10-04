@@ -6,7 +6,7 @@ import {Button} from "@nextui-org/react";
 import {AiTwotoneEdit} from 'react-icons/Ai';
 import { EditUserContent } from './EditUserContent';
 
-export function EditUser(props) {
+export function EditUser() {
     const {isOpen, onOpen, onOpenChange} = useDisclosure();
     const {idUser} = useParams();
 

@@ -8,7 +8,6 @@ import { Purchases } from "./Purchases/pages/Purchases.jsx";
 import { UserProvider } from "../src/Users/Context/userContext.jsx";
 import { RolesProvider } from "./Roles/context/rolesContext.jsx";
 import { ClientProvider } from "./Clients/context/clientsContext.jsx";
-import { UserRegister } from "./Users/components/UserRegister.jsx";
 import { ToastContainer } from 'react-toastify';
 import { ClientRegister } from "./Clients/components/ClientRegister.jsx";
 import { VehicleProvider } from "./Vehicles/context/vehiclesContext.jsx";
@@ -22,6 +21,8 @@ import { EditUser } from "./Users/components/EditUser.jsx";
 import { EditUserContent } from "./Users/components/EditUserContent.jsx";
 import { Navigation } from "./components/globalComponents/Navigation.jsx";
 import { Title } from "./components/globalComponents/Title.jsx";
+import { Inputs } from "./components/globalComponents/Inputs.jsx";
+
 
 function App() {  
   return (
@@ -38,14 +39,15 @@ function App() {
             <Routes>
               <Route path='/' element={<Login/>}/>       
               <Route path='/Users' element={<Users/>}/>
-              <Route path='/Users/:idUser' element={<EditUserContent/>}/>
+              <Route path='/Users/:idUser' element={<EditUser/>}/>
               <Route path='/Clients' element={<Clients/>}/>
               <Route path='/Sells' element={<Sells/>}/>
               <Route path='/Clients/:idClient' element={<ClientRegister/>}/>
               <Route path='/Vehicles' element={<Vehicles/>}/>
               <Route path='/Purchases' element={<Purchases/>}/>
               <Route path="/Improvements" element={<Improvements/>}/>
-              <Route path="/DashBoard" element={<DashBoard/>}/>                   
+              <Route path="/DashBoard" element={<DashBoard/>}/> 
+              <Route path="/Inputs" element={<Inputs/>}  />                  
             </Routes>
           <ToastContainer/>       
         </BrowserRouter>
