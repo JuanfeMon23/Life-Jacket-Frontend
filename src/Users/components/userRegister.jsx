@@ -11,7 +11,7 @@ import {AiTwotoneEdit} from 'react-icons/Ai';
 
 
 
-export  function UserRegister({id}) {
+export  function UserRegister() {
 const {isOpen, onOpen, onOpenChange} = useDisclosure();
 const {register , setValue, handleSubmit, formState:{errors}} = useForm();
 const {createUser , getUser, updateUser } = useUsers();
@@ -22,21 +22,24 @@ const {roles} = useRoles();
 
 useEffect(() => {
   const loadUser = async () => {
-   if (id) {
-      const user = await getUser(id);
-      setValue('userName', user.userName);
-      setValue('userLastName', user.userName);
-      setValue('userEmail', user.userEmail);
-      setValue('userPassword', user.userPassword);
-      setValue('userPhoneNumber', user.userPhoneNumber);
-      setValue('userOtherPhoneNumber', user.userOtherPhoneNumber);
-      setValue('userAddress', user.userAddress);
-      setValue('idRolUser', user.Roles);
-    };
-
-    loadUser();
-   }
-},[params.idUser])
+  if (params.idUser) {
+      const user = await getUser(params.idUser);
+      setValue("userDocumentType",user.user.userDocumentType);
+      setValue('userDocumentNumber', user.user.userDocumentNumber);
+      setValue('userDepartment',user.user.userDepartment);
+      setValue('userMunicipality',user.user.userMunicipality);
+      setValue("userName", user.user.userName);
+      setValue('userLastName',user.user.userLastName);
+      setValue('userEmail',user.user.userEmail);
+      setValue('userPassword',user.user.userPassword);
+      setValue('userPhoneNumber',user.user.userPhoneNumber);
+      setValue('userOtherPhoneNumber',user.user.userOtherPhoneNumber);
+      setValue('userAddress',user.user.userAddress);
+      setValue('idRolUser',user.user.idRolUser);
+      };
+  }
+  loadUser();
+  },[])
 
 const onSubmit = (data) => {
   try {
@@ -61,12 +64,12 @@ const [userMunicipality, setUserMunicipality] = useState('');
 
   return (
     <div className='flex'>
-      <Button onPress={onOpen} className='absolute right-0 top-40 mx-6 my-20 bg-gradient-to-r from-cyan-500 to-blue-800 text-white font-bold'>{id ? <AiTwotoneEdit className='text-white text-2xl'/> : 'Registrar usuario' }</Button>
+      <Button onPress={onOpen} className='absolute right-0 top-40 mx-6 my-20 bg-gradient-to-r from-cyan-500 to-blue-800 text-white font-bold'>{params.idUser ? <AiTwotoneEdit className='text-white text-2xl'/> : 'Registrar usuario' }</Button>
       <Modal isOpen={isOpen} onOpenChange={onOpenChange} isDismissable={false}>
         <ModalContent>
           {(onClose) => (
             <>
-              <ModalHeader className="flex flex-col gap-3">Datos del usuario</ModalHeader>
+              <ModalHeader className="flex flex-col gap-3">{params.idUser ? `Editar Usuario` : `Crear Usuario`}</ModalHeader>
               <ModalBody>
                 <form onSubmit={handleSubmit(onSubmit)}>
                   <div className="flex ">
@@ -204,7 +207,7 @@ const [userMunicipality, setUserMunicipality] = useState('');
 
 
                   <div className=' text-center my-3 '>
-                    <button type='submit' className='bg-gradient-to-r from-cyan-500 to-blue-800 text-white font-bold w-20 h-10 rounded-lg'>Crear</button>
+                    <button type='submit' className='bg-gradient-to-r from-cyan-500 to-blue-800 text-white font-bold w-20 h-10 rounded-lg'>{params.idUser ? "Actualizar" : "Crear"}</button>
                   </div>
                   
                 </form>

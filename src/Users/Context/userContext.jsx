@@ -23,9 +23,9 @@ export function UserProvider ({children}) {
         }
     };
 
-    const getUser = async (idUser, user) => {
+    const getUser = async (idUser) => {
         try {
-            const res = await getUserRequest(idUser, user);
+            const res = await getUserRequest(idUser);
             return res.data;
         } catch (error) {
             throw new Error(error.message);

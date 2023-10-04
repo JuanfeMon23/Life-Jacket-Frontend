@@ -20,6 +20,8 @@ import { Improvements } from "./Improvements/pages/Improvements.jsx";
 import 'react-toastify/dist/ReactToastify.css';
 import { EditUser } from "./Users/components/EditUser.jsx";
 import { EditUserContent } from "./Users/components/EditUserContent.jsx";
+import { Navigation } from "./components/globalComponents/Navigation.jsx";
+import { Title } from "./components/globalComponents/Title.jsx";
 
 function App() {  
   return (
@@ -33,19 +35,18 @@ function App() {
       <ImprovementProvider>
         
         <BrowserRouter>
-          <Routes>
+            <Routes>
               <Route path='/' element={<Login/>}/>       
               <Route path='/Users' element={<Users/>}/>
-              <Route path='/Users/:idUser' element={<UserRegister/>}/>
+              <Route path='/Users/:idUser' element={<EditUserContent/>}/>
               <Route path='/Clients' element={<Clients/>}/>
               <Route path='/Sells' element={<Sells/>}/>
               <Route path='/Clients/:idClient' element={<ClientRegister/>}/>
               <Route path='/Vehicles' element={<Vehicles/>}/>
               <Route path='/Purchases' element={<Purchases/>}/>
               <Route path="/Improvements" element={<Improvements/>}/>
-              <Route path="/DashBoard" element={<DashBoard/>}/>
-                         
-          </Routes>
+              <Route path="/DashBoard" element={<DashBoard/>}/>                   
+            </Routes>
           <ToastContainer/>       
         </BrowserRouter>
       </ImprovementProvider>
