@@ -46,75 +46,13 @@ export  function VehicleRegister() {
               <ModalBody>
                 <form onSubmit={handleSubmit(onSubmit)}>
                 <div className='flex'>
-                  <Select className='m-1'
-                    {...register("vehicleType", { required: true })}
-                    variant='underlined'
-                    placeholder='Tipo de vehiculo'
-                    id="vehicleType"
-                    value={selectedVehicleType}
-                    onChange={(e) => setSelectedVehicleType(e.target.value)}
-                  >
-                    {vehicleTypes.map((type) => (
-                      <SelectItem key={type.VehicleType} value={type.VehicleType}>
-                        {type.VehicleType}
-                      </SelectItem>
-                    ))}
-                  </Select>
 
-                  {selectedVehicleType && (
-                    <Select className='m-1'
-                      id="brand"
-                      placeholder='Marca'
-                      variant='underlined'
-                      value={selectedBrand}
-                      onChange={(e) => setSelectedBrand(e.target.value)}
-                      disabled={!selectedVehicleType}
-                    >
-                      {/* Aquí debes reemplazar "vehicle.vehicleType" con el valor correcto obtenido del servidor */}
-                      {vehicleTypes
-                        .find((type) => type.VehicleType === selectedVehicleType)
-                        ?.brand.map((brand) => (
-                          <SelectItem key={brand} value={brand}>
-                            {brand}
-                          </SelectItem>
-                        ))}
-                    </Select>
-                  )}
                 </div>  
 
               <div className='flex'>
-                {selectedBrand && (
-                  <Select
-                    className=' m-1'
-                    id="line"
-                    variant='underlined'
-                    placeholder='Linea'
-                    value={selectedLine}
-                    onChange={(e) => setSelectedLine(e.target.value)}
-                    disabled={!selectedBrand}
-                  >
-                    {vehicle.vehicleType
-                      .find((type) => type.type === selectedVehicleType)
-                      .brand.find((brand) => brand.name === selectedBrand)
-                      .line.map((line) => (
-                        <SelectItem key={line} value={line}>
-                          {line}
-                        </SelectItem>
-                      ))}
-                  </Select>
-                )}
 
-                <Select className='m-1'
-                  id="model"
-                  variant='underlined'
-                  placeholder='Modelo'
-                >
-                  {vehicle.model.map((model) => (
-                    <SelectItem key={model} value={model}>
-                      {model}
-                    </SelectItem>
-                  ))}
-                </Select>
+
+
               </div>   
  
 
@@ -191,13 +129,27 @@ export  function VehicleRegister() {
                   
                   <div className=" flex">
                     <div className=' flex-col m-3'>
-                        <Input type="date" label="Soat"  isClearable variant="underlined" id="soat"
+                        <Input type="Date" label="Soat"  isClearable variant="underlined" id="soat"
                         {...register("soat")}/>
                     
                     </div>
 
                     <div className='flex-col m-3'>
-                        <Input type="date" label="Tecnomecanica" isClearable variant="underlined" id='technomechanics'
+                        <Input type="Date" label="Tecnomecanica" isClearable variant="underlined" id='technomechanics'
+                        {...register("technomechanics")}/>
+
+                    </div>
+                  </div>
+
+                  <div className=" flex">
+                    <div className=' flex-col m-3'>
+                        <Input type="Time" label="Soat"  isClearable variant="underlined" id="soat"
+                        {...register("soat")}/>
+                    
+                    </div>
+
+                    <div className='flex-col m-3'>
+                        <Input type="Time" label="Tecnomecanica" isClearable variant="underlined" id='technomechanics'
                         {...register("technomechanics")}/>
 
                     </div>

@@ -5,23 +5,24 @@ import {Button} from "@nextui-org/react";
 import { ButtonAccept } from '../../components/ButtonAccept';
 import {useForm, Controller} from 'react-hook-form';
 import { useClients } from '../context/clientsContext';
-import { useParams, useNavigate } from 'react-router-dom';
+import {AiTwotoneEdit} from 'react-icons/Ai';
 import { Select, SelectItem } from '@nextui-org/react';
 
-export  function ClientRegister() {
-const {isOpen, onOpen, onOpenChange} = useDisclosure();
-const {register , handleSubmit, setValue,  formState:{errors}, control} = useForm();
-const {createClient} = useClients();
+export  function ClientEdit(props) {
+    const {isOpen, onOpen, onOpenChange} = useDisclosure();
+    const {register , handleSubmit, setValue,  formState:{errors}, control} = useForm();
+    const {updateClient} = useClients();
+    const clients = props.client
 
-const onSubmit = (data) => {
-    createClient({...data});
+    const onSubmit = (data) => {
+        updateClient(clients.idClient, {...data});
 
-};
+    };
 
 
   return (
     <div className='flex'>
-    <Button onPress={onOpen}className='bg-gradient-to-r from-cyan-500 to-blue-800 text-white font-bold'>Registrar</Button>
+    <Button onPress={onOpen}className=' bg-gradient-to-r from-[#D99C23] to-[#D45229] rounded-lg text-white font-bold'>{<AiTwotoneEdit className='text-white text-2xl'/>}</Button>
       <Modal isOpen={isOpen} onOpenChange={onOpenChange}>
         <ModalContent>
           {(onClose) => (
@@ -34,6 +35,7 @@ const onSubmit = (data) => {
                     <Controller
                           name='clientTypeDocument'
                           control={control}
+                          defaultValue={clients.clientTypeDocument}
                           rules={{
                             required : 'Campo obligatorio'
                           }}
@@ -62,6 +64,7 @@ const onSubmit = (data) => {
                     <Controller
                         name="clientDocument"
                         control={control}
+                        defaultValue={clients.clientDocument}
                         rules={{
                           required: "Campo requerido",
                           minLength : {
@@ -98,6 +101,7 @@ const onSubmit = (data) => {
                       <Controller
                           name="clientDepartment"
                           control={control}
+                          defaultValue={clients.clientDepartment}
                           rules={{
                             required: "Campo requerido",
                             minLength: {
@@ -131,6 +135,7 @@ const onSubmit = (data) => {
                       <Controller
                           name="clientMunicipality"
                           control={control}
+                          defaultValue={clients.clientMunicipality}
                           rules={{
                             required: "Nombres requeridos",
                             minLength: {
@@ -168,6 +173,7 @@ const onSubmit = (data) => {
                     <Controller
                           name="clientName"
                           control={control}
+                          defaultValue={clients.clientName}
                           rules={{
                             required: "Nombres requeridos",
                             minLength: {
@@ -201,6 +207,7 @@ const onSubmit = (data) => {
                     <Controller
                           name="clientLastName"
                           control={control}
+                          defaultValue={clients.clientLastName}
                           rules={{
                             required: "Apellidos requeridos",
                             minLength: {
@@ -236,6 +243,7 @@ const onSubmit = (data) => {
                   <Controller
                           name="clientAddress"
                           control={control}
+                          defaultValue={clients.clientAddress}
                           rules={{
                             required: "Campo requerido"
                           }}
@@ -258,6 +266,7 @@ const onSubmit = (data) => {
                     <Controller
                         name="clientPhoneNumber"
                         control={control}
+                        defaultValue={clients.clientPhoneNumber}
                         rules={{
                           required: "Campo requerido",
                           minLength : {
@@ -288,6 +297,7 @@ const onSubmit = (data) => {
                     <Controller
                         name="clientOtherPhoneNumber"
                         control={control}
+                        defaultValue={clients.clientOtherPhoneNumber}
                         rules={{
                           required: "Campo requerido",
                           minLength : {
@@ -320,6 +330,7 @@ const onSubmit = (data) => {
                   <Controller
                           name="clientOtherContact"
                           control={control}
+                          defaultValue={clients.clientOtherContact}
                           rules={{
                             required: "Nombres requeridos",
                             minLength: {

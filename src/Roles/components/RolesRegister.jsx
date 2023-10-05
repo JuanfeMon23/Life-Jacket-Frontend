@@ -19,7 +19,7 @@ const onSubmit = (data) => {
 
   return (
     <div className='flex'>
-    <Button onPress={onOpen}className='absolute right-0 mx-6 my-20 bg-gradient-to-r from-cyan-500 to-blue-800 text-white font-bold'>Registrar rol</Button>
+    <Button onPress={onOpen}className='bg-gradient-to-r from-cyan-500 to-blue-800 text-white font-bold'>Registrar rol</Button>
       <Modal isOpen={isOpen} onOpenChange={onOpenChange}>
         <ModalContent>
           {(onClose) => (
@@ -28,6 +28,9 @@ const onSubmit = (data) => {
               <ModalBody>
                 <form onSubmit={handleSubmit(onSubmit)}>
              
+                <Input type="text" label="Nombre del rol" isClearable variant='underlined' id="rolName"
+                {...register("rolName", {required : true})}/>
+                {errors.rol && <p className=' text-red-600'>Campo requerido</p>}
                 <div className=' my-2 flex-row'>
                   <Switch defaultSelected color="success">Usuarios</Switch>
                   <Switch defaultSelected color="success">Vehiculos</Switch>
@@ -38,9 +41,6 @@ const onSubmit = (data) => {
                   <Switch defaultSelected color="success">Clientes</Switch>
                   <Switch defaultSelected color="success">Mejoras</Switch>
                 </div>
-                <Input type="text" label="Nombre del rol" isClearable variant='underlined' id="rolName"
-                {...register("rolName", {required : true})}/>
-                {errors.rol && <p className=' text-red-600'>Campo requerido</p>}
                   
                 <div className=' text-center my-3 '>
                     <ButtonAccept/>

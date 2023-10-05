@@ -7,6 +7,8 @@ import { Link } from 'react-router-dom';
 import {AiTwotoneEdit} from 'react-icons/Ai';
 import {FaSearch} from 'react-icons/fa';
 import {Input} from "@nextui-org/react";
+import { ClientEdit } from './ClientEdit';
+import { StatusClient } from './StatusClient';
 
 
 export  function CardClient() {
@@ -87,11 +89,12 @@ export  function CardClient() {
             </div>
     
             <div className='flex justify-around pt-3'>
-              <div>
-                <button className=''> <WatchClient client={clients} id={clients.id}/></button>
+            
+                <WatchClient client={clients} id={clients.id}/>
+                <ClientEdit client={clients}/>
+                <StatusClient client={clients}/>
               </div>
-                  <Button className=' bg-gradient-to-r from-[#D99C23] to-[#D45229] rounded-lg'><Link to={`/Clients/${clients.idClient}`}><AiTwotoneEdit className='text-white text-2xl'/></Link></Button>
-            </div>
+            
           </CardBody>
           </Card> 
        ))}

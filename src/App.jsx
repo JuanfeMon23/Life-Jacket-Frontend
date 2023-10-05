@@ -18,10 +18,6 @@ import { DashBoard } from "./Dashboard/pages/DashBoard.jsx";
 import { Improvements } from "./Improvements/pages/Improvements.jsx";
 import 'react-toastify/dist/ReactToastify.css';
 import { EditUser } from "./Users/components/EditUser.jsx";
-import { EditUserContent } from "./Users/components/EditUserContent.jsx";
-import { Navigation } from "./components/globalComponents/Navigation.jsx";
-import { Title } from "./components/globalComponents/Title.jsx";
-import { Inputs } from "./components/globalComponents/Inputs.jsx";
 
 
 function App() {  
@@ -46,8 +42,7 @@ function App() {
               <Route path='/Vehicles' element={<Vehicles/>}/>
               <Route path='/Purchases' element={<Purchases/>}/>
               <Route path="/Improvements" element={<Improvements/>}/>
-              <Route path="/DashBoard" element={<DashBoard/>}/> 
-              <Route path="/Inputs" element={<Inputs/>}  />                  
+              <Route path="/DashBoard" element={<DashBoard/>}/>                
             </Routes>
           <ToastContainer/>       
         </BrowserRouter>

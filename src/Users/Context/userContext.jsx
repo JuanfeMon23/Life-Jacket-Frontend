@@ -1,6 +1,6 @@
 import { createContext, useContext, useState } from "react";
 import { toast } from "react-toastify";
-import { createUserRequest, getUserRequest, getUsersRequest, updateUserRequest, deleteUserRequest, searchUserRequest } from "../api/Users.js";
+import { createUserRequest, getUserRequest, getUsersRequest, updateUserRequest, deleteUserRequest, searchUserRequest, stateUserRequest } from "../api/Users.js";
 
 const UserContext = createContext();
 
@@ -72,6 +72,20 @@ export function UserProvider ({children}) {
         }
     };
 
+    const statusUser = async (idUser) => {
+        try {
+            await stateUserRequest(idUser);
+            toast.success('Estado actualizado con exito!',{
+                position: toast.POSITION.TOP_CENTER
+            });
+        } catch (error) {
+            toast.error('Error al actualizar el estado.' ,{
+                position: toast.POSITION.TOP_CENTER
+            });
+            throw new Error(error.message);
+        }
+    };
+
     const deleteUser = async (idUser) => {
         try {
             const res = await deleteUserRequest(idUser);
@@ -83,7 +97,7 @@ export function UserProvider ({children}) {
 
     return (
         <UserContext.Provider
-        value={{users,getUser,getUsers,createUser,updateUser,deleteUser,searchUser
+        value={{users,getUser,getUsers,createUser,updateUser,deleteUser,searchUser, statusUser
         }}
         >
             {children}         

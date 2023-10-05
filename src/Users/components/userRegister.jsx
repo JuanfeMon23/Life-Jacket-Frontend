@@ -7,52 +7,21 @@ import { useUsers } from '../Context/userContext';
 import {Select, SelectItem} from "@nextui-org/react";
 import { useRoles } from '../../Roles/context/rolesContext';
 import { useParams, useNavigate } from 'react-router-dom';
-import {AiTwotoneEdit} from 'react-icons/Ai';
-
-
 
 export  function UserRegister() {
-const {isOpen, onOpen, onOpenChange} = useDisclosure();
-const {register , setValue, handleSubmit, formState:{errors}, control} = useForm();
-const {createUser , getUser, updateUser } = useUsers();
-const navigate = useNavigate();
-const params = useParams();
-const {roles} = useRoles();
+  const {isOpen, onOpen, onOpenChange} = useDisclosure();
+  const {register , setValue, handleSubmit, formState:{errors}, control} = useForm();
+  const {createUser} = useUsers();
+  const {roles} = useRoles();
 
 
-useEffect(() => {
-  const loadUser = async () => {
-  if (params.idUser) {
-      const user = await getUser(params.idUser);
-      setValue("userDocumentType",user.user.userDocumentType);
-      setValue('userDocumentNumber', user.user.userDocumentNumber);
-      setValue('userDepartment',user.user.userDepartment);
-      setValue('userMunicipality',user.user.userMunicipality);
-      setValue("userName", user.user.userName);
-      setValue('userLastName',user.user.userLastName);
-      setValue('userEmail',user.user.userEmail);
-      setValue('userPassword',user.user.userPassword);
-      setValue('userPhoneNumber',user.user.userPhoneNumber);
-      setValue('userOtherPhoneNumber',user.user.userOtherPhoneNumber);
-      setValue('userAddress',user.user.userAddress);
-      setValue('idRolUser',user.user.idRolUser);
-      };
-  }
-  loadUser();
-  },[])
-
-const onSubmit = (data, event) => {
-     createUser(data);
-};
-
-const [userDepartment, setUserDepartment] = useState('');
-const [userMunicipality, setUserMunicipality] = useState(''); 
-
-
+  const onSubmit = (data) => {
+      createUser(data);
+  };
 
   return (
     <div className='flex'>
-      <Button onPress={onOpen} className='absolute right-0 top-40 mx-6 my-20 bg-gradient-to-r from-cyan-500 to-blue-800 text-white font-bold'>{params.idUser ? <AiTwotoneEdit className='text-white text-2xl'/> : 'Registrar usuario' }</Button>
+      <Button onPress={onOpen} className=' bg-gradient-to-r from-cyan-500 to-blue-800 text-white font-bold'>Registrar</Button>
       <Modal isOpen={isOpen} onOpenChange={onOpenChange} isDismissable={false}>
         <ModalContent>
           {(onClose) => (
@@ -77,6 +46,9 @@ const [userMunicipality, setUserMunicipality] = useState('');
                               color={errors.userDocumentType ? "danger" : ""}
                               errorMessage={errors.userDocumentType?.message}
                               className="max-w-xs"
+                              onChange={(e) => {
+                                field.onChange(e);
+                              }}
                             >
                               <SelectItem key='Cedula de ciudadania'>Cedula de ciudadanía</SelectItem>
                               <SelectItem key='Cedula de extranjería'>Cedula de extranjería</SelectItem>
@@ -127,7 +99,7 @@ const [userMunicipality, setUserMunicipality] = useState('');
                           name="userDepartment"
                           control={control}
                           rules={{
-                            required: "Nombres requeridos",
+                            required: "Campo requerido",
                             minLength: {
                               value: 3,
                               message: "Almenos 3 caracteres"
@@ -421,6 +393,9 @@ const [userMunicipality, setUserMunicipality] = useState('');
                               color={errors.idRolUser ? "danger" : ""}
                               errorMessage={errors.idRolUser?.message}
                               className="max-w-xs"
+                              onChange={(e) => {
+                                field.onChange(e);
+                              }}
                             >
                             {roles.map((roles) => (
                               <SelectItem key={roles.idRol} value={roles.rolName}>

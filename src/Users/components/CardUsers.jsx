@@ -8,6 +8,9 @@ import { Button } from '@nextui-org/react';
 import {FaSearch} from 'react-icons/fa';
 import {Input, useDisclosure} from "@nextui-org/react";
 import { EditUser } from './EditUser';
+import {Switch} from "@nextui-org/react";
+import { StatusUser } from './StatusUser';
+
 
 
 export function CardUsers() {
@@ -94,15 +97,12 @@ export function CardUsers() {
                 <p className='border-2 border-indigo-500/75 rounded-lg py-1 px-1 w-40 text-xs'>{data.userEmail}</p>
             </div>
 
-            <div className='flex  justify-around pt-3'>
-              <div>
-                 <WatchUser user={data} id={data.id}/>
-                <EditUser user={data}/>        
-              </div>
-              <div>
-                <Button onPress={onOpen} className=' bg-gradient-to-r from-[#D99C23] to-[#D45229] rounded-lg'><Link to={`/Users/${data.idUser}`}><AiTwotoneEdit className='text-white text-2xl'/></Link></Button>
-              </div>
+            <div className='flex  justify-between pt-3'>
+                <WatchUser user={data} id={data.id}/>
+                <EditUser user={data}/> 
+                 <StatusUser  user={data} />
             </div>
+
           </CardBody>
         </Card> 
     ))}

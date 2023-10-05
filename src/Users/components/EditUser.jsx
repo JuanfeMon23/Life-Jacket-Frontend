@@ -18,13 +18,12 @@ export function EditUser(props) {
     const onSubmit = (data, event) => {
         updateUser(user.idUser, data)
         event.preventDefault();
-        console.log(user.idUser, data )
     };
 
 
   return (
     <div className='flex'>
-        <Button onPress={onOpen}className='m-3 bg-gradient-to-r from-[#D99C23] to-[#D45229] rounded-lg text-white font-bold'>{<AiTwotoneEdit className='text-white text-2xl'/>}</Button>
+        <Button onPress={onOpen}className=' bg-gradient-to-r from-[#D99C23] to-[#D45229] rounded-lg text-white font-bold'>{<AiTwotoneEdit className='text-white text-2xl'/>}</Button>
         <Modal isOpen={isOpen} onOpenChange={onOpenChange} isDismissable={false}>
             <ModalContent>
                 {(onclose) => (
@@ -49,6 +48,9 @@ export function EditUser(props) {
                               color={errors.userDocumentType ? "danger" : ""}
                               errorMessage={errors.userDocumentType?.message}
                               className="max-w-xs"
+                              onChange={(e) => {
+                                field.onChange(e);
+                              }}
                             >
                               <SelectItem key='Cedula de ciudadania'>Cedula de ciudadanía</SelectItem>
                               <SelectItem key='Cedula de extranjería'>Cedula de extranjería</SelectItem>
@@ -391,7 +393,7 @@ export function EditUser(props) {
                     <Controller
                           name='idRolUser'
                           control={control}
-                          defaultValue={user.Role.rolName}
+                          defaultValue={user.idRol}
                           rules={{
                             required : 'Campo obligatorio'
                           }}
@@ -404,6 +406,9 @@ export function EditUser(props) {
                               color={errors.idRolUser ? "danger" : ""}
                               errorMessage={errors.idRolUser?.message}
                               className="max-w-xs"
+                              onChange={(e) => {
+                                field.onChange(e);
+                              }}
                             >
                             {roles.map((roles) => (
                               <SelectItem key={roles.idRol} value={roles.rolName}>
