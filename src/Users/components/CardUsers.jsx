@@ -96,15 +96,12 @@ export function CardUsers() {
 
             <div className='flex  justify-around pt-3'>
               <div>
-                <button className=''> <WatchUser user={data} id={data.id}/></button>
+                 <WatchUser user={data} id={data.id}/>
+                <EditUser user={data}/>        
               </div>
               <div>
-                <button><EditUser/></button>            
-              </div>
-                  {/* <button className=' bg-gradient-to-r from-[#D99C23] to-[#D45229] rounded-lg text-white w-12' link={''} ></button> */}
-                  {/* <EditUser/> */}
                 <Button onPress={onOpen} className=' bg-gradient-to-r from-[#D99C23] to-[#D45229] rounded-lg'><Link to={`/Users/${data.idUser}`}><AiTwotoneEdit className='text-white text-2xl'/></Link></Button>
-                {/* <button> <Link  to={`/Users/${data.idUser}`}><EditUser user={data} id={data.idUser}/></Link> </button> */}
+              </div>
             </div>
           </CardBody>
         </Card> 

@@ -16,7 +16,6 @@ export function WatchUser(props) {
             <>
               <ModalHeader className=" bg-gradient-to-r from-[#252525] to-[#231949] text-white flex items-center ">Informacion del usuario</ModalHeader>
                 <ModalBody key={user.id}>
-                  
                 <div className="m-5 flex justify-around">
                     <div className=" flex flex-col">
                       <p className="font-bold">Tipo de documento</p> 
