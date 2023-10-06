@@ -100,7 +100,7 @@ export function CardUsers() {
             <div className='flex  justify-between pt-3'>
                 <WatchUser user={data} id={data.id}/>
                 <EditUser user={data}/> 
-                 <StatusUser  user={data} />
+                <StatusUser  user={data} />
             </div>
 
           </CardBody>

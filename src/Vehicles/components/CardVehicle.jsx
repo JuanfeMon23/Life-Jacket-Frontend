@@ -7,6 +7,8 @@ import {FaSearch} from 'react-icons/fa';
 import {Input} from "@nextui-org/react";
 import { useVehicles } from '../context/vehiclesContext';
 import { WatchVehicle } from './WatchVehicle';
+import {EditVehicle} from './EditVehicle';
+import { StatusVehicle } from './StatusVehicle';
 
 
 export  function CardVehicle() {
@@ -85,10 +87,12 @@ export  function CardVehicle() {
                 <p className='border-2 border-indigo-500/75 rounded-lg py-1 px-1 w-40 text-xs'>{vehicles.model}</p>
             </div>
     
-            <div className='flex justify-center pt-3'>
-              <div>
-                <button className=''> <WatchVehicle vehicle={vehicles} id={vehicles.id}/></button>
-              </div>
+            <div className='flex  justify-between pt-3'>
+              
+                 <WatchVehicle vehicle={vehicles} id={vehicles.id}/>
+                 <EditVehicle vehicle={vehicles}/>
+                 <StatusVehicle vehicle={vehicles}/>
+              
             </div>
           </CardBody>
           </Card> 

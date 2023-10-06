@@ -6,7 +6,7 @@ import {useForm, Controller} from 'react-hook-form';
 import { useUsers } from '../Context/userContext';
 import {Select, SelectItem} from "@nextui-org/react";
 import { useRoles } from '../../Roles/context/rolesContext';
-import { useParams, useNavigate } from 'react-router-dom';
+
 
 export  function UserRegister() {
   const {isOpen, onOpen, onOpenChange} = useDisclosure();

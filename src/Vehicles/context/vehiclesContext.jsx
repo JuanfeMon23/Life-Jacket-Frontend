@@ -1,6 +1,6 @@
 import { createContext, useContext, useState } from "react";
 import { toast } from "react-toastify";
-import { getVehiclesRequest, getVehicleRequest, createVehiclesRequest, updateVehicleRequest, getVehicleTypeRequest } from "../api/Vehicles";
+import { getVehiclesRequest, getVehicleRequest, createVehiclesRequest, updateVehicleRequest, getVehicleTypeRequest , statusVehicleRequest } from "../api/Vehicles";
 
 const VehiclesContext = createContext();
 
@@ -71,8 +71,22 @@ export function VehicleProvider({children}){
         }
     };
 
+    const statusVehicle = async (idVehicle, vehicle) => {
+        try {
+            await statusVehicleRequest(idVehicle, vehicle);
+            toast.success('Estadp del vehículo actualizado con exito!',{
+                position: toast.POSITION.TOP_CENTER
+            });
+        } catch (error) {
+            toast.error('Error al actualizar.' ,{
+                position: toast.POSITION.TOP_CENTER
+            });
+            throw new Error(error.message);
+        }
+    };
+
     return(
-        <VehiclesContext.Provider value={{vehicles, getVehicle, getVehicles, createVehicle, updateVehicle, getVehicletype}}>
+        <VehiclesContext.Provider value={{vehicles, getVehicle, getVehicles, createVehicle, updateVehicle, getVehicletype, statusVehicle}}>
             {children}
         </VehiclesContext.Provider>
     )

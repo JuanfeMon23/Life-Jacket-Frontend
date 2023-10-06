@@ -6,7 +6,7 @@ import { usePurchases } from '../context/purchaseContext';
 import { PurchaseRegister } from '../components/PurchaseRegister';
 import { useVehicles } from '../../Vehicles/context/vehiclesContext';
 import { useClients } from '../../Clients/context/clientsContext';
-import { CardPurchase } from '../components/CardPurchase';
+import { TablePurchase } from '../components/TablePurchase';
 
 export  function Purchases() {
     const {getPurchases } = usePurchases();
@@ -30,7 +30,7 @@ export  function Purchases() {
 
 
             <div>
-                <CardPurchase/>
+                <TablePurchase/>
             </div>
         </div>
     </div>

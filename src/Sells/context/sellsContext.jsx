@@ -1,6 +1,6 @@
 import { createContext, useContext, useState } from "react";
 import { toast } from "react-toastify";
-import { createSellRequest, getSellsRequest } from "../api/Sells";
+import { createSellRequest, getSellsRequest , statusSaleRequest } from "../api/Sells";
 
 const SellContext = createContext();
 
@@ -36,8 +36,21 @@ export function SellProvider({children}) {
         }
     };
 
+    const statusSale = async (idSale) => {
+        try {
+            await statusSaleRequest(idSale);
+            toast.success('Estado de la venta con exito!',{
+                position: toast.POSITION.TOP_CENTER
+            });
+        } catch (error) {
+            toast.error('Error al cambiar el estado' ,{
+                position: toast.POSITION.TOP_CENTER
+            });
+        }
+    };
+
     return(
-        <SellContext.Provider value={{sells, getSells, createSell}}>
+        <SellContext.Provider value={{sells, getSells, createSell, statusSale}}>
             {children}
         </SellContext.Provider>
     )

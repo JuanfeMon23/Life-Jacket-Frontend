@@ -1,5 +1,4 @@
 import React from 'react'
-import { vehicle } from '../../../vehicles.js'
 import {Modal, ModalContent, ModalHeader, ModalBody, useDisclosure} from "@nextui-org/react";
 import { Select, SelectItem, Button } from '@nextui-org/react';
 import { ButtonAccept } from '../../components/ButtonAccept';
@@ -7,24 +6,24 @@ import { useForm , Controller } from 'react-hook-form';
 import { useVehicles } from '../context/vehiclesContext.jsx';
 import { useState , useEffect} from 'react';
 import {Input} from "@nextui-org/react";
-import { useParams } from 'react-router-dom';
+import {AiTwotoneEdit} from 'react-icons/Ai';
 
-export  function VehicleRegister() {
+export  function EditVehicle (props) {
     const [scrollBehavior, setScrollBehavior] = React.useState("inside");
     const {isOpen, onOpen, onOpenChange} = useDisclosure();
     const {register , handleSubmit, setValue,  formState:{errors}, control} = useForm();
-    const {createVehicle} = useVehicles();
-
+    const {updateVehicle} = useVehicles();
+    const vehicles = props.vehicle;
 
 
     const onSubmit = (data) => {
-        createVehicle({...data});
+        updateVehicle(vehicles.idVehicle, data);
     };
 
 
   return (
     <div className='flex'>
-    <Button onPress={onOpen}className='absolute right-0 top-11 mx-6 my-20 bg-gradient-to-r from-cyan-500 to-blue-800 text-white font-bold'>Registrar</Button>
+    <Button onPress={onOpen}className=' bg-gradient-to-r from-[#D99C23] to-[#D45229] rounded-lg text-white font-bold'>{<AiTwotoneEdit className='text-white text-2xl'/>}</Button>
       <Modal isOpen={isOpen} onOpenChange={onOpenChange} scrollBehavior={scrollBehavior}>
         <ModalContent>
           {(onClose) => (
@@ -37,6 +36,7 @@ export  function VehicleRegister() {
                     <Controller
                           name="licensePlate"
                           control={control}
+                          defaultValue={vehicles.licensePlate}
                           rules={{
                             required: "Campo requerido",
                             maxLength: {
@@ -46,7 +46,7 @@ export  function VehicleRegister() {
                           }}
                           render={({ field }) => (
                             <Input
-                              {...field}
+                              {...field}                        
                               type="text"
                               label="Placa del vehículo"
                               variant="bordered"
@@ -62,6 +62,7 @@ export  function VehicleRegister() {
                     <Controller
                           name="vehicleType"
                           control={control}
+                          defaultValue={vehicles.vehicleType}
                           rules={{
                             required: "Campo requerido",
                             maxLength: {
@@ -93,6 +94,7 @@ export  function VehicleRegister() {
                     <Controller
                           name="brand"
                           control={control}
+                          defaultValue={vehicles.brand}
                           rules={{
                             required: "Campo requerido",
                             minLength: {
@@ -126,6 +128,7 @@ export  function VehicleRegister() {
                     <Controller
                         name="model"
                         control={control}
+                        defaultValue={vehicles.model}
                         rules={{
                           required: "Campo requerido",
                           pattern: {
@@ -153,6 +156,7 @@ export  function VehicleRegister() {
                     <Controller
                           name="type"
                           control={control}
+                          defaultValue={vehicles.type}
                           rules={{
                             required: "Campo requerido",
                             minLength: {
@@ -186,6 +190,7 @@ export  function VehicleRegister() {
                     <Controller
                           name="line"
                           control={control}
+                          defaultValue={vehicles.line}
                           rules={{
                             required: "Campo requerido",
                             maxLength: {
@@ -213,6 +218,7 @@ export  function VehicleRegister() {
                     <Controller
                         name="mileage"
                         control={control}
+                        defaultValue={vehicles.mileage}
                         render={({ field }) => (
                           <Input
                             {...field}
@@ -231,6 +237,7 @@ export  function VehicleRegister() {
                     <Controller
                         name="cylinderCapacity"
                         control={control}
+                        defaultValue={vehicles.cylinderCapacity}
                         render={({ field }) => (
                           <Input
                             {...field}
@@ -252,6 +259,7 @@ export  function VehicleRegister() {
                     <Controller
                           name="fuel"
                           control={control}
+                          defaultValue={vehicles.fuel}
                           rules={{
                             pattern: {
                               value: /^[a-zA-Z\s]*$/,
@@ -276,6 +284,7 @@ export  function VehicleRegister() {
                     <Controller
                           name="traction"
                           control={control}
+                          defaultValue={vehicles.traction}
                           rules={{
 
                           }}
@@ -300,6 +309,7 @@ export  function VehicleRegister() {
                       <Controller
                             name="soat"
                             control={control}
+                            defaultValue={vehicles.soat}
                             render={({ field }) => (
                               <Input
                                 {...field}
@@ -319,6 +329,7 @@ export  function VehicleRegister() {
                     <Controller
                           name="technomecanics"
                           control={control}
+                          defaultValue={vehicles.technomecanics}
                           render={({ field }) => (
                             <Input
                               {...field}
@@ -339,6 +350,7 @@ export  function VehicleRegister() {
                   <Controller
                           name="timingBelt"
                           control={control}
+                          defaultValue={vehicles.timingBelt}
                           render={({ field }) => (
                             <Input
                               {...field}

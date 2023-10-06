@@ -6,8 +6,7 @@ import { useSells } from '../context/sellsContext';
 import { SaleRegister } from '../components/SaleRegister';
 import { useVehicles } from '../../Vehicles/context/vehiclesContext';
 import { useClients } from '../../Clients/context/clientsContext';
-import { CardSale } from '../components/CardSale';
-
+import { TableSale } from '../components/TableSale';
 
 export  function Sells() {
     const {getSells } = useSells();
@@ -30,7 +29,7 @@ export  function Sells() {
             <SaleRegister/>
 
             <div>
-                <CardSale/>
+                <TableSale/>
             </div>
         </div>
     </div>

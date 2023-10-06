@@ -21,10 +21,10 @@ export function Vehicles() {
         
         <div>
           {<Title Title='Vehículos'/>}
-          <VehicleRegister/>
 
 
           <div>
+            <VehicleRegister/>
             <CardVehicle/>
           </div>
            
