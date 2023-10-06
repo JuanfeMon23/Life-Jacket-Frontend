@@ -316,7 +316,7 @@ export  function VehicleRegister() {
 
                     <div className='flex-col m-3'>
                     <Controller
-                          name="technomecanics"
+                          name="technomechanics"
                           control={control}
                           render={({ field }) => (
                             <Input
@@ -324,8 +324,8 @@ export  function VehicleRegister() {
                               type="date"
                               label="Tecnomecanica"
                               variant="bordered"
-                              color={errors.technomecanics ? "danger" : ""}
-                              errorMessage={errors.technomecanics?.message}
+                              color={errors.technomechanics ? "danger" : ""}
+                              errorMessage={errors.technomechanics?.message}
                               className="max-w-xs"
                             />
                           )}
