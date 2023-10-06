@@ -7,7 +7,6 @@ import { useForm , Controller } from 'react-hook-form';
 import { useVehicles } from '../context/vehiclesContext.jsx';
 import { useState , useEffect} from 'react';
 import {Input} from "@nextui-org/react";
-import { useParams } from 'react-router-dom';
 
 export  function VehicleRegister() {
     const [scrollBehavior, setScrollBehavior] = React.useState("inside");

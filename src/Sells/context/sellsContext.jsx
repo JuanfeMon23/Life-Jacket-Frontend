@@ -1,6 +1,6 @@
 import { createContext, useContext, useState } from "react";
 import { toast } from "react-toastify";
-import { createSellRequest, getSellsRequest , statusSaleRequest } from "../api/Sells";
+import { createSellRequest, getSellsRequest , statusSaleRequest, informSaleRequest } from "../api/Sells";
 
 const SellContext = createContext();
 
@@ -49,8 +49,22 @@ export function SellProvider({children}) {
         }
     };
 
+    const informSale = async (firstParameter, secondParameter) => {
+        try {
+            await informSaleRequest(firstParameter, secondParameter );
+            toast.success('Informe generado con exito!',{
+                position: toast.POSITION.TOP_CENTER
+            });
+        } catch (error) {
+            console.log(error);
+            toast.error('Error al generar el informe' ,{
+                position: toast.POSITION.TOP_CENTER
+            });
+        }
+    };
+
     return(
-        <SellContext.Provider value={{sells, getSells, createSell, statusSale}}>
+        <SellContext.Provider value={{sells, getSells, createSell, statusSale, informSale }}>
             {children}
         </SellContext.Provider>
     )

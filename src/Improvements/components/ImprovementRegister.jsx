@@ -2,7 +2,7 @@ import React,{useState, useEffect} from 'react'
 import {useVehicles} from '../../Vehicles/context/vehiclesContext';
 import {useImprovements} from '../context/improvementsContext';
 import {Input, Textarea} from "@nextui-org/react";
-import {useForm} from 'react-hook-form';
+import {useForm, Controller} from 'react-hook-form';
 import {Modal, ModalContent, ModalHeader, ModalBody, ModalFooter, useDisclosure} from "@nextui-org/react";
 import {Select, SelectItem} from "@nextui-org/react";
 import { Button } from '@nextui-org/react';
@@ -11,7 +11,7 @@ import { useParams, useNavigate } from 'react-router-dom';
 export function ImprovementRegister() {
     const {isOpen, onOpen, onOpenChange} = useDisclosure();
     const {getVehicles, vehicles} = useVehicles();
-    const {register , setValue, handleSubmit, formState:{errors}} = useForm();
+    const {register , setValue, handleSubmit, formState:{errors}, control} = useForm();
     const {createImprovement} = useImprovements();
     const params = useParams();
 
@@ -27,7 +27,7 @@ export function ImprovementRegister() {
 
   return (
     <div className='flex'>
-        <Button onPress={onOpen}className='absolute right-0 top-40 mx-6 my-20 bg-gradient-to-r from-cyan-500 to-blue-800 text-white font-bold'>{params.idUser ? <AiTwotoneEdit className='text-white text-2xl'/> : 'Registrar' }</Button>
+        <Button onPress={onOpen}className='absolute right-0 top-11 mx-6 my-20 bg-gradient-to-r from-cyan-500 to-blue-800 text-white font-bold'>Registrar</Button>
         <Modal isOpen={isOpen} onOpenChange={onOpenChange} isDismissable={false}>
             <ModalContent>
             {(onClose) => (
@@ -36,36 +36,111 @@ export function ImprovementRegister() {
                 <ModalBody>
                     <form onSubmit={handleSubmit(onSubmit)}>
                         <div className='flex-col m-3 w-[400px]'>
-                            <Select label='Placa del vehículo'  variant='underlined' {...register("idVehicleImprovement", {required : true})}>
-                                {vehicles.map((vehicles) => (
-                                <SelectItem key={vehicles.idVehicle} value={vehicles.licensePlate}>
-                                    {vehicles.licensePlate}
-                                </SelectItem>
+                            <Controller
+                                name='idVehicleImprovement'
+                                control={control}
+                                rules={{
+                                    required : 'Campo obligatorio'
+                                }}
+                                render={({field}) => (
+                                    <Select
+                                    {...field}
+                                    type="text"
+                                    label="Placa del vehículo"
+                                    variant="bordered"
+                                    color={errors.idVehicleImprovement ? "danger" : ""}
+                                    errorMessage={errors.idVehicleImprovement?.message}
+                                    className="max-w-xs"
+                                    onChange={(e) => {
+                                        field.onChange(e);
+                                    }}
+                                    >
+                                    {vehicles.map((vehicles) => (
+                                    <SelectItem key={vehicles.idVehicle} value={vehicles.licensePlate}>
+                                        {vehicles.licensePlate}
+                                    </SelectItem>
                                 ))}
-                            </Select>
-                            {errors.idVehicleImprovement && <p className=' text-red-600'>Campo requerido</p>}
+                                    </Select>
+                                )}
+                                />
                         </div>
 
                         <div className=' flex'>
                             <div className=' flex-col m-3'>
-                                <Input type="date" label="Fecha"  isClearable variant="underlined" id='improvementDate'
-                                {...register("improvementDate" , {required : true})}/>
-                                {errors.improvementDate && <p className=' text-red-600'>Campo requerido</p>}
+                            <Controller
+                              name="improvementDate"
+                              control={control}
+                              rules={{
+                                required : 'Campo obligatorio'
+                              }}
+                              render={({ field }) => (
+                                <Input
+                                  {...field}
+                                  type="date"
+                                  label="Fecha de mejora"
+                                  variant="bordered"
+                                  color={errors.improvementDate ? "danger" : ""}
+                                  errorMessage={errors.improvementDate?.message}
+                                  className="max-w-xs"
+                                />
+                            )}
+                          /> 
                             </div>
 
                             <div className=' flex-col m-3'>
-                                <Input type="number" label="Precio"  isClearable variant="underlined" id='improvementPrice'
-                                {...register("improvementPrice" , {required : true})}/>
-                                {errors.improvementPrice && <p className=' text-red-600'>Campo requerido</p>}
+                            <Controller
+                              name="improvementPrice"
+                              control={control}
+                              rules={{
+                                required: "Campo requerido",
+                                pattern: {
+                                  value: /^[0-9]*$/, 
+                                  message: "Solo números"
+                                }
+                              }}
+                              render={({ field }) => (
+                                <Input
+                                  {...field}
+                                  type="number"
+                                  label="Precio de mejora"
+                                  variant="bordered"
+                                  color={errors.improvementPrice? "danger" : ""}
+                                  errorMessage={errors.improvementPrice?.message}
+                                  className="max-w-xs"
+                                />
+                              )}
+                            />
                             </div>  
 
                         </div>
 
                         <div className='flex-col m-3 w-[400px]'>
-                            <Textarea type='text' label='Descripcion' id='improvementDescription' variant='bordered'
-                            {...register("improvementDescription" , {required : true})}
+                        <Controller
+                          name="improvementDescription"
+                          control={control}
+                          rules={{
+                            required: "Campo requerido",
+                            minLength: {
+                              value: 3,
+                              message: "Almenos 3 caracteres"
+                            },
+                            maxLength: {
+                              value: 40,
+                              message: "Maximo 40 caracteres"
+                            }
+                          }}
+                          render={({ field }) => (
+                            <Textarea
+                              {...field}
+                              type="text"
+                              label="Descripcion de la mejora"
+                              variant="bordered"
+                              color={errors.improvementDescription ? "danger" : ""}
+                              errorMessage={errors.improvementDescription?.message}
+                              className="max-w-xs"
                             />
-                            {errors.improvementDescription && <p className=' text-red-600'>Campo requerido</p>}
+                          )}
+                        /> 
                         </div>
 
                     <div className=' text-center my-3 '>

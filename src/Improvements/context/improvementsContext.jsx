@@ -1,6 +1,6 @@
 import { createContext, useContext, useState } from "react";
 import { toast } from "react-toastify";
-import { createImprovementsRequest } from "../api/Improvements";
+import { createImprovementsRequest,  statusImprovementRequest, getImprovementesRequest } from "../api/Improvements";
 
 const ImprovementContext = createContext();
 
@@ -14,7 +14,7 @@ export function ImprovementProvider({children}){
     
     const getImprovements = async () => {
         try {
-            const res = await getImprovements();
+            const res = await getImprovementesRequest();
             setImprovements(res.data);
         } catch (error) {
             throw new Error(error.message);
@@ -37,8 +37,22 @@ export function ImprovementProvider({children}){
         }
     };
 
+    const statusImprovement = async (idImprovement) => {
+        try {
+            await statusImprovementRequest(idImprovement);
+            toast.success('Cambio de estado con exito!',{
+                position: toast.POSITION.TOP_CENTER
+            });
+        } catch (error) {
+            toast.error('Error' ,{
+                position: toast.POSITION.TOP_CENTER
+            });
+            throw new Error(error.message); 
+        }
+    };
+
     return(
-        <ImprovementContext.Provider value={{improvements, getImprovements, createImprovement}}>
+        <ImprovementContext.Provider value={{improvements, getImprovements, createImprovement, statusImprovement}}>
             {children}
         </ImprovementContext.Provider>
     )

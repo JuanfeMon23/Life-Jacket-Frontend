@@ -21,10 +21,10 @@ export function Clients() {
         
         <div>
           {<Title Title='Clientes'/>}
-          <ClientRegister/>
 
 
           <div>
+           <ClientRegister/>
             <CardClient/>
           </div>
            

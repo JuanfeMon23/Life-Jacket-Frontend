@@ -21,7 +21,7 @@ const onSubmit = (data) => {
 
   return (
     <div className='flex'>
-    <Button onPress={onOpen}className='bg-gradient-to-r from-cyan-500 to-blue-800 text-white font-bold'>Registrar</Button>
+    <Button onPress={onOpen}className='bg-gradient-to-r from-cyan-500 to-blue-800 absolute right-0 top-11 mx-6 my-20 text-white font-bold'>Registrar</Button>
       <Modal isOpen={isOpen} onOpenChange={onOpenChange}>
         <ModalContent>
           {(onClose) => (

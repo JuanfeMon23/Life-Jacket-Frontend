@@ -7,6 +7,7 @@ import { SaleRegister } from '../components/SaleRegister';
 import { useVehicles } from '../../Vehicles/context/vehiclesContext';
 import { useClients } from '../../Clients/context/clientsContext';
 import { TableSale } from '../components/TableSale';
+import { ReportSale } from '../components/ReportSale';
 
 export  function Sells() {
     const {getSells } = useSells();
@@ -27,6 +28,7 @@ export  function Sells() {
         <div>
             {<Title Title='Ventas'/>}
             <SaleRegister/>
+            <ReportSale/>
 
             <div>
                 <TableSale/>
