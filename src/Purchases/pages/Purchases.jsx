@@ -7,6 +7,7 @@ import { PurchaseRegister } from '../components/PurchaseRegister';
 import { useVehicles } from '../../Vehicles/context/vehiclesContext';
 import { useClients } from '../../Clients/context/clientsContext';
 import { TablePurchase } from '../components/TablePurchase';
+import { NewNavigation } from '../../components/globalComponents/NewNavigation';
 
 export  function Purchases() {
     const {getPurchases } = usePurchases();
@@ -22,7 +23,8 @@ export  function Purchases() {
   return (
     <div className=' flex'>
         <div>
-            <Navigation/>
+            {/* <Navigation/> */}
+            <NewNavigation/>
         </div>
         <div>
             {<Title Title='Compras'/>}

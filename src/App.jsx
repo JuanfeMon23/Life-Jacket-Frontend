@@ -18,6 +18,7 @@ import { DashBoard } from "./Dashboard/pages/DashBoard.jsx";
 import { Improvements } from "./Improvements/pages/Improvements.jsx";
 import 'react-toastify/dist/ReactToastify.css';
 import { EditUser } from "./Users/components/EditUser.jsx";
+import {NewNavigation} from "./components/globalComponents/NewNavigation.jsx";
 
 
 function App() {  
@@ -42,7 +43,8 @@ function App() {
               <Route path='/Vehicles' element={<Vehicles/>}/>
               <Route path='/Purchases' element={<Purchases/>}/>
               <Route path="/Improvements" element={<Improvements/>}/>
-              <Route path="/DashBoard" element={<DashBoard/>}/>                
+              <Route path="/DashBoard" element={<DashBoard/>}/>
+              <Route path ='/NewNavbar' element={<NewNavigation/>}/>                
             </Routes>
           <ToastContainer/>       
         </BrowserRouter>
