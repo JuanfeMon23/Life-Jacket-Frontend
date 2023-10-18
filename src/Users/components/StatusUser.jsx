@@ -18,7 +18,7 @@ export  function StatusUser(props) {
 
   return (
 <div className='flex'>
-    {user.userStatus === true ? <Button className=' bg-green-600 rounded-lg' onPress={onOpen}><GrStatusGood className='text-2xl'/></Button> : <Button className=' bg-slate-600 rounded-lg' onPress={onOpen}><TiDeleteOutline className='text-white text-2xl'/></Button>}
+    {user.userStatus === true ? <Button className=' bg-green-600 rounded-lg' onPress={onOpen}><GrStatusGood className={`text-2xl text-white`}/></Button> : <Button className=' bg-slate-600 rounded-lg' onPress={onOpen}><TiDeleteOutline className='text-white text-2xl'/></Button>}
       <Modal isOpen={isOpen} onOpenChange={onOpenChange}>
         <ModalContent>
           {(onClose) => (

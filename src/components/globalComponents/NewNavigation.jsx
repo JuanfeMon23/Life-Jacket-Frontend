@@ -18,7 +18,7 @@ export function NewNavigation() {
         {title : 'Usuarios', path:'/Users', icon : FaIdBadge },
         {title : 'Vehículos', path:'/Vehicles', icon : FaCar},
         {title: 'Compras', path:'/Purchases', icon : FaCartPlus},
-        {title : 'Ventas', path:'/Sales', icon: FaMoneyBillWave },
+        {title : 'Ventas', path:'/Sells', icon: FaMoneyBillWave },
         {title: 'Clientes', path:'/Clients' , icon : FaUserPlus},
         {title : 'Cambios', path:'/Exchangues', icon : FaExchangeAlt},
         {title : 'Mejoras', path:'/Improvements', icon : FaTools}

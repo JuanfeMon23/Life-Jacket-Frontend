@@ -33,9 +33,9 @@ export function EditUser(props) {
                   <div className="flex ">
                       <div className=' flex-col m-3 w-[200px]'>
                         <Controller
-                          name='userDocumentType'
+                          name='userTypeDocument'
                           control={control}
-                          defaultValue={user.userDocumentType}
+                          defaultValue={user.userTypeDocument}
                           rules={{
                             required : 'Campo obligatorio'
                           }}
@@ -45,8 +45,8 @@ export function EditUser(props) {
                               type="text"
                               label="Tipo de documento"
                               variant="bordered"
-                              color={errors.userDocumentType ? "danger" : ""}
-                              errorMessage={errors.userDocumentType?.message}
+                              color={errors.userTypeDocument ? "danger" : ""}
+                              errorMessage={errors.userTypeDocument?.message}
                               className="max-w-xs"
                               onChange={(e) => {
                                 field.onChange(e);
@@ -62,9 +62,9 @@ export function EditUser(props) {
 
                       <div className=' flex-col m-3'>
                       <Controller
-                        name="userDocumentNumber"
+                        name="userDocument"
                         control={control}
-                        defaultValue={user.userDocumentNumber}
+                        defaultValue={user.userDocument}
                         rules={{
                           required: "Campo requerido",
                           minLength : {
@@ -86,8 +86,8 @@ export function EditUser(props) {
                             type="number"
                             label="Documento"
                             variant="bordered"
-                            color={errors.userDocumentNumber? "danger" : ""}
-                            errorMessage={errors.userDocumentNumber?.message}
+                            color={errors.userDocument? "danger" : ""}
+                            errorMessage={errors.userDocument?.message}
                             className="max-w-xs"
                           />
                         )}

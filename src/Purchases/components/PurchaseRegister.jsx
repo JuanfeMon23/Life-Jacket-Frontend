@@ -5,6 +5,7 @@ import { usePurchases } from '../context/purchaseContext';
 import { useClients } from '../../Clients/context/clientsContext';
 import { useVehicles } from '../../Vehicles/context/vehiclesContext';
 import { useParams, useNavigate } from 'react-router-dom';
+import { RegisterButton } from '../../components/buttons/RegisterButton';
 
 
 export function PurchaseRegister() {
@@ -21,7 +22,7 @@ export function PurchaseRegister() {
 
   return (
     <div className='flex'>
-    <Button onPress={onOpen}className='absolute right-0 top-15 m-5 bg-gradient-to-r from-cyan-500 to-blue-800 text-white font-bold'> Registrar</Button>
+    <Button onPress={onOpen} className='absolute right-0 top-15 m-5 bg-gradient-to-r from-cyan-500 to-blue-800 text-white font-bold'> Registrar</Button>
       <Modal isOpen={isOpen} onOpenChange={onOpenChange} isDismissable={false}>
         <ModalContent>
           {(onClose) => (

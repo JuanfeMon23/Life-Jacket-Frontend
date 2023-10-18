@@ -17,6 +17,7 @@ export  function UserRegister() {
 
   const onSubmit = (data) => {
       createUser(data);
+      console.log(data);
   };
 
   return (
@@ -32,7 +33,7 @@ export  function UserRegister() {
                   <div className="flex ">
                       <div className=' flex-col m-3 w-[200px]'>
                         <Controller
-                          name='userDocumentType'
+                          name='userTypeDocument'
                           control={control}
                           rules={{
                             required : 'Campo obligatorio'
@@ -43,8 +44,8 @@ export  function UserRegister() {
                               type="text"
                               label="Tipo de documento"
                               variant="bordered"
-                              color={errors.userDocumentType ? "danger" : ""}
-                              errorMessage={errors.userDocumentType?.message}
+                              color={errors.userTypeDocument ? "danger" : ""}
+                              errorMessage={errors.userTypeDocument?.message}
                               className="max-w-xs"
                               onChange={(e) => {
                                 field.onChange(e);
@@ -60,7 +61,7 @@ export  function UserRegister() {
 
                       <div className=' flex-col m-3'>
                       <Controller
-                        name="userDocumentNumber"
+                        name="userDocument"
                         control={control}
                         rules={{
                           required: "Campo requerido",
@@ -83,8 +84,8 @@ export  function UserRegister() {
                             type="number"
                             label="Documento"
                             variant="bordered"
-                            color={errors.userDocumentNumber? "danger" : ""}
-                            errorMessage={errors.userDocumentNumber?.message}
+                            color={errors.userDocument? "danger" : ""}
+                            errorMessage={errors.userDocument?.message}
                             className="max-w-xs"
                           />
                         )}

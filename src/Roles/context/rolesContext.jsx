@@ -38,6 +38,7 @@ export function RolesProvider({children}) {
             });
             return res.data;
         } catch (error) {
+            console.log(error)
             toast.error('Error al crear un rol.' ,{
                 position: toast.POSITION.TOP_CENTER
             });

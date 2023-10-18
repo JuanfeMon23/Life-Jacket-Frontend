@@ -30,16 +30,13 @@ function App() {
       <RolesProvider>
       <ClientProvider>
       <VehicleProvider>
-      <ImprovementProvider>
-        
+      <ImprovementProvider>       
         <BrowserRouter>
             <Routes>
               <Route path='/' element={<Login/>}/>       
               <Route path='/Users' element={<Users/>}/>
-              <Route path='/Users/:idUser' element={<EditUser/>}/>
               <Route path='/Clients' element={<Clients/>}/>
               <Route path='/Sells' element={<Sells/>}/>
-              <Route path='/Clients/:idClient' element={<ClientRegister/>}/>
               <Route path='/Vehicles' element={<Vehicles/>}/>
               <Route path='/Purchases' element={<Purchases/>}/>
               <Route path="/Improvements" element={<Improvements/>}/>

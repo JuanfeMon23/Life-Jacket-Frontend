@@ -49,6 +49,7 @@ export function UserProvider ({children}) {
             });
             return res.data;
         } catch (error) {
+            console.log(error)
             toast.error('Error al crear un usuario.' ,{
                 position: toast.POSITION.TOP_CENTER
             });
