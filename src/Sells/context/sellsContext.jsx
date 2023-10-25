@@ -27,6 +27,7 @@ export function SellProvider({children}) {
             toast.success('Venta Creado con extio!',{
                 position: toast.POSITION.TOP_CENTER
             });
+            getSells();
             return res.data;
         } catch (error) {
             toast.error('Error al crear una venta.' ,{
@@ -42,6 +43,7 @@ export function SellProvider({children}) {
             toast.success('Estado de la venta con exito!',{
                 position: toast.POSITION.TOP_CENTER
             });
+            getSells();
         } catch (error) {
             toast.error('Error al cambiar el estado' ,{
                 position: toast.POSITION.TOP_CENTER
@@ -55,6 +57,7 @@ export function SellProvider({children}) {
             toast.success('Informe generado con exito!',{
                 position: toast.POSITION.TOP_CENTER
             });
+            getSells();
         } catch (error) {
             console.log(error);
             toast.error('Error al generar el informe' ,{

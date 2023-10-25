@@ -5,17 +5,15 @@ import {Button} from "@nextui-org/react";
 import { ButtonAccept } from '../../components/ButtonAccept';
 import {useForm, Controller} from 'react-hook-form';
 import { useClients } from '../context/clientsContext';
-import { useParams, useNavigate } from 'react-router-dom';
 import { Select, SelectItem } from '@nextui-org/react';
 
 export  function ClientRegister() {
 const {isOpen, onOpen, onOpenChange} = useDisclosure();
-const {register , handleSubmit, setValue,  formState:{errors}, control} = useForm();
+const {register , handleSubmit, setValue,  formState:{errors}, control, reset} = useForm();
 const {createClient} = useClients();
 
 const onSubmit = (data) => {
     createClient({...data});
-
 };
 
 

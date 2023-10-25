@@ -27,6 +27,7 @@ export function PurchaseProvider ({children}) {
             toast.success('Compra Creado con extio!',{
                 position: toast.POSITION.TOP_CENTER
             });
+            getPurchases();
             return res.data;
         } catch (error) {
             console.log(error)
@@ -43,6 +44,7 @@ export function PurchaseProvider ({children}) {
             toast.success('Estado de compra modificado con extio!',{
                 position: toast.POSITION.TOP_CENTER
             });
+            getPurchases();
         } catch (error) {
             toast.error('Error al cambiar de estado.' ,{
                 position: toast.POSITION.TOP_CENTER

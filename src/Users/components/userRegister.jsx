@@ -10,14 +10,14 @@ import { useRoles } from '../../Roles/context/rolesContext';
 
 export  function UserRegister() {
   const {isOpen, onOpen, onOpenChange} = useDisclosure();
-  const {register , setValue, handleSubmit, formState:{errors}, control} = useForm();
+  const {register , setValue, handleSubmit, formState:{errors}, control, reset} = useForm();
   const {createUser} = useUsers();
   const {roles} = useRoles();
 
 
   const onSubmit = (data) => {
       createUser(data);
-      console.log(data);
+      reset();
   };
 
   return (

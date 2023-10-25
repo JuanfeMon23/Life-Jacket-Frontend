@@ -47,6 +47,7 @@ export function VehicleProvider({children}){
             toast.success('Vehiculo creado con exito!',{
                 position: toast.POSITION.TOP_CENTER
             });
+            getVehicles();
             return res.data;
         } catch (error) {
             toast.error('Error al crear.' ,{
@@ -63,6 +64,7 @@ export function VehicleProvider({children}){
             toast.success('Vehiculo actualizado con exito!',{
                 position: toast.POSITION.TOP_CENTER
             });
+            getVehicles();
         } catch (error) {
             toast.error('Error al actualizar.' ,{
                 position: toast.POSITION.TOP_CENTER
@@ -77,6 +79,7 @@ export function VehicleProvider({children}){
             toast.success('Estadp del vehículo actualizado con exito!',{
                 position: toast.POSITION.TOP_CENTER
             });
+            getVehicles();
         } catch (error) {
             toast.error('Error al actualizar.' ,{
                 position: toast.POSITION.TOP_CENTER

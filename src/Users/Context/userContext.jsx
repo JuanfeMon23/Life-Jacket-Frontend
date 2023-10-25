@@ -47,6 +47,7 @@ export function UserProvider ({children}) {
             toast.success('Usuario Creado con exito!',{
                 position: toast.POSITION.TOP_CENTER
             });
+            getUsers();
             return res.data;
         } catch (error) {
             console.log(error)
@@ -63,6 +64,7 @@ export function UserProvider ({children}) {
             toast.success('Usuario actualizado con exito!',{
                 position: toast.POSITION.TOP_CENTER
             });
+            getUsers();
         } catch (error) {
             console.log(error)
             toast.error('Error al actualizar.' ,{
@@ -79,6 +81,7 @@ export function UserProvider ({children}) {
             toast.success('Estado actualizado con exito!',{
                 position: toast.POSITION.TOP_CENTER
             });
+            getUsers();
         } catch (error) {
             toast.error('Error al actualizar el estado.' ,{
                 position: toast.POSITION.TOP_CENTER

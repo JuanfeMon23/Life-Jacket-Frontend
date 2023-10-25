@@ -1,5 +1,5 @@
-import React from 'react'
-import {Modal, ModalContent, ModalHeader, ModalBody, ModalFooter, useDisclosure} from "@nextui-org/react";
+import React, { useEffect } from 'react'
+import {Modal, ModalContent, ModalHeader, ModalBody, ModalFooter, useDisclosure, User} from "@nextui-org/react";
 import {Input} from "@nextui-org/react";
 import {Select, SelectSection, SelectItem} from "@nextui-org/react";
 import {Button} from "@nextui-org/react";
@@ -7,14 +7,21 @@ import { ButtonAccept } from '../../components/ButtonAccept';
 import {useForm} from 'react-hook-form';
 import { useRoles } from '../context/rolesContext';
 import {Switch} from "@nextui-org/react";
+import { useUsers } from '../../Users/Context/userContext';
 
 export  function RolesRegister() {
 const {isOpen, onOpen, onOpenChange} = useDisclosure();
-const {register , handleSubmit, formState:{errors}} = useForm();
+const {register , handleSubmit, formState:{errors}, reset} = useForm();
 const {createRol} = useRoles();
+const {getUsers, users} = useUsers();
 
 const onSubmit = (data) => {
   createRol(data);
+  reset();
+  useEffect(() => {
+    getUsers();
+    users();
+  },[])
 };
 
   return (

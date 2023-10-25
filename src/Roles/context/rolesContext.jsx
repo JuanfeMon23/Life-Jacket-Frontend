@@ -36,6 +36,7 @@ export function RolesProvider({children}) {
             toast.success('Rol creado con exito!',{
                 position: toast.POSITION.TOP_CENTER
             });
+            getRoles();
             return res.data;
         } catch (error) {
             console.log(error)

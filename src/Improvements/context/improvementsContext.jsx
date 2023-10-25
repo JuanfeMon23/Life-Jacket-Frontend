@@ -27,6 +27,7 @@ export function ImprovementProvider({children}){
             toast.success('Mejora creada con exito!',{
                 position: toast.POSITION.TOP_CENTER
             });
+            getImprovements();
             return res.data;
         } catch (error) {
             toast.error('Error al crear.' ,{
@@ -43,6 +44,7 @@ export function ImprovementProvider({children}){
             toast.success('Cambio de estado con exito!',{
                 position: toast.POSITION.TOP_CENTER
             });
+            getImprovements();
         } catch (error) {
             toast.error('Error' ,{
                 position: toast.POSITION.TOP_CENTER

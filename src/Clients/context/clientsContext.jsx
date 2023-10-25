@@ -11,7 +11,7 @@ export const useClients = () => {
 
 export function ClientProvider({children}){
     const [clients, setClients] = useState([]);
-
+    
     const getClients = async () => {
         try {
             const res = await getClientsRequest();
@@ -36,6 +36,7 @@ export function ClientProvider({children}){
             toast.success('Cliente creado con exito!',{
                 position: toast.POSITION.TOP_CENTER
             });
+            getClients();
             return res.data;
         } catch (error) {
             toast.error('Error al crear.' ,{
@@ -52,6 +53,7 @@ export function ClientProvider({children}){
             toast.success('Cliente actualizado con exito!',{
                 position: toast.POSITION.TOP_CENTER
             });
+            getClients();
         } catch (error) {
             toast.error('Error al actualizar.' ,{
                 position: toast.POSITION.TOP_CENTER
@@ -66,6 +68,7 @@ export function ClientProvider({children}){
             toast.success('Estado actualizado con exito!',{
                 position: toast.POSITION.TOP_CENTER
             });
+            getClients();
         } catch (error) {
             toast.error('Error al actualizar el estado.' ,{
                 position: toast.POSITION.TOP_CENTER
