@@ -422,29 +422,32 @@ export  function VehicleRegister() {
                 <form onSubmit={handleSubmit(handleOther)}>
                   <div>
                     <div className=' m-3'>
-                      <Controller
-                        name="Placa del vehículo"
-                        control={control}
-                        render={({ field }) => (
-                          <div>
-                            
-                            <select
+                    <Controller
+                          name='idVehicleOtherVehicleInformation'
+                          control={control}
+                          rules={{
+                            required : 'Campo obligatorio'
+                          }}
+                          render={({field}) => (
+                            <Select
                               {...field}
-                              id="timingBelt"
+                              label="Placa del vehiculo"
+                              variant="bordered"
+                              color={errors.idVehicleOtherVehicleInformation ? "danger" : ""}
+                              errorMessage={errors.idVehicleOtherVehicleInformation?.message}
                               className="max-w-xs"
-                              style={{
-                                color: errors.timingBelt ? "danger" : "",
+                              onChange={(e) => {
+                                field.onChange(e);
                               }}
                             >
-                              <option value="">Selecciona un vehículo</option>
-                              <option value="vehicle1">Vehículo 1</option>
-                              <option value="vehicle2">Vehículo 2</option>
-                              <option value="vehicle3">Vehículo 3</option>
-                            </select>
-                            {errors.timingBelt && <p>{errors.timingBelt.message}</p>}
-                          </div>
-                        )}
-                      />
+                            {vehicles.map((vehicles) => (
+                              <SelectItem key={vehicles.idVehicle} value={vehicles.licensePlate}>
+                                  {vehicles.licensePlate}
+                              </SelectItem>
+                          ))}
+                            </Select>
+                          )}
+                        />
                     </div>
                     <div className='flex-col m-3'>
                     </div>
