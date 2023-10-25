@@ -4,21 +4,26 @@ import {Modal, ModalContent, ModalHeader, ModalBody, useDisclosure} from "@nextu
 import { Select, SelectItem, Button } from '@nextui-org/react';
 import { ButtonAccept } from '../../components/ButtonAccept';
 import { useForm , Controller } from 'react-hook-form';
-import { useVehicles } from '../context/vehiclesContext.jsx';
 import { useState , useEffect} from 'react';
 import {Input} from "@nextui-org/react";
+import { useVehicles } from '../context/vehiclesContext.jsx';
 
 export  function VehicleRegister() {
     const [scrollBehavior, setScrollBehavior] = React.useState("inside");
     const {isOpen, onOpen, onOpenChange} = useDisclosure();
-    const {register , handleSubmit, setValue,  formState:{errors}, control} = useForm();
-    const {createVehicle} = useVehicles();
+    const {register , handleSubmit, setValue,  formState:{errors}, control, reset} = useForm();
+    const {createVehicle, vehicles} = useVehicles();
+
 
 
 
     const onSubmit = (data) => {
         createVehicle({...data});
     };
+
+    const handleOther = (data) => {
+
+    }
 
 
   return (
@@ -333,6 +338,62 @@ export  function VehicleRegister() {
 
                     </div>
                   </div>
+                  <div className='flex'>
+                  <div className=' flex-col m-3'>
+                    <Controller
+                          name="color"
+                          control={control}
+                          rules={{
+                            required: "Campo requerido",
+                            maxLength: {
+                              value: 6,
+                              message: "Maximo 6 caracteres"
+                            }
+                          }}
+                          render={({ field }) => (
+                            <Input
+                              {...field}
+                              type="text"
+                              label="Color"
+                              variant="bordered"
+                              color={errors.color ? "danger" : ""}
+                              errorMessage={errors.color?.message}
+                              className="max-w-xs"
+                            />
+                          )}
+                        /> 
+                    </div>
+
+                    <div className='flex-col m-3'>
+                    <Controller
+                          name="vehiclePrice"
+                          control={control}
+                          rules={{
+                            required: "Campo requerido",
+                            maxLength: {
+                              value: 15,
+                              message: "Maximo 15 caracteres"
+                            },
+                            minLength : {
+                              value : 4,
+                              message : " Minimo 4 Caracteres"
+                            }
+                          }}
+                          render={({ field }) => (
+                            <Input
+                              {...field}
+                              type="number"
+                              label="Precio"
+                              variant="bordered"
+                              color={errors.vehiclePrice ? "danger" : ""}
+                              errorMessage={errors.vehiclePrice?.message}
+                              className="max-w-xs"
+                            />
+                          )}
+                        /> 
+                    </div>
+
+                  </div>
                   
                   <div className=' m-3'>
                   <Controller
@@ -351,71 +412,68 @@ export  function VehicleRegister() {
                           )}
                         /> 
                   </div>
-
-                  {/* <ModalHeader className='flex flex-col gap-3 m-5'>Más información del vehículo</ModalHeader>
-
-                  <div className=' flex'>
-                    <div className='flex-col m-3'>
-                      <Input type="text" label="Empresa" isClearable variant="underlined" id='business'
-                            {...register("business")}/>
-                    </div>
-
-                    <div className='flex-col m-3'>
-                      <Input type="Empresa" label="Correa dentada" isClearable variant="underlined" id='series'
-                            {...register("series")}/>
-                    </div>
-
-                  </div>
-
-                  <div className=' flex'>
-                    <div className='flex-col m-3'>
-                      <Input type="text" label="Color" isClearable variant="underlined" id='color'
-                            {...register("color")}/>
-                    </div>
-
-                    <div className='flex-col m-3'>
-                      <Input type="text" label="Motor" isClearable variant="underlined" id='motor'
-                            {...register("motor")}/>
-                    </div>
-                  </div>
-
-                  <div className=' flex'>
-                    <div className='flex-col m-3'>
-                      <Input type="text" label="Matricula a nombre dé" isClearable variant="underlined" id='register'
-                            {...register("register")}/>
-                    </div>
-
-                    <div className='flex-col m-3'>
-                      <Input type="number" label="Numero de cedula" isClearable variant="underlined" id='identificationCard'
-                            {...register("identificationCard")}/>
-                    </div>
-                  </div>
-
-                  <div className=' flex'>
-                    <div className='flex-col m-3'>
-                      <Input type="text" label="Chasis" isClearable variant="underlined" id='chassis'
-                            {...register("chassis")}/>
-                    </div>
-
-                    <div className='flex-col m-3'>
-                      <Input type="number" label="Capacidad" isClearable variant="underlined" id='capacity'
-                            {...register("capacity")}/>
-                    </div>
-                  </div>
-                  <div className=' flex'>
-                    <div className='flex-col m-3 w-[200px]'>
-                        <Select variant="underlined" label='Servicio' id='service' {...register("service")} >
-                          <SelectItem key='Publico'>Publico</SelectItem>
-                          <SelectItem key='Privado'>Privado</SelectItem>
-                        </Select>
-                    </div>
-                  </div> */}
-
                   <div className=' text-center my-3 '>
                     <ButtonAccept/>
                   </div>
                   
                 </form>
+
+                {<ModalHeader className="flex flex-col gap-3">Datos Adicionales</ModalHeader>}
+                <form onSubmit={handleSubmit(handleOther)}>
+                  <div>
+                    <div className=' m-3'>
+                      <Controller
+                        name="Placa del vehículo"
+                        control={control}
+                        render={({ field }) => (
+                          <div>
+                            
+                            <select
+                              {...field}
+                              id="timingBelt"
+                              className="max-w-xs"
+                              style={{
+                                color: errors.timingBelt ? "danger" : "",
+                              }}
+                            >
+                              <option value="">Selecciona un vehículo</option>
+                              <option value="vehicle1">Vehículo 1</option>
+                              <option value="vehicle2">Vehículo 2</option>
+                              <option value="vehicle3">Vehículo 3</option>
+                            </select>
+                            {errors.timingBelt && <p>{errors.timingBelt.message}</p>}
+                          </div>
+                        )}
+                      />
+                    </div>
+                    <div className='flex-col m-3'>
+                    </div>
+                    <div className='flex-col m-3'>
+                    </div>
+                  </div>
+
+                  <div>
+                    <div className='flex-col m-3'>
+                    </div>
+                    <div className='flex-col m-3'>
+                    </div>
+                  </div>
+
+                  <div>
+                    <div className='flex-col m-3'>
+                    </div>
+                    <div className='flex-col m-3'>
+                    </div>
+                  </div>
+
+                  <div>
+                    <div className='flex-col m-3'>
+                    </div>
+                    <div className='flex-col m-3'>
+                    </div>
+                  </div>
+                
+                </form>              
               </ModalBody>
             </>
           )}
