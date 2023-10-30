@@ -9,6 +9,7 @@ import {FaSearch} from 'react-icons/fa';
 import {Input} from "@nextui-org/react";
 import { ClientEdit } from './ClientEdit';
 import { StatusClient } from './StatusClient';
+import { DeleteClient } from './DeleteClient';
 
 
 export  function CardClient() {
@@ -93,6 +94,7 @@ export  function CardClient() {
                 <WatchClient client={clients} id={clients.id}/>
                 <ClientEdit client={clients}/>
                 <StatusClient client={clients}/>
+                <DeleteClient client={clients}/>
               </div>
             
           </CardBody>

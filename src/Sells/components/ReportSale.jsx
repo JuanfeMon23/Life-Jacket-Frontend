@@ -56,7 +56,7 @@ export  function ReportSale() {
                             render={({ field }) => (
                               <Input
                                 {...field}
-                                type="text"
+                                type="datetime-local"
                                 label="Primera fecha"
                                 variant="bordered"
                                 color={errors.firstParameter ? "danger" : ""}
@@ -75,7 +75,7 @@ export  function ReportSale() {
                           render={({ field }) => (
                             <Input
                               {...field}
-                              type="text"
+                              type="datetime-local"
                               label="Segunda fecha"
                               variant="bordered"
                               color={errors.secondParameter ? "danger" : ""}
