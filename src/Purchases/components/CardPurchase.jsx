@@ -9,6 +9,7 @@ import { WatchPurchase } from './WatchPurchase';
 import { usePurchases } from '../context/purchaseContext';
 
 
+
 export  function CardPurchase() {
     const {purchases} = usePurchases();
 

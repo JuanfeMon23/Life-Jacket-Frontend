@@ -22,7 +22,7 @@ export function StatusPurchase(props) {
         <ModalContent>
           {(onClose) => (
             <>
-              <ModalHeader className=" items-center">¿Deseas cambiar el estado de la compra?</ModalHeader>
+              <ModalHeader className=" items-center">¿Deseas anular la compra?</ModalHeader>
               <ModalBody>
                 <form onSubmit={handleSubmit(onSubmit)}>
                     <div className=' text-center m-3'>

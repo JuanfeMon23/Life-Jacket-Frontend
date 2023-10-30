@@ -1,6 +1,6 @@
 import { createContext, useContext, useState } from "react";
 import { toast } from "react-toastify";
-import { getVehiclesRequest, getVehicleRequest, createVehiclesRequest, updateVehicleRequest, getVehicleTypeRequest , statusVehicleRequest } from "../api/Vehicles";
+import { getVehiclesRequest, getVehicleRequest, createVehiclesRequest, updateVehicleRequest, getVehicleTypeRequest , statusVehicleRequest, createVehicleDetailRequest } from "../api/Vehicles";
 
 const VehiclesContext = createContext();
 
@@ -44,9 +44,6 @@ export function VehicleProvider({children}){
     const createVehicle = async (vehicle) => {
         try {
             const res = await createVehiclesRequest(vehicle);
-            toast.success('Vehiculo creado con exito!',{
-                position: toast.POSITION.TOP_CENTER
-            });
             getVehicles();
             return res.data;
         } catch (error) {
@@ -57,6 +54,26 @@ export function VehicleProvider({children}){
             throw new Error(error.message);
         }
     };
+
+    const createVehicleDetail = async ( detail) => {
+        try {
+            const res = await createVehicleDetailRequest( detail);
+            toast.success('Vehiculo creado con exito!',{
+                position: toast.POSITION.TOP_CENTER,
+                autoClose: 1500
+            });
+            getVehicles();
+            return res.data;
+        } catch (error) {
+            toast.error('Error al crear.' ,{
+                position: toast.POSITION.TOP_CENTER,
+                autoClose : 1500
+            });
+            console.log(error)
+            throw new Error(error.message);
+        }
+    };
+
 
     const updateVehicle = async (idVehicle, vehicle) => {
         try {
@@ -89,7 +106,7 @@ export function VehicleProvider({children}){
     };
 
     return(
-        <VehiclesContext.Provider value={{vehicles, getVehicle, getVehicles, createVehicle, updateVehicle, getVehicletype, statusVehicle}}>
+        <VehiclesContext.Provider value={{vehicles, getVehicle, getVehicles, createVehicle, updateVehicle, getVehicletype, statusVehicle, createVehicleDetail}}>
             {children}
         </VehiclesContext.Provider>
     )

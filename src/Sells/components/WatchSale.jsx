@@ -23,7 +23,7 @@ export function WatchSale(props) {
                       <div className=" flex flex-col">
                         <p className="font-bold">Precio de la venta</p> 
                         <div className=" border-2 border-indigo-500/75 rounded-lg w-[15rem] p-1 ">
-                            <p className=" text-center">{`$${sale.saleFinalPrice}`}</p>
+                            <p className=" text-center">{typeof sale.saleFinalPrice === "number" ? sale.saleFinalPrice.toLocaleString("es-ES", { style: "currency", currency: "COP" }) : "No válido"}</p>
                         </div>
                       </div>
 

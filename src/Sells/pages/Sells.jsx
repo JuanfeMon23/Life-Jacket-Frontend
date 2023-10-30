@@ -23,9 +23,6 @@ export  function Sells() {
   return (
     <div className=' flex'>
         <div>
-            <Navigation/>
-        </div>
-        <div>
             {<Title Title='Ventas'/>}
             <SaleRegister/>
             <ReportSale/>

@@ -1,6 +1,6 @@
 import { createContext, useContext, useState } from "react";
 import { toast } from "react-toastify";
-import { createClientRequest, getClientRequest, getClientsRequest, stateClientRequest, updateClientRequest } from "../api/Clients";
+import { createClientRequest, getClientRequest, getClientsRequest, stateClientRequest, updateClientRequest, deleteClientRequest } from "../api/Clients";
 
 const ClientContext = createContext();
 
@@ -77,10 +77,26 @@ export function ClientProvider({children}){
         }
     };
 
+    const deleteClient = async (idClient) => {
+        try {
+            await deleteClientRequest(idClient);
+            toast.success('Ciente eliminado con exito!',{
+                position: toast.POSITION.TOP_CENTER
+            });
+            getClients();
+        } catch (error) {
+            toast.error('Error al eliminar.' ,{
+                autoClose : 1500,
+                position: toast.POSITION.TOP_CENTER
+            });
+            throw new Error(error.message);
+        }
+    };
+
 
 
     return(
-        <ClientContext.Provider value={{clients, getClient, getClients, createClient, updateClient, statusClient}}>
+        <ClientContext.Provider value={{clients, getClient, getClients, createClient, updateClient, statusClient, deleteClient}}>
             {children}
         </ClientContext.Provider>
     )

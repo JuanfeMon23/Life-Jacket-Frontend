@@ -1,6 +1,6 @@
 import { createContext, useContext, useState } from "react";
 import { toast } from "react-toastify";
-import { createPurchaseRequest, getPurchasesRequest, statusPurchasesRequest } from "../api/Purchases";
+import { createPurchaseRequest, getPurchasesRequest, statusPurchasesRequest, deletePurchaseRequest } from "../api/Purchases";
 
 const PurchaseContext = createContext();
 
@@ -50,10 +50,26 @@ export function PurchaseProvider ({children}) {
                 position: toast.POSITION.TOP_CENTER
             });
         }
-    }
+    };
+
+    const deletePurchase = async (idPurchase) => {
+        try {
+            await deletePurchaseRequest(idPurchase);
+            toast.success('Compra eliminada con extio!',{
+                autoClose : 1500,
+                position: toast.POSITION.TOP_CENTER
+            });
+            getPurchases();
+        } catch (error) {
+            toast.error('Error al eliminar.' ,{
+                position: toast.POSITION.TOP_CENTER,
+                autoClose : 1500
+            });
+        }
+    };
 
     return(
-        <PurchaseContext.Provider value={{purchases, getPurchases, createPurchase, statusPurchase}}>
+        <PurchaseContext.Provider value={{purchases, getPurchases, createPurchase, statusPurchase, deletePurchase}}>
             {children}
         </PurchaseContext.Provider>
     )

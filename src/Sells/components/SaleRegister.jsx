@@ -9,15 +9,13 @@ import { useSells } from '../context/sellsContext';
 
 export function SaleRegister() {
     const {isOpen, onOpen, onOpenChange} = useDisclosure();
-    const {register , setValue, handleSubmit, formState:{errors}, control} = useForm();
+    const {register , setValue, handleSubmit, formState:{errors}, control, reset} = useForm();
     const {createSell} = useSells();
     const {clients} = useClients();
     const {vehicles} = useVehicles();
-    const params = useParams();
 
     const onSubmit = (data, e) => {
-        e.preventDefault();
-        createSell(data);
+        { onSubmit ? createSell(data) && reset() : 2 }        
     }
   return (
     <div className='flex'>
@@ -40,7 +38,6 @@ export function SaleRegister() {
                               render={({field}) => (
                                 <Select
                                   {...field}
-                                  type="text"
                                   label="Documento del cliente"
                                   variant="bordered"
                                   color={errors.idClientSale ? "danger" : ""}
@@ -50,12 +47,12 @@ export function SaleRegister() {
                                     field.onChange(e);
                                   }}
                                 >
-                                {clients.map((clients) => (
-                                  <SelectItem key={clients.idClient} value={clients.clientDocument}>
-                                      {clients.clientDocument}
-                                  </SelectItem>
-                              ))}
-                                </Select>
+                                  {clients.filter(client => client.clientStatus === true).map((client) => (
+                                    <SelectItem key={client.idClient} value={client.clientDocument}>
+                                        {client.clientDocument}
+                                    </SelectItem>
+                                  ))}
+                                  </Select>
                               )}
                             />
                         </div>
@@ -70,7 +67,6 @@ export function SaleRegister() {
                               render={({field}) => (
                                 <Select
                                   {...field}
-                                  type="text"
                                   label="Placa del vehículo"
                                   variant="bordered"
                                   color={errors.idVehicleSale ? "danger" : ""}
@@ -80,12 +76,12 @@ export function SaleRegister() {
                                     field.onChange(e);
                                   }}
                                 >
-                                {vehicles.map((vehicles) => (
-                                  <SelectItem key={vehicles.idVehicle} value={vehicles.licensePlate}>
-                                      {vehicles.licensePlate}
-                                  </SelectItem>
-                              ))}
-                                </Select>
+                                {vehicles.filter(vehicles => vehicles.vehicleStatus === true).map((vehicles) => (
+                                    <SelectItem key={vehicles.idVehicle} value={vehicles.licensePlate}>
+                                        {vehicles.licensePlate}
+                                    </SelectItem>
+                                  ))}
+                                  </Select>
                               )}
                             />
                         </div>
@@ -102,7 +98,7 @@ export function SaleRegister() {
                               render={({ field }) => (
                                 <Input
                                   {...field}
-                                  type="date"
+                                  type="datetime-local"
                                   label="Fecha de compra"
                                   variant="bordered"
                                   color={errors.saleDate ? "danger" : ""}

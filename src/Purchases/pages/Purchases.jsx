@@ -23,13 +23,8 @@ export  function Purchases() {
   return (
     <div className=' flex'>
         <div>
-            {/* <Navigation/> */}
-            <NewNavigation/>
-        </div>
-        <div>
             {<Title Title='Compras'/>}
             <PurchaseRegister/>
-
 
             <div>
                 <TablePurchase/>

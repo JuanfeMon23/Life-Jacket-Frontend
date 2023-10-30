@@ -5,6 +5,7 @@ import {Button} from "@nextui-org/react";
 import {useForm} from 'react-hook-form';
 import {GrStatusGood} from 'react-icons/gr';
 import {TiDeleteOutline} from 'react-icons/ti'
+import { toast } from "react-toastify";
 
 export  function StatusSale(props) {
     const {isOpen, onOpen, onOpenChange} = useDisclosure();
@@ -15,14 +16,23 @@ export  function StatusSale(props) {
     function onSubmit(){
         statusSale(sale.idSale);
     }; 
+
+
+    function handleStatus(){
+      toast.error('Venta anulada.' ,{
+        autoClose : 1500,
+        position: toast.POSITION.TOP_CENTER
+    });
+    };
+
   return (
     <div className='flex'>
-    {sale.saleStatus === true ? <Button className=' bg-green-600 rounded-lg' onPress={onOpen}><GrStatusGood className='text-2xl'/></Button> : <Button className=' bg-slate-600 rounded-lg' onPress={onOpen}><TiDeleteOutline className='text-white text-2xl'/></Button>}
+    {sale.saleStatus === true ? <Button className=' bg-green-600 rounded-lg' onPress={onOpen}><GrStatusGood className='text-2xl'/></Button> : <Button className=' bg-slate-600 rounded-lg' onClick={handleStatus} ><TiDeleteOutline className='text-white text-2xl'/></Button>}
       <Modal isOpen={isOpen} onOpenChange={onOpenChange}>
         <ModalContent>
           {(onClose) => (
             <>
-              <ModalHeader className=" items-center">¿Deseas cambiar el estado de la venta?</ModalHeader>
+              <ModalHeader className=" items-center">¿Deseas anular la venta?</ModalHeader>
               <ModalBody>
                 <form onSubmit={handleSubmit(onSubmit)}>
                     <div className=' text-center m-3'>

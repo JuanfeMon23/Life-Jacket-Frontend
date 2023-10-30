@@ -11,3 +11,5 @@ export const createClientRequest = async (client) => axios.post('/Clients', clie
 export const updateClientRequest = async (idClient, client) => axios.put(`Clients/${idClient}`, client);
 
 export const stateClientRequest = async (idClient) => axios.patch(`/Clients/${idClient}`);
+
+export const deleteClientRequest = async (idClient) => axios.delete(`/Clients/${idClient}`);

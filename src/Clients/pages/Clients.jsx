@@ -13,23 +13,18 @@ export function Clients() {
     }, [])
 
 
-    return (
-      <div className='flex '>
-        <div>
-          <Navigation/>
-        </div>
-        
-        <div>
-          {<Title Title='Clientes'/>}
-
-
+    return (    
+        <div className="  flex">
           <div>
-           <ClientRegister/>
-            <CardClient/>
+            {<Title Title='Clientes'/>}
+            <div className="">
+            <ClientRegister/>
+              <CardClient/>
+            </div>
+
           </div>
            
         </div>
-          
-      </div>
+        
     )
   }

@@ -4,6 +4,7 @@ import { Title } from "../../components/globalComponents/Title";
 import { VehicleRegister } from "../components/VehicleRegister";
 import { CardVehicle } from "../components/CardVehicle";
 import { useVehicles } from "../context/vehiclesContext";
+import { vehicle } from "../../../vehicles";
 
 
 export function Vehicles() {
@@ -14,17 +15,11 @@ export function Vehicles() {
     },[])
 
     return (
-      <div className='flex '>
-        <div>
-          <Navigation/>
-        </div>
-        
+      <div className='flex '>        
         <div>
           {<Title Title='Vehículos'/>}
-
-
           <div>
-            <VehicleRegister/>
+            <VehicleRegister vehicle={vehicle}/>
             <CardVehicle/>
           </div>
            

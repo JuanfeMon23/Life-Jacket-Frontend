@@ -15,10 +15,6 @@ export function Improvements() {
   return (
     <div className=' flex'>
         <div>
-            <Navigation/>
-        </div>
-
-        <div>
             {<Title Title='Mejoras'/>}
             <ImprovementRegister/>
             <div>

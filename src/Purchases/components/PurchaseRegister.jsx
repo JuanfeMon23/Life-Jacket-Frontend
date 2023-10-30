@@ -1,16 +1,15 @@
-import React,{useState, useEffect} from 'react'
+import React from 'react'
 import {Modal, ModalContent, ModalHeader, ModalBody, ModalFooter, useDisclosure, Input, Button, Select, SelectItem, Textarea} from "@nextui-org/react";
 import {useForm, Controller} from 'react-hook-form';
 import { usePurchases } from '../context/purchaseContext';
 import { useClients } from '../../Clients/context/clientsContext';
 import { useVehicles } from '../../Vehicles/context/vehiclesContext';
-import { useParams, useNavigate } from 'react-router-dom';
 import { RegisterButton } from '../../components/buttons/RegisterButton';
 
 
 export function PurchaseRegister() {
     const {isOpen, onOpen, onOpenChange} = useDisclosure();
-    const {register , setValue, handleSubmit, formState:{errors}, control} = useForm();
+    const {handleSubmit, formState:{errors}, control} = useForm();
     const {createPurchase} = usePurchases();
     const {clients} = useClients();
     const {vehicles} = useVehicles();
@@ -41,7 +40,6 @@ export function PurchaseRegister() {
                               render={({field}) => (
                                 <Select
                                   {...field}
-                                  type="text"
                                   label="Documento del cliente"
                                   variant="bordered"
                                   color={errors.idClientPurchase ? "danger" : ""}
@@ -51,18 +49,18 @@ export function PurchaseRegister() {
                                     field.onChange(e);
                                   }}
                                 >
-                                {clients.map((clients) => (
-                                  <SelectItem key={clients.idClient} value={clients.clientDocument}>
-                                      {clients.clientDocument}
-                                  </SelectItem>
-                              ))}
-                                </Select>
+                                  {clients.filter(client => client.clientStatus === true).map((client) => (
+                                    <SelectItem key={client.idClient} value={client.clientDocument}>
+                                        {client.clientDocument}
+                                    </SelectItem>
+                                  ))}
+                                  </Select>
                               )}
                             />
                         </div>
 
                         <div className='flex-col m-3 w-[200px]'>
-                            <Controller
+                        <Controller
                               name='idVehiclePurchase'
                               control={control}
                               rules={{
@@ -71,7 +69,6 @@ export function PurchaseRegister() {
                               render={({field}) => (
                                 <Select
                                   {...field}
-                                  type="text"
                                   label="Placa del vehículo"
                                   variant="bordered"
                                   color={errors.idVehiclePurchase ? "danger" : ""}
@@ -81,12 +78,12 @@ export function PurchaseRegister() {
                                     field.onChange(e);
                                   }}
                                 >
-                                {vehicles.map((vehicles) => (
-                                  <SelectItem key={vehicles.idVehicle} value={vehicles.licensePlate}>
-                                      {vehicles.licensePlate}
-                                  </SelectItem>
-                              ))}
-                                </Select>
+                                {vehicles.filter(vehicles => vehicles.vehicleStatus === true).map((vehicles) => (
+                                    <SelectItem key={vehicles.idVehicle} value={vehicles.licensePlate}>
+                                        {vehicles.licensePlate}
+                                    </SelectItem>
+                                  ))}
+                                  </Select>
                               )}
                             />
                         </div>
@@ -103,7 +100,7 @@ export function PurchaseRegister() {
                               render={({ field }) => (
                                 <Input
                                   {...field}
-                                  type="date"
+                                  type="datetime-local"
                                   label="Fecha de compra"
                                   variant="bordered"
                                   color={errors.purchaseDate ? "danger" : ""}

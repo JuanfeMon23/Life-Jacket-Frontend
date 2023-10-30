@@ -8,6 +8,8 @@ export const getVehicleRequest = async (idVehicle, vehicle) => axios.get(`/Vehic
 
 export const createVehiclesRequest = async (vehicle) => axios.post('/Vehicles', vehicle);
 
+export const createVehicleDetailRequest = async (detailVehicle) => axios.post(`/Vehicles/detail`, detailVehicle);
+
 export const updateVehicleRequest = async (idVehicle, vehicle) => axios.put(`/Vehicles/${idVehicle}`, vehicle);
 
 export const statusVehicleRequest = async (idVehicle, vehicle) => axios.patch(`/Vehicles/${idVehicle}`, vehicle);

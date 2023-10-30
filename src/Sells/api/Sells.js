@@ -7,3 +7,5 @@ export const createSellRequest = async (sell) => axios.post('/Sales', sell);
 export const statusSaleRequest = async (idSale) => axios.patch(`/Sales/${idSale}`);
 
 export const informSaleRequest = async (firstParameter, secondParameter) => axios.get(`/Sales/Report/:${firstParameter}/:${secondParameter}`)
+
+export const deleteSaleRequest = async (idSale) => axios.delete(`/Sales/${idSale}`);

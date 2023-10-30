@@ -5,6 +5,7 @@ import { WatchPurchase } from './WatchPurchase';
 import { usePurchases } from '../context/purchaseContext';
 import {Table, TableHeader, TableColumn, TableBody, TableRow, TableCell, Pagination} from "@nextui-org/react";
 import { StatusPurchase } from './StatusPurchase';
+import { DeletePurchase } from './DeletePurchase';
 
 
 
@@ -76,7 +77,7 @@ export  function TablePurchase() {
 
     </div>
     <div className=' flex flex-wrap'>
-        <Table color='primary' selectionMode="single"
+        <Table color='primary' selectionMode="single" isCompact
                   bottomContent={
                     <div className="flex w-full justify-center">
                       <Pagination
@@ -101,16 +102,28 @@ export  function TablePurchase() {
                 <TableColumn>Nombre del cliente</TableColumn>
                 <TableColumn>Detalle</TableColumn>
                 <TableColumn>Estado</TableColumn>
+                <TableColumn>Eliminar</TableColumn>
             </TableHeader>
-            <TableBody>
+            <TableBody emptyContent={"Aun no hay registros."}>
                 {searchResults.map((purchase) => (
                     <TableRow key={purchase.idPurchase}>
-                        <TableCell>{purchase.purchaseDate}</TableCell>
-                        <TableCell>{purchase.purchaseFinalPrice}</TableCell>
+                        <TableCell>
+                        {new Date(purchase.purchaseDate).toLocaleString("es-ES", {
+                            year: "numeric",
+                            month: "2-digit",
+                            day: "2-digit",
+                            hour: "2-digit",
+                            minute: "2-digit"
+                          })}
+                          </TableCell>
+                        <TableCell>
+                          {typeof purchase.purchaseFinalPrice === "number" ? purchase.purchaseFinalPrice.toLocaleString("es-ES", { style: "currency", currency: "COP" }) : "No válido"}
+                        </TableCell>
                         <TableCell>{purchase.vehicle.licensePlate}</TableCell>
                         <TableCell>{purchase.client.clientName}</TableCell>
                         <TableCell><WatchPurchase purchase={purchase}/></TableCell>
                         <TableCell><StatusPurchase purchase={purchase}/></TableCell>
+                        <TableCell><DeletePurchase purchase={purchase}/></TableCell>
                     </TableRow>
                 ))}
             </TableBody>

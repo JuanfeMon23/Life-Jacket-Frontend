@@ -5,6 +5,7 @@ import { useSells } from '../context/sellsContext';
 import { WatchSale } from './WatchSale';
 import {Table, TableHeader, TableColumn, TableBody, TableRow, TableCell, Pagination} from "@nextui-org/react";
 import { StatusSale } from './StatusSale';
+import { DeleteSale } from './DeleteSale';
 
 export  function TableSale() {
     const {sells} = useSells();
@@ -98,16 +99,27 @@ export  function TableSale() {
                 <TableColumn>Nombre del cliente</TableColumn>
                 <TableColumn>Detalle</TableColumn>
                 <TableColumn>Estado</TableColumn>
+                <TableColumn>Eliminar</TableColumn>
             </TableHeader>
             <TableBody emptyContent={"Aun no hay registros."}>
                 {searchResults.map((sale) => (
                     <TableRow key={sale.idSale}>
-                        <TableCell>{sale.saleDate}</TableCell>
-                        <TableCell>{sale.saleFinalPrice}</TableCell>
+                        <TableCell>
+                          {new Date(sale.saleDate).toLocaleString("es-ES", {
+                            year: "numeric",
+                            month: "2-digit",
+                            day: "2-digit",
+                            hour: "2-digit",
+                            minute: "2-digit"
+                          })}
+                        </TableCell>
+                        <TableCell>
+                          {typeof sale.saleFinalPrice === "number" ? sale.saleFinalPrice.toLocaleString("es-ES", { style: "currency", currency: "COP" }) : "No válido"}                          </TableCell>
                         <TableCell>{sale.vehicle.licensePlate}</TableCell>
                         <TableCell>{sale.client.clientName}</TableCell>
                         <TableCell><WatchSale sale={sale}/></TableCell>
                         <TableCell><StatusSale sale={sale}/></TableCell>
+                        <TableCell><DeleteSale sale={sale}/></TableCell>
                     </TableRow>
                 ))}
             </TableBody>

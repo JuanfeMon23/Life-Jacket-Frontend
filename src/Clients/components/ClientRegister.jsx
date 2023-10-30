@@ -38,7 +38,6 @@ const onSubmit = (data) => {
                           render={({field}) => (
                             <Select
                               {...field}
-                              type="text"
                               label="Tipo de documento"
                               variant="bordered"
                               color={errors.clientTypeDocument ? "danger" : ""}
@@ -48,9 +47,7 @@ const onSubmit = (data) => {
                                 field.onChange(e);
                               }}
                             >
-                              <SelectItem key='Cedula de ciudadania'>Cedula de ciudadanía</SelectItem>
-                              <SelectItem key='Cedula de extranjería'>Cedula de extranjería</SelectItem>
-                              <SelectItem key='Pasaporte'>Pasaporte</SelectItem>
+                              <SelectItem key='Cedula de ciudadania'>CC</SelectItem>
                             </Select>
                           )}
                         />

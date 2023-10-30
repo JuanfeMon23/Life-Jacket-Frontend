@@ -67,8 +67,8 @@ export  function UserRegister() {
                             message : 'Al menos 7 numeros'
                           },
                           maxLength : {
-                            value : 15 ,
-                            message : 'Maximo 15 números'
+                            value : 12,
+                            message : 'Maximo 12 números'
                           },
                           pattern: {
                             value: /^[0-9]*$/, 

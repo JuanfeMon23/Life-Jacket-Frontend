@@ -20,14 +20,14 @@ export function WatchUser(props) {
                     <div className=" flex flex-col">
                       <p className="font-bold">Tipo de documento</p> 
                       <div className=" border-2 border-indigo-500/75 rounded-lg w-[15rem] p-1 ">
-                          <p className=" text-center">{user.userDocumentType}</p>
+                          <p className=" text-center">{user.userTypeDocument}</p>
                       </div>
                     </div>
 
                     <div className=" flex flex-col">
                     <p className="font-bold">Numero de documento</p> 
                       <div className=" items-end border-2 border-indigo-500/75 rounded-lg w-[15rem] p-1">
-                          <p className=" text-center">{user.userDocumentNumber}</p>
+                          <p className=" text-center">{user.userDocument}</p>
                       </div>
                     </div>
                   </div> 

@@ -23,10 +23,6 @@ export function Users() {
       
     return (
       <div className='flex '>
-        <div>
-          <NewNavigation/>
-          {/* <Navigation/> */}
-        </div>
         
         <div>
           {<Title Title='Usuarios'/>}

@@ -17,7 +17,7 @@ export function WatchVehicle (props) {
                 <ModalHeader className=" bg-gradient-to-r from-[#252525] to-[#231949] text-white flex items-center ">Informacion del Vehículo</ModalHeader>
                   <ModalBody key={vehicles.idVehicle}>      
                   <Accordion variant="bordered" color="primary">
-                        <AccordionItem key="1" aria-label="Datos" title="Datos fisicos">
+                        <AccordionItem key="1" aria-label="Datos" title="Datos principales">
                         <div className="m-5 flex justify-around">
                           <div className=" flex flex-col">
                             <p className="font-bold">Placa</p> 
@@ -108,25 +108,90 @@ export function WatchVehicle (props) {
                                     <p className=" text-center">{vehicles.timingBelt}</p>
                                 </div>
                               </div>
+
+                              <div className=" flex flex-col">
+                                <p className="font-bold">Chasis</p> 
+                                <div className=" border-2 border-indigo-500/75 rounded-lg w-[15rem] p-1 ">
+                                    <p className=" text-center">{vehicles.othervehicleinformation.chassis ? vehicles.othervehicleinformation.chassis : 'No hay datos.'}</p>
+                                </div>
+                              </div>
                           </div> 
+
+                          <div className="m-5 flex justify-around">
+                              <div className=" flex flex-col">
+                                <p className="font-bold">Serie</p> 
+                                <div className=" border-2 border-indigo-500/75 rounded-lg w-[15rem] p-1 ">
+                                    <p className=" text-center">{vehicles.othervehicleinformation.series ? vehicles.othervehicleinformation.series : 'No hay datos.'}</p>
+                                </div>
+                              </div>
+
+                              <div className=" flex flex-col">
+                                <p className="font-bold">Capacidad</p> 
+                                <div className=" border-2 border-indigo-500/75 rounded-lg w-[15rem] p-1 ">
+                                    <p className=" text-center">{vehicles.othervehicleinformation.capacity ? `${vehicles.othervehicleinformation.capacity} Personas` : 'No hay datos.'}</p>
+                                </div>
+                              </div>
+                          </div> 
+
+                          <div className="m-5 flex justify-around">
+                            <div className=" flex flex-col">
+                                <p className="font-bold">Motor</p> 
+                                <div className=" border-2 border-indigo-500/75 rounded-lg w-[15rem] p-1 ">
+                                    <p className=" text-center">{vehicles.othervehicleinformation.motor ? vehicles.othervehicleinformation.motor : 'No hay datos.'}</p>
+                                </div>
+                              </div>
+                          </div>
 
                         </AccordionItem>
                         <AccordionItem key="3" aria-label="Datos legales" title="Datos legales">
-                        <div className="m-5 flex justify-around">
-                          <div className=" flex flex-col">
-                            <p className="font-bold">Soat</p> 
-                            <div className=" border-2 border-indigo-500/75 rounded-lg w-[15rem] p-1 ">
-                                <p className=" text-center">{vehicles.soat}</p>
+                          <div className="m-5 flex justify-around">
+                            <div className=" flex flex-col">
+                              <p className="font-bold">Soat</p> 
+                              <div className=" border-2 border-indigo-500/75 rounded-lg w-[15rem] p-1 ">
+                                  <p className=" text-center">{vehicles.soat}</p>
+                              </div>
                             </div>
-                          </div>
 
-                          <div className=" flex flex-col">
-                          <p className="font-bold">Tecnomecanica</p> 
-                            <div className=" items-end border-2 border-indigo-500/75 rounded-lg w-[15rem] p-1">
-                                <p className=" text-center">{vehicles.technomechanics}</p>
+                            <div className=" flex flex-col">
+                            <p className="font-bold">Tecnomecanica</p> 
+                              <div className=" items-end border-2 border-indigo-500/75 rounded-lg w-[15rem] p-1">
+                                  <p className=" text-center">{vehicles.technomechanics}</p>
+                              </div>
                             </div>
-                          </div>
-                       </div> 
+                        </div> 
+                        <div className="m-5 flex justify-around">
+                            <div className=" flex flex-col">
+                              <p className="font-bold">Cedula propietario</p> 
+                              <div className=" border-2 border-indigo-500/75 rounded-lg w-[15rem] p-1 ">
+                                  <p className=" text-center">{vehicles.othervehicleinformation.identificationCard ? vehicles.othervehicleinformation.identificationCard  : 'No hay datos.'}</p>
+                              </div>
+                            </div>
+
+                            <div className=" flex flex-col">
+                            <p className="font-bold">Matricula</p> 
+                              <div className=" items-end border-2 border-indigo-500/75 rounded-lg w-[15rem] p-1">
+                                  <p className=" text-center">{vehicles.othervehicleinformation.register ? vehicles.othervehicleinformation.register: 'No hay datos.'}</p>
+                              </div>
+                            </div>
+                        </div> 
+
+                        <div className="m-5 flex justify-around">
+                            <div className=" flex flex-col">
+                              <p className="font-bold">Empresa</p> 
+                              <div className=" border-2 border-indigo-500/75 rounded-lg w-[15rem] p-1 ">
+                                  <p className=" text-center">{vehicles.othervehicleinformation.business ? vehicles.othervehicleinformation.business  : 'No hay datos.'}</p>
+                              </div>
+                            </div>
+
+                            <div className=" flex flex-col">
+                            <p className="font-bold">Servicio</p> 
+                              <div className=" items-end border-2 border-indigo-500/75 rounded-lg w-[15rem] p-1">
+                                  <p className=" text-center">{vehicles.othervehicleinformation.service ? vehicles.othervehicleinformation.service: 'No hay datos.'}</p>
+                              </div>
+                            </div>
+                        </div> 
+
+
                         </AccordionItem>
                     </Accordion>
                   </ModalBody>
