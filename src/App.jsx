@@ -17,6 +17,7 @@ import { DashBoard } from "./Dashboard/pages/DashBoard.jsx";
 import { Improvements } from "./Improvements/pages/Improvements.jsx";
 import { NewNavigation } from "./components/globalComponents/NewNavigation.jsx";
 import { Exchangues } from "./Exchangues/pages/Exchangues.jsx";
+import {Roles} from "./Roles/pages/Roles.jsx";
 import 'react-toastify/dist/ReactToastify.css';
 
 
@@ -42,6 +43,7 @@ function App() {
             <Routes>
               <Route path='/' element={<Login/>}/>       
               <Route path='/Users' element={<Users/>}/>
+              <Route path='/Roles' element={<Roles/>}/>
               <Route path='/Clients' element={<Clients/>}/>
               <Route path='/Sells' element={<Sells/>}/>
               <Route path='/Vehicles' element={<Vehicles/>}/>

@@ -7,6 +7,7 @@ import {useForm, Controller} from 'react-hook-form';
 import { useClients } from '../context/clientsContext';
 import {AiTwotoneEdit} from 'react-icons/Ai';
 import { Select, SelectItem } from '@nextui-org/react';
+import { toast } from "react-toastify";
 
 export  function ClientEdit(props) {
     const {isOpen, onOpen, onOpenChange} = useDisclosure();
@@ -19,10 +20,18 @@ export  function ClientEdit(props) {
 
     };
 
+    const handleEvent = (event) => {
+      event.preventDefault();
+      toast.error('No puedes actualizar un cliente inhabilitado.' ,{
+        autoClose : 2000,
+        position: toast.POSITION.TOP_CENTER
+    });
+    };
 
   return (
     <div className='flex'>
-    <Button onPress={onOpen}className=' bg-gradient-to-r from-[#D99C23] to-[#D45229] rounded-lg text-white font-bold'>{<AiTwotoneEdit className='text-white text-2xl'/>}</Button>
+    {clients.clientStatus === true ? <Button onPress={onOpen}className=' bg-gradient-to-r from-[#D99C23] to-[#D45229] rounded-lg text-white font-bold'>{<AiTwotoneEdit className='text-white text-2xl'/>}</Button>
+    :  <Button onClick={handleEvent} className=' bg-gradient-to-r from-[#252525] to-[#252525] rounded-lg text-white font-bold'>{<AiTwotoneEdit className='text-white text-2xl'/>}</Button>}   
       <Modal isOpen={isOpen} onOpenChange={onOpenChange}>
         <ModalContent>
           {(onClose) => (
