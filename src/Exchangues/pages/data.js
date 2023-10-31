@@ -1,13 +1,12 @@
 import React from "react";
 const columns = [
-  {name: "ID", uid: "id", sortable: true},
-  {name: "NAME", uid: "name", sortable: true},
-  {name: "AGE", uid: "age", sortable: true},
-  {name: "ROLE", uid: "role", sortable: true},
-  {name: "TEAM", uid: "team"},
-  {name: "EMAIL", uid: "email"},
-  {name: "STATUS", uid: "status", sortable: true},
-  {name: "ACTIONS", uid: "actions"},
+  {name: "Nombres", uid: "name", sortable: true},
+  {name: "Edad", uid: "age", sortable: true},
+  {name: "Rol", uid: "role", sortable: true},
+  {name: "Equipo", uid: "team"},
+  {name: "Email", uid: "email"},
+  {name: "Estado", uid: "status", sortable: true},
+  {name: "Acciones", uid: "actions"},
 ];
 
 const statusOptions = [

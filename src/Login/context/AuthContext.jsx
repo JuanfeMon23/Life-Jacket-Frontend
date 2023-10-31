@@ -20,14 +20,13 @@ export function AuthProvider({children}){
     const login = async (data) => {
         try {
             const res = await loginRequest(data);
-            if (res.status === 200) {
-                setData(res.data);
-                setautenticated(true);
-                toast.success('Bienvenid@',{
+            setData(res.data);
+            setautenticated(true);
+            toast.success('Bienvenid@',{
                     position: toast.POSITION.TOP_CENTER,
                     autoClose : 1500
-                });
-            }
+            });
+
         } catch (error) {
             toast.error(error.response.data.message,{
                 position: toast.POSITION.TOP_CENTER,
@@ -44,35 +43,29 @@ export function AuthProvider({children}){
         setautenticated(false);
     };
 
-    useEffect(() => {
-        const checkLogin = async () => {
-            const cookies = Cookies.get();
-            if (!cookies.token) {
-                setautenticated(false);
-                setLoading(false)
-                return setData(null);
-            }
-
-            try {
-                const res = await verifytokenRequest(Cookies.token);
-                if(!res.data) {
-                    setautenticated(false);
-                    setLoading(false);
-                    return;
-                } 
-                setautenticated(true);
-                setData(res.data);
-                setLoading(false);
-            } catch (error) {
-                console.log(error)
-                setautenticated(false);
-                setData(null);
-                setLoading(false);
-
-            }
-        };
-        checkLogin();
-    }, []);
+    // useEffect(() => {
+    //     const checkLogin = async () => {
+    //       const cookies = Cookies.get();
+    //       if (!cookies.token) {
+    //         setautenticated(false);
+    //         setLoading(false);
+    //         return;
+    //       }
+    
+    //       try {
+    //         const res = await verifytokenRequest(cookies.token);
+    //         console.log(res);
+    //         if (!res.data) return setautenticated(false);
+    //         setautenticated(true);
+    //         setUser(res.data);
+    //         setLoading(false);
+    //       } catch (error) {
+    //         setautenticated(false);
+    //         setLoading(false);
+    //       }
+    //     };
+    //     checkLogin();
+    //   }, []);
 
     return (
         <AuthContext.Provider value={{data, login, logout, autenticated, loading} } >

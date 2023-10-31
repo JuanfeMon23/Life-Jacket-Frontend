@@ -19,6 +19,7 @@ import {
 import {columns, users, statusOptions} from "../pages/data";
 import {capitalize} from "../pages/utils";
 import {SlOptionsVertical} from 'react-icons/sl'
+import { UserRegister } from "../../Users/components/userRegister";
 
 const statusColorMap = {
   active: "success",
@@ -55,6 +56,9 @@ export  function TableExchangue() {
       filteredUsers = filteredUsers.filter((user) =>
         user.name.toLowerCase().includes(filterValue.toLowerCase()),
       );
+      filteredUsers = filteredUsers.filter((user) =>
+      user.role.toLowerCase().includes(filterValue.toLowerCase()),
+    );
     }
     if (statusFilter !== "all" && Array.from(statusFilter).length !== statusOptions.length) {
       filteredUsers = filteredUsers.filter((user) =>
@@ -113,20 +117,10 @@ export  function TableExchangue() {
         );
       case "actions":
         return (
-          <div className="relative flex justify-end items-center gap-2">
-            <Dropdown>
-              <DropdownTrigger>
-                <Button isIconOnly size="sm" variant="light">
-                    <SlOptionsVertical className="text-default-300"  />
-                  {/* <VerticalDotsIcon className="text-default-300" /> */}
-                </Button>
-              </DropdownTrigger>
-              <DropdownMenu>
-                <DropdownItem>View</DropdownItem>
-                <DropdownItem>Edit</DropdownItem>
-                <DropdownItem>Delete</DropdownItem>
-              </DropdownMenu>
-            </Dropdown>
+          <div className="relative flex justify-center items-center gap-2">
+              <UserRegister/>
+              <UserRegister/>
+              <UserRegister/>
           </div>
         );
       default:
