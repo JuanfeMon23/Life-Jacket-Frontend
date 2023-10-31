@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from "react";
 import { Chart as ChartJS, BarElement, CategoryScale, LinearScale, PointElement, LineElement, Title, Tooltip, Legend, Filler } from 'chart.js';
 import { Bar } from 'react-chartjs-2';
-import { getDashboardSalesRequest } from "../api/dashboard";
+import { getDashboardImprovementsRequest } from "../api/dashboard";
 import { SelectItem, Select } from "@nextui-org/select";
 
-export function DashboardSales() {
+export function DashboardImprovements() {
     const [data, setData] = useState([]);
     const [selectedYear, setSelectedYear] = useState(new Date().getFullYear());
     const [years, setYears] = useState([]);
@@ -14,23 +14,23 @@ export function DashboardSales() {
     ];
 
     useEffect(() => {
-        const fetchSales = async () => {
-            const result = await getDashboardSalesRequest();
+        const fetchImprovements = async () => {
+            const result = await getDashboardImprovementsRequest();
             setData(result.data);
             const uniqueYears = [...new Set(result.data.map(item => item.year))];
             setYears(uniqueYears);
         }
-        fetchSales();
+        fetchImprovements();
     }, []);
 
     const prepareChartData = () => {
         const filteredData = data.filter(item => item.year === selectedYear);
-        const monthlySales = months.map(month => {
-            const salesData = filteredData.find(item => monthNames[item.month] === month);
-            return salesData ? salesData.totalAmount : 0;
+        const monthlyImprovements = months.map(month => {
+            const improvementsData = filteredData.find(item => monthNames[item.month] === month);
+            return improvementsData ? improvementsData.totalAmount : 0;
         });
 
-        return monthlySales;
+        return monthlyImprovements;
     };
 
     ChartJS.register(
@@ -53,7 +53,7 @@ export function DashboardSales() {
             label: `Ventas en ${selectedYear}`,
             data: prepareChartData(),
             fill: true,
-            backgroundColor: 'rgba(255, 99, 132, 0.5)',
+            backgroundColor: 'rgba(255, 206, 86, 0.5)',
             type : 'bar',
         }],
     };
@@ -74,7 +74,7 @@ export function DashboardSales() {
             y: {
                 title: {
                     display: true,
-                    text: 'Ventas',
+                    text: 'Mejoras',
                 },
                 min: 0,
             },
@@ -88,7 +88,7 @@ export function DashboardSales() {
     return (
         <div className="w-[60vh] h-[37vh] bg-white rounded-lg m-3">
             <div className="m-3 p-2 flex justify-between">
-                <label className="font-bold text-lg">Dinero en ventas por año</label>
+                <label className="font-bold text-lg">Dinero en mejoras por año</label>
                 <Select
                     className="w-[150px] h-[32px]"
                     label="Seleccionar año"

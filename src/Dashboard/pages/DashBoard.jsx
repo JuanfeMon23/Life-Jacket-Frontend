@@ -4,6 +4,7 @@ import { Navigation } from "../../components/globalComponents/Navigation";
 import { Title } from "../../components/globalComponents/Title";
 import { DashboardSales } from '../components/DashboardSales';
 import { DashboardPurchases } from '../components/DashboardPurchases';
+import { DashboardImprovements } from '../components/DashboardImprovements';
 
 
 export function DashBoard() {
@@ -15,6 +16,7 @@ export function DashBoard() {
             {<Title Title='DashBoard'/>}
         <DashboardSales/>
         <DashboardPurchases/>
+        <DashboardImprovements/>
         </div>
     </div>
   )
