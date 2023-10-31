@@ -45,7 +45,8 @@ export function UserProvider ({children}) {
         try {
             const res = await createUserRequest(user);
             toast.success('Usuario Creado con exito!',{
-                position: toast.POSITION.TOP_CENTER
+                position: toast.POSITION.TOP_CENTER,
+                autoClose : 1500
             });
             getUsers();
             return res.data;

@@ -19,6 +19,8 @@ import { NewNavigation } from "./components/globalComponents/NewNavigation.jsx";
 import { Exchangues } from "./Exchangues/pages/Exchangues.jsx";
 import {Roles} from "./Roles/pages/Roles.jsx";
 import 'react-toastify/dist/ReactToastify.css';
+import { AuthProvider } from "./Login/context/AuthContext.jsx";
+import { ProtectedRoute } from "./components/ProtectedRoute.jsx";
 
 
 function Navigator (){
@@ -30,6 +32,7 @@ function App() {
 
   return (
     <>
+      <AuthProvider>
       <VehicleProvider>
       <PurchaseProvider>
       <SellProvider>
@@ -41,16 +44,18 @@ function App() {
         <div className=" flex">
           {<Navigator/>}
             <Routes>
-              <Route path='/' element={<Login/>}/>       
-              <Route path='/Users' element={<Users/>}/>
-              <Route path='/Roles' element={<Roles/>}/>
-              <Route path='/Clients' element={<Clients/>}/>
-              <Route path='/Sells' element={<Sells/>}/>
-              <Route path='/Vehicles' element={<Vehicles/>}/>
-              <Route path='/Purchases' element={<Purchases/>}/>
-              <Route path="/Improvements" element={<Improvements/>}/>
-              <Route path="/DashBoard" element={<DashBoard/>}/>
-              <Route path="/Exchangues" element={<Exchangues/>}/>                
+              <Route path='/' element={<Login/>}/>
+              <Route element={<ProtectedRoute/>}>
+                <Route path='/Users' element={<Users/>}/>
+                <Route path='/Roles' element={<Roles/>}/>
+                <Route path='/Clients' element={<Clients/>}/>
+                <Route path='/Sells' element={<Sells/>}/>
+                <Route path='/Vehicles' element={<Vehicles/>}/>
+                <Route path='/Purchases' element={<Purchases/>}/>
+                <Route path="/Improvements" element={<Improvements/>}/>
+                <Route path="/DashBoard" element={<DashBoard/>}/>
+                <Route path="/Exchangues" element={<Exchangues/>}/>   
+              </Route>                    
             </Routes>
           <ToastContainer/> 
           </div>      
@@ -62,6 +67,7 @@ function App() {
       </SellProvider>
       </PurchaseProvider>
       </VehicleProvider>
+      </AuthProvider>
     </>
   )
 }

@@ -95,7 +95,7 @@ export function DashboardSales() {
                     value={selectedYear}
                     onChange={handleYearChange}
                 >
-                    {years.map(year => (
+                    {years.map((year) => (
                         <SelectItem key={year} value={year}>
                             {year}
                         </SelectItem>
