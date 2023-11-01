@@ -24,7 +24,7 @@ export function EditUser(props) {
     const handleEvent = (event) => {
       event.preventDefault();
       toast.error('No puedes actualizar un usuario inhabilitado.' ,{
-        autoClose : 2000,
+        autoClose : 1500,
         position: toast.POSITION.TOP_CENTER
     });
     };
@@ -32,8 +32,8 @@ export function EditUser(props) {
 
   return (
     <div className='flex'>
-      {user.userStatus === true ? <Button onPress={onOpen}className=' bg-gradient-to-r from-[#D99C23] to-[#D45229] hover:bg-[#A37D1A] rounded-lg text-white font-bold '>{<AiTwotoneEdit className='text-white text-2xl'/>}</Button>
-       : <Button onClick={handleEvent} className=' bg-gradient-to-r from-[#252525] to-[#252525] rounded-lg text-white font-bold'>{<AiTwotoneEdit className='text-white text-2xl'/>}</Button>}
+      {user.userStatus === true ? <Button isIconOnly onPress={onOpen}className=' bg-gradient-to-r from-[#D99C23] to-[#D45229] hover:bg-[#A37D1A] rounded-lg text-white font-bold '>{<AiTwotoneEdit className='text-white text-2xl'/>}</Button>
+       : <Button isIconOnly onClick={handleEvent}>{<AiTwotoneEdit className='text-white text-2xl'/>}</Button>}
         
         <Modal isOpen={isOpen} onOpenChange={onOpenChange} isDismissable={false}>
             <ModalContent>

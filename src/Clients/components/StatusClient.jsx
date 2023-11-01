@@ -1,5 +1,5 @@
 import React from 'react'
-import {Modal, ModalContent, ModalHeader, ModalBody, ModalFooter, useDisclosure} from "@nextui-org/react";
+import {Modal, ModalContent, ModalHeader, ModalBody, useDisclosure} from "@nextui-org/react";
 import {Button} from "@nextui-org/react";
 import {useForm} from 'react-hook-form';
 import {GrStatusGood} from 'react-icons/gr'
@@ -18,7 +18,7 @@ export  function StatusClient(props) {
 
   return (
 <div className='flex'>
-    {clients.clientStatus === true ? <Button className=' bg-green-600 rounded-lg' onPress={onOpen}><GrStatusGood className='text-2xl'/></Button> : <Button className=' bg-slate-600 rounded-lg' onPress={onOpen}><TiDeleteOutline className='text-white text-2xl'/></Button>}
+    {clients.clientStatus === true ? <Button className=' bg-green-600 rounded-lg' isIconOnly onPress={onOpen}><GrStatusGood className='text-2xl'/></Button> : <Button className=' bg-slate-600 rounded-lg' onPress={onOpen}><TiDeleteOutline className='text-white text-2xl'/></Button>}
       <Modal isOpen={isOpen} onOpenChange={onOpenChange}>
         <ModalContent>
           {(onClose) => (

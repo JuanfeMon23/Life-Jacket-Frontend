@@ -6,13 +6,14 @@ import {useForm, Controller} from 'react-hook-form';
 import { useUsers } from '../Context/userContext';
 import {Select, SelectItem} from "@nextui-org/react";
 import { useRoles } from '../../Roles/context/rolesContext';
-
+import {AiOutlinePlusCircle} from 'react-icons/Ai';
 
 export  function UserRegister() {
   const {isOpen, onOpen, onOpenChange} = useDisclosure();
   const {register , setValue, handleSubmit, formState:{errors}, control, reset} = useForm();
   const {createUser} = useUsers();
   const {roles} = useRoles();
+
 
 
   const onSubmit = (data) => {
@@ -22,7 +23,7 @@ export  function UserRegister() {
 
   return (
     <div className='flex'>
-      <Button onPress={onOpen} className=' bg-gradient-to-r from-cyan-500 to-blue-800 text-white font-bold'>Registrar</Button>
+      <Button endContent={<AiOutlinePlusCircle className=' text-2xl'/>} color="primary" variant="solid" onPress={onOpen} className=' text-white font-bold'>Agregar</Button>
       <Modal isOpen={isOpen} onOpenChange={onOpenChange} isDismissable={false}>
         <ModalContent>
           {(onClose) => (

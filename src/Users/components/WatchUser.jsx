@@ -1,15 +1,25 @@
 import React, { useEffect } from "react";
 import {Modal, ModalContent, ModalHeader, ModalBody, ModalFooter, Button, useDisclosure} from "@nextui-org/react";
 import {FiEye}from "react-icons/fi";
+import { toast } from "react-toastify";
 
 
 export function WatchUser(props) {
   const {isOpen, onOpen, onOpenChange} = useDisclosure();
   const user = props.user
+
+  function handleview (event){
+    event.preventDefault();
+    toast.error('No puedes ver un usuario inhabilitado.' ,{
+      autoClose : 1500,
+      position: toast.POSITION.TOP_CENTER
+  });
+  };
  
   return (
     <>
-      <Button  className='bg-gradient-to-r from-[#2D78BE] to-[#6D2CC0]' onPress={onOpen}><FiEye className="text-white text-2xl"/></Button>
+    {user.userStatus === true ? <Button isIconOnly className='bg-gradient-to-r from-[#2D78BE] to-[#6D2CC0]' onPress={onOpen}><FiEye className="text-white text-2xl"/></Button>
+     : <Button isIconOnly onClick={handleview}><FiEye className="text-white text-2xl"/></Button>}
       <Modal isOpen={isOpen} onOpenChange={onOpenChange} size="2xl" isDismissable={false}>
         <ModalContent>
           {(onClose) => (

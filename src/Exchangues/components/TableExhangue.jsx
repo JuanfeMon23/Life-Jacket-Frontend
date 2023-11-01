@@ -18,8 +18,9 @@ import {
 } from "@nextui-org/react";
 import {columns, users, statusOptions} from "../pages/data";
 import {capitalize} from "../pages/utils";
-import {SlOptionsVertical} from 'react-icons/sl'
 import { UserRegister } from "../../Users/components/userRegister";
+import {FaSearch} from 'react-icons/fa';
+import {IoIosArrowDown} from 'react-icons/io';
 
 const statusColorMap = {
   active: "success",
@@ -27,7 +28,7 @@ const statusColorMap = {
   vacation: "warning",
 };
 
-const INITIAL_VISIBLE_COLUMNS = ["name", "role", "status", "actions"];
+const INITIAL_VISIBLE_COLUMNS = ["name", "role", "status", "actions","email", "age", "id", "team"];
 
 export  function TableExchangue() {
   const [filterValue, setFilterValue] = React.useState("");
@@ -56,10 +57,8 @@ export  function TableExchangue() {
       filteredUsers = filteredUsers.filter((user) =>
         user.name.toLowerCase().includes(filterValue.toLowerCase()),
       );
-      filteredUsers = filteredUsers.filter((user) =>
-      user.role.toLowerCase().includes(filterValue.toLowerCase()),
-    );
     }
+
     if (statusFilter !== "all" && Array.from(statusFilter).length !== statusOptions.length) {
       filteredUsers = filteredUsers.filter((user) =>
         Array.from(statusFilter).includes(user.status),
@@ -96,17 +95,14 @@ export  function TableExchangue() {
         return (
           <User
             avatarProps={{radius: "lg", src: user.avatar}}
-            description={user.email}
             name={cellValue}
           >
-            {user.email}
           </User>
         );
       case "role":
         return (
           <div className="flex flex-col">
             <p className="text-bold text-small capitalize">{cellValue}</p>
-            <p className="text-bold text-tiny capitalize text-default-400">{user.team}</p>
           </div>
         );
       case "status":
@@ -117,9 +113,7 @@ export  function TableExchangue() {
         );
       case "actions":
         return (
-          <div className="relative flex justify-center items-center gap-2">
-              <UserRegister/>
-              <UserRegister/>
+          <div className="relative flex items-center gap-2">
               <UserRegister/>
           </div>
         );
@@ -165,9 +159,9 @@ export  function TableExchangue() {
         <div className="flex justify-between gap-3 items-end">
           <Input
             isClearable
-            className="w-full sm:max-w-[44%]"
-            placeholder="Search by name..."
-            // startContent={<SearchIcon />}
+            className=" sm:max-w-[30%]"
+            placeholder="Buscar..."
+            startContent={<FaSearch />}
             value={filterValue}
             onClear={() => onClear()}
             onValueChange={onSearchChange}
@@ -175,9 +169,8 @@ export  function TableExchangue() {
           <div className="flex gap-3">
             <Dropdown>
               <DropdownTrigger className="hidden sm:flex">
-                {/* <Button> */}
-                <Button  variant="flat">
-                  Status
+                <Button startContent={<IoIosArrowDown/>} color="primary" variant="bordered">
+                  Estado
                 </Button>
               </DropdownTrigger>
               <DropdownMenu
@@ -197,9 +190,8 @@ export  function TableExchangue() {
             </Dropdown>
             <Dropdown>
               <DropdownTrigger className="hidden sm:flex">
-                {/* <Button> */}
-                <Button  variant="flat">
-                  Columns
+                <Button  color="primary" variant="flat" startContent={<IoIosArrowDown/>}>
+                  Columnas
                 </Button>
               </DropdownTrigger>
               <DropdownMenu
@@ -217,16 +209,13 @@ export  function TableExchangue() {
                 ))}
               </DropdownMenu>
             </Dropdown>
-            {/* <Button> */}
-            <Button color="primary" >
-              Add New
-            </Button>
+            <UserRegister/>
           </div>
         </div>
         <div className="flex justify-between items-center">
-          <span className="text-default-400 text-small">Total {users.length} users</span>
+          <span className="text-default-400 text-small">Total de usuarios: {users.length} </span>
           <label className="flex items-center text-default-400 text-small">
-            Rows per page:
+            Filas por pagina
             <select
               className="bg-transparent outline-none text-default-400 text-small"
               onChange={onRowsPerPageChange}
@@ -276,14 +265,12 @@ export  function TableExchangue() {
   }, [selectedKeys, items.length, page, pages, hasSearchFilter]);
 
   return (
-    <div className=" max-sm:w-[30%] max-md:w-[55%] max-lg:w-[70%] ">
         <Table
         aria-label="Example table with custom cells, pagination and sorting"
         isCompact
         color={"primary"}
         bottomContentPlacement="outside"
         bottomContent={bottomContent}
-        
         classNames={{
             wrapper: "max-h-[582px]"
         }}
@@ -305,7 +292,7 @@ export  function TableExchangue() {
           </TableColumn>
         )}
       </TableHeader>
-      <TableBody emptyContent={"No users found"} items={sortedItems}>
+      <TableBody emptyContent={"No hay usuarios"} items={sortedItems}>
         {(item) => (
           <TableRow key={item.id}>
             {(columnKey) => <TableCell>{renderCell(item, columnKey)}</TableCell>}
@@ -313,6 +300,5 @@ export  function TableExchangue() {
         )}
       </TableBody>
     </Table>
-    </div>
   );
 }
