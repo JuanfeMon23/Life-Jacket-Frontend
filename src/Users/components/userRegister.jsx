@@ -10,15 +10,14 @@ import {AiOutlinePlusCircle} from 'react-icons/Ai';
 
 export  function UserRegister() {
   const {isOpen, onOpen, onOpenChange} = useDisclosure();
-  const {register , setValue, handleSubmit, formState:{errors}, control, reset} = useForm();
+  const { handleSubmit, formState:{errors}, control, reset} = useForm();
   const {createUser} = useUsers();
   const {roles} = useRoles();
 
 
 
   const onSubmit = (data) => {
-      createUser(data);
-      reset();
+    { onSubmit ? createUser(data) && reset() : ''  }
   };
 
   return (

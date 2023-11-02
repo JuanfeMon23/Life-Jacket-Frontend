@@ -9,14 +9,14 @@ import {FaUserPlus} from 'react-icons/fa'
 import {IoBarChart} from 'react-icons/io5'
 import { FaExchangeAlt} from 'react-icons/fa'
 import { useLocation } from 'react-router-dom';
-import {GrConfigure} from 'react-icons/gr'
+import {PiGearSix} from 'react-icons/pi';
 
 export function NewNavigation() {
     const location = useLocation();
 
     const Menus = [
         {title: 'Dashboard', path:'/Dashboard', icon : IoBarChart},
-        {title: 'Roles', path:'/Roles', icon : GrConfigure},
+        {title: 'Roles', path:'/Roles', icon : PiGearSix},
         {title : 'Usuarios', path:'/Users', icon : FaIdBadge },
         {title : 'Vehículos', path:'/Vehicles', icon : FaCar},
         {title: 'Compras', path:'/Purchases', icon : FaCartPlus},
@@ -28,7 +28,7 @@ export function NewNavigation() {
 
   return (
     <div className=' '>
-          <nav className= " xl:w-72 md:w-45 sm:w-10 bg-[#0D0628] xl:h-[98vh] md:h-[95vh]   p-5 s rounded-xl m-2 duration-300 ease-in-out">
+          <nav className= " xl:w-72 md:w-45 sm:w-25  bg-[#0D0628] xl:h-[98vh] md:h-[95vh]   p-5 s rounded-xl m-2 duration-300 ease-in-out">
             <div className="flex gap-x-4 items-center">
             </div>
             <ul className="pt-6 ">

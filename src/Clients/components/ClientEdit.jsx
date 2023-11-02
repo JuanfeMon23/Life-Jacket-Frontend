@@ -11,13 +11,12 @@ import { toast } from "react-toastify";
 
 export  function ClientEdit(props) {
     const {isOpen, onOpen, onOpenChange} = useDisclosure();
-    const {register , handleSubmit, setValue,  formState:{errors}, control} = useForm();
+    const {register , handleSubmit, setValue,  formState:{errors}, control, reset} = useForm();
     const {updateClient} = useClients();
     const clients = props.client
 
     const onSubmit = (data) => {
-        updateClient(clients.idClient, {...data});
-
+        {onSubmit ? updateClient(clients.idClient, {...data}) && reset : '' }
     };
 
     const handleEvent = (event) => {
@@ -31,7 +30,7 @@ export  function ClientEdit(props) {
   return (
     <div className='flex'>
     {clients.clientStatus === true ? <Button isIconOnly onPress={onOpen}className=' bg-gradient-to-r from-[#D99C23] to-[#D45229] rounded-lg text-white font-bold'>{<AiTwotoneEdit className='text-white text-2xl'/>}</Button>
-    :  <Button onClick={handleEvent} className=' bg-gradient-to-r from-[#252525] to-[#252525] rounded-lg text-white font-bold'>{<AiTwotoneEdit className='text-white text-2xl'/>}</Button>}   
+    :  <Button isIconOnly onClick={handleEvent}>{<AiTwotoneEdit className='text-white text-2xl'/>}</Button>}   
       <Modal isOpen={isOpen} onOpenChange={onOpenChange}>
         <ModalContent>
           {(onClose) => (
@@ -39,72 +38,6 @@ export  function ClientEdit(props) {
               <ModalHeader className="flex flex-col gap-3">Datos del cliente</ModalHeader>
               <ModalBody>
                 <form onSubmit={handleSubmit(onSubmit)}>
-                  <div className=' flex'>
-                    <div className=' flex-col m-3 w-[200px]'>
-                    <Controller
-                          name='clientTypeDocument'
-                          control={control}
-                          defaultValue={clients.clientTypeDocument}
-                          rules={{
-                            required : 'Campo obligatorio'
-                          }}
-                          render={({field}) => (
-                            <Select
-                              {...field}
-                              type="text"
-                              label="Tipo de documento"
-                              variant="bordered"
-                              color={errors.clientTypeDocument ? "danger" : ""}
-                              errorMessage={errors.clientTypeDocument?.message}
-                              className="max-w-xs"
-                              onChange={(e) => {
-                                field.onChange(e);
-                              }}
-                            >
-                              <SelectItem key='Cedula de ciudadania'>Cedula de ciudadanía</SelectItem>
-                              <SelectItem key='Cedula de extranjería'>Cedula de extranjería</SelectItem>
-                              <SelectItem key='Pasaporte'>Pasaporte</SelectItem>
-                            </Select>
-                          )}
-                        />
-
-                    </div>
-                    <div className=' flex-col m-3'>
-                    <Controller
-                        name="clientDocument"
-                        control={control}
-                        defaultValue={clients.clientDocument}
-                        rules={{
-                          required: "Campo requerido",
-                          minLength : {
-                            value : 7 ,
-                            message : 'Al menos 7 numeros'
-                          },
-                          maxLength : {
-                            value : 15 ,
-                            message : 'Maximo 15 números'
-                          },
-                          pattern: {
-                            value: /^[0-9]*$/, 
-                            message: "Solo números"
-                          }
-                        }}
-                        render={({ field }) => (
-                          <Input
-                            {...field}
-                            type="number"
-                            label="Documento"
-                            variant="bordered"
-                            color={errors.clientDocument? "danger" : ""}
-                            errorMessage={errors.clientDocument?.message}
-                            className="max-w-xs"
-                          />
-                        )}
-                      />
-                    </div>
-
-                  </div>
-
                   <div className=' flex'> 
                       <div className='flex-col m-3 w-[200px]'>
                       <Controller

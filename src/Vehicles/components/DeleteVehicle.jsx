@@ -2,38 +2,38 @@ import React from 'react'
 import {Modal, ModalContent, ModalHeader, ModalBody, ModalFooter, useDisclosure} from "@nextui-org/react";
 import {Button} from "@nextui-org/react";
 import {useForm} from 'react-hook-form';
-import { useClients } from '../context/clientsContext';
+import { useVehicles } from '../context/vehiclesContext';
 import { toast } from "react-toastify";
 import {AiOutlineDelete} from 'react-icons/Ai';
 
-export  function DeleteClient(props) {
+export  function DeleteVehicle(props) {
     const {isOpen, onOpen, onOpenChange} = useDisclosure();
     const {handleSubmit} = useForm();
-    const {deleteClient} = useClients();
-    const clients = props.client
+    const {deleteVehicle} = useVehicles();
+    const vehicles = props.vehicle
+
 
     function onSubmit (){
-        deleteClient(clients.idClient)
+        deleteVehicle(vehicles.idVehicle);
     };
-
 
     const handleDelete = (event) => {
-      event.preventDefault();
-      toast.error('No puedes eliminar un cliente con compras, ventas o cambios asociados.' ,{
-        autoClose : 1500,
-        position: toast.POSITION.TOP_CENTER
-    });
-    };
+        event.preventDefault();
+        toast.error('No puedes eliminar un vehiculo con compras, ventas o cambios asociados.' ,{
+          autoClose : 1500,
+          position: toast.POSITION.TOP_CENTER
+      });
+      };
 
   return (
-    <div className=' flex'>
-        {clients.sales <= 0 && clients.purchases <= 0 && clients.exchanges <= 0 ? <Button className=' bg-red-400' isIconOnly onPress={onOpen}><AiOutlineDelete className='text-white text-2xl '/></Button>
+        <div className=' flex'>
+        {vehicles.sale <= 0 && vehicles.purchase <= 0 && vehicles.exchanges <= 0 ? <Button className=' bg-red-400' isIconOnly onPress={onOpen}><AiOutlineDelete className='text-white text-2xl '/></Button>
          : <Button isIconOnly  onClick={handleDelete}><AiOutlineDelete className='text-white text-2xl'/></Button>}
         <Modal isOpen={isOpen} onOpenChange={onOpenChange}>
         <ModalContent>
           {(onClose) => (
             <>
-              <ModalHeader className=" items-center">¿Deseas eliminar el cliente?</ModalHeader>
+              <ModalHeader className=" items-center">¿Deseas eliminar el Vehiculo?</ModalHeader>
               <ModalBody>
                 <form onSubmit={handleSubmit(onSubmit)}>
                     <div className=' text-center m-3'>

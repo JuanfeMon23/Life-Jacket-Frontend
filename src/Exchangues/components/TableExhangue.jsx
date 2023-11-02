@@ -55,7 +55,9 @@ export  function TableExchangue() {
 
     if (hasSearchFilter) {
       filteredUsers = filteredUsers.filter((user) =>
-        user.name.toLowerCase().includes(filterValue.toLowerCase()),
+        user.name.toLowerCase().includes(filterValue.toLowerCase())  ||
+        user.email.toLowerCase().includes(filterValue.toLowerCase()) ||
+        user.age.toLowerCase().includes(filterValue.toLowerCase())
       );
     }
 
@@ -159,7 +161,7 @@ export  function TableExchangue() {
         <div className="flex justify-between gap-3 items-end">
           <Input
             isClearable
-            className=" sm:max-w-[30%]"
+            className=" sm:max-w-[30%] shadow-xl"
             placeholder="Buscar..."
             startContent={<FaSearch />}
             value={filterValue}
@@ -169,7 +171,7 @@ export  function TableExchangue() {
           <div className="flex gap-3">
             <Dropdown>
               <DropdownTrigger className="hidden sm:flex">
-                <Button startContent={<IoIosArrowDown/>} color="primary" variant="bordered">
+                <Button startContent={<IoIosArrowDown/>} color="primary" variant="flat" >
                   Estado
                 </Button>
               </DropdownTrigger>
@@ -268,7 +270,7 @@ export  function TableExchangue() {
         <Table
         aria-label="Example table with custom cells, pagination and sorting"
         isCompact
-        color={"primary"}
+        color='primary'
         bottomContentPlacement="outside"
         bottomContent={bottomContent}
         classNames={{

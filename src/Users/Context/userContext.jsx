@@ -52,8 +52,9 @@ export function UserProvider ({children}) {
             return res.data;
         } catch (error) {
             console.log(error)
-            toast.error('Error al crear un usuario.' ,{
-                position: toast.POSITION.TOP_CENTER
+            toast.error(error.response.data.message ,{
+                position: toast.POSITION.TOP_CENTER,
+                autoClose : 1500
             });
             throw new Error(error.message);
         }
@@ -63,13 +64,14 @@ export function UserProvider ({children}) {
         try {
             await updateUserRequest(idUser, user);
             toast.success('Usuario actualizado con exito!',{
-                position: toast.POSITION.TOP_CENTER
+                position: toast.POSITION.TOP_CENTER,
+                autoClose : 1500
             });
             getUsers();
         } catch (error) {
-            console.log(error)
-            toast.error('Error al actualizar.' ,{
-                position: toast.POSITION.TOP_CENTER
+            toast.error(error.response.data.message ,{
+                position: toast.POSITION.TOP_CENTER,
+                autoClose : 1500
             });
             throw new Error(error.message);
             
@@ -80,12 +82,14 @@ export function UserProvider ({children}) {
         try {
             await stateUserRequest(idUser);
             toast.success('Estado actualizado con exito!',{
-                position: toast.POSITION.TOP_CENTER
+                position: toast.POSITION.TOP_CENTER,
+                autoClose : 1500
             });
             getUsers();
         } catch (error) {
-            toast.error('Error al actualizar el estado.' ,{
-                position: toast.POSITION.TOP_CENTER
+            toast.error(error.response.data.message ,{
+                position: toast.POSITION.TOP_CENTER,
+                autoClose : 1500
             });
             throw new Error(error.message);
         }
@@ -93,9 +97,17 @@ export function UserProvider ({children}) {
 
     const deleteUser = async (idUser) => {
         try {
-            const res = await deleteUserRequest(idUser);
-            if(res.status === 204) setUsers(users.filter((user) => user.id !== idUser));
+             await deleteUserRequest(idUser);
+            toast.success('Usuario eliminado con exito.',{
+                position: toast.POSITION.TOP_CENTER,
+                autoClose : 1500
+            });
+            getUsers();
         } catch (error) {
+            toast.success(error.response.data.message,{
+                position: toast.POSITION.TOP_CENTER,
+                autoClose : 1500
+            });
             throw new Error(error.message);
         }
     };

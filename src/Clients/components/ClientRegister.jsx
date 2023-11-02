@@ -13,7 +13,7 @@ const {register , handleSubmit, setValue,  formState:{errors}, control, reset} =
 const {createClient} = useClients();
 
 const onSubmit = (data) => {
-    createClient({...data});
+    { onSubmit ? createClient(data) && reset : ''}
 };
 
 

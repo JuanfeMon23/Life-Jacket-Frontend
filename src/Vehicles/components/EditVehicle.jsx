@@ -23,12 +23,12 @@ export  function EditVehicle (props) {
 
   return (
     <div className='flex'>
-    <Button onPress={onOpen}className=' bg-gradient-to-r from-[#D99C23] to-[#D45229] rounded-lg text-white font-bold'>{<AiTwotoneEdit className='text-white text-2xl'/>}</Button>
+    <Button isIconOnly onPress={onOpen}className=' bg-gradient-to-r from-[#D99C23] to-[#D45229] rounded-lg text-white font-bold'>{<AiTwotoneEdit className='text-white text-2xl'/>}</Button>
       <Modal isOpen={isOpen} onOpenChange={onOpenChange} scrollBehavior={scrollBehavior}>
         <ModalContent>
           {(onClose) => (
             <>
-              <ModalHeader className="flex flex-col gap-3">Datos del Vehiculo</ModalHeader>
+              <ModalHeader className="flex flex-col gap-3">Editar Vehiculo</ModalHeader>
               <ModalBody>
                 <form onSubmit={handleSubmit(onSubmit)}>
                   <div className=" flex">
@@ -365,64 +365,242 @@ export  function EditVehicle (props) {
                         /> 
                   </div>
 
-                  {/* <ModalHeader className='flex flex-col gap-3 m-5'>Más información del vehículo</ModalHeader>
-
                   <div className=' flex'>
                     <div className='flex-col m-3'>
-                      <Input type="text" label="Empresa" isClearable variant="underlined" id='business'
-                            {...register("business")}/>
+                    <Controller
+                          name="business"
+                          defaultValue={vehicles.othervehicleinformation.business}
+                          control={control}
+                          rules={{
+                            minLength: {
+                              value: 3,
+                              message: "Almenos 3 caracteres"
+                            },
+                            maxLength: {
+                              value: 20,
+                              message: "Maximo 20 caracteres"
+                            },
+                            pattern: {
+                              value: /^[a-zA-Z\s]*$/,
+                              message: "Solo letras"
+                            }
+                          }}
+                          render={({ field }) => (
+                            <Input
+                              {...field}
+                              type="text"
+                              label="Tipo"
+                              variant="bordered"
+                              color={errors.business ? "danger" : ""}
+                              errorMessage={errors.business?.message}
+                              className="max-w-xs"
+                            />
+                          )}
+                        /> 
                     </div>
-
                     <div className='flex-col m-3'>
-                      <Input type="Empresa" label="Correa dentada" isClearable variant="underlined" id='series'
-                            {...register("series")}/>
+                      <Controller
+                            name="series"
+                            defaultValue={vehicles.othervehicleinformation.series}
+                            control={control}
+                            rules={{
+                              minLength: {
+                                value: 7,
+                                message: "Almenos 7 caracteres"
+                              },
+                              maxLength: {
+                                value: 17,
+                                message: "Maximo 17 caracteres"
+                              }
+                            }}
+                            render={({ field }) => (
+                              <Input
+                                {...field}
+                                type="text"
+                                label="Serie"
+                                variant="bordered"
+                                color={errors.series ? "danger" : ""}
+                                errorMessage={errors.series?.message}
+                                className="max-w-xs"
+                              />
+                            )}
+                          /> 
                     </div>
-
                   </div>
 
                   <div className=' flex'>
                     <div className='flex-col m-3'>
-                      <Input type="text" label="Color" isClearable variant="underlined" id='color'
-                            {...register("color")}/>
+                      <Controller
+                              name="motor"
+                              control={control}
+                              defaultValue={vehicles.othervehicleinformation.motor}
+                              rules={{
+                                minLength: {
+                                  value: 7,
+                                  message: "Almenos 7 caracteres"
+                                },
+                                maxLength: {
+                                  value: 12,
+                                  message: "Maximo 12 caracteres"
+                                }
+                              }}
+                              render={({ field }) => (
+                                <Input
+                                  {...field}
+                                  type="text"
+                                  label="motor"
+                                  variant="bordered"
+                                  color={errors.motor ? "danger" : ""}
+                                  errorMessage={errors.motor?.message}
+                                  className="max-w-xs"
+                                />
+                              )}
+                          />
                     </div>
-
                     <div className='flex-col m-3'>
-                      <Input type="text" label="Motor" isClearable variant="underlined" id='motor'
-                            {...register("motor")}/>
+                      <Controller
+                                name="chasis"
+                                defaultValue={vehicles.othervehicleinformation.chassis}
+                                control={control}
+                                rules={{
+                                  minLength: {
+                                    value: 7,
+                                    message: "Almenos 7 caracteres"
+                                  },
+                                  maxLength: {
+                                    value: 18,
+                                    message: "Maximo 18 caracteres"
+                                  }
+                                }}
+                                render={({ field }) => (
+                                  <Input
+                                    {...field}
+                                    type="text"
+                                    label="chasis"
+                                    variant="bordered"
+                                    color={errors.chasis ? "danger" : ""}
+                                    errorMessage={errors.chasis?.message}
+                                    className="max-w-xs"
+                                  />
+                                )}
+                            />
                     </div>
                   </div>
 
                   <div className=' flex'>
                     <div className='flex-col m-3'>
-                      <Input type="text" label="Matricula a nombre dé" isClearable variant="underlined" id='register'
-                            {...register("register")}/>
+                        <Controller
+                                  name="identificationCard"
+                                  defaultValue={vehicles.othervehicleinformation.identificationCard}
+                                  control={control}
+                                  rules={{
+                                    minLength: {
+                                      value: 7,
+                                      message: "Almenos 7 caracteres"
+                                    },
+                                    maxLength: {
+                                      value: 12,
+                                      message: "Maximo 12 caracteres"
+                                    }
+                                  }}
+                                  render={({ field }) => (
+                                    <Input
+                                      {...field}
+                                      type="number"
+                                      label="Cedula del propietario"
+                                      variant="bordered"
+                                      color={errors.identificationCard ? "danger" : ""}
+                                      errorMessage={errors.identificationCard?.message}
+                                      className="max-w-xs"
+                                    />
+                                  )}
+                              />
                     </div>
-
                     <div className='flex-col m-3'>
-                      <Input type="number" label="Numero de cedula" isClearable variant="underlined" id='identificationCard'
-                            {...register("identificationCard")}/>
+                      <Controller
+                                name="register"
+                                control={control}
+                                defaultValue={vehicles.othervehicleinformation.register}
+                                rules={{
+                                  minLength: {
+                                    value: 7,
+                                    message: "Almenos 7 caracteres"
+                                  },
+                                  maxLength: {
+                                    value: 12,
+                                    message: "Maximo 20 caracteres"
+                                  }
+                                }}
+                                render={({ field }) => (
+                                  <Input
+                                    {...field}
+                                    type="text"
+                                    label="Matricula a nombre de"
+                                    variant="bordered"
+                                    color={errors.register ? "danger" : ""}
+                                    errorMessage={errors.register?.message}
+                                    className="max-w-xs"
+                                  />
+                                )}
+                            />
                     </div>
                   </div>
 
                   <div className=' flex'>
                     <div className='flex-col m-3'>
-                      <Input type="text" label="Chasis" isClearable variant="underlined" id='chassis'
-                            {...register("chassis")}/>
+                      <Controller
+                                name="capacity"
+                                defaultValue={vehicles.othervehicleinformation.capacity}
+                                control={control}
+                                rules={{
+                                  minLength: {
+                                    value: 1,
+                                    message: "Almenos 1 caracteres"
+                                  },
+                                  maxLength: {
+                                    value: 2,
+                                    message: "Maximo 2 caracteres"
+                                  }
+                                }}
+                                render={({ field }) => (
+                                  <Input
+                                    {...field}
+                                    type="text"
+                                    label="Capacidad"
+                                    variant="bordered"
+                                    color={errors.capacity ? "danger" : ""}
+                                    errorMessage={errors.capacity?.message}
+                                    className="max-w-xs"
+                                  />
+                                )}
+                            />
                     </div>
-
-                    <div className='flex-col m-3'>
-                      <Input type="number" label="Capacidad" isClearable variant="underlined" id='capacity'
-                            {...register("capacity")}/>
+                    <div className='flex-col m-3 w-[200px] '>
+                      <Controller
+                            name='service'
+                            defaultValue={vehicles.othervehicleinformation.service}
+                            control={control}
+                            rules={{
+                            }}
+                            render={({field}) => (
+                              <Select
+                                {...field}
+                                label="Servicio"
+                                variant="bordered"
+                                color={errors.service ? "danger" : ""}
+                                errorMessage={errors.service?.message}
+                                className="max-w-xs"
+                                onChange={(e) => {
+                                  field.onChange(e);
+                                }}
+                              >
+                                <SelectItem key='Publico'>Publico</SelectItem>
+                                <SelectItem key='Privado'>Privado</SelectItem>
+                              </Select>
+                            )}
+                          />
                     </div>
                   </div>
-                  <div className=' flex'>
-                    <div className='flex-col m-3 w-[200px]'>
-                        <Select variant="underlined" label='Servicio' id='service' {...register("service")} >
-                          <SelectItem key='Publico'>Publico</SelectItem>
-                          <SelectItem key='Privado'>Privado</SelectItem>
-                        </Select>
-                    </div>
-                  </div> */}
 
                   <div className=' text-center my-3 '>
                     <ButtonAccept/>

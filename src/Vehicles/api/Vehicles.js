@@ -13,3 +13,5 @@ export const createVehicleDetailRequest = async (detailVehicle) => axios.post(`/
 export const updateVehicleRequest = async (idVehicle, vehicle) => axios.put(`/Vehicles/${idVehicle}`, vehicle);
 
 export const statusVehicleRequest = async (idVehicle, vehicle) => axios.patch(`/Vehicles/${idVehicle}`, vehicle);
+
+export const deleteVehicleRequest = async (idVehicle) => axios.delete(`/Vehicles/${idVehicle}`);

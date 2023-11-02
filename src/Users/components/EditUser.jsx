@@ -11,14 +11,14 @@ import { useRoles } from '../../Roles/context/rolesContext';
 
 export function EditUser(props) {
     const {isOpen, onOpen, onOpenChange} = useDisclosure();
-    const {register , setValue, handleSubmit, formState:{errors}, control} = useForm();
+    const {register , setValue, handleSubmit, formState:{errors}, control, reset} = useForm();
     const {updateUser } = useUsers();
     const {roles} = useRoles();
     const user = props.user
 
-    const onSubmit = (data, event) => {
-        updateUser(user.idUser, data)
+    const onSubmit = (data, event) => {    
         event.preventDefault();
+        { onSubmit ? updateUser(user.idUser, data) && reset() :  ''}
     };
 
     const handleEvent = (event) => {
@@ -53,7 +53,6 @@ export function EditUser(props) {
                           render={({field}) => (
                             <Select
                               {...field}
-                              type="text"
                               label="Tipo de documento"
                               variant="bordered"
                               color={errors.userTypeDocument ? "danger" : ""}
@@ -63,9 +62,7 @@ export function EditUser(props) {
                                 field.onChange(e);
                               }}
                             >
-                              <SelectItem key='Cedula de ciudadania'>Cedula de ciudadanía</SelectItem>
-                              <SelectItem key='Cedula de extranjería'>Cedula de extranjería</SelectItem>
-                              <SelectItem key='Pasaporte'>Pasaporte</SelectItem>
+                              <SelectItem key='Cedula de ciudadania'>CC</SelectItem>
                             </Select>
                           )}
                         />
@@ -411,7 +408,6 @@ export function EditUser(props) {
                           render={({field}) => (
                             <Select
                               {...field}
-                              type="text"
                               label="Rol"
                               variant="bordered"
                               color={errors.idRolUser ? "danger" : ""}

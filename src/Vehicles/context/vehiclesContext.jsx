@@ -1,6 +1,6 @@
 import { createContext, useContext, useState } from "react";
 import { toast } from "react-toastify";
-import { getVehiclesRequest, getVehicleRequest, createVehiclesRequest, updateVehicleRequest, getVehicleTypeRequest , statusVehicleRequest, createVehicleDetailRequest } from "../api/Vehicles";
+import { getVehiclesRequest, getVehicleRequest, createVehiclesRequest, updateVehicleRequest, getVehicleTypeRequest , statusVehicleRequest, deleteVehicleRequest } from "../api/Vehicles";
 
 const VehiclesContext = createContext();
 
@@ -30,6 +30,7 @@ export function VehicleProvider({children}){
             throw new Error(error.message);
         }
     };
+
     const getVehicle = async (idVehicle, vehicle) => {
         try {
             const res = await getVehicleRequest(idVehicle, vehicle);
@@ -44,28 +45,14 @@ export function VehicleProvider({children}){
     const createVehicle = async (vehicle) => {
         try {
             const res = await createVehiclesRequest(vehicle);
-            getVehicles();
-            return res.data;
-        } catch (error) {
-            toast.error('Error al crear.' ,{
-                position: toast.POSITION.TOP_CENTER
-            });
-            console.log(error)
-            throw new Error(error.message);
-        }
-    };
-
-    const createVehicleDetail = async ( detail) => {
-        try {
-            const res = await createVehicleDetailRequest( detail);
-            toast.success('Vehiculo creado con exito!',{
+            toast.success('Vehiculo Creado con exito.',{
                 position: toast.POSITION.TOP_CENTER,
-                autoClose: 1500
+                autoClose : 1500
             });
             getVehicles();
             return res.data;
         } catch (error) {
-            toast.error('Error al crear.' ,{
+            toast.error(error.response.data.message ,{
                 position: toast.POSITION.TOP_CENTER,
                 autoClose : 1500
             });
@@ -75,16 +62,19 @@ export function VehicleProvider({children}){
     };
 
 
+
     const updateVehicle = async (idVehicle, vehicle) => {
         try {
             await updateVehicleRequest(idVehicle, vehicle);
-            toast.success('Vehiculo actualizado con exito!',{
-                position: toast.POSITION.TOP_CENTER
+            toast.success('Vehiculo actualizado con exito.',{
+                position: toast.POSITION.TOP_CENTER,
+                autoClose: 1500
             });
             getVehicles();
         } catch (error) {
-            toast.error('Error al actualizar.' ,{
-                position: toast.POSITION.TOP_CENTER
+            toast.error(error.response.data.message,{
+                position: toast.POSITION.TOP_CENTER,
+                autoClose :1500
             });
             throw new Error(error.message);
         }
@@ -93,20 +83,42 @@ export function VehicleProvider({children}){
     const statusVehicle = async (idVehicle, vehicle) => {
         try {
             await statusVehicleRequest(idVehicle, vehicle);
-            toast.success('Estadp del vehículo actualizado con exito!',{
-                position: toast.POSITION.TOP_CENTER
+            toast.success('Vehiculo anulado  con exito.',{
+                position: toast.POSITION.TOP_CENTER,
+                autoClose :1500
             });
             getVehicles();
         } catch (error) {
-            toast.error('Error al actualizar.' ,{
-                position: toast.POSITION.TOP_CENTER
+            toast.error(error.response.data.message ,{
+                position: toast.POSITION.TOP_CENTER,
+                autoClose :1500
             });
             throw new Error(error.message);
         }
     };
 
+    const deleteVehicle = async (idVehicle) => {
+        try {
+            await deleteVehicleRequest(idVehicle);
+            toast.success('Vehiculo eliminado con exito.',{
+                position: toast.POSITION.TOP_CENTER,
+                autoClose :1500
+            });
+            getVehicles();
+        } catch (error) {
+            toast.error(error.response.data.message ,{
+                position: toast.POSITION.TOP_CENTER,
+                autoClose :1500
+            });
+            throw new Error(error.message);
+            
+        }
+    }
+
+
+
     return(
-        <VehiclesContext.Provider value={{vehicles, getVehicle, getVehicles, createVehicle, updateVehicle, getVehicletype, statusVehicle, createVehicleDetail}}>
+        <VehiclesContext.Provider value={{vehicles, getVehicle, getVehicles, createVehicle, updateVehicle, getVehicletype, statusVehicle, deleteVehicle}}>
             {children}
         </VehiclesContext.Provider>
     )

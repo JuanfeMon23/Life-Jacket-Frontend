@@ -18,7 +18,8 @@ export  function StatusClient(props) {
 
   return (
 <div className='flex'>
-    {clients.clientStatus === true ? <Button className=' bg-green-600 rounded-lg' isIconOnly onPress={onOpen}><GrStatusGood className='text-2xl'/></Button> : <Button className=' bg-slate-600 rounded-lg' onPress={onOpen}><TiDeleteOutline className='text-white text-2xl'/></Button>}
+    {clients.clientStatus === true ? <Button className=' bg-green-600 rounded-lg' isIconOnly onPress={onOpen}><GrStatusGood className=' text-white text-2xl'/></Button> 
+    : <Button isIconOnly onPress={onOpen}><TiDeleteOutline className='text-white text-2xl'/></Button>}
       <Modal isOpen={isOpen} onOpenChange={onOpenChange}>
         <ModalContent>
           {(onClose) => (

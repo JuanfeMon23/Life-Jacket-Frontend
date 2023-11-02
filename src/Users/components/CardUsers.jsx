@@ -10,6 +10,7 @@ import {Input, useDisclosure} from "@nextui-org/react";
 import { EditUser } from './EditUser';
 import {Switch} from "@nextui-org/react";
 import { StatusUser } from './StatusUser';
+import { DeleteUsers } from './DeleteUsers';
 
 
 
@@ -101,6 +102,7 @@ export function CardUsers() {
                 <WatchUser user={data} id={data.id}/>
                 <EditUser user={data}/> 
                 <StatusUser  user={data} />
+                <DeleteUsers user={data} />
             </div>
 
           </CardBody>

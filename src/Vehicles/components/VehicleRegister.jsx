@@ -21,9 +21,7 @@ export  function VehicleRegister(props) {
             <>
               <ModalHeader className="flex flex-col gap-3">Datos del Vehiculo</ModalHeader>
               <ModalBody>
-                <VehicleInfo/>
-                {<ModalHeader className="flex flex-col gap-3">Datos Adicionales</ModalHeader>}
-                <VehicleDetail vehicle={vehicles} />        
+                <VehicleInfo/>      
               </ModalBody>
             </>
           )}

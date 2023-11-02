@@ -9,7 +9,7 @@ import { useVehicles } from '../context/vehiclesContext';
 import { WatchVehicle } from './WatchVehicle';
 import {EditVehicle} from './EditVehicle';
 import { StatusVehicle } from './StatusVehicle';
-
+import { DeleteVehicle } from './DeleteVehicle';
 
 export  function CardVehicle() {
     const {vehicles} = useVehicles();
@@ -92,6 +92,7 @@ export  function CardVehicle() {
                  <WatchVehicle vehicle={vehicles} id={vehicles.id}/>
                  <EditVehicle vehicle={vehicles}/>
                  <StatusVehicle vehicle={vehicles}/>
+                 <DeleteVehicle vehicle={vehicles}/>
               
             </div>
           </CardBody>

@@ -34,14 +34,15 @@ export function RolesProvider({children}) {
         try {
             const res = await createRolRequest(roles);
             toast.success('Rol creado con exito!',{
-                position: toast.POSITION.TOP_CENTER
+                position: toast.POSITION.TOP_CENTER,
+                autoClose : 1500
             });
             getRoles();
             return res.data;
         } catch (error) {
-            console.log(error)
-            toast.error('Error al crear un rol.' ,{
-                position: toast.POSITION.TOP_CENTER
+            toast.error(error.response.data.message ,{
+                position: toast.POSITION.TOP_CENTER,
+                autoClose : 1500
             });
             throw new Error(error.message);
         }
@@ -50,17 +51,31 @@ export function RolesProvider({children}) {
     const updateRol = async (idroles, roles) => {
         try {
             await updateRolRequest(idroles, roles);
+            toast.success('Rol modificado con exito.',{
+                position: toast.POSITION.TOP_CENTER
+            });
+            getRoles();
         } catch (error) {
+            toast.error( error.response.data.message ,{
+                position: toast.POSITION.TOP_CENTER,
+                autoClose : 1500
+            });
             throw new Error(error.message);
         }
     };
 
     const deleteRol = async (roles) => {
         try {
-            const res = await deleteRolRequest(roles);
-            if(res.status === 204) setRoles(roles.filter((roles) => roles.id !== roles))
+             await deleteRolRequest(roles);
+             toast.success('Rol eliminado con exito.',{
+                position: toast.POSITION.TOP_CENTER
+            });
+            getRoles();
         } catch (error) {
-            
+            toast.error( error.response.data.message ,{
+                position: toast.POSITION.TOP_CENTER,
+                autoClose : 1500
+            });
         }
     };
 

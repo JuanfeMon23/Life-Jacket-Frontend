@@ -6,14 +6,23 @@ export function WatchClient (props) {
     const {isOpen, onOpen, onOpenChange} = useDisclosure();
     const client = props.client
 
+    const handleEvent = (event) => {
+      event.preventDefault();
+      toast.error('No puedes ver un cliente inhabilitado.' ,{
+        autoClose : 1500,
+        position: toast.POSITION.TOP_CENTER
+    });
+    };
+
     return (
         <>
-        <Button  className=' bg-gradient-to-r from-[#2D78BE] to-[#6D2CC0]' isIconOnly onPress={onOpen}><FiEye className="text-white text-2xl"/></Button>
+          {client.clientStatus === true ? <Button isIconOnly onPress={onOpen}className='bg-gradient-to-r from-[#2D78BE] to-[#6D2CC0]'>{<FiEye className='text-white text-2xl'/>}</Button>
+            :  <Button isIconOnly onClick={handleEvent} >{<FiEye className='text-white text-2xl'/>}</Button>} 
         <Modal isOpen={isOpen} onOpenChange={onOpenChange} size="2xl">
           <ModalContent>
             {(onClose) => (
               <>
-                <ModalHeader className=" bg-gradient-to-r from-[#252525] to-[#231949] text-white flex items-center ">Informacion del cliente</ModalHeader>
+                <ModalHeader className=" flex items-center ">Informacion del cliente</ModalHeader>
                   <ModalBody key={client.id}>
                     
                     <div className="m-5 flex justify-around">

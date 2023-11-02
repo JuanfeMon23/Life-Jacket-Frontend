@@ -33,16 +33,17 @@ export function ClientProvider({children}){
     const createClient = async (client) => {
         try {
             const res = await createClientRequest(client);
-            toast.success('Cliente creado con exito!',{
-                position: toast.POSITION.TOP_CENTER
+            toast.success('Cliente creado con exito.',{
+                position: toast.POSITION.TOP_CENTER,
+                autoClose : 1500
             });
             getClients();
             return res.data;
         } catch (error) {
-            toast.error('Error al crear.' ,{
-                position: toast.POSITION.TOP_CENTER
+            toast.error(error.response.data.message ,{
+                position: toast.POSITION.TOP_CENTER,
+                autoClose : 1500
             });
-            console.log(error);
             throw new Error(error.message);
         }
     };
@@ -51,12 +52,14 @@ export function ClientProvider({children}){
         try {
             await updateClientRequest(idClient, client);
             toast.success('Cliente actualizado con exito!',{
-                position: toast.POSITION.TOP_CENTER
+                position: toast.POSITION.TOP_CENTER,
+                autoClose : 1500
             });
             getClients();
         } catch (error) {
-            toast.error('Error al actualizar.' ,{
-                position: toast.POSITION.TOP_CENTER
+            toast.error(error.response.data.message ,{
+                position: toast.POSITION.TOP_CENTER,
+                autoClose : 1500
             });
             throw new Error(error.message);
         }
@@ -66,12 +69,14 @@ export function ClientProvider({children}){
         try {
             await stateClientRequest(idClient);
             toast.success('Estado actualizado con exito!',{
-                position: toast.POSITION.TOP_CENTER
+                position: toast.POSITION.TOP_CENTER,
+                autoClose: 1500
             });
             getClients();
         } catch (error) {
-            toast.error('Error al actualizar el estado.' ,{
-                position: toast.POSITION.TOP_CENTER
+            toast.error(error.response.data.message ,{
+                position: toast.POSITION.TOP_CENTER,
+                autoClose : 1500
             });
             throw new Error(error.message);
         }
