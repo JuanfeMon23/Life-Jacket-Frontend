@@ -10,7 +10,7 @@ export function DashboardPurchases() {
     const [years, setYears] = useState([]);
     const months = [
         'Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio',
-        'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Niciembre'
+        'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre'
     ];
 
     useEffect(() => {
@@ -72,7 +72,7 @@ export function DashboardPurchases() {
             y: {
                 title: {
                     display: true,
-                    text: 'Compras',
+                    text: 'Dinero',
                 },
                 min: 0,
             },
@@ -82,27 +82,31 @@ export function DashboardPurchases() {
     const handleYearChange = (event) => {
       setSelectedYear(parseInt(event.target.value));
     };
-    
+
     return (
-        <div className="w-[60vh] h-[37vh] bg-white rounded-lg m-3">
+        <div className="w-full md:w-1/3 lg:w-2/5 p-2">
+          <div className="bg-white rounded-lg m-3 p-3">
             <div className="m-3 p-2 flex justify-between">
-                <label className="font-bold text-lg">Dinero en compras por año</label>
-                <Select
-                    className="w-[150px] h-[32px]"
-                    label="Seleccionar año"
-                    value={selectedYear}
-                    onChange={handleYearChange}
-                >
-                    {years.map(year => (
-                        <SelectItem key={year} value={year}>
-                            {year}
-                        </SelectItem>
-                    ))}
-                </Select>
+              <label className="font-bold text-sm md:text-lg lg:text-xl">
+                Dinero en compras
+              </label>
+              <Select
+                className="w-[140px] h-[32px]"
+                label="Seleccionar año"
+                value={selectedYear}
+                onChange={handleYearChange}
+              >
+                {years.map((year) => (
+                  <SelectItem key={year} value={year}>
+                    {year}
+                  </SelectItem>
+                ))}
+              </Select>
             </div>
-        <Bar data={chartData} options={options} />
+            <Bar data={chartData} options={options} />
+          </div>
         </div>
-    ); 
+      );
 }
 
 const monthNames = {

@@ -334,8 +334,8 @@ export  function VehicleInfo() {
                           rules={{
                             required: "Campo requerido",
                             maxLength: {
-                              value: 6,
-                              message: "Maximo 6 caracteres"
+                              value: 15,
+                              message: "Maximo 15 caracteres"
                             }
                           }}
                           render={({ field }) => (

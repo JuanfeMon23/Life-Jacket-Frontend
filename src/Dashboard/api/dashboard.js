@@ -9,3 +9,5 @@ export const getDashboardImprovementsRequest = () => axios.get(`/Dashboard/Impro
 export const getDashboardVehiclesRequest = () => axios.get(`/Dashboard/Vehicles/totalVehicles`);
 
 export const getDashboardSalesCardRequest = () => axios.get(`/Dashboard/Sales/withMonth/Card`);
+
+export const getDashboardPurchasesCardRequest = () => axios.get(`/Dashboard/Purchases/withMonth/Card`);

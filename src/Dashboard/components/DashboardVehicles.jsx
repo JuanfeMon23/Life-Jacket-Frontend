@@ -18,8 +18,8 @@ export function DashboardVehicles() {
   }, []); // La función se ejecuta una vez al cargar el componente (debido al segundo argumento como array vacío [])
 
   return (
-    <div className="w-[300px] h-[150px] bg-white rounded-lg p-4 m-3 shadow-md">
-      <h2 className="text-xl font-bold mb-4">Total de Vehículos Activos</h2>
+    <div className="w-[270px] h-[120px] bg-green-200 bg-opacity-40 rounded-lg p-4 m-3 shadow-md">
+      <h2 className="text-xl font-bold mb-4">Vehículos activos</h2>
       <div className="text-3xl font-bold">{totalVehicles}</div>
     </div>
   );
