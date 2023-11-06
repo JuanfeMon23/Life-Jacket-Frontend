@@ -1,5 +1,32 @@
 import React, { useEffect, useState } from 'react';
-import { getDashboardPurchasesCardRequest } from "../api/dashboard";
+import { getDashboardExchangesCardRequest } from "../api/dashboard";
+import { FaExchangeAlt } from 'react-icons/fa'
+
+const cardStyles = {
+  width: '270px',
+  height: '120px',
+  background: 'linear-gradient(45deg, #8A2BE2, #9B59B6)',
+  borderRadius: '8px',
+  display: 'flex',
+  justifyContent: 'space-between',
+  alignItems: 'center',
+  padding: '16px',
+  color: 'white',
+  boxShadow: '0 4px 8px rgba(0, 0, 0, 0.2)',
+};
+
+const totalStyles = {
+  fontSize: '24px',
+  fontWeight: 'bold',
+};
+
+const titleStyles = {
+  fontSize: '16px',
+};
+
+const iconStyles = {
+  fontSize: '32px',
+};
 
 export function DashboardExchangesCard() {
   const [totalAmount, setTotalAmount] = useState(0);
@@ -7,36 +34,31 @@ export function DashboardExchangesCard() {
   useEffect(() => {
     const fetchTotalAmount = async () => {
       try {
-        const response = await getDashboardPurchasesCardRequest();
+        const response = await getDashboardExchangesCardRequest();
         const data = response.data;
         if (data.length > 0) {
-          const formattedTotalAmount = formatCurrency(data[0].totalAmount);
-          setTotalAmount(formattedTotalAmount);
+          setTotalAmount(data[0].totalAmount);
         } else {
-          setTotalAmount('0');
+          setTotalAmount(0);
         }
       } catch (error) {
-        console.error('Error al obtener datos de compras por cantidad de dinero:', error);
-        setTotalAmount('0');
+        console.error('Error al obtener datos de intercambios por cantidad de dinero:', error);
+        setTotalAmount(0);
       }
     };
 
     fetchTotalAmount();
   }, []);
 
-  const formatCurrency = (amount) => {
-    return new Intl.NumberFormat('es-CO', {
-      style: 'currency',
-      currency: 'COP',
-      minimumFractionDigits: 0
-    }).format(amount);
-  };
-
   return (
-    <div className="w-[270px] h-[120px] bg-blue-200 bg-opacity-40 rounded-lg p-4 m-3 shadow-md">
-      <h2 className="text-xl font-bold mb-4">Intercambios del mes</h2>
-      <div className="text-3xl font-bold">{totalAmount}</div>
+    <div style={cardStyles} className="rounded-lg p-4 m-3">
+      <div>
+        <div style={totalStyles}>{totalAmount}</div>
+        <div style={titleStyles}>Intercambios del mes actual</div>
+      </div>
+      <div style={iconStyles}>
+        <FaExchangeAlt />
+      </div>
     </div>
   );
-  
 }

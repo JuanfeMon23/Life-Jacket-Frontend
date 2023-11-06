@@ -51,7 +51,7 @@ export function DashboardPurchases() {
           label: `Compras en ${selectedYear}`,
           data: prepareChartData(),
           fill: true,
-          backgroundColor: 'rgba(54, 162, 235, 0.5)',
+          backgroundColor: '#ffcb80',
           type : 'bar'
       }],
     };
@@ -88,7 +88,7 @@ export function DashboardPurchases() {
           <div className="bg-white rounded-lg m-3 p-3">
             <div className="m-3 p-2 flex justify-between">
               <label className="font-bold text-sm md:text-lg lg:text-xl">
-                Dinero en compras
+                Dinero invertido en compras
               </label>
               <Select
                 className="w-[140px] h-[32px]"

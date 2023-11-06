@@ -45,15 +45,13 @@ export function DashboardSales() {
         Filler
     );
 
-    const colors = ['rgba(255, 99, 132, 0.5)', 'rgba(54, 162, 235, 0.5)', 'rgba(255, 206, 86, 0.5)', 'rgba(75, 192, 192, 0.5)', 'rgba(153, 102, 255, 0.5)'];
-   
     const chartData = {
         labels: months,
         datasets: [{
             label: `Ventas en ${selectedYear}`,
             data: prepareChartData(),
             fill: true,
-            backgroundColor: 'rgba(255, 99, 132, 0.5)',
+            backgroundColor: '#73b4ff',
             type : 'bar',
         }],
     };
@@ -90,7 +88,7 @@ export function DashboardSales() {
           <div className="bg-white rounded-lg m-3 p-3">
             <div className="m-3 p-2 flex justify-between">
               <label className="font-bold text-sm md:text-lg lg:text-xl">
-                Dinero en ventas
+                Dinero generado en ventas
               </label>
               <Select
                 className="w-[140px] h-[32px]"
