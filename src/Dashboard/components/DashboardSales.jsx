@@ -84,7 +84,7 @@ export function DashboardSales() {
     };
 
     return (
-        <div className="w-full md:w-1/3 lg:w-2/5 p-2">
+        <div className="flex-grow">
           <div className="bg-white rounded-lg m-3 p-3">
             <div className="m-3 p-2 flex justify-between">
               <label className="font-bold text-sm md:text-lg lg:text-xl">
@@ -105,7 +105,7 @@ export function DashboardSales() {
             </div>
             <Bar data={chartData} options={options} />
           </div>
-        </div>
+        </div>  
       );
 }
 

@@ -29,31 +29,31 @@ const iconStyles = {
 };
 
 export function DashboardExchangesCard() {
-  const [totalAmount, setTotalAmount] = useState(0);
+  const [totalExchanges, setTotalExchanges] = useState(0);
 
   useEffect(() => {
-    const fetchTotalAmount = async () => {
+    const fetchTotalExchanges = async () => {
       try {
         const response = await getDashboardExchangesCardRequest();
         const data = response.data;
         if (data.length > 0) {
-          setTotalAmount(data[0].totalAmount);
+          setTotalExchanges(data[0].totalExchanges);
         } else {
-          setTotalAmount(0);
+          setTotalExchanges(0);
         }
       } catch (error) {
         console.error('Error al obtener datos de intercambios por cantidad de dinero:', error);
-        setTotalAmount(0);
+        setTotalExchanges(0);
       }
     };
 
-    fetchTotalAmount();
+    fetchTotalExchanges();
   }, []);
 
   return (
     <div style={cardStyles} className="rounded-lg p-4 m-3">
       <div>
-        <div style={totalStyles}>{totalAmount}</div>
+        <div style={totalStyles}>{totalExchanges}</div>
         <div style={titleStyles}>Intercambios del mes actual</div>
       </div>
       <div style={iconStyles}>

@@ -16,36 +16,28 @@ export function DashBoard() {
 
 
   return (
-    <div className='flex'>
-        <div>
-            {<Title Title='Dashboard'/>}
-            <div className="flex flex-col sm:flex-row">
-              <div className="w-full sm:w-1/2 md:w-1/4 lg:w-1/5 p-2">
-                <DashboardVehicles />
-              </div>
-              <div className="w-full sm:w-1/2 md-w-1/4 lg:w-1/5 p-2">
-                <DashboardSalesCard />
-              </div>
-              <div className="w-full sm:w-1/2 md:w-1/4 lg:w-1/5 p-2">
-                <DashboardPurchasesCard />
-              </div>
-              <div className="w-full sm:w-1/2 md:w-1/4 lg:w-1/5 p-2">
-                <DashboardImprovementsCard />
-              </div>
-              <div className="w-full sm:w-1/2 md:w-1/4 lg:w-1/5 p-2">
-                <DashboardExchangesCard />
-              </div>
-          </div>
-
-          <div className="flex flex-col sm:flex-row justify-center">
-              <DashboardSales />
-              <DashboardPurchases />
-          </div>
-          <div className="flex flex-col sm:flex-row justify-center">
-              <DashboardImprovements />
-              <DashboardExchanges />
-          </div>
+  <div className='min-h-screen w-full flex flex-col'>
+    <div>
+      <Title Title='Dashboard' />
+      <div className='flex flex-col md:flex-row'>
+        <div className='flex flex-col w-full md:w-1/2'>
+          <DashboardSales />
+          <DashboardPurchases />
         </div>
+        <div className='flex flex-col w-full md:w-1/2'>
+          <DashboardImprovements />
+          <DashboardExchanges />
+        </div>
+        <div className='flex flex-col w-full md:w-1/2 lg:w-[30%] justify-center items-center'>
+          <DashboardVehicles />
+          <DashboardSalesCard />
+          <DashboardPurchasesCard />
+          <DashboardImprovementsCard />
+          <DashboardExchangesCard />
+        </div>
+      </div>
     </div>
-  )
+  </div>
+  );
+
 }
