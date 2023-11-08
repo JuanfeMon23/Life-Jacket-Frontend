@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from 'react';
-import { getDashboardSalesCardRequest } from "../api/dashboard";
-import {FaMoneyBillWave} from 'react-icons/fa';
+import { getDashboardPurchasesCardRequest } from "../api/dashboard";
+import {FaCartPlus} from 'react-icons/fa';
 
 const cardStyles = {
   width: '270px',
   height: '120px',
-  background: 'linear-gradient(45deg, #4099ff, #73b4ff)',
+  background: 'linear-gradient(45deg, #FFB64D, #ffcb80)',
   borderRadius: '8px',
   display: 'flex',
   justifyContent: 'space-between',
@@ -28,13 +28,13 @@ const iconStyles = {
   fontSize: '32px',
 };
 
-export function DashboardSalesCard() {
+export function DashboardPurchasesCard() {
   const [totalAmount, setTotalAmount] = useState(0);
 
   useEffect(() => {
     const fetchTotalAmount = async () => {
       try {
-        const response = await getDashboardSalesCardRequest();
+        const response = await getDashboardPurchasesCardRequest();
         const data = response.data;
         if (data.length > 0) {
           const formattedTotalAmount = formatCurrency(data[0].totalAmount);
@@ -43,7 +43,7 @@ export function DashboardSalesCard() {
           setTotalAmount('0');
         }
       } catch (error) {
-        console.error('Error al obtener datos de ventas por cantidad de dinero:', error);
+        console.error('Error al obtener datos de compras por cantidad de dinero:', error);
         setTotalAmount('0');
       }
     };
@@ -63,11 +63,12 @@ export function DashboardSalesCard() {
     <div style={cardStyles} className="rounded-lg p-4 m-3">
       <div>
         <div style={totalStyles}>{totalAmount}</div>
-        <div style={titleStyles}>Ventas del mes actual</div>
+        <div style={titleStyles}>Compras del mes actual</div>
       </div>
       <div style={iconStyles}>
-        <FaMoneyBillWave />
+        <FaCartPlus />
       </div>
     </div>
   );
+  
 }

@@ -10,7 +10,7 @@ export function DashboardSales() {
     const [years, setYears] = useState([]);
     const months = [
         'Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio',
-        'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Niciembre'
+        'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre'
     ];
 
     useEffect(() => {
@@ -45,15 +45,13 @@ export function DashboardSales() {
         Filler
     );
 
-    const colors = ['rgba(255, 99, 132, 0.5)', 'rgba(54, 162, 235, 0.5)', 'rgba(255, 206, 86, 0.5)', 'rgba(75, 192, 192, 0.5)', 'rgba(153, 102, 255, 0.5)'];
-   
     const chartData = {
         labels: months,
         datasets: [{
             label: `Ventas en ${selectedYear}`,
             data: prepareChartData(),
             fill: true,
-            backgroundColor: 'rgba(255, 99, 132, 0.5)',
+            backgroundColor: '#73b4ff',
             type : 'bar',
         }],
     };
@@ -74,7 +72,7 @@ export function DashboardSales() {
             y: {
                 title: {
                     display: true,
-                    text: 'Ventas',
+                    text: 'Dinero',
                 },
                 min: 0,
             },
@@ -86,25 +84,29 @@ export function DashboardSales() {
     };
 
     return (
-        <div className="w-[60vh] h-[37vh] bg-white rounded-lg m-3">
+        <div className="flex-grow">
+          <div className="bg-white rounded-lg m-3 p-3">
             <div className="m-3 p-2 flex justify-between">
-                <label className="font-bold text-lg">Dinero en ventas por año</label>
-                <Select
-                    className="w-[150px] h-[32px]"
-                    label="Seleccionar año"
-                    value={selectedYear}
-                    onChange={handleYearChange}
-                >
-                    {years.map((year) => (
-                        <SelectItem key={year} value={year}>
-                            {year}
-                        </SelectItem>
-                    ))}
-                </Select>
+              <label className="font-bold text-sm md:text-lg lg:text-xl">
+                Dinero generado en ventas
+              </label>
+              <Select
+                className="w-[140px] h-[32px]"
+                label="Seleccionar año"
+                value={selectedYear}
+                onChange={handleYearChange}
+              >
+                {years.map((year) => (
+                  <SelectItem key={year} value={year}>
+                    {year}
+                  </SelectItem>
+                ))}
+              </Select>
             </div>
-        <Bar data={chartData} options={options} />
-        </div>
-    );
+            <Bar data={chartData} options={options} />
+          </div>
+        </div>  
+      );
 }
 
 const monthNames = {
