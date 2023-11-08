@@ -25,7 +25,7 @@ export function DashboardExchanges() {
     }, []);
 
     const prepareChartData = () => {
-        const filteredData = data.filter(item => item.year === selectedYear && (filterByStatus === "" || item.exchangeCashPriceStatus.toString() === filterByStatus));
+        const filteredData = data.filter(item => item.year === selectedYear && item.exchangeCashPriceStatus.toString() === filterByStatus);
         const monthlyExchanges = months.map(month => {
             const exchangesData = filteredData.find(item => monthNames[item.month] === month);
             return exchangesData ? exchangesData.totalAmount : 0;
