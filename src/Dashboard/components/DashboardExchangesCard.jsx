@@ -2,31 +2,6 @@ import React, { useEffect, useState } from 'react';
 import { getDashboardExchangesCardRequest } from "../api/dashboard";
 import { FaExchangeAlt } from 'react-icons/fa'
 
-const cardStyles = {
-  width: '270px',
-  height: '120px',
-  background: 'linear-gradient(45deg, #8A2BE2, #9B59B6)',
-  borderRadius: '8px',
-  display: 'flex',
-  justifyContent: 'space-between',
-  alignItems: 'center',
-  padding: '16px',
-  color: 'white',
-  boxShadow: '0 4px 8px rgba(0, 0, 0, 0.2)',
-};
-
-const totalStyles = {
-  fontSize: '24px',
-  fontWeight: 'bold',
-};
-
-const titleStyles = {
-  fontSize: '16px',
-};
-
-const iconStyles = {
-  fontSize: '32px',
-};
 
 export function DashboardExchangesCard() {
   const [totalExchanges, setTotalExchanges] = useState(0);
@@ -51,14 +26,15 @@ export function DashboardExchangesCard() {
   }, []);
 
   return (
-    <div style={cardStyles} className="rounded-lg p-4 m-3">
+    <div className="w-[270px] h-[120px] bg-gradient-to-br from-purple-800 to-purple-600 rounded-lg flex justify-between items-center p-4 text-white shadow-md m-3">
       <div>
-        <div style={totalStyles}>{totalExchanges}</div>
-        <div style={titleStyles}>Intercambios del mes actual</div>
+        <div className="text-2xl font-bold">{totalExchanges}</div>
+        <div className="text-1x1">Intercambios del mes actual</div>
       </div>
-      <div style={iconStyles}>
+      <div className="text-2xl">
         <FaExchangeAlt />
       </div>
     </div>
   );
+  
 }
