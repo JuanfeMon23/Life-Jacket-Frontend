@@ -6,6 +6,7 @@ import { ButtonAccept } from '../../components/ButtonAccept';
 import {useForm, Controller} from 'react-hook-form';
 import { useClients } from '../context/clientsContext';
 import { Select, SelectItem } from '@nextui-org/react';
+import {AiOutlinePlusCircle} from 'react-icons/Ai';
 
 export  function ClientRegister() {
 const {isOpen, onOpen, onOpenChange} = useDisclosure();
@@ -19,7 +20,7 @@ const onSubmit = (data) => {
 
   return (
     <div className='flex'>
-    <Button onPress={onOpen}className='bg-gradient-to-r from-cyan-500 to-blue-800 absolute right-0 top-11 mx-6 my-20 text-white font-bold'>Registrar</Button>
+         <Button endContent={<AiOutlinePlusCircle className=' text-2xl'/>} color="primary" variant="solid" onPress={onOpen} className=' text-white font-bold'>Agregar</Button>
       <Modal isOpen={isOpen} onOpenChange={onOpenChange}>
         <ModalContent>
           {(onClose) => (

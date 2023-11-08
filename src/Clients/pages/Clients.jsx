@@ -1,9 +1,8 @@
 import { useEffect } from "react";
-import { Navigation } from "../../components/globalComponents/Navigation";
 import { Title } from "../../components/globalComponents/Title";
-import { ClientRegister } from "../components/ClientRegister";
 import { useClients } from "../context/clientsContext";
-import { CardClient } from "../components/CardClients";
+import {TableClients} from "../components/TableClients";
+
 
 export function Clients() {
     const {getClients} = useClients();
@@ -18,8 +17,7 @@ export function Clients() {
           <div>
             {<Title Title='Clientes'/>}
             <div className="">
-            <ClientRegister/>
-              <CardClient/>
+              <TableClients/>
             </div>
 
           </div>

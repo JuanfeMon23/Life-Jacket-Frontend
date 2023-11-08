@@ -1,6 +1,7 @@
 import React, { useEffect } from "react";
 import {Modal, ModalContent, ModalHeader, ModalBody, ModalFooter, Button, useDisclosure} from "@nextui-org/react";
 import {FiEye}from "react-icons/fi";
+import { toast } from "react-toastify";
 
 export function WatchClient (props) {
     const {isOpen, onOpen, onOpenChange} = useDisclosure();
@@ -16,7 +17,7 @@ export function WatchClient (props) {
 
     return (
         <>
-          {client.clientStatus === true ? <Button isIconOnly onPress={onOpen}className='bg-gradient-to-r from-[#2D78BE] to-[#6D2CC0]'>{<FiEye className='text-white text-2xl'/>}</Button>
+          {client.clientStatus === "true" ? <Button isIconOnly onPress={onOpen}className='bg-gradient-to-r from-[#2D78BE] to-[#6D2CC0]'>{<FiEye className='text-white text-2xl'/>}</Button>
             :  <Button isIconOnly onClick={handleEvent} >{<FiEye className='text-white text-2xl'/>}</Button>} 
         <Modal isOpen={isOpen} onOpenChange={onOpenChange} size="2xl">
           <ModalContent>

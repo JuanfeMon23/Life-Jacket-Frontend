@@ -25,7 +25,7 @@ export  function StatusVehicle(props) {
 
   return (
     <div className='flex'>
-    {vehicles.vehicleStatus === true ? <Button  isIconOnly className=' bg-green-600 rounded-lg' onPress={onOpen}><GrStatusGood className='text-2xl'/></Button>
+    {vehicles.vehicleStatus === "true" ? <Button  isIconOnly className=' bg-green-600 rounded-lg' onPress={onOpen}><GrStatusGood className='text-2xl'/></Button>
      : <Button isIconOnly  onPress={onOpen}><TiDeleteOutline className='text-white text-2xl'/></Button>}
       <Modal isOpen={isOpen} onOpenChange={onOpenChange}>
         <ModalContent>

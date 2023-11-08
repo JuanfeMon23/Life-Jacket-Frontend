@@ -1,12 +1,12 @@
 import React,{useState, useEffect} from 'react'
 import { useClients } from '../context/clientsContext'
-import { WatchClient } from './WatchClient';
 import {Card, CardBody} from "@nextui-org/react";
 import { Button } from '@nextui-org/react';
 import { Link } from 'react-router-dom';
 import {AiTwotoneEdit} from 'react-icons/Ai';
 import {FaSearch} from 'react-icons/fa';
 import {Input} from "@nextui-org/react";
+import { WatchClient } from './WatchClient';
 import { ClientEdit } from './ClientEdit';
 import { StatusClient } from './StatusClient';
 import { DeleteClient } from './DeleteClient';

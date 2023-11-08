@@ -71,7 +71,7 @@ export  function TableUsers() {
       return filteredUsers;
     }, [users, filterValue, statusFilter]);
 
-    const pages = Math.ceil(filteredItems.length / rowsPerPage);
+  const pages = Math.ceil(filteredItems.length / rowsPerPage);
 
   const items = React.useMemo(() => {
     const start = (page - 1) * rowsPerPage;
@@ -221,20 +221,23 @@ export  function TableUsers() {
         >
       <TableHeader>
             {columns.map((item) => (
-                <TableColumn key={item.uid}>
+                <TableColumn 
+                key={item.uid}
+                align={item.uid === "actions" ? "center" : "start"}
+                >
                     {item.name}
                 </TableColumn>
             ))}
       </TableHeader>
-      <TableBody emptyContent={"No hay usuarios"}>
-            {filteredItems.map((item) => (
+      <TableBody emptyContent={"No hay usuarios registrados."}>
+            {items.map((item) => (
                 <TableRow key={item.idUser}>
                     <TableCell>{item.userName}</TableCell>
                     <TableCell>{item.userLastName}</TableCell> 
-                    <TableCell>{item.userLastName}</TableCell>
+                    <TableCell>{item.userEmail}</TableCell> 
                     <TableCell>{item.Role.rolName}</TableCell>
                     <TableCell>{item.userStatus === "true" ?  <Chip color="success">Activo</Chip> : <Chip color="default">Inactivo</Chip>}</TableCell>
-                    <TableCell className=" flex justify-normal">
+                    <TableCell className=" flex">
                         <WatchUser user={item}/>
                         <EditUser user={item}/> 
                         <StatusUser  user={item} />

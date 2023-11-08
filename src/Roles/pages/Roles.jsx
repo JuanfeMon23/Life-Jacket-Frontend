@@ -1,8 +1,7 @@
 import React, { useEffect } from 'react'
 import { useRoles } from "../../Roles/context/rolesContext";
 import { Title } from "../../components/globalComponents/Title";
-import { RolesRegister } from '../components/rolesRegister';
-import { CardRoles } from '../components/CardRoles';
+import { TableRoles } from '../components/TableRoles';
 export  function Roles() {
     const {getRoles} = useRoles();
 
@@ -13,10 +12,9 @@ export  function Roles() {
   return (
     <div className=' flex'>
         <div>
-          {<Title Title='Roles'/>}
-            <RolesRegister/>       
+          {<Title Title='Roles'/>}      
           <div className=" flex flex-wrap">
-            <CardRoles/>
+            <TableRoles/>
           </div>               
         </div>
     </div>
