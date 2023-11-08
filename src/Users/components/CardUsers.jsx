@@ -99,7 +99,7 @@ export function CardUsers() {
             </div>
 
             <div className='flex  justify-between pt-3'>
-                <WatchUser user={data} id={data.id}/>
+                <WatchUser user={data}/>
                 <EditUser user={data}/> 
                 <StatusUser  user={data} />
                 <DeleteUsers user={data} />

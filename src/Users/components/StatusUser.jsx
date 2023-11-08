@@ -18,13 +18,13 @@ export  function StatusUser(props) {
 
   return (
 <div className='flex'>
-    {user.userStatus === true ? <Button isIconOnly className='  bg-emerald-600 rounded-lg' onPress={onOpen}>< TiDeleteOutline className={`text-2xl text-white`}/></Button> 
+    {user.userStatus === "true" ? <Button isIconOnly className='  bg-emerald-600 rounded-lg' onPress={onOpen}>< TiDeleteOutline className={`text-2xl text-white`}/></Button> 
     : <Button isIconOnly onPress={onOpen}>< HiOutlineCheckCircle className='text-white text-2xl'/></Button>}
       <Modal isOpen={isOpen} onOpenChange={onOpenChange}>
         <ModalContent>
           {(onClose) => (
             <>
-              <ModalHeader className=" justify-center text-2xl m-4">¿Deseas {user.userStatus ? 'inhabilitar' : 'Habilitar'} el  usuario?</ModalHeader>
+              <ModalHeader className=" justify-center text-2xl m-4">¿Deseas {user.userStatus === 'false' ? 'Habilitar' : 'Inhabilitar'} el  usuario?</ModalHeader>
               <ModalBody>
                 <form onSubmit={handleSubmit(onSubmit)}>
                     <div className=' text-center m-3'>

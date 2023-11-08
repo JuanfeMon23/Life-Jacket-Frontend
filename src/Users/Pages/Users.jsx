@@ -6,6 +6,7 @@ import { CardUsers } from "../components/CardUsers";
 import { RolesRegister } from "../../Roles/components/rolesRegister";
 import { useRoles } from "../../Roles/context/rolesContext";
 import { CardRoles } from "../../Roles/components/CardRoles";
+import {TableUsers} from "../components/TableUsers";
 
 
 export function Users() {
@@ -23,9 +24,8 @@ export function Users() {
         
         <div>
           {<Title Title='Usuarios'/>}
-            <UserRegister/>
           <div className="">
-            <CardUsers/>
+            <TableUsers/>
           </div>
           
         </div>
