@@ -21,6 +21,9 @@ import {Roles} from "./Roles/pages/Roles.jsx";
 import 'react-toastify/dist/ReactToastify.css';
 import { AuthProvider } from "./Login/context/AuthContext.jsx";
 import { ProtectedRoute } from "./components/ProtectedRoute.jsx";
+import { ExchangeProvider } from "./Exchangues/context/ExchangeContext.jsx";
+import { TableOne } from "./Exchangues/components/Table.jsx";
+import { CreateExchange } from "./Exchangues/components/CreateExchange.jsx";
 
 
 function Navigator (){
@@ -34,6 +37,7 @@ function App() {
     <>
       <AuthProvider>
       <VehicleProvider>
+      <ExchangeProvider>
       <PurchaseProvider>
       <SellProvider>
       <UserProvider>
@@ -54,7 +58,9 @@ function App() {
                 <Route path='/Purchases' element={<Purchases/>}/>
                 <Route path="/Improvements" element={<Improvements/>}/>
                 <Route path="/DashBoard" element={<DashBoard/>}/>
-                <Route path="/Exchangues" element={<Exchangues/>}/>   
+                <Route path="/Exchangues" element={<Exchangues/>}/>
+                <Route path="/Exchangues/create" element={<CreateExchange/>}/>      
+                <Route path="/Table" element={<TableOne/>}/>  
               </Route>                    
             </Routes>
           <ToastContainer/> 
@@ -66,6 +72,7 @@ function App() {
       </UserProvider>
       </SellProvider>
       </PurchaseProvider>
+      </ExchangeProvider>
       </VehicleProvider>
       </AuthProvider>
     </>

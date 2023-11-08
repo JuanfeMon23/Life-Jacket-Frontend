@@ -27,16 +27,16 @@ export function NewNavigation() {
     ]
 
   return (
-    <div className=' '>
-          <nav className= " xl:w-72 md:w-45 sm:w-25  bg-[#0D0628] xl:h-[98vh] md:h-[95vh]   p-5 s rounded-xl m-2 duration-300 ease-in-out">
+    <div className=' lg:w-72  md:w-[25vh] '>
+          <nav className= " w-[10vh] h-screen sm:w-[28vh]  bg-[#0D0628] lg:h-[98vh] md:h-[95vh]   p-5 s rounded-xl m-2 duration-300 ease-in-out">
             <div className="flex gap-x-4 items-center">
             </div>
-            <ul className="pt-6 ">
+            <ul className="pt-6  ">
               {Menus.map((Menu) => (
                 <Link to={Menu.path}>
-                <li key={Menu.title} className={` p-4  text-white  flex rounded-lg items-center gap-x-4 md:gap-x-6 cursor-pointer 
+                <li key={Menu.title} className={` text-white/0 sm:text-white  p-4    sm:flex  rounded-lg items-center gap-x-4 md:gap-x-6 cursor-pointer 
                   ${location.pathname === Menu.path ? 'bg-gradient-to-r from-cyan-500 to-blue-800 text-white' : ' hover:bg-slate-200/20'}`}>
-                        <Menu.icon />
+                        <Menu.icon className=' text-white' />
                         <span className="origin-left duration-200 ">
                             {Menu.title}
                         </span>

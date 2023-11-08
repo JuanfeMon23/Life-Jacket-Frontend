@@ -30,7 +30,7 @@ const statusColorMap = {
 
 const INITIAL_VISIBLE_COLUMNS = ["name", "role", "status", "actions","email", "age", "id", "team"];
 
-export  function TableExchangue() {
+export  function TableOne() {
   const [filterValue, setFilterValue] = React.useState("");
   const [selectedKeys, setSelectedKeys] = React.useState(new Set([]));
   const [visibleColumns, setVisibleColumns] = React.useState(new Set(INITIAL_VISIBLE_COLUMNS));
@@ -40,6 +40,7 @@ export  function TableExchangue() {
     column: "age",
     direction: "ascending",
   });
+
   const [page, setPage] = React.useState(1);
 
   const hasSearchFilter = Boolean(filterValue);
@@ -109,7 +110,7 @@ export  function TableExchangue() {
         );
       case "status":
         return (
-          <Chip className="capitalize" color={statusColorMap[user.status]} size="sm" variant="flat">
+          <Chip className="capitalize"  size="sm" variant="flat">
             {cellValue}
           </Chip>
         );
@@ -267,6 +268,7 @@ export  function TableExchangue() {
   }, [selectedKeys, items.length, page, pages, hasSearchFilter]);
 
   return (
+    <div className=" w-[17rem] md:m-3 sm:w-[15rem] md:w-[55rem] lg:h-[40rem] lg:w-[100rem]">
         <Table
         aria-label="Example table with custom cells, pagination and sorting"
         isCompact
@@ -285,6 +287,7 @@ export  function TableExchangue() {
     >
       <TableHeader columns={headerColumns}>
         {(column) => (
+           console.log(column),
           <TableColumn
             key={column.uid}
             align={column.uid === "actions" ? "center" : "start"}
@@ -295,12 +298,14 @@ export  function TableExchangue() {
         )}
       </TableHeader>
       <TableBody emptyContent={"No hay usuarios"} items={sortedItems}>
-        {(item) => (
+        {(item) => ( 
           <TableRow key={item.id}>
             {(columnKey) => <TableCell>{renderCell(item, columnKey)}</TableCell>}
           </TableRow>
         )}
       </TableBody>
     </Table>
+    </div>
+
   );
 }
