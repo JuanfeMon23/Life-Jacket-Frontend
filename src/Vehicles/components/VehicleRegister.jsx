@@ -3,6 +3,7 @@ import {Modal, ModalContent, ModalHeader, ModalBody, useDisclosure, Button} from
 import { VehicleInfo } from './VehicleInfo';
 import { VehicleDetail } from './VehicleDetail';
 import { useVehicles } from '../context/vehiclesContext';
+import {AiOutlinePlusCircle} from 'react-icons/Ai';
 
 export  function VehicleRegister(props) {
     const [scrollBehavior, setScrollBehavior] = React.useState("inside");
@@ -14,7 +15,7 @@ export  function VehicleRegister(props) {
 
   return (
     <div className='flex'>
-    <Button onPress={onOpen}className='absolute right-0 top-11 mx-6 my-20 bg-gradient-to-r from-cyan-500 to-blue-800 text-white font-bold'>Registrar</Button>
+      <Button endContent={<AiOutlinePlusCircle className=' text-2xl'/>} color="primary" variant="solid" onPress={onOpen} className=' text-white font-bold'>Agregar</Button>    
       <Modal isOpen={isOpen} onOpenChange={onOpenChange} scrollBehavior={scrollBehavior}>
         <ModalContent>
           {(onClose) => (

@@ -1,43 +1,46 @@
-import React from "react";
+import React from 'react'
+import { useVehicles } from '../context/vehiclesContext';
 import {
-  Table,
-  TableHeader,
-  TableColumn,
-  TableBody,
-  TableRow,
-  TableCell,
-  Input,
-  Button,
-  DropdownTrigger,
-  Dropdown,
-  DropdownMenu,
-  DropdownItem,
-  Chip,
-  Pagination,
-} from "@nextui-org/react";
-import {RolesRegister} from './RolesRegister'
+    Table,
+    TableHeader,
+    TableColumn,
+    TableBody,
+    TableRow,
+    TableCell,
+    Input,
+    Button,
+    DropdownTrigger,
+    Dropdown,
+    DropdownMenu,
+    DropdownItem,
+    Chip,
+    Pagination,
+  } from "@nextui-org/react";
 import {FaSearch} from 'react-icons/fa';
 import {IoIosArrowDown} from 'react-icons/io';
-import { useRoles } from "../context/rolesContext";
-import { AddLicenses } from "./AddLicenses";
+import { WatchVehicle } from './WatchVehicle';
+import {EditVehicle} from './EditVehicle';
+import { StatusVehicle } from './StatusVehicle';
+import { DeleteVehicle } from './DeleteVehicle';
+import {VehicleRegister} from './VehicleRegister';
 
-
-const statusOptions = [
+  const statusOptions = [
     {name: "Activo" , uid: "true"},
     {name: "Inactivo", uid: "false"}
-  ];    
-
-
+  ];
+  
   const columns = [
-    {name: "Nombre del rol", uid: "name", sortable: true},
-    {name: "Permisos", uid: "sortname", sortable: true},
+    {name: "Placa", uid: "name", sortable: true},
+    {name: "Marca", uid: "sortname", sortable: true},
+    {name: "Linea", uid: "sortname", sortable: true},
+    {name: "Modelo", uid: "status", sortable: true},
     {name: "Estado", uid: "status", sortable: true},
     {name: "Acciones", uid: "role", sortable: true}
   ];  
 
 
-export  function TableRoles() {
-    const {roles} = useRoles();
+export  function TableVehicles() {
+    const {vehicles} = useVehicles();
     const [filterValue, setFilterValue] = React.useState("");
     const [selectedKeys, setSelectedKeys] = React.useState(new Set([]));
     const [statusFilter, setStatusFilter] = React.useState("all");
@@ -48,22 +51,26 @@ export  function TableRoles() {
     const hasSearchFilter = Boolean(filterValue);
 
     const filteredItems = React.useMemo(() => {
-        let filteredRoles = [...roles];
+        let filteredVehicles = [...vehicles];
     
         if (hasSearchFilter) {
-          filteredRoles = filteredRoles.filter((roles) =>
-            roles.rolName.toLowerCase().includes(filterValue.toLowerCase()) 
+          filteredVehicles = filteredVehicles.filter((vehicles) =>
+          vehicles.licensePlate.toLowerCase().includes(filterValue.toLowerCase()) ||
+          vehicles.brand.toLowerCase().includes(filterValue.toLowerCase())  ||
+          vehicles.line.toLowerCase().includes(filterValue.toLowerCase())  ||
+          vehicles.model.toLowerCase().includes(filterValue.toLowerCase())  ||
+          vehicles.vehicleType.toLowerCase().includes(filterValue.toLowerCase()) 
           );
         }
     
         if (statusFilter !== "all" && Array.from(statusFilter).length !== statusOptions.length) {
-          filteredRoles = filteredRoles.filter((roles) => 
-            Array.from(statusFilter).includes(roles.rolStatus) 
+          filteredVehicles = filteredVehicles.filter((vehicles) => 
+            Array.from(statusFilter).includes(vehicles.vehicleStatus) 
           );
         }
     
-        return filteredRoles;
-      }, [roles, filterValue, statusFilter]);
+        return filteredVehicles;
+      }, [vehicles, filterValue, statusFilter]);
 
       const pages = Math.ceil(filteredItems.length / rowsPerPage);
 
@@ -142,11 +149,11 @@ export  function TableRoles() {
                     ))}
                   </DropdownMenu>
                 </Dropdown>
-                <RolesRegister/>
+                <VehicleRegister/>
               </div>
             </div>
             <div className="flex justify-between items-center">
-              <span className="text-default-400 text-small">Total de roles: {roles.length} </span>
+              <span className="text-default-400 text-small">Total de vehiculos: {vehicles.length} </span>
               <label className="flex items-center text-default-400 text-small">
                 Filas por pagina
                 <select
@@ -165,7 +172,7 @@ export  function TableRoles() {
         filterValue,
         statusFilter,
         onRowsPerPageChange,
-        roles.length,
+        vehicles.length,
         onSearchChange,
         hasSearchFilter,
       ]);
@@ -219,14 +226,19 @@ export  function TableRoles() {
                 </TableColumn>
             ))}
       </TableHeader>
-      <TableBody emptyContent={"No hay roles registrados"}>
+      <TableBody emptyContent={"No hay vehículos registrados"}>
             {items.map((item) => (
-                <TableRow key={item.idRol}>
-                    <TableCell>{item.rolName}</TableCell>
-                    <TableCell>permisos</TableCell> 
-                    <TableCell>{item.rolStatus === "true" ?  <Chip color="success">Activo</Chip> : <Chip color="default">Inactivo</Chip>}</TableCell>
+                <TableRow key={item.idVehicle}>
+                    <TableCell>{item.licensePlate}</TableCell>
+                    <TableCell>{item.brand}</TableCell> 
+                    <TableCell>{item.line}</TableCell> 
+                    <TableCell>{item.model}</TableCell> 
+                    <TableCell>{item.vehicleStatus === "true" ?  <Chip color="success">Activo</Chip> : <Chip color="default">Inactivo</Chip>}</TableCell>
                     <TableCell className=" flex justify-normal">
-                        <AddLicenses roles={item} />
+                        <WatchVehicle vehicle={item} />
+                        <EditVehicle vehicle={item} />
+                        <StatusVehicle vehicle={item} />
+                        <DeleteVehicle vehicle={item} />
                     </TableCell>
                 </TableRow>
             ))}

@@ -4,7 +4,7 @@ import {useForm, Controller} from 'react-hook-form';
 import { usePurchases } from '../context/purchaseContext';
 import { useClients } from '../../Clients/context/clientsContext';
 import { useVehicles } from '../../Vehicles/context/vehiclesContext';
-import { RegisterButton } from '../../components/buttons/RegisterButton';
+import {AiOutlinePlusCircle} from 'react-icons/Ai';
 
 
 export function PurchaseRegister() {
@@ -21,7 +21,7 @@ export function PurchaseRegister() {
 
   return (
     <div className='flex'>
-    <Button onPress={onOpen} className='absolute right-0 top-15 m-5 bg-gradient-to-r from-cyan-500 to-blue-800 text-white font-bold'> Registrar</Button>
+      <Button endContent={<AiOutlinePlusCircle className=' text-2xl'/>} color="primary" variant="solid" onPress={onOpen} className=' text-white font-bold'>Agregar</Button>    
       <Modal isOpen={isOpen} onOpenChange={onOpenChange} isDismissable={false}>
         <ModalContent>
           {(onClose) => (
@@ -49,7 +49,7 @@ export function PurchaseRegister() {
                                     field.onChange(e);
                                   }}
                                 >
-                                  {clients.filter(client => client.clientStatus === true).map((client) => (
+                                  {clients.filter(client => client.clientStatus === "true").map((client) => (
                                     <SelectItem key={client.idClient} value={client.clientDocument}>
                                         {client.clientDocument}
                                     </SelectItem>
@@ -78,7 +78,7 @@ export function PurchaseRegister() {
                                     field.onChange(e);
                                   }}
                                 >
-                                {vehicles.filter(vehicles => vehicles.vehicleStatus === true).map((vehicles) => (
+                                {vehicles.filter(vehicles => vehicles.vehicleStatus === "true").map((vehicles) => (
                                     <SelectItem key={vehicles.idVehicle} value={vehicles.licensePlate}>
                                         {vehicles.licensePlate}
                                     </SelectItem>

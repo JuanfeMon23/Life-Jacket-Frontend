@@ -24,7 +24,7 @@ export  function StatusImprovement(props) {
         <ModalContent>
           {(onClose) => (
             <>
-              <ModalHeader className=" items-center">¿Deseas cambiar el estado del vehículo?</ModalHeader>
+              <ModalHeader className=" items-center">¿Deseas cambiar el estado de la mejora?</ModalHeader>
               <ModalBody>
                 <form onSubmit={handleSubmit(onSubmit)}>
                     <div className=' text-center m-3'>

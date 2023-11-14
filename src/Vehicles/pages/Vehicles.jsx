@@ -5,6 +5,7 @@ import { VehicleRegister } from "../components/VehicleRegister";
 import { CardVehicle } from "../components/CardVehicle";
 import { useVehicles } from "../context/vehiclesContext";
 import { vehicle } from "../../../vehicles";
+import { TableVehicles } from "../components/TableVehicles";
 
 
 export function Vehicles() {
@@ -19,8 +20,7 @@ export function Vehicles() {
         <div>
           {<Title Title='Vehículos'/>}
           <div>
-            <VehicleRegister vehicle={vehicle}/>
-            <CardVehicle/>
+            <TableVehicles/>
           </div>
            
         </div>

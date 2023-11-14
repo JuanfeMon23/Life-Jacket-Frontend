@@ -3,7 +3,7 @@ import {Modal, ModalContent, ModalHeader, ModalBody, ModalFooter, useDisclosure,
 import {useForm, Controller} from 'react-hook-form';
 import { useClients } from '../../Clients/context/clientsContext';
 import { useVehicles } from '../../Vehicles/context/vehiclesContext';
-import { useParams, useNavigate } from 'react-router-dom';
+import {AiOutlinePlusCircle} from 'react-icons/Ai';
 import { useSells } from '../context/sellsContext';
 
 
@@ -19,7 +19,7 @@ export function SaleRegister() {
     }
   return (
     <div className='flex'>
-    <Button onPress={onOpen}className='absolute right-0 top-15 m-5 bg-gradient-to-r from-cyan-500 to-blue-800 text-white font-bold'>Registrar</Button>
+      <Button endContent={<AiOutlinePlusCircle className=' text-2xl'/>} color="primary" variant="solid" onPress={onOpen} className=' text-white font-bold'>Agregar</Button>    
       <Modal isOpen={isOpen} onOpenChange={onOpenChange} isDismissable={false}>
         <ModalContent>
           {(onClose) => (

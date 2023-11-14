@@ -1,116 +1,250 @@
 import React,{useState, useEffect}  from 'react'
+import {
+  Table,
+  TableHeader,
+  TableColumn,
+  TableBody,
+  TableRow,
+  TableCell,
+  Input,
+  Button,
+  DropdownTrigger,
+  Dropdown,
+  DropdownMenu,
+  DropdownItem,
+  Chip,
+  Pagination,
+} from "@nextui-org/react";
 import {FaSearch} from 'react-icons/fa';
-import {Input} from "@nextui-org/react";
-import {useImprovements} from '../context/improvementsContext';
-import {Table, TableHeader, TableColumn, TableBody, TableRow, TableCell, Pagination} from "@nextui-org/react";
+import {IoIosArrowDown} from 'react-icons/io';
+import { useImprovements } from '../context/improvementsContext';
+import {ImprovementRegister} from './ImprovementRegister';
 import { StatusImprovement } from './StatusImprovement';
+
+const statusOptions = [
+  {name: "Activo" , uid: "true"},
+  {name: "Inactivo", uid: "false"}
+];  
+
+const columns = [
+  {name: "Placa del vehículo", uid: "name", sortable: true},
+  {name: "Descripcion", uid: "sortname", sortable: true},
+  {name: "Fecha", uid: "role", sortable: true},
+  {name: "Valor de la mejora", uid: "email"},
+  {name: "Estado", uid: "status", sortable: true},
+  {name: "Acciones", uid: "actions"},
+];
 
 export  function TableImpovements() {
     const {improvements} = useImprovements();
+    const [filterValue, setFilterValue] = React.useState("");
+    const [selectedKeys, setSelectedKeys] = React.useState(new Set([]));
+    const [statusFilter, setStatusFilter] = React.useState("all");
+    const [rowsPerPage, setRowsPerPage] = React.useState(5);
+
     const [page, setPage] = React.useState(1);
-    const rowsPerPage = 10;
+
+    const hasSearchFilter = Boolean(filterValue);
   
-    const pages = Math.ceil(improvements.length / rowsPerPage);
+    const filteredItems = React.useMemo(() => {
+      let filteredImprovements = [...improvements];
   
+      if (hasSearchFilter) {
+        filteredImprovements = filteredImprovements.filter((improvement) =>
+          improvement.vehicle.licensePlate.toLowerCase().includes(filterValue.toLowerCase()) 
+
+        );
+      }
+  
+      if (statusFilter !== "all" && Array.from(statusFilter).length !== statusOptions.length) {
+        filteredImprovements = filteredImprovements.filter((improvement) => 
+          Array.from(statusFilter).includes(improvement.improvementStatus) 
+        );
+      }
+  
+      return filteredImprovements;
+    }, [improvements, filterValue, statusFilter]);
+
+    const pages = Math.ceil(filteredItems.length / rowsPerPage);
+
     const items = React.useMemo(() => {
       const start = (page - 1) * rowsPerPage;
       const end = start + rowsPerPage;
   
-      return improvements.slice(start, end);
-    }, [page, improvements]);
+      return filteredItems.slice(start, end);
+    }, [page, filteredItems, rowsPerPage]);
+  
+  
+  
+    const onNextPage = React.useCallback(() => {
+      if (page < pages) {
+        setPage(page + 1);
+      }
+    }, [page, pages]);
+  
+    const onPreviousPage = React.useCallback(() => {
+      if (page > 1) {
+        setPage(page - 1);
+      }
+    }, [page]);
+  
+    const onRowsPerPageChange = React.useCallback((e) => {
+      setRowsPerPage(Number(e.target.value));
+      setPage(1);
+    }, []);
+  
+    const onSearchChange = React.useCallback((value) => {
+      if (value) {
+        setFilterValue(value);
+        setPage(1);
+      } else {
+        setFilterValue("");
+      }
+    }, []);
+  
+    const onClear = React.useCallback(()=>{
+      setFilterValue("")
+      setPage(1)
+    },[])
 
-
-    const [query, setQuery] = useState('');
-    const [searchResults, setSearchResults] = useState([]);
-
-    const keys = ['improvementDescription'];
-
-    const handleChange = (e) => {
-      setQuery(e.target.value);
-    };
-
-    useEffect(() => {
-      const search = improvements.filter((purchase) => 
-        keys.some((key) => purchase[key].toLowerCase().includes(query))
+    const topContent = React.useMemo(() => {
+      return (
+        <div className="flex flex-col gap-4 mt-5">
+          <div className="flex justify-between gap-3 items-end">
+            <Input
+              isClearable
+              className=" max-w-[50%] "
+              placeholder="Buscar..."
+              startContent={<FaSearch />}
+              value={filterValue}
+              onClear={() => onClear()}
+              onValueChange={onSearchChange}
+            />
+            <div className="flex gap-3">
+              <Dropdown>
+                <DropdownTrigger className=" sm:flex">
+                  <Button startContent={<IoIosArrowDown/>} color="primary" variant="flat" >
+                    Estado
+                  </Button>
+                </DropdownTrigger>
+                <DropdownMenu
+                  disallowEmptySelection
+                  aria-label="Table Columns"
+                  closeOnSelect={false}
+                  selectedKeys={statusFilter}
+                  selectionMode="multiple"
+                  onSelectionChange={setStatusFilter}
+                >
+                  {statusOptions.map((status) => (
+                    <DropdownItem key={status.uid} className="capitalize">
+                      {status.name}
+                    </DropdownItem>
+                  ))}
+                </DropdownMenu>
+              </Dropdown>
+              <ImprovementRegister/>
+            </div>
+          </div>
+          <div className="flex justify-between items-center">
+            <span className="text-default-400 text-small">Total de mejoras: {improvements.length} </span>
+            <label className="flex items-center text-default-400 text-small">
+              Filas por pagina
+              <select
+                className="bg-transparent outline-none text-default-400 text-small"
+                onChange={onRowsPerPageChange}
+              >
+                <option value="5">5</option>
+                <option value="10">10</option>
+                <option value="15">15</option>
+              </select>
+            </label>
+          </div>
+        </div>
       );
-      setSearchResults(search);
-    },[query, improvements]);
+    }, [
+      filterValue,
+      statusFilter,
+      onRowsPerPageChange,
+      improvements.length,
+      onSearchChange,
+      hasSearchFilter,
+    ]);
+
+    const bottomContent = React.useMemo(() => {
+      return (
+        <div className="py-2 px-2 flex justify-between items-center">
+          <span className="w-[30%] text-small text-default-400">
+          </span>
+          <Pagination
+            isCompact
+            showControls
+            showShadow
+            color="primary"
+            page={page}
+            total={pages}
+            onChange={setPage}
+          />
+          <div className="hidden sm:flex w-[30%] justify-end gap-2">
+            <Button isDisabled={pages === 1} size="sm"  color="primary" onPress={onPreviousPage}>
+              Anterior
+            </Button>
+            <Button isDisabled={pages === 1} size="sm"  color="primary" onPress={onNextPage}>
+              Siguiente
+            </Button>
+          </div>
+        </div>
+      );
+    }, [selectedKeys, items.length, page, pages, hasSearchFilter]);
+
+  
   return (
-    <>
-    <div className="w-[340px] h-[100px] px-5 m-5 rounded-2xl  justify-center items-centertext-white relative ">
-      <Input
-        onChange={handleChange}
-        value={query}
-        label={'Buscar mejora'}
-        isClearable
-        radius="lg"
-        classNames={{
-          label: "text-black/50 dark:text-white/90",
-          input: [
-            "bg-transparent",
-            "text-black/90 dark:text-white/90",
-            "placeholder:text-default-700/50 dark:placeholder:text-white/60",
-          ],
-          innerWrapper: "bg-transparent",
-          inputWrapper: [
-            "shadow-xl",
-            "dark:bg-default/60",
-            "backdrop-blur-xl",
-            "backdrop-saturate-200",
-            "hover:bg-default-200/70",
-            "dark:hover:bg-default/70",
-            "group-data-[focused=true]:bg-default-200/50",
-            "dark:group-data-[focused=true]:bg-default/60",
-            "!cursor-text",
-          ],
-        }}
-        placeholder={''}
-        startContent={
-          <FaSearch className="text-black/50 dark:text-white/90 text-slate-400 pointer-events-none flex-shrink-0" /> 
-        }
-/>
-
-  </div>
-  <div className=' flex flex-wrap'>
-      <Table color='primary' selectionMode="single"
-                bottomContent={
-                  <div className="flex w-full justify-center">
-                    <Pagination
-                      isCompact
-                      showControls
-                      showShadow
-                      color="primary"
-                      page={page}
-                      total={pages}
-                      onChange={(page) => setPage(page)}
-                    />
-                  </div>
-                }
-                classNames={{
-                  wrapper: "min-h-[222px]",
-                }}
-      >
-          <TableHeader>
-              <TableColumn>Placa del vehículo</TableColumn>
-              <TableColumn>Descripción </TableColumn>
-              <TableColumn>Fecha</TableColumn>
-              <TableColumn>Precio</TableColumn>
-              <TableColumn>Estado</TableColumn>
-          </TableHeader>
-          <TableBody emptyContent={"Aun no hay registros."}>
-              {searchResults.map((improvement) => (
-                  <TableRow key={improvement.idImprovements}>
-                      <TableCell>{improvement.vehicle.licensePlate}</TableCell>
-                      <TableCell>{improvement.improvementDescription}</TableCell>
-                      <TableCell>{improvement.improvementDate}</TableCell>
-                      <TableCell>{improvement.improvementPrice}</TableCell>
-                      <TableCell><StatusImprovement improvement={improvement}/></TableCell>
-                  </TableRow>
-              ))}
-          </TableBody>
-      </Table>
-     </div>
-
-     </>
+    <div className=" w-screen">
+    <Table
+        aria-label="User Table"
+        isCompact
+        color='primary'
+        bottomContentPlacement="outside"
+        bottomContent={bottomContent}
+        selectedKeys={selectedKeys}
+        topContent={topContent}
+        topContentPlacement="outside"
+        onSelectionChange={setSelectedKeys}
+    >
+  <TableHeader>
+        {columns.map((item) => (
+            <TableColumn 
+            key={item.uid}
+            align={item.uid === "actions" ? "center" : "start"}
+            >
+                {item.name}
+            </TableColumn>
+        ))}
+  </TableHeader>
+  <TableBody emptyContent={"No hay mejoras registradas."}>
+        {items.map((item) => (
+            <TableRow key={item.idImprovements}>
+                <TableCell>{item.vehicle.licensePlate}</TableCell>
+                <TableCell>{item.improvementDescription}</TableCell> 
+                <TableCell>
+                {new Date(item.improvementDate).toLocaleString("es-ES", {
+                            year: "numeric",
+                            month: "2-digit",
+                            day: "2-digit",
+                            hour: "2-digit",
+                            minute: "2-digit"
+                          })}
+                </TableCell> 
+                <TableCell>
+                  {typeof item.improvementPrice === "number" ? item.improvementPrice.toLocaleString("es-ES", { style: "currency", currency: "COP" }) : "No válido"}
+                </TableCell>
+                <TableCell>{item.improvementStatus === "true" ?  <Chip color="success">Activo</Chip> : <Chip color="default">Inactivo</Chip>}</TableCell>
+                <TableCell className=" flex">
+                    <StatusImprovement improvement={item}/>
+                </TableCell>
+            </TableRow>
+        ))}
+  </TableBody>
+</Table>
+</div>
   )
 }

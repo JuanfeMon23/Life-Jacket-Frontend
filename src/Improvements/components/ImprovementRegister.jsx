@@ -7,11 +7,12 @@ import {Modal, ModalContent, ModalHeader, ModalBody, ModalFooter, useDisclosure}
 import {Select, SelectItem} from "@nextui-org/react";
 import { Button } from '@nextui-org/react';
 import { useParams, useNavigate } from 'react-router-dom';
+import {AiOutlinePlusCircle} from 'react-icons/Ai';
 
 export function ImprovementRegister() {
     const {isOpen, onOpen, onOpenChange} = useDisclosure();
     const {getVehicles, vehicles} = useVehicles();
-    const {register , setValue, handleSubmit, formState:{errors}, control} = useForm();
+    const {register , setValue, handleSubmit, formState:{errors}, control, reset} = useForm();
     const {createImprovement} = useImprovements();
     const params = useParams();
 
@@ -22,12 +23,13 @@ export function ImprovementRegister() {
 
     const onSubmit = (data) => {
         createImprovement(data);
+        reset();
         
     };
 
   return (
     <div className='flex'>
-        <Button onPress={onOpen}className='absolute right-0 top-11 mx-6 my-20 bg-gradient-to-r from-cyan-500 to-blue-800 text-white font-bold'>Registrar</Button>
+      <Button endContent={<AiOutlinePlusCircle className=' text-2xl'/>} color="primary" variant="solid" onPress={onOpen} className=' text-white font-bold'>Agregar</Button>
         <Modal isOpen={isOpen} onOpenChange={onOpenChange} isDismissable={false}>
             <ModalContent>
             {(onClose) => (
@@ -45,7 +47,6 @@ export function ImprovementRegister() {
                                 render={({field}) => (
                                     <Select
                                     {...field}
-                                    type="text"
                                     label="Placa del vehículo"
                                     variant="bordered"
                                     color={errors.idVehicleImprovement ? "danger" : ""}
@@ -55,11 +56,11 @@ export function ImprovementRegister() {
                                         field.onChange(e);
                                     }}
                                     >
-                                    {vehicles.map((vehicles) => (
+                                {vehicles.filter(vehicles => vehicles.vehicleStatus === "true").map((vehicles) => (
                                     <SelectItem key={vehicles.idVehicle} value={vehicles.licensePlate}>
                                         {vehicles.licensePlate}
                                     </SelectItem>
-                                ))}
+                                  ))}
                                     </Select>
                                 )}
                                 />

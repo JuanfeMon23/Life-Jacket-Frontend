@@ -55,7 +55,8 @@ export  function TableClients() {
       if (hasSearchFilter) {
         filteredClients = filteredClients.filter((client) =>
           client.clientName.toLowerCase().includes(filterValue.toLowerCase()) ||
-          client.clientLastName.toLowerCase().includes(filterValue.toLowerCase())
+          client.clientLastName.toLowerCase().includes(filterValue.toLowerCase()) ||
+          client.clientDocument.toLowerCase().includes(filterValue.toLowerCase())
         );
       }
   
@@ -199,7 +200,7 @@ export  function TableClients() {
         );
       }, [selectedKeys, items.length, page, pages, hasSearchFilter]);
   return (
-    <div className=" w-[17rem] md:m-3 sm:w-[15rem] md:w-[55rem] lg:h-[40rem] lg:w-[100rem]">
+    <div className=" w-screen">
     <Table
         aria-label="clients Table"
         isCompact

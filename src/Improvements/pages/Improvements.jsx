@@ -16,7 +16,6 @@ export function Improvements() {
     <div className=' flex'>
         <div>
             {<Title Title='Mejoras'/>}
-            <ImprovementRegister/>
             <div>
                 <TableImpovements/> 
             </div>
