@@ -47,7 +47,7 @@ export function SaleRegister() {
                                     field.onChange(e);
                                   }}
                                 >
-                                  {clients.filter(client => client.clientStatus === true).map((client) => (
+                                  {clients.filter(client => client.clientStatus === "true").map((client) => (
                                     <SelectItem key={client.idClient} value={client.clientDocument}>
                                         {client.clientDocument}
                                     </SelectItem>
@@ -76,7 +76,7 @@ export function SaleRegister() {
                                     field.onChange(e);
                                   }}
                                 >
-                                {vehicles.filter(vehicles => vehicles.vehicleStatus === true).map((vehicles) => (
+                                {vehicles.filter(vehicles => vehicles.vehicleStatus === "true").map((vehicles) => (
                                     <SelectItem key={vehicles.idVehicle} value={vehicles.licensePlate}>
                                         {vehicles.licensePlate}
                                     </SelectItem>

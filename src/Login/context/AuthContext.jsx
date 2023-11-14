@@ -1,6 +1,7 @@
 import { createContext, useContext, useEffect, useState } from "react";
 import { toast } from "react-toastify";
 import { loginRequest, verifyTokenRequest } from "../api/Auht";
+import { Navigate } from "react-router-dom";
 import Cookies from "js-cookie";
 
 
@@ -50,6 +51,7 @@ export function AuthProvider({children}){
               if(!res.data){
                   setIsAutenticated(false);
                   setLoading(false);
+                  if(isAutenticated === false) return <Navigate to='/' />
               }
 
               setIsAutenticated(true);
