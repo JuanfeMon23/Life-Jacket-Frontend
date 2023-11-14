@@ -6,6 +6,7 @@ import {useForm, Controller} from 'react-hook-form';
 import { useUsers } from '../Context/userContext';
 import {Select, SelectItem} from "@nextui-org/react";
 import { useRoles } from '../../Roles/context/rolesContext';
+import { useAuth } from '../../Login/context/AuthContext';
 import {AiOutlinePlusCircle} from 'react-icons/Ai';
 
 export  function UserRegister() {

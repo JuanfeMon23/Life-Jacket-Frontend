@@ -7,6 +7,7 @@ import { RolesRegister } from "../../Roles/components/rolesRegister";
 import { useRoles } from "../../Roles/context/rolesContext";
 import { CardRoles } from "../../Roles/components/CardRoles";
 import {TableUsers} from "../components/TableUsers";
+import { Navigation } from "../../components/globalComponents/Navigation";
 
 
 export function Users() {
@@ -19,9 +20,7 @@ export function Users() {
       },[]);
 
       
-    return (
-      <div className='flex '>
-        
+    return (     
         <div>
           {<Title Title='Usuarios'/>}
           <div className="">
@@ -30,6 +29,5 @@ export function Users() {
           
         </div>
           
-      </div>
     )
   }

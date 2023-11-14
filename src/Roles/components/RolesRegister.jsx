@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import {Modal, ModalContent, ModalHeader, ModalBody, useDisclosure} from "@nextui-org/react";
 import {Input} from "@nextui-org/react";
 import {Select, SelectSection, SelectItem} from "@nextui-org/react";
@@ -9,20 +9,28 @@ import { useRoles } from '../context/rolesContext';
 import {Switch} from "@nextui-org/react";
 import { useUsers } from '../../Users/Context/userContext';
 import {AiOutlinePlusCircle} from 'react-icons/Ai';
+import { AddLicenses } from './AddLicenses';
 
 export  function RolesRegister() {
 const {isOpen, onOpen, onOpenChange} = useDisclosure();
 const {control , handleSubmit, formState:{errors}, reset} = useForm();
-const {createRol} = useRoles();
+const {createRol, getRoles} = useRoles();
+const {roles} = useRoles();
 const {getUsers, users} = useUsers();
+const [idRol, setIdRol] = useState();
 
 const onSubmit = (data) => {
-  {onSubmit ? createRol(data) && reset() : ''}
-  useEffect(() => {
-    getUsers();
-    users();
-  },[])
+  if (onSubmit){
+    createRol(data);
+    reset();
+    getRoles();
+    setIdRol(roles.idRol)
+  }
 };
+
+useEffect(() => {
+  getUsers();
+},[]);
 
   return (
     <div className='flex'>
@@ -71,27 +79,7 @@ const onSubmit = (data) => {
                   <div className=' text-center my-3 '>
                       <ButtonAccept/>
                   </div>       
-                </form>
-
-                
-                <ModalHeader className="flex ">Asignacion de permisos</ModalHeader>
-                  <div className=' my-2 flex justify-between'>
-                    <Switch defaultSelected color="success">Usuarios</Switch>
-                    <Switch defaultSelected color="success">Vehiculos</Switch>
-                    <Switch defaultSelected color="success">Compras</Switch>
-                  </div>
-                  <div className=' my-2 flex justify-between'>       
-                    <Switch defaultSelected color="success">Ventas</Switch>
-                    <Switch defaultSelected color="success">Clientes</Switch>
-                    <Switch defaultSelected color="success">Mejoras</Switch>
-                  </div>
-                  <div>
-                    <Switch defaultSelected color="success">Cambios</Switch>
-                  </div>
-
-                  <div className=' text-center my-3 '>
-                      <ButtonAccept/>
-                  </div> 
+                </form>    
               </ModalBody>
             </>
           )}

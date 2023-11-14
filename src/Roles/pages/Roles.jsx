@@ -4,9 +4,11 @@ import { Title } from "../../components/globalComponents/Title";
 import { TableRoles } from '../components/TableRoles';
 export  function Roles() {
     const {getRoles} = useRoles();
+    const {getLicenses} = useRoles();
 
     useEffect(() => {
         getRoles();
+        getLicenses();
     },[]);
 
   return (

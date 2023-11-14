@@ -7,7 +7,7 @@ import { toast } from "react-toastify";
 
 
 export function Login() {
-  const {autenticated, login } = useAuth();
+  const {isAutenticated, login} = useAuth();
   const { handleSubmit, formState:{errors}, control, reset} = useForm();
   const navigate = useNavigate();
   
@@ -15,15 +15,15 @@ export function Login() {
   const onSubmit = (data) => login(data);
 
   useEffect(() => {
-    if (autenticated) {
+    if (isAutenticated) {
       navigate("/Dashboard");
 
     } 
-  }, [autenticated]);
+  }, [isAutenticated]);
 
   return (
       <>
-        <section className="bg-gray-50 min-h-screen flex items-center justify-center">
+        <section className="bg-gray-50 min-h-screen flex ">
               <div className="bg-gray-100 flex rounded-2xl shadow-lg max-w-3xl p-5 items-center">
                 <div className="md:w-1/2 px-8 md:px-16">
                   <h2 className="font-bold text-2xl text-[#002D74] my-7">Inicio de sesión</h2>

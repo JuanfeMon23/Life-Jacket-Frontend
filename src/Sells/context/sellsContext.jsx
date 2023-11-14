@@ -15,7 +15,6 @@ export const useSells = () => {
 export function SellProvider({children}) {
     const [sells, setSells] = useState([]);
     const {getVehicles} = useVehicles();
-    console.log(sells);
     
     const getSells = async () => {
         try {

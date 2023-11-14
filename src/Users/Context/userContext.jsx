@@ -1,20 +1,22 @@
 import { createContext, useContext, useState } from "react";
 import { toast } from "react-toastify";
-import { createUserRequest, getUserRequest, getUsersRequest, updateUserRequest, deleteUserRequest, searchUserRequest, stateUserRequest } from "../api/Users.js";
+import { createUserRequest, getUserRequest, getUsersRequest, updateUserRequest, deleteUserRequest, stateUserRequest } from "../api/Users.js";
+import { useAuth } from "../../Login/context/AuthContext.jsx"; 
 
 const UserContext = createContext();
 
 export const useUsers = () => {
     const context = useContext(UserContext);
-    if (!context) throw new Error('UserContext debe ser usado con un UserProvider');
     return context;
  };
 
+ 
 export function UserProvider ({children}) {
     const [users, setUsers] = useState([]);
 
     const getUsers = async () => {
         try {
+
             const res = await getUsersRequest();
             setUsers(res.data);
             
@@ -32,23 +34,16 @@ export function UserProvider ({children}) {
         }
     };
 
-    const searchUser = async (search) => {
-        try {
-            const res = await searchUserRequest(search);
-            return res.data;
-        } catch (error) {
-            throw new Error(error.message);
-        }
-    };
 
     const createUser = async (user) => {
         try {
-            const res = await createUserRequest(user);
+            const res = await createUserRequest(user );
             toast.success('Usuario Creado con exito!',{
                 position: toast.POSITION.TOP_CENTER,
                 autoClose : 1500
             });
             getUsers();
+            console.log(res.data);
             return res.data;
         } catch (error) {
             console.log(error)
@@ -114,7 +109,7 @@ export function UserProvider ({children}) {
 
     return (
         <UserContext.Provider
-        value={{users,getUser,getUsers,createUser,updateUser,deleteUser,searchUser, statusUser
+        value={{users,getUser,getUsers,createUser,updateUser,deleteUser, statusUser
         }}
         >
             {children}         

@@ -35,7 +35,7 @@ export function NewNavigation() {
               {Menus.map((Menu) => (
                 <Link to={Menu.path}>
                 <li key={Menu.title} className={` text-white/0 sm:text-white  lg:p-4    sm:flex  rounded-lg items-center gap-x-4 md:gap-x-6 cursor-pointer 
-                  ${location.pathname === Menu.path ? 'bg-[#DFDCE6] text-[#0D0628]' : ' hover:bg-slate-200/20'}`}>
+                  ${location.pathname === Menu.path ? ' text-[#0D0628] bg-[#DFDCE6] ' : ' hover:bg-slate-200/20'}`}>
                         <Menu.icon className=' text-white' />
                         <span className="origin-left duration-200 ">
                             {Menu.title}

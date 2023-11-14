@@ -1,6 +1,7 @@
 import { createContext, useContext, useEffect, useState } from "react";
 import { toast } from "react-toastify";
-import { loginRequest, verifytokenRequest } from "../api/Auht";
+import { loginRequest, verifyTokenRequest } from "../api/Auht";
+import Cookies from "js-cookie";
 
 
 const AuthContext = createContext();
@@ -11,21 +12,20 @@ export const useAuth = () => {
 };
 
 export function AuthProvider({children}){
-    const [data, setData] = useState(null);
-    const [autenticated, setautenticated] = useState(true);
-    const [loading, setLoading] = useState(false);
+  const [user, setUser] = useState(null);
+  const [isAutenticated, setIsAutenticated] = useState(false);
+  const [loading, setLoading] = useState(true);
 
 
     const login = async (data) => {
         try {
             const res = await loginRequest(data);
-            setData(res.data);
-            setautenticated(true);
+            setIsAutenticated(true);
+            setUser(res.data);
             toast.success('Bienvenid@',{
-                    position: toast.POSITION.TOP_CENTER,
-                    autoClose : 1500
+                      position: toast.POSITION.TOP_CENTER,
+                      autoClose : 1500
             });
-
         } catch (error) {
             toast.error(error.response.data.message,{
                 position: toast.POSITION.TOP_CENTER,
@@ -35,37 +35,44 @@ export function AuthProvider({children}){
         }
     };
 
+    useEffect(() => {
+      async function checkLogin(){
+          const cookies = Cookies.get();
 
-    const logout = () => {
-        setData(null);
-        setautenticated(false);
-      };
-      
-      useEffect(() => {
-        const checkLogin = async (req) => {
-          const token = req.headers['authorization'];
-          if (!token) {
-            setautenticated(false);
-            setLoading(false);
-            return;
-          }
-      
+          if(!cookies.token) {
+              setIsAutenticated(false);
+              setLoading(false);
+              return setUser(null);
+          };
+
           try {
-            const res = await verifytokenRequest(token);
-            if (!res.data) return setautenticated(false);
-            setautenticated(true);
-            setUser(res.data);
-            setLoading(false);
+              const res = await verifyTokenRequest(cookies.token);
+              if(!res.data){
+                  setIsAutenticated(false);
+                  setLoading(false);
+              }
+
+              setIsAutenticated(true);
+              setUser(res.data);
+              setLoading(false);
           } catch (error) {
-            setautenticated(false);
-            setLoading(false);
+              setIsAutenticated(false);
+              setUser(null);
           }
-        };
-        checkLogin();
-       }, []);
+      }
+      checkLogin();
+  }, [])
+
+
+    
+    const logout = () => {
+        Cookies.remove("token");
+        setUser(null);
+        setIsAutenticated(false);
+    };
 
     return (
-        <AuthContext.Provider value={{data, login, logout, autenticated, loading} } >
+        <AuthContext.Provider value={{user, login, logout, isAutenticated, loading, loading} } >
             {children}
         </AuthContext.Provider>
     )

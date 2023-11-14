@@ -19,6 +19,7 @@ import {RolesRegister} from './RolesRegister'
 import {FaSearch} from 'react-icons/fa';
 import {IoIosArrowDown} from 'react-icons/io';
 import { useRoles } from "../context/rolesContext";
+import { AddLicenses } from "./AddLicenses";
 
 
 const statusOptions = [
@@ -225,7 +226,7 @@ export  function TableRoles() {
                     <TableCell>permisos</TableCell> 
                     <TableCell>{item.rolStatus === "true" ?  <Chip color="success">Activo</Chip> : <Chip color="default">Inactivo</Chip>}</TableCell>
                     <TableCell className=" flex justify-normal">
-                        Acciones
+                        <AddLicenses roles={item} />
                     </TableCell>
                 </TableRow>
             ))}

@@ -24,11 +24,12 @@ import { ProtectedRoute } from "./components/ProtectedRoute.jsx";
 import { ExchangeProvider } from "./Exchangues/context/ExchangeContext.jsx";
 import { TableOne } from "./Exchangues/components/Table.jsx";
 import { CreateExchange } from "./Exchangues/components/CreateExchange.jsx";
+import { Navigation } from "./components/globalComponents/Navigation.jsx";
 
 
 function Navigator (){
   const location = useLocation();
-  return location.pathname !== "/" && <NewNavigation />;
+  return location.pathname !== "/" && <Navigation/> ;
 };
 
 function App() { 
@@ -36,44 +37,45 @@ function App() {
   return (
     <>
       <AuthProvider>
-      <VehicleProvider>
-      <ExchangeProvider>
-      <PurchaseProvider>
-      <SellProvider>
-      <UserProvider>
-      <RolesProvider>
-      <ClientProvider>
-      <ImprovementProvider>       
-        <BrowserRouter>
-        <div className=" flex">
-          {<Navigator/>}
-            <Routes>
-              <Route path='/' element={<Login/>}/>
-              <Route element={<ProtectedRoute/>}>
-                <Route path='/Users' element={<Users/>}/>
-                <Route path='/Roles' element={<Roles/>}/>
-                <Route path='/Clients' element={<Clients/>}/>
-                <Route path='/Sells' element={<Sells/>}/>
-                <Route path='/Vehicles' element={<Vehicles/>}/>
-                <Route path='/Purchases' element={<Purchases/>}/>
-                <Route path="/Improvements" element={<Improvements/>}/>
-                <Route path="/DashBoard" element={<DashBoard/>}/>
-                <Route path="/Exchangues" element={<Exchangues/>}/>
-                <Route path="/Exchangues/create" element={<CreateExchange/>}/>      
-                <Route path="/Table" element={<TableOne/>}/>  
-              </Route>                    
-            </Routes>
-          <ToastContainer/> 
-          </div>      
-        </BrowserRouter>
-      </ImprovementProvider>
-      </ClientProvider>
-      </RolesProvider>
-      </UserProvider>
-      </SellProvider>
-      </PurchaseProvider>
-      </ExchangeProvider>
-      </VehicleProvider>
+        <VehicleProvider>
+        <ExchangeProvider>
+        <PurchaseProvider>
+        <SellProvider>
+        <UserProvider>
+        <RolesProvider>
+        <ClientProvider>
+        <ImprovementProvider>       
+                        <BrowserRouter>
+                        <div className=" flex bg-violet-200/25 h-screen w-screen">
+                          {<Navigator/>}
+                            <Routes>
+                              <Route path='/' element={<Login/>}/>
+                              
+                              <Route element={<ProtectedRoute/>}>
+                                <Route path='/Users' element={<Users/>}/>
+                                <Route path='/Roles' element={<Roles/>}/>
+                                <Route path='/Clients' element={<Clients/>}/>
+                                <Route path='/Sells' element={<Sells/>}/>
+                                <Route path='/Vehicles' element={<Vehicles/>}/>
+                                <Route path='/Purchases' element={<Purchases/>}/>
+                                <Route path="/Improvements" element={<Improvements/>}/>
+                                <Route path="/DashBoard" element={<DashBoard/>}/>
+                                <Route path="/Exchangues" element={<Exchangues/>}/>
+                                <Route path="/Exchangues/create" element={<CreateExchange/>}/>      
+                                <Route path="/Table" element={<TableOne/>}/>  
+                              </Route>                    
+                            </Routes>
+                          <ToastContainer/> 
+                          </div>      
+                        </BrowserRouter>
+          </ImprovementProvider>
+          </ClientProvider>
+          </RolesProvider>
+          </UserProvider>
+          </SellProvider>
+          </PurchaseProvider>
+          </ExchangeProvider>
+          </VehicleProvider>
       </AuthProvider>
     </>
   )

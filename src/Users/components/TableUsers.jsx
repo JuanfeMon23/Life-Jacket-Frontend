@@ -119,7 +119,7 @@ export  function TableUsers() {
         <div className="flex justify-between gap-3 items-end">
           <Input
             isClearable
-            className=" sm:max-w-[30%] shadow-xl"
+            className=" max-w-[50%] "
             placeholder="Buscar..."
             startContent={<FaSearch />}
             value={filterValue}
@@ -128,7 +128,7 @@ export  function TableUsers() {
           />
           <div className="flex gap-3">
             <Dropdown>
-              <DropdownTrigger className="hidden sm:flex">
+              <DropdownTrigger className=" sm:flex">
                 <Button startContent={<IoIosArrowDown/>} color="primary" variant="flat" >
                   Estado
                 </Button>
@@ -204,16 +204,13 @@ export  function TableUsers() {
 
 
   return (
-    <div className=" w-[17rem] md:m-3 sm:w-[15rem] md:w-[55rem] lg:h-[40rem] lg:w-[100rem]">
+    <div className=" w-screen">
         <Table
             aria-label="User Table"
             isCompact
             color='primary'
             bottomContentPlacement="outside"
             bottomContent={bottomContent}
-            classNames={{
-                wrapper: "max-h-[582px]"
-            }}
             selectedKeys={selectedKeys}
             topContent={topContent}
             topContentPlacement="outside"
