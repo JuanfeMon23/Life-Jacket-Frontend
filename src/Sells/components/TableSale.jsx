@@ -248,7 +248,6 @@ export  function TableSale() {
                     <TableCell className=" flex justify-normal">
                         <WatchSale sale={item} />
                         <StatusSale sale={item} />
-                        <DeleteSale sale={item} />
                     </TableCell>
                 </TableRow>
             ))}

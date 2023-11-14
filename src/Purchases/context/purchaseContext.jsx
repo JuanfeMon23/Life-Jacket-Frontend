@@ -24,7 +24,7 @@ export function PurchaseProvider ({children}) {
     const createPurchase = async (purchase) => {
         try {
             const res = await createPurchaseRequest(purchase);
-            toast.success('Compra Creado con extio!',{
+            toast.success('Compra Creado con exito.',{
                 position: toast.POSITION.TOP_CENTER
             });
             getPurchases();
@@ -41,7 +41,7 @@ export function PurchaseProvider ({children}) {
     const statusPurchase = async (idPurchase) => {
         try {
             await statusPurchasesRequest(idPurchase);
-            toast.success('Estado de compra modificado con extio!',{
+            toast.success('Estado de anulada con exito.',{
                 position: toast.POSITION.TOP_CENTER
             });
             getPurchases();

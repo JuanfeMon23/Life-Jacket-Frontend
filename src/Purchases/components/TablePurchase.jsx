@@ -244,11 +244,10 @@ export  function TablePurchase() {
                     </TableCell> 
                     <TableCell>{item.vehicle.licensePlate}</TableCell> 
                     <TableCell>{item.client.clientName}</TableCell> 
-                    <TableCell>{item.statusPurchase === "true" ?  <Chip color="success">Activo</Chip> : <Chip color="default">Inactivo</Chip>}</TableCell>
+                    <TableCell>{item.purchaseStatus === "true" ?  <Chip color="success">Activo</Chip> : <Chip color="default">Inactivo</Chip>}</TableCell>
                     <TableCell className=" flex justify-normal">
                         <WatchPurchase purchase={item} />
                         <StatusPurchase purchase={item} />
-                        <DeletePurchase purchase={item} />
                     </TableCell>
                 </TableRow>
             ))}

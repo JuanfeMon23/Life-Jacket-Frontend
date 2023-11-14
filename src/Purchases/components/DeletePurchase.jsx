@@ -25,7 +25,7 @@ export  function DeletePurchase(props) {
 
   return (
     <div className=' flex'>
-        {purchase.purchaseStatus === "false"  ? <Button className=' bg-green-600 rounded-lg' onPress={onOpen}><GrStatusGood className='text-2xl'/></Button> : <Button className=' bg-slate-600 rounded-lg' onClick={handleDelete}><TiDeleteOutline className='text-white text-2xl'/></Button>}
+        {purchase.purchaseStatus === "false"  ? <Button isIconOnly className=' bg-green-600 rounded-lg' onPress={onOpen}><GrStatusGood className='text-2xl'/></Button> : <Button isIconOnly className=' bg-slate-600 rounded-lg' onClick={handleDelete}><TiDeleteOutline className='text-white text-2xl'/></Button>}
         <Modal isOpen={isOpen} onOpenChange={onOpenChange}>
         <ModalContent>
           {(onClose) => (
