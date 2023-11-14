@@ -54,7 +54,7 @@ export function SellProvider({children}) {
             });
             getSells();
         } catch (error) {
-            toast.error('Error al cambiar al anular la venta.' ,{
+            toast.error(error.response.data.message  ,{
                 position: toast.POSITION.TOP_CENTER,
                 autoClose : 1500
             });

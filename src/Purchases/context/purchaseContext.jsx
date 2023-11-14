@@ -46,7 +46,7 @@ export function PurchaseProvider ({children}) {
             });
             getPurchases();
         } catch (error) {
-            toast.error('Error al cambiar de estado.' ,{
+            toast.error(error.response.data.message  ,{
                 position: toast.POSITION.TOP_CENTER
             });
         }
@@ -55,7 +55,7 @@ export function PurchaseProvider ({children}) {
     const deletePurchase = async (idPurchase) => {
         try {
             await deletePurchaseRequest(idPurchase);
-            toast.success('Compra eliminada con extio!',{
+            toast.success('Compra eliminada con exito!',{
                 autoClose : 1500,
                 position: toast.POSITION.TOP_CENTER
             });
