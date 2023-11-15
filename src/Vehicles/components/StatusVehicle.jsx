@@ -5,7 +5,6 @@ import {useForm} from 'react-hook-form';
 import {GrStatusGood} from 'react-icons/gr'
 import {TiDeleteOutline} from 'react-icons/ti'
 import { useVehicles } from '../context/vehiclesContext';
-import { toast } from 'react-toastify';
 
 export  function StatusVehicle(props) {
     const {isOpen, onOpen, onOpenChange} = useDisclosure();
@@ -33,7 +32,7 @@ export  function StatusVehicle(props) {
         <ModalContent>
           {(onClose) => (
             <>
-              <ModalHeader className=" justify-center text-2xl m-4 ">¿Deseas anular el vehículo?</ModalHeader>
+              <ModalHeader className=" justify-center ">¿Deseas anular el vehículo?</ModalHeader>
               <ModalBody>
                 <form onSubmit={handleSubmit(onSubmit)}>
                     <div className=' text-center m-3'>

@@ -1,7 +1,7 @@
 import { createContext, useContext, useState } from "react";
 import { toast } from "react-toastify";
 import { getExchangesRequest,  createExchangeRequest,  updateExchangeRequest, createExchangeDetailRequest ,
-    cancelExchangeRequest, cancelExchangeDetailRequest, nullifyExchangeRequest, reportExchangeRequest } from "../api/Exchangues";
+    cancelExchangeRequest, cancelExchangeDetailRequest, nullifyExchangeRequest, informPurchaseRequest } from "../api/Exchangues";
 
 const ExchangeContext = createContext();
 
@@ -47,7 +47,7 @@ export function ExchangeProvider({children}){
         }
     };
 
-    const createExchnageDetail = async (idExchange, exchangeDetail) => {
+    const createExchangeDetail = async (idExchange, exchangeDetail) => {
         try {
             const res = await createExchangeDetailRequest(idExchange,exchangeDetail );
             setExchanges(res);
@@ -105,17 +105,24 @@ export function ExchangeProvider({children}){
         }
     };
 
-    const exchangeReport = async (startDate, finalDate) => {
+    const informExchange = async (firstParameter, secondParameter) => {
         try {
-            await reportExchangeRequest(startDate, finalDate);
-            toast.success('Reporte de cambios generado con exito.',{
+            const file = await informPurchaseRequest(firstParameter, secondParameter);
+            const url = window.URL.createObjectURL(new Blob([file]));
+            const link = document.createElement('a');
+            link.href = url;
+            link.setAttribute('download', 'reporteCambio.pdf');
+            document.body.appendChild(link);
+            link.click();
+            toast.success('Reporte generado con éxito!',{
                 position: toast.POSITION.TOP_CENTER,
-                autoClose : 1500
+                autoClose : 1500,
             });
         } catch (error) {
-            toast.error(error.response.data.message ,{
+            console.log(error);
+            toast.error('Error al generar el informe', {
                 position: toast.POSITION.TOP_CENTER,
-                autoClose : 1500
+                autoClose: 1500,
             });
         }
     };
@@ -124,7 +131,7 @@ export function ExchangeProvider({children}){
 
     return(
         <ExchangeContext.Provider
-        value={{exchanges, getExchanges, createExchange, updateExchange, createExchnageDetail, cancelExchange, cancelExchangeDetail, nullifyExchange, exchangeReport}}
+        value={{exchanges, getExchanges, createExchange, updateExchange, createExchangeDetail, cancelExchange, cancelExchangeDetail, nullifyExchange, informExchange}}
         >
             {children}
         </ExchangeContext.Provider>

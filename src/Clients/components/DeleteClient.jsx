@@ -19,7 +19,7 @@ export  function DeleteClient(props) {
 
     const handleDelete = (event) => {
       event.preventDefault();
-      toast.error('No puedes eliminar un cliente con compras, ventas o cambios asociados.' ,{
+      toast.error('No puedes eliminar un cliente con compras, ventas o cambios asociados' ,{
         autoClose : 1500,
         position: toast.POSITION.TOP_CENTER
     });

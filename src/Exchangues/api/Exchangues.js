@@ -14,4 +14,9 @@ export const cancelExchangeDetailRequest = async (idExchange) => axios.delete(`/
 
 export const nullifyExchangeRequest = async (idExchange) => axios.patch(`/Exchange/${idExchange}`);
 
-export const reportExchangeRequest = async (startDate, finalDate) => axios.get(`/Exchange/report/${startDate}/${finalDate}`);
+export const informPurchaseRequest = async (firstParameter, secondParameter) => {
+    const response = await axios.get(`/Exchange/Report/${firstParameter}/${secondParameter}`, {
+        responseType: 'blob',
+    });
+    return response.data;
+ };

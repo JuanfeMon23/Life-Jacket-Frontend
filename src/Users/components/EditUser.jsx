@@ -23,7 +23,7 @@ export function EditUser(props) {
 
     const handleEvent = (event) => {
       event.preventDefault();
-      toast.error('No puedes actualizar un usuario inhabilitado.' ,{
+      toast.error('No puedes actualizar un usuario inhabilitado' ,{
         autoClose : 1500,
         position: toast.POSITION.TOP_CENTER
     });
@@ -41,6 +41,72 @@ export function EditUser(props) {
                     <>
                     <ModalHeader className="flex flex-col gap-3">Editar usuario</ModalHeader>
                     <form onSubmit={handleSubmit(onSubmit)}>
+<<<<<<< HEAD
+=======
+                  <div className="flex ">
+                      <div className=' flex-col m-3 w-[200px]'>
+                        <Controller
+                          name='userTypeDocument'
+                          control={control}
+                          defaultValue={user.userTypeDocument}
+                          rules={{
+                            required : 'Campo obligatorio'
+                          }}
+                          render={({field}) => (
+                            <Select
+                              {...field}
+                              label="Tipo de documento"
+                              variant="bordered"
+                              color={errors.userTypeDocument ? "danger" : ""}
+                              errorMessage={errors.userTypeDocument?.message}
+                              className="max-w-xs"
+                              onChange={(e) => {
+                                field.onChange(e);
+                              }}
+                            >
+                              <SelectItem key='Cédula de ciudadanía'>CC</SelectItem>
+                            </Select>
+                          )}
+                        />
+                      </div>
+
+                      <div className=' flex-col m-3'>
+                      <Controller
+                        name="userDocument"
+                        control={control}
+                        defaultValue={user.userDocument}
+                        rules={{
+                          required: "Campo requerido",
+                          minLength : {
+                            value : 7 ,
+                            message : 'Al menos 7 numeros'
+                          },
+                          maxLength : {
+                            value : 15 ,
+                            message : 'Máximo 15 números'
+                          },
+                          pattern: {
+                            value: /^[0-9]*$/, 
+                            message: "Solo números"
+                          }
+                        }}
+                        render={({ field }) => (
+                          <Input
+                            {...field}
+                            type="number"
+                            label="Documento"
+                            variant="bordered"
+                            color={errors.userDocument? "danger" : ""}
+                            errorMessage={errors.userDocument?.message}
+                            className="max-w-xs"
+                          />
+                        )}
+                      />
+                      </div>
+                      
+                  </div>
+
+>>>>>>> 80481b5818829d451844ca1c1add9a33f7d708eb
                   <div className=' flex'> 
                       <div className='flex-col m-3 w-[200px]'>
                       <Controller
@@ -51,11 +117,11 @@ export function EditUser(props) {
                             required: "Nombres requeridos",
                             minLength: {
                               value: 3,
-                              message: "Almenos 3 caracteres"
+                              message: "Al menos 3 caracteres"
                             },
                             maxLength: {
                               value: 40,
-                              message: "Maximo 40 caracteres"
+                              message: "Máximo 40 caracteres"
                             },
                             pattern: {
                               value: /^[a-zA-Z\s]*$/,
@@ -85,11 +151,11 @@ export function EditUser(props) {
                             required: "Nombres requeridos",
                             minLength: {
                               value: 3,
-                              message: "Almenos 3 caracteres"
+                              message: "Al menos 3 caracteres"
                             },
                             maxLength: {
                               value: 40,
-                              message: "Maximo 40 caracteres"
+                              message: "Máximo 40 caracteres"
                             },
                             pattern: {
                               value: /^[a-zA-Z\s]*$/,
@@ -122,11 +188,11 @@ export function EditUser(props) {
                             required: "Nombres requeridos",
                             minLength: {
                               value: 3,
-                              message: "Almenos 3 caracteres"
+                              message: "Al menos 3 caracteres"
                             },
                             maxLength: {
                               value: 40,
-                              message: "Maximo 40 caracteres"
+                              message: "Máximo 40 caracteres"
                             },
                             pattern: {
                               value: /^[a-zA-Z\s]*$/,
@@ -156,11 +222,11 @@ export function EditUser(props) {
                             required: "Apellidos requeridos",
                             minLength: {
                               value: 3,
-                              message: "Almenos 6 caracteres"
+                              message: "Al menos 3 caracteres"
                             },
                             maxLength: {
                               value: 40,
-                              message: "Maximo 40 caracteres"
+                              message: "Máximo 40 caracteres"
                             },
                             pattern: {
                               value: /^[a-zA-Z\s]*$/,
@@ -231,7 +297,7 @@ export function EditUser(props) {
                           <Input
                             {...field}
                             type="number"
-                            label="Telefono"
+                            label="Teléfono"
                             variant="bordered"
                             color={errors.userPhoneNumber? "danger" : ""}
                             errorMessage={errors.userPhoneNumber?.message}
@@ -263,7 +329,7 @@ export function EditUser(props) {
                           <Input
                             {...field}
                             type="number"
-                            label="Otro Telefono"
+                            label="Otro Télefono"
                             variant="bordered"
                             color={errors.userOtherPhoneNumber? "danger" : ""}
                             errorMessage={errors.userOtherPhoneNumber?.message}
@@ -287,7 +353,7 @@ export function EditUser(props) {
                             <Input
                               {...field}
                               type="text"
-                              label="Dirreción"
+                              label="Dirección"
                               variant="bordered"
                               color={errors.userAddress ? "danger" : ""}
                               errorMessage={errors.userAddress?.message}

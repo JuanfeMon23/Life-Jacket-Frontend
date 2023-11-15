@@ -25,7 +25,7 @@ export  function VehicleInfo() {
                             required: "Campo requerido",
                             maxLength: {
                               value: 6,
-                              message: "Maximo 6 caracteres"
+                              message: "Máximo 6 caracteres"
                             }
                           }}
                           render={({ field }) => (
@@ -53,7 +53,7 @@ export  function VehicleInfo() {
                             required: "Campo requerido",
                             maxLength: {
                               value: 15,
-                              message: "Maximo 15 caracteres"
+                              message: "Máximo 15 caracteres"
                             },
                             pattern: {
                               value: /^[a-zA-Z\s]*$/,
@@ -85,11 +85,11 @@ export  function VehicleInfo() {
                             required: "Campo requerido",
                             minLength: {
                               value: 3,
-                              message: "Almenos 3 caracteres"
+                              message: "Al menos 3 caracteres"
                             },
                             maxLength: {
                               value: 40,
-                              message: "Maximo 40 caracteres"
+                              message: "Máximo 40 caracteres"
                             },
                             pattern: {
                               value: /^[a-zA-Z\s]*$/,
@@ -147,11 +147,11 @@ export  function VehicleInfo() {
                             required: "Campo requerido",
                             minLength: {
                               value: 3,
-                              message: "Almenos 3 caracteres"
+                              message: "Al menos 3 caracteres"
                             },
                             maxLength: {
                               value: 40,
-                              message: "Maximo 40 caracteres"
+                              message: "Máximo 40 caracteres"
                             },
                             pattern: {
                               value: /^[a-zA-Z\s]*$/,
@@ -181,14 +181,14 @@ export  function VehicleInfo() {
                             required: "Campo requerido",
                             maxLength: {
                               value: 40,
-                              message: "Maximo 40 caracteres"
+                              message: "Máximo 40 caracteres"
                             }
                           }}
                           render={({ field }) => (
                             <Input
                               {...field}
                               type="text"
-                              label="Linea"
+                              label="Línea"
                               variant="bordered"
                               endContent={<RequiredIcon/>}
                               color={errors.line ? "danger" : ""}
@@ -315,7 +315,7 @@ export  function VehicleInfo() {
                             <Input
                               {...field}
                               type="date"
-                              label="Tecnomecanica"
+                              label="Tecnomecánica"
                               variant="bordered"
                               color={errors.technomechanics ? "danger" : ""}
                               errorMessage={errors.technomechanics?.message}
@@ -335,7 +335,7 @@ export  function VehicleInfo() {
                             required: "Campo requerido",
                             maxLength: {
                               value: 15,
-                              message: "Maximo 15 caracteres"
+                              message: "Máximo 15 caracteres"
                             }
                           }}
                           render={({ field }) => (
@@ -379,11 +379,11 @@ export  function VehicleInfo() {
                           rules={{
                             minLength: {
                               value: 3,
-                              message: "Almenos 3 caracteres"
+                              message: "Al menos 3 caracteres"
                             },
                             maxLength: {
                               value: 20,
-                              message: "Maximo 20 caracteres"
+                              message: "Máximo 20 caracteres"
                             },
                             pattern: {
                               value: /^[a-zA-Z\s]*$/,
@@ -410,11 +410,11 @@ export  function VehicleInfo() {
                             rules={{
                               minLength: {
                                 value: 7,
-                                message: "Almenos 7 caracteres"
+                                message: "Al menos 7 caracteres"
                               },
                               maxLength: {
                                 value: 17,
-                                message: "Maximo 17 caracteres"
+                                message: "Máximo 17 caracteres"
                               }
                             }}
                             render={({ field }) => (
@@ -440,18 +440,18 @@ export  function VehicleInfo() {
                               rules={{
                                 minLength: {
                                   value: 7,
-                                  message: "Almenos 7 caracteres"
+                                  message: "Al menos 7 caracteres"
                                 },
                                 maxLength: {
                                   value: 12,
-                                  message: "Maximo 12 caracteres"
+                                  message: "Máximo 12 caracteres"
                                 }
                               }}
                               render={({ field }) => (
                                 <Input
                                   {...field}
                                   type="text"
-                                  label="motor"
+                                  label="Motor"
                                   variant="bordered"
                                   color={errors.motor ? "danger" : ""}
                                   errorMessage={errors.motor?.message}
@@ -467,18 +467,18 @@ export  function VehicleInfo() {
                                 rules={{
                                   minLength: {
                                     value: 7,
-                                    message: "Almenos 7 caracteres"
+                                    message: "Al menos 7 caracteres"
                                   },
                                   maxLength: {
                                     value: 18,
-                                    message: "Maximo 18 caracteres"
+                                    message: "Máximo 18 caracteres"
                                   }
                                 }}
                                 render={({ field }) => (
                                   <Input
                                     {...field}
                                     type="text"
-                                    label="chasis"
+                                    label="Chasis"
                                     variant="bordered"
                                     color={errors.chasis ? "danger" : ""}
                                     errorMessage={errors.chasis?.message}
@@ -497,18 +497,18 @@ export  function VehicleInfo() {
                                   rules={{
                                     minLength: {
                                       value: 7,
-                                      message: "Almenos 7 caracteres"
+                                      message: "Al menos 7 caracteres"
                                     },
                                     maxLength: {
                                       value: 12,
-                                      message: "Maximo 12 caracteres"
+                                      message: "Máximo 12 caracteres"
                                     }
                                   }}
                                   render={({ field }) => (
                                     <Input
                                       {...field}
                                       type="number"
-                                      label="Cedula del propietario"
+                                      label="Cédula del propietario"
                                       variant="bordered"
                                       color={errors.identificationCard ? "danger" : ""}
                                       errorMessage={errors.identificationCard?.message}
@@ -524,18 +524,18 @@ export  function VehicleInfo() {
                                 rules={{
                                   minLength: {
                                     value: 7,
-                                    message: "Almenos 7 caracteres"
+                                    message: "Al menos 7 caracteres"
                                   },
                                   maxLength: {
                                     value: 12,
-                                    message: "Maximo 20 caracteres"
+                                    message: "Máximo 20 caracteres"
                                   }
                                 }}
                                 render={({ field }) => (
                                   <Input
                                     {...field}
                                     type="text"
-                                    label="Matricula a nombre de"
+                                    label="Matrícula a nombre de"
                                     variant="bordered"
                                     color={errors.register ? "danger" : ""}
                                     errorMessage={errors.register?.message}
@@ -554,11 +554,11 @@ export  function VehicleInfo() {
                                 rules={{
                                   minLength: {
                                     value: 1,
-                                    message: "Almenos 1 caracteres"
+                                    message: "Al menos 1 caracteres"
                                   },
                                   maxLength: {
                                     value: 2,
-                                    message: "Maximo 2 caracteres"
+                                    message: "Máximo 2 caracteres"
                                   }
                                 }}
                                 render={({ field }) => (
@@ -592,7 +592,7 @@ export  function VehicleInfo() {
                                   field.onChange(e);
                                 }}
                               >
-                                <SelectItem key='Publico'>Publico</SelectItem>
+                                <SelectItem key='Publico'>Público</SelectItem>
                                 <SelectItem key='Privado'>Privado</SelectItem>
                               </Select>
                             )}

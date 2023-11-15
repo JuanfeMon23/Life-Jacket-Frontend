@@ -9,7 +9,7 @@ export function WatchClient (props) {
 
     const handleEvent = (event) => {
       event.preventDefault();
-      toast.error('No puedes ver un cliente inhabilitado.' ,{
+      toast.error('No puedes ver un cliente inhabilitado' ,{
         autoClose : 1500,
         position: toast.POSITION.TOP_CENTER
     });
@@ -23,7 +23,7 @@ export function WatchClient (props) {
           <ModalContent>
             {(onClose) => (
               <>
-                <ModalHeader className=" flex items-center ">Informacion del cliente</ModalHeader>
+                <ModalHeader className=" flex items-center ">Información del cliente</ModalHeader>
                   <ModalBody key={client.id}>
                     
                     <div className="m-5 flex justify-around">
@@ -45,7 +45,7 @@ export function WatchClient (props) {
   
                   <div className=" flex justify-center m-5 ">
                     <div className="flex flex-col">
-                      <p className="font-bold">Cedula</p>
+                      <p className="font-bold">Cédula</p>
                       <div className="border-2 border-indigo-500/75 rounded-lg p-1 w-[15rem]">
                           <p className=" text-center">{client.clientDocument}</p>
                       </div>
@@ -70,14 +70,14 @@ export function WatchClient (props) {
                       
                   <div className="m-5 flex justify-around">
                       <div className=" flex flex-col">
-                        <p className="font-bold">Telefono</p> 
+                        <p className="font-bold">Teléfono</p> 
                         <div className=" border-2 border-indigo-500/75 rounded-lg w-[15rem] p-1 ">
                             <p className=" text-center">{client.clientPhoneNumber}</p>
                         </div>
                       </div>
   
                       <div className=" flex flex-col">
-                      <p className="font-bold">Otro Telefono</p> 
+                      <p className="font-bold">Otro teléfono</p> 
                         <div className=" items-end border-2 border-indigo-500/75 rounded-lg w-[15rem] p-1">
                             <p className=" text-center">{client.clientOtherPhoneNumber}</p>
                         </div>

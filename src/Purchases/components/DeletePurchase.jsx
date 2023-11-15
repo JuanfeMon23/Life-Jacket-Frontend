@@ -17,7 +17,7 @@ export  function DeletePurchase(props) {
     };
 
     function handleDelete(){
-        toast.error('No puedes eliminar una compra habilitada.' ,{
+        toast.error('No puedes eliminar una compra habilitada' ,{
             autoClose : 2000,
             position: toast.POSITION.TOP_CENTER
         });

@@ -24,7 +24,7 @@ export  function StatusClient(props) {
         <ModalContent>
           {(onClose) => (
             <>
-              <ModalHeader className=" items-center">¿Deseas cambiar el estado del cliente?</ModalHeader>
+              <ModalHeader className=" items-center">¿Deseas {clients.clientStatus === 'false' ? 'habilitar' : 'inhabilitar'} el  cliente?</ModalHeader>
               <ModalBody>
                 <form onSubmit={handleSubmit(onSubmit)}>
                     <div className=' text-center m-3'>

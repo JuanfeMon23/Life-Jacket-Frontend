@@ -222,7 +222,7 @@ export  function TableClients() {
             </TableColumn>
         ))}
   </TableHeader>
-  <TableBody emptyContent={"No hay clientes registrados."}>
+  <TableBody emptyContent={"No hay clientes registrados"}>
         {items.map((item) => (
             <TableRow key={item.idClient}>
                 <TableCell>{item.clientDocument}</TableCell>

@@ -38,7 +38,7 @@ export function UserProvider ({children}) {
     const createUser = async (user) => {
         try {
             const res = await createUserRequest(user );
-            toast.success('Usuario Creado con exito!',{
+            toast.success('Usuario creado con éxito!',{
                 position: toast.POSITION.TOP_CENTER,
                 autoClose : 1500
             });
@@ -58,7 +58,7 @@ export function UserProvider ({children}) {
     const updateUser = async (idUser, user) => {
         try {
             await updateUserRequest(idUser, user);
-            toast.success('Usuario actualizado con exito!',{
+            toast.success('Usuario actualizado con éxito!',{
                 position: toast.POSITION.TOP_CENTER,
                 autoClose : 1500
             });
@@ -76,7 +76,7 @@ export function UserProvider ({children}) {
     const statusUser = async (idUser) => {
         try {
             await stateUserRequest(idUser);
-            toast.success('Estado actualizado con exito!',{
+            toast.success('Estado actualizado con éxito!',{
                 position: toast.POSITION.TOP_CENTER,
                 autoClose : 1500
             });
@@ -93,7 +93,7 @@ export function UserProvider ({children}) {
     const deleteUser = async (idUser) => {
         try {
              await deleteUserRequest(idUser);
-            toast.success('Usuario eliminado con exito.',{
+            toast.success('Usuario eliminado con éxito!',{
                 position: toast.POSITION.TOP_CENTER,
                 autoClose : 1500
             });

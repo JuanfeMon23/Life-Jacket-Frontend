@@ -7,6 +7,7 @@ import { useUsers } from '../Context/userContext';
 import {Select, SelectItem} from "@nextui-org/react";
 import { useRoles } from '../../Roles/context/rolesContext';
 import {AiOutlinePlusCircle} from 'react-icons/Ai';
+import { RequiredIcon } from '../../components/globalComponents/RequiredIcon.jsx';
 
 export  function UserRegister() {
   const {isOpen, onOpen, onOpenChange} = useDisclosure();
@@ -27,7 +28,7 @@ export  function UserRegister() {
         <ModalContent>
           {(onClose) => (
             <>
-              <ModalHeader className="flex flex-col gap-3">Crear Usuario</ModalHeader>
+              <ModalHeader className="flex flex-col gap-3">Datos del usuario</ModalHeader>
               <ModalBody>
                 <form onSubmit={handleSubmit(onSubmit)}>
                   <div className="flex ">
@@ -36,13 +37,14 @@ export  function UserRegister() {
                           name='userTypeDocument'
                           control={control}
                           rules={{
-                            required : 'Campo obligatorio'
+                            required : 'Campo requerido'
                           }}
                           render={({field}) => (
                             <Select
                               {...field}
                               label="Tipo de documento"
                               variant="bordered"
+                              endContent={<RequiredIcon/>}
                               color={errors.userTypeDocument ? "danger" : ""}
                               errorMessage={errors.userTypeDocument?.message}
                               className="max-w-xs"
@@ -50,7 +52,7 @@ export  function UserRegister() {
                                 field.onChange(e);
                               }}
                             >
-                              <SelectItem key='Cedula de ciudadania'>CC</SelectItem>
+                              <SelectItem key='Cédula de ciudadania'>CC</SelectItem>
                             </Select>
                           )}
                         />
@@ -68,7 +70,7 @@ export  function UserRegister() {
                           },
                           maxLength : {
                             value : 12,
-                            message : 'Maximo 12 números'
+                            message : 'Máximo 12 números'
                           },
                           pattern: {
                             value: /^[0-9]*$/, 
@@ -81,6 +83,7 @@ export  function UserRegister() {
                             type="number"
                             label="Documento"
                             variant="bordered"
+                            endContent={<RequiredIcon/>}
                             color={errors.userDocument? "danger" : ""}
                             errorMessage={errors.userDocument?.message}
                             className="max-w-xs"
@@ -100,11 +103,11 @@ export  function UserRegister() {
                             required: "Campo requerido",
                             minLength: {
                               value: 3,
-                              message: "Almenos 3 caracteres"
+                              message: "Al menos 3 caracteres"
                             },
                             maxLength: {
                               value: 40,
-                              message: "Maximo 40 caracteres"
+                              message: "Máximo 40 caracteres"
                             },
                             pattern: {
                               value: /^[a-zA-Z\s]*$/,
@@ -117,6 +120,7 @@ export  function UserRegister() {
                               type="text"
                               label="Departamento"
                               variant="bordered"
+                              endContent={<RequiredIcon/>}
                               color={errors.userDepartment ? "danger" : ""}
                               errorMessage={errors.userDepartment?.message}
                               className="max-w-xs"
@@ -130,14 +134,14 @@ export  function UserRegister() {
                           name="userMunicipality"
                           control={control}
                           rules={{
-                            required: "Nombres requeridos",
+                            required: "Campo requerido",
                             minLength: {
                               value: 3,
-                              message: "Almenos 3 caracteres"
+                              message: "Al menos 3 caracteres"
                             },
                             maxLength: {
                               value: 40,
-                              message: "Maximo 40 caracteres"
+                              message: "Máximo 40 caracteres"
                             },
                             pattern: {
                               value: /^[a-zA-Z\s]*$/,
@@ -150,6 +154,7 @@ export  function UserRegister() {
                               type="text"
                               label="Ciudad o municipio"
                               variant="bordered"
+                              endContent={<RequiredIcon/>}
                               color={errors.userMunicipality ? "danger" : ""}
                               errorMessage={errors.userMunicipality?.message}
                               className="max-w-xs"
@@ -166,14 +171,14 @@ export  function UserRegister() {
                           name="userName"
                           control={control}
                           rules={{
-                            required: "Nombres requeridos",
+                            required: "Campo requerido",
                             minLength: {
                               value: 3,
-                              message: "Almenos 3 caracteres"
+                              message: "Al menos 3 caracteres"
                             },
                             maxLength: {
                               value: 40,
-                              message: "Maximo 40 caracteres"
+                              message: "Máximo 40 caracteres"
                             },
                             pattern: {
                               value: /^[a-zA-Z\s]*$/,
@@ -186,6 +191,7 @@ export  function UserRegister() {
                               type="text"
                               label="Nombres"
                               variant="bordered"
+                              endContent={<RequiredIcon/>}
                               color={errors.userName ? "danger" : ""}
                               errorMessage={errors.userName?.message}
                               className="max-w-xs"
@@ -199,14 +205,14 @@ export  function UserRegister() {
                           name="userLastName"
                           control={control}
                           rules={{
-                            required: "Apellidos requeridos",
+                            required: "Campo requerido",
                             minLength: {
                               value: 3,
-                              message: "Almenos 6 caracteres"
+                              message: "Al menos 3 caracteres"
                             },
                             maxLength: {
                               value: 40,
-                              message: "Maximo 40 caracteres"
+                              message: "Máximo 40 caracteres"
                             },
                             pattern: {
                               value: /^[a-zA-Z\s]*$/,
@@ -219,6 +225,7 @@ export  function UserRegister() {
                               type="text"
                               label="Apellidos"
                               variant="bordered"
+                              endContent={<RequiredIcon/>}
                               color={errors.userLastName ? "danger" : ""}
                               errorMessage={errors.userLastName?.message}
                               className="max-w-xs"
@@ -235,7 +242,7 @@ export  function UserRegister() {
                         name="userEmail"
                         control={control}
                         rules={{
-                          required: "Email requerido",
+                          required: "Campo requerido",
                           pattern: {
                             value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i,
                             message: "Email invalido"
@@ -247,6 +254,7 @@ export  function UserRegister() {
                             type="email"
                             label="Email"
                             variant="bordered"
+                            endContent={<RequiredIcon/>}
                             color={errors.userEmail ? "danger" : ""}
                             errorMessage={errors.userEmail?.message}
                             className="max-w-xs"
@@ -261,7 +269,7 @@ export  function UserRegister() {
                       name="userPassword"
                       control={control}
                       rules={{
-                        required: "Contraseña requerida",
+                        required: "Campo requerido",
                         minLength: {
                           value: 8,
                           message: "Al menos 8 caracteres"
@@ -272,7 +280,7 @@ export  function UserRegister() {
                         },
                         pattern : {
                           value :  /^(?=.*[!@#$%^&*])/,
-                          message : 'Almenos un caracter especial'
+                          message : 'Al menos un caracter especial'
                         }
                       }}
                       render={({ field }) => (
@@ -281,6 +289,7 @@ export  function UserRegister() {
                           type="password"
                           label="Contraseña"
                           variant="bordered"
+                          endContent={<RequiredIcon/>}
                           color={errors.userPassword ? "danger" : ""}
                           errorMessage={errors.userPassword?.message}
                           className="max-w-xs"
@@ -299,7 +308,7 @@ export  function UserRegister() {
                           required: "Campo requerido",
                           minLength : {
                             value : 7 ,
-                            message : 'Al menos 7 numeros'
+                            message : 'Al menos 7 números'
                           },
 
                           pattern: {
@@ -311,8 +320,9 @@ export  function UserRegister() {
                           <Input
                             {...field}
                             type="number"
-                            label="Telefono"
+                            label="Teléfono"
                             variant="bordered"
+                            endContent={<RequiredIcon/>}
                             color={errors.userPhoneNumber? "danger" : ""}
                             errorMessage={errors.userPhoneNumber?.message}
                             className="max-w-xs"
@@ -330,7 +340,7 @@ export  function UserRegister() {
                           required: "Campo requerido",
                           minLength : {
                             value : 7 ,
-                            message : 'Al menos 7 numeros'
+                            message : 'Al menos 7 números'
                           },
 
                           pattern: {
@@ -342,8 +352,9 @@ export  function UserRegister() {
                           <Input
                             {...field}
                             type="number"
-                            label="Otro Telefono"
+                            label="Otro teléfono"
                             variant="bordered"
+                            endContent={<RequiredIcon/>}
                             color={errors.userOtherPhoneNumber? "danger" : ""}
                             errorMessage={errors.userOtherPhoneNumber?.message}
                             className="max-w-xs"
@@ -367,6 +378,7 @@ export  function UserRegister() {
                               type="text"
                               label="Dirreción"
                               variant="bordered"
+                              endContent={<RequiredIcon/>}
                               color={errors.userAddress ? "danger" : ""}
                               errorMessage={errors.userAddress?.message}
                               className="max-w-xs"
@@ -387,6 +399,7 @@ export  function UserRegister() {
                               {...field}
                               label="Rol"
                               variant="bordered"
+                              endContent={<RequiredIcon/>}
                               color={errors.idRolUser ? "danger" : ""}
                               errorMessage={errors.idRolUser?.message}
                               className="max-w-xs"

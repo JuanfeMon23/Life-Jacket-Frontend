@@ -20,7 +20,7 @@ export  function DeleteUsers(props) {
 
     const handleDelete = (event) => {
       event.preventDefault();
-      toast.error('No puedes eliminar un usuario activo.' ,{
+      toast.error('No puedes eliminar un usuario activo' ,{
         autoClose : 1500,
         position: toast.POSITION.TOP_CENTER
     });
@@ -34,7 +34,11 @@ export  function DeleteUsers(props) {
         <ModalContent>
           {(onClose) => (
             <>
+<<<<<<< HEAD
               <ModalHeader className=" justify-center text-2xl m-4  ">¿Deseas Eliminar el usuario?</ModalHeader>
+=======
+              <ModalHeader className=" justify-center ">¿Deseas eliminar el usuario?</ModalHeader>
+>>>>>>> 80481b5818829d451844ca1c1add9a33f7d708eb
               <ModalBody>
                 <form onSubmit={handleSubmit(onSubmit)}>
                     <div className=' text-center m-3'>

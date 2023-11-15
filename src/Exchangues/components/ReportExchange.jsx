@@ -3,15 +3,15 @@ import { Modal, ModalContent, ModalHeader, ModalBody, useDisclosure, Input, Butt
 import { useForm, Controller } from 'react-hook-form';
 import axios from 'axios';
 import { ButtonAccept } from '../../components/ButtonAccept';
-import { useSells } from '../context/sellsContext'; 
+import { useExchange } from '../context/ExchangeContext'; 
 
-export function ReportSale() {
+export function ReportExchange() {
    const { isOpen, onOpen, onOpenChange } = useDisclosure();
    const { register, handleSubmit, formState: { errors }, control } = useForm();
-   const { informSale } = useSells();
+   const { informExchange } = useExchange();
 
    const onSubmit = (data) => {
-       informSale(data.firstParameter, data.secondParameter);
+     informExchange(data.firstParameter, data.secondParameter);
    };
 
    return (
@@ -19,7 +19,7 @@ export function ReportSale() {
         <Button onPress={onOpen}>Informe</Button>
         <Modal isOpen={isOpen} onOpenChange={onOpenChange}>
             <ModalContent>
-                <ModalHeader className="flex flex-col gap-1">Informe de ventas</ModalHeader>
+                <ModalHeader className="flex flex-col gap-1">Informe de cambios</ModalHeader>
                 <ModalBody>
                     <form onSubmit={handleSubmit(onSubmit)}>
                         <div className="flex">

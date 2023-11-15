@@ -221,7 +221,7 @@ export  function TableImpovements() {
             </TableColumn>
         ))}
   </TableHeader>
-  <TableBody emptyContent={"No hay mejoras registradas."}>
+  <TableBody emptyContent={"No hay mejoras registradas"}>
         {items.map((item) => (
             <TableRow key={item.idImprovements}>
                 <TableCell>{item.vehicle.licensePlate}</TableCell>

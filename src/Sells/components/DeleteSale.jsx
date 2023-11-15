@@ -17,7 +17,7 @@ export  function DeleteSale(props) {
     };
 
     function handleDelete(){
-        toast.error('No puedes eliminar una venta habilitada.' ,{
+        toast.error('No puedes eliminar una venta habilitada' ,{
             autoClose : 1500,
             position: toast.POSITION.TOP_CENTER
         });

@@ -1,6 +1,6 @@
 import { createContext, useContext, useState } from "react";
 import { toast } from "react-toastify";
-import { createPurchaseRequest, getPurchasesRequest, statusPurchasesRequest, deletePurchaseRequest } from "../api/Purchases";
+import { createPurchaseRequest, getPurchasesRequest, statusPurchasesRequest, informPurchaseRequest, deletePurchaseRequest } from "../api/Purchases";
 
 const PurchaseContext = createContext();
 
@@ -24,14 +24,14 @@ export function PurchaseProvider ({children}) {
     const createPurchase = async (purchase) => {
         try {
             const res = await createPurchaseRequest(purchase);
-            toast.success('Compra Creado con exito.',{
+            toast.success('Compra creada con éxito!',{
                 position: toast.POSITION.TOP_CENTER
             });
             getPurchases();
             return res.data;
         } catch (error) {
             console.log(error)
-            toast.error('Error al crear una compra.' ,{
+            toast.error('Error al crear la compra' ,{
                 position: toast.POSITION.TOP_CENTER
             });
             throw new Error(error.message);
@@ -41,7 +41,7 @@ export function PurchaseProvider ({children}) {
     const statusPurchase = async (idPurchase) => {
         try {
             await statusPurchasesRequest(idPurchase);
-            toast.success('Estado de anulada con exito.',{
+            toast.success('Compra anulada con éxito!',{
                 position: toast.POSITION.TOP_CENTER
             });
             getPurchases();
@@ -52,16 +52,38 @@ export function PurchaseProvider ({children}) {
         }
     };
 
+    const informPurchase = async (firstParameter, secondParameter) => {
+        try {
+            const file = await informPurchaseRequest(firstParameter, secondParameter);
+            const url = window.URL.createObjectURL(new Blob([file]));
+            const link = document.createElement('a');
+            link.href = url;
+            link.setAttribute('download', 'reporteCompra.pdf');
+            document.body.appendChild(link);
+            link.click();
+            toast.success('Reporte generado con éxito!',{
+                position: toast.POSITION.TOP_CENTER,
+                autoClose : 1500,
+            });
+        } catch (error) {
+            console.log(error);
+            toast.error('Error al generar el informe', {
+                position: toast.POSITION.TOP_CENTER,
+                autoClose: 1500,
+            });
+        }
+    };
+
     const deletePurchase = async (idPurchase) => {
         try {
             await deletePurchaseRequest(idPurchase);
-            toast.success('Compra eliminada con exito!',{
+            toast.success('Compra eliminada con éxito!',{
                 autoClose : 1500,
                 position: toast.POSITION.TOP_CENTER
             });
             getPurchases();
         } catch (error) {
-            toast.error('Error al eliminar.' ,{
+            toast.error('Error al eliminar la compra' ,{
                 position: toast.POSITION.TOP_CENTER,
                 autoClose : 1500
             });
@@ -69,7 +91,7 @@ export function PurchaseProvider ({children}) {
     };
 
     return(
-        <PurchaseContext.Provider value={{purchases, getPurchases, createPurchase, statusPurchase, deletePurchase}}>
+        <PurchaseContext.Provider value={{purchases, getPurchases, createPurchase, statusPurchase, informPurchase, deletePurchase}}>
             {children}
         </PurchaseContext.Provider>
     )

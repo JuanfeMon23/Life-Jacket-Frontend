@@ -36,7 +36,7 @@ export  function CardVehicle() {
         <Input
           onChange={handleChange}
           value={query}
-          label={'Buscar Vehiculo'}
+          label={'Buscar vehículo'}
           isClearable
           radius="lg"
           classNames={{

@@ -24,14 +24,13 @@ export function ImprovementProvider({children}){
     const createImprovement = async (improvement) => {
         try {
             const res = await createImprovementsRequest(improvement);
-            toast.success('Mejora creada con exito.',{
-                position: toast.POSITION.TOP_CENTER,
-                autoClose : 1500
+            toast.success('Mejora creada con exito!',{
+                position: toast.POSITION.TOP_CENTER
             });
             getImprovements();
             return res.data;
         } catch (error) {
-            toast.error('Error al crear.' ,{
+            toast.error('Error al crear la mejora' ,{
                 position: toast.POSITION.TOP_CENTER
             });
             console.log(error);
@@ -42,7 +41,7 @@ export function ImprovementProvider({children}){
     const statusImprovement = async (idImprovement) => {
         try {
             await statusImprovementRequest(idImprovement);
-            toast.success('Cambio de estado con exito!',{
+            toast.success('Cambio de estado con éxito!',{
                 position: toast.POSITION.TOP_CENTER
             });
             getImprovements();

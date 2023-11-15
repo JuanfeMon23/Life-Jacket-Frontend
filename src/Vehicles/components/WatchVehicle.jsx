@@ -70,7 +70,7 @@ export function WatchVehicle (props) {
 
                           <div className="m-5 flex justify-around">
                           <div className=" flex flex-col">
-                            <p className="font-bold">Linea</p> 
+                            <p className="font-bold">Línea</p> 
                             <div className=" border-2 border-indigo-500/75 rounded-lg w-[15rem] p-1 ">
                                 <p className=" text-center">{vehicles.line}</p>
                             </div>
@@ -170,7 +170,7 @@ export function WatchVehicle (props) {
                             </div>
 
                             <div className=" flex flex-col">
-                            <p className="font-bold">Tecnomecanica</p> 
+                            <p className="font-bold">Tecnomecánica</p> 
                               <div className=" items-end border-2 border-indigo-500/75 rounded-lg w-[15rem] p-1">
                                   <p className=" text-center">{vehicles.technomechanics ? vehicles.technomechanics : 'No hay datos.'}</p>
                               </div>
@@ -178,14 +178,14 @@ export function WatchVehicle (props) {
                         </div> 
                         <div className="m-5 flex justify-around">
                             <div className=" flex flex-col">
-                              <p className="font-bold">Cedula propietario</p> 
+                              <p className="font-bold">Cédula propietario</p> 
                               <div className=" border-2 border-indigo-500/75 rounded-lg w-[15rem] p-1 ">
                                   <p className=" text-center">{vehicles.othervehicleinformation.identificationCard ? vehicles.othervehicleinformation.identificationCard  : 'No hay datos.'}</p>
                               </div>
                             </div>
 
                             <div className=" flex flex-col">
-                            <p className="font-bold">Matricula</p> 
+                            <p className="font-bold">Matrícula</p> 
                               <div className=" items-end border-2 border-indigo-500/75 rounded-lg w-[15rem] p-1">
                                   <p className=" text-center">{vehicles.othervehicleinformation.register ? vehicles.othervehicleinformation.register: 'No hay datos.'}</p>
                               </div>

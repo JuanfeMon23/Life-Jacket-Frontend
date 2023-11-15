@@ -24,7 +24,7 @@ export  function StatusUser(props) {
         <ModalContent>
           {(onClose) => (
             <>
-              <ModalHeader className=" justify-center text-2xl m-4">¿Deseas {user.userStatus === 'false' ? 'Habilitar' : 'Inhabilitar'} el  usuario?</ModalHeader>
+              <ModalHeader className=" justify-center text-2xl m-4">¿Deseas {user.userStatus === 'false' ? 'habilitar' : 'inhabilitar'} el  usuario?</ModalHeader>
               <ModalBody>
                 <form onSubmit={handleSubmit(onSubmit)}>
                     <div className=' text-center m-3'>
