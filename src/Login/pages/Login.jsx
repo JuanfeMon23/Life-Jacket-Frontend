@@ -3,6 +3,9 @@ import {Input} from "@nextui-org/react";
 import {useForm, Controller} from 'react-hook-form';
 import { useAuth } from '../context/AuthContext';
 import { useNavigate } from 'react-router-dom';
+import { MdOutlineMail } from "react-icons/md";
+import { RiLockPasswordLine } from "react-icons/ri";
+import { FaCarAlt } from "react-icons/fa";
 import { toast } from "react-toastify";
 import { Link } from 'react-router-dom';
 
@@ -24,61 +27,80 @@ export function Login() {
 
   return (
       <>
-        <section className="bg-gray-50 min-h-screen flex ">
-              <div className="bg-gray-100 flex rounded-2xl shadow-lg max-w-3xl p-5 items-center">
-                <div className="md:w-1/2 px-8 md:px-16">
-                  <h2 className="font-bold text-2xl text-[#002D74] my-7">Inicio de sesión</h2>
-                  <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col gap-4">
-                  <Controller
-                        name="userEmail"
+        <section className=" flex flex-col items-center justify-center w-full flex-1 px-20 text-center">
+          <div className=' bg-white rounded-2xl shadow-2xl flex w-2/3 max-w-4xl'>
+            <div className=' w-3/5 p-5'>
+              <div className=' text-left font-bold'>
+                <span className=' text-blue-800'>Alejandro</span>Vehículos
+              </div>
+              <div className=' py-10'>
+                  <h2 className=' text-3xl font-bold text-blue-800'>Inicar sesíon</h2>
+                  <div className='border-2 w-10 border-blue-800 inline-block mb-2'></div>
+                  <div className=' flex flex-col items-center mt-8'>
+                    <form onSubmit={handleSubmit(onSubmit)}>
+                    <Controller
+                          name="userEmail"
+                          control={control}
+                          rules={{
+                            required: "Email requerido",
+                            pattern: {
+                              value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i,
+                              message: "Email invalido"
+                            }
+                          }}
+                          render={({ field }) => (
+                            <Input
+                              {...field}
+                              type="email"
+                              label="Email"
+                              endContent={<MdOutlineMail  className=' text-2xl'/>}
+                              variant="bordered"
+                              color={errors.userEmail ? "danger" : ""}
+                              errorMessage={errors.userEmail?.message}
+                              className="max-w-xs mb-5"
+                            />
+                          )}
+                        />
+
+                      <Controller
+                        name="userPassword"
                         control={control}
                         rules={{
-                          required: "Email requerido",
-                          pattern: {
-                            value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i,
-                            message: "Email invalido"
-                          }
+                          required: "Contraseña requerida",
                         }}
                         render={({ field }) => (
-                          <Input
+                          <Input 
                             {...field}
-                            type="email"
-                            label="Email"
+                            type="password"
+                            label="Contraseña"
                             variant="bordered"
-                            color={errors.userEmail ? "danger" : ""}
-                            errorMessage={errors.userEmail?.message}
+                            endContent={<RiLockPasswordLine  className=' text-2xl'/>}
+                            color={errors.userPassword ? "danger" : ""}
+                            errorMessage={errors.userPassword?.message}
                             className="max-w-xs"
                           />
                         )}
                       />
-
-                    <Controller
-                      name="userPassword"
-                      control={control}
-                      rules={{
-                        required: "Contraseña requerida",
-                      }}
-                      render={({ field }) => (
-                        <Input
-                          {...field}
-                          type="password"
-                          label="Contraseña"
-                          variant="bordered"
-                          color={errors.userPassword ? "danger" : ""}
-                          errorMessage={errors.userPassword?.message}
-                          className="max-w-xs"
-                        />
-                      )}
-                    />
-                    <button type='submit' className="bg-[#002D74] rounded-xl text-white py-2 hover:scale-105 duration-300">Iniciar sesión</button>
-                  </form>
-                        <Link to='/ForgotPassword'>¿Olvidaste tu contraseña?</Link>
-
-                </div>
-                <div className="md:block hidden w-1/2">
-                  <img className="rounded-2xl" src="https://e1.pxfuel.com/desktop-wallpaper/769/489/desktop-wallpaper-youtuall-on-coches.jpg"/>
-                </div>
+                      <div className=' flex w-64 justify-end mb-5'>
+                     <Link to='/ForgotPassword'><label className=' cursor-pointer mt-3 flex text-blue-800 font-bold items-center text-xs'>¿Olvidaste tu contraseña?</label></Link> 
+                      </div>
+                          <button type='submit' className=' border-2 border-blue-800 text-blue-800 rounded-full px-12 py-2 inline-block font-semibold hover:bg-blue-800 hover:text-white hover:border-blue-800 '>Ingresar</button>
+                    </form>
+                  </div>
               </div>
+            </div>
+            <div className=' w-2/5 bg-blue-800 text-white rounded-tr-2xl rounded-br-2xl py-36 px-12 '>
+              <h2 className=' text 3xl font-bold mb-2'>Bienvenido a LifeJacket</h2>
+              <div className=' border-2 w-10 border-white inline-block mb-2'></div>
+              <div className=' items-center justify-center'>
+                <FaCarAlt className=' text-white text-[130px] inline-block' />
+              </div>
+            </div>
+          </div>
+
+          <div>
+
+          </div>
         </section>
       </>
   )
