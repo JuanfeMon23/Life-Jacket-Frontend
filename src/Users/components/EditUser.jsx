@@ -297,36 +297,6 @@ export function EditUser(props) {
                           )}
                         />
                     </div>     
-
-                    <div className='flex-col m-3 w-[200px]'>
-                    <Controller
-                          name='idRolUser'
-                          control={control}
-                          defaultValue={user.idRol}
-                          rules={{
-                            required : 'Campo obligatorio'
-                          }}
-                          render={({field}) => (
-                            <Select
-                              {...field}
-                              label="Rol"
-                              variant="bordered"
-                              color={errors.idRolUser ? "danger" : ""}
-                              errorMessage={errors.idRolUser?.message}
-                              className="max-w-xs"
-                              onChange={(e) => {
-                                field.onChange(e);
-                              }}
-                            >
-                            {roles.map((roles) => (
-                              <SelectItem key={roles.idRol} value={roles.rolName}>
-                                  {roles.rolName}
-                              </SelectItem>
-                          ))}
-                            </Select>
-                          )}
-                        />
-                  </div> 
                   </div>
 
 

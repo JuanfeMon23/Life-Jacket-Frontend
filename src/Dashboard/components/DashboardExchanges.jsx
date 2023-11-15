@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { Chart as ChartJS, BarElement, CategoryScale, LinearScale, PointElement, LineElement, Title, Tooltip, Legend, Filler } from 'chart.js';
-import { Bar } from 'react-chartjs-2';
+import { Line } from 'react-chartjs-2';
 import { getDashboardExchangesRequest } from "../api/dashboard";
 import { SelectItem, Select } from "@nextui-org/select";
 
@@ -54,7 +54,7 @@ export function DashboardExchanges() {
             data: prepareChartData(),
             fill: true,
             backgroundColor: '#9B59B6',
-            type: 'bar',
+            type: 'line',
         }],
     };
 
@@ -122,7 +122,7 @@ export function DashboardExchanges() {
                         ))}
                     </Select>
                 </div>
-                <Bar data={chartData} options={options} />
+                <Line data={chartData} options={options} />
             </div>
         </div>    
     );
