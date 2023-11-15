@@ -40,33 +40,6 @@ export  function EditVehicle (props) {
               <ModalHeader className="flex flex-col gap-3">Editar vehículo</ModalHeader>
               <ModalBody>
                 <form onSubmit={handleSubmit(onSubmit)}>
-                  <div className=" flex">
-                    <div className=' flex-col m-3'>
-                    <Controller
-                          name="licensePlate"
-                          control={control}
-                          defaultValue={vehicles.licensePlate}
-                          rules={{
-                            required: "Campo requerido",
-                            maxLength: {
-                              value: 6,
-                              message: "Maximo 6 caracteres"
-                            }
-                          }}
-                          render={({ field }) => (
-                            <Input
-                              {...field}                        
-                              type="text"
-                              label="Placa del vehículo"
-                              variant="bordered"
-                              color={errors.licensePlate ? "danger" : ""}
-                              errorMessage={errors.licensePlate?.message}
-                              className="max-w-xs"
-                            />
-                          )}
-                        /> 
-                    </div>
-
                     <div className='flex-col m-3'>
                     <Controller
                           name="vehicleType"
