@@ -48,7 +48,7 @@ export function DashboardImprovements() {
     const chartData = {
         labels: months,
         datasets: [{
-            label: `Ventas en ${selectedYear}`,
+            label: `Mejoras en ${selectedYear}`,
             data: prepareChartData(),
             fill: true,
             backgroundColor: '#59e0c5',

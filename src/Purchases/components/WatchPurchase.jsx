@@ -15,7 +15,7 @@ export function WatchPurchase(props) {
         <ModalContent>
           {(onClose) => (
             <>
-              <ModalHeader className=" bg-gradient-to-r from-[#252525] to-[#231949] text-white flex items-center ">Informacion de la compra</ModalHeader>
+              <ModalHeader className=" bg-gradient-to-r from-[#252525] to-[#231949] text-white flex items-center ">Información de la compra</ModalHeader>
                 <ModalBody key={purchase.idPurchase}>
                   
                 <Accordion variant="bordered" color="primary">
@@ -104,7 +104,7 @@ export function WatchPurchase(props) {
                     </div>
 
                     <div className=" flex flex-col">
-                    <p className="font-bold">Linea</p> 
+                    <p className="font-bold">Línea</p> 
                       <div className=" items-end border-2 border-indigo-500/75 rounded-lg w-[15rem] p-1">
                           <p className=" text-center">{purchase.vehicle.line}</p>
                       </div>
@@ -122,7 +122,7 @@ export function WatchPurchase(props) {
                     </div>
 
                     <div className=" flex flex-col">
-                    <p className="font-bold">Numero de documento</p> 
+                    <p className="font-bold">Número de documento</p> 
                       <div className=" items-end border-2 border-indigo-500/75 rounded-lg w-[15rem] p-1">
                           <p className=" text-center">{purchase.client.clientDocument}</p>
                       </div>
@@ -146,7 +146,7 @@ export function WatchPurchase(props) {
 
                     <div className="m-5 flex justify-around">
                       <div className=" flex flex-col">
-                        <p className="font-bold">Numero de telefono</p> 
+                        <p className="font-bold">Número de teléfono</p> 
                         <div className=" border-2 border-indigo-500/75 rounded-lg w-[15rem] p-1 ">
                             <p className=" text-center">{purchase.client.clientPhoneNumber}</p>
                         </div>

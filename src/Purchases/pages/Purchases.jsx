@@ -7,6 +7,7 @@ import { PurchaseRegister } from '../components/PurchaseRegister';
 import { useVehicles } from '../../Vehicles/context/vehiclesContext';
 import { useClients } from '../../Clients/context/clientsContext';
 import { TablePurchase } from '../components/TablePurchase';
+import { ReportPurchase } from '../components/ReportPurchase';
 
 
 export  function Purchases() {

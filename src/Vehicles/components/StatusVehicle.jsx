@@ -5,7 +5,6 @@ import {useForm} from 'react-hook-form';
 import {GrStatusGood} from 'react-icons/gr'
 import {TiDeleteOutline} from 'react-icons/ti'
 import { useVehicles } from '../context/vehiclesContext';
-import { toast } from 'react-toastify';
 
 export  function StatusVehicle(props) {
     const {isOpen, onOpen, onOpenChange} = useDisclosure();
@@ -16,13 +15,7 @@ export  function StatusVehicle(props) {
     function onSubmit (){
         statusVehicle(vehicles.idVehicle)
     }
-
-    function handleState (){
-      toast.error('Vehiculo anulado.',{
-        
-      })
-    };    
-
+  
   return (
     <div className='flex'>
     {vehicles.vehicleStatus === "true" ? <Button  isIconOnly className=' bg-green-600 rounded-lg' onPress={onOpen}><GrStatusGood className='text-2xl'/></Button>
@@ -31,7 +24,7 @@ export  function StatusVehicle(props) {
         <ModalContent>
           {(onClose) => (
             <>
-              <ModalHeader className=" justify-center ">¿Deseas anular el vehículo?</ModalHeader>
+              <ModalHeader className=" justify-center ">¿Deseas {vehicles.vehicleStatus === 'false' ? 'habilitar' : 'inhabilitar'} el  vehículo?</ModalHeader>
               <ModalBody>
                 <form onSubmit={handleSubmit(onSubmit)}>
                     <div className=' text-center m-3'>

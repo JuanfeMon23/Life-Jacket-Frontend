@@ -103,7 +103,7 @@ export function WatchSale(props) {
                     </div>
 
                     <div className=" flex flex-col">
-                    <p className="font-bold">Linea</p> 
+                    <p className="font-bold">Línea</p> 
                       <div className=" items-end border-2 border-indigo-500/75 rounded-lg w-[15rem] p-1">
                           <p className=" text-center">{sale.vehicle.line}</p>
                       </div>
@@ -121,7 +121,7 @@ export function WatchSale(props) {
                     </div>
 
                     <div className=" flex flex-col">
-                    <p className="font-bold">Numero de documento</p> 
+                    <p className="font-bold">Número de documento</p> 
                       <div className=" items-end border-2 border-indigo-500/75 rounded-lg w-[15rem] p-1">
                           <p className=" text-center">{sale.client.clientDocument}</p>
                       </div>
@@ -145,7 +145,7 @@ export function WatchSale(props) {
 
                     <div className="m-5 flex justify-around">
                       <div className=" flex flex-col">
-                        <p className="font-bold">Numero de telefono</p> 
+                        <p className="font-bold">Número de teléfono</p> 
                         <div className=" border-2 border-indigo-500/75 rounded-lg w-[15rem] p-1 ">
                             <p className=" text-center">{sale.client.clientPhoneNumber}</p>
                         </div>

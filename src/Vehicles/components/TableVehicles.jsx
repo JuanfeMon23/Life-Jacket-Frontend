@@ -153,7 +153,7 @@ export  function TableVehicles() {
               </div>
             </div>
             <div className="flex justify-between items-center">
-              <span className="text-default-400 text-small">Total de vehiculos: {vehicles.length} </span>
+              <span className="text-default-400 text-small">Total de vehículos: {vehicles.length} </span>
               <label className="flex items-center text-default-400 text-small">
                 Filas por pagina
                 <select

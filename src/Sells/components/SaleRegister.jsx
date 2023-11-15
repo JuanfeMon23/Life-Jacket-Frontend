@@ -5,6 +5,7 @@ import { useClients } from '../../Clients/context/clientsContext';
 import { useVehicles } from '../../Vehicles/context/vehiclesContext';
 import {AiOutlinePlusCircle} from 'react-icons/Ai';
 import { useSells } from '../context/sellsContext';
+import { RequiredIcon } from '../../components/globalComponents/RequiredIcon.jsx';
 
 
 export function SaleRegister() {
@@ -33,13 +34,14 @@ export function SaleRegister() {
                               name='idClientSale'
                               control={control}
                               rules={{
-                                required : 'Campo obligatorio'
+                                required : 'Campo requerido'
                               }}
                               render={({field}) => (
                                 <Select
                                   {...field}
                                   label="Documento del cliente"
                                   variant="bordered"
+                                  endContent={<RequiredIcon/>}
                                   color={errors.idClientSale ? "danger" : ""}
                                   errorMessage={errors.idClientSale?.message}
                                   className="max-w-xs"
@@ -62,13 +64,14 @@ export function SaleRegister() {
                               name='idVehicleSale'
                               control={control}
                               rules={{
-                                required : 'Campo obligatorio'
+                                required : 'Campo requerido'
                               }}
                               render={({field}) => (
                                 <Select
                                   {...field}
                                   label="Placa del vehículo"
                                   variant="bordered"
+                                  endContent={<RequiredIcon/>}
                                   color={errors.idVehicleSale ? "danger" : ""}
                                   errorMessage={errors.idVehicleSale?.message}
                                   className="max-w-xs"
@@ -93,7 +96,7 @@ export function SaleRegister() {
                               name="saleDate"
                               control={control}
                               rules={{
-                                required : 'Campo obligatorio'
+                                required : 'Campo requerido'
                               }}
                               render={({ field }) => (
                                 <Input
@@ -101,6 +104,7 @@ export function SaleRegister() {
                                   type="datetime-local"
                                   label="Fecha de compra"
                                   variant="bordered"
+                                  endContent={<RequiredIcon/>}
                                   color={errors.saleDate ? "danger" : ""}
                                   errorMessage={errors.saleDate?.message}
                                   className="max-w-xs"
@@ -126,6 +130,7 @@ export function SaleRegister() {
                                   type="number"
                                   label="Precio de venta"
                                   variant="bordered"
+                                  endContent={<RequiredIcon/>}
                                   color={errors.saleFinalPrice? "danger" : ""}
                                   errorMessage={errors.saleFinalPrice?.message}
                                   className="max-w-xs"
@@ -145,11 +150,11 @@ export function SaleRegister() {
                             required: "Campo requerido",
                             minLength: {
                               value: 3,
-                              message: "Almenos 3 caracteres"
+                              message: "Al menos 3 caracteres"
                             },
                             maxLength: {
                               value: 40,
-                              message: "Maximo 40 caracteres"
+                              message: "Máximo 40 caracteres"
                             },
                             pattern: {
                               value: /^[a-zA-Z\s]*$/,
@@ -162,6 +167,7 @@ export function SaleRegister() {
                               type="text"
                               label="Departamento"
                               variant="bordered"
+                              endContent={<RequiredIcon/>}
                               color={errors.saleDepartment ? "danger" : ""}
                               errorMessage={errors.saleDepartment?.message}
                               className="max-w-xs"
@@ -178,11 +184,11 @@ export function SaleRegister() {
                             required: "Campo requerido",
                             minLength: {
                               value: 3,
-                              message: "Almenos 3 caracteres"
+                              message: "Al menos 3 caracteres"
                             },
                             maxLength: {
                               value: 40,
-                              message: "Maximo 40 caracteres"
+                              message: "Máximo 40 caracteres"
                             },
                             pattern: {
                               value: /^[a-zA-Z\s]*$/,
@@ -195,6 +201,7 @@ export function SaleRegister() {
                               type="text"
                               label="Ciudad o municipio"
                               variant="bordered"
+                              endContent={<RequiredIcon/>}
                               color={errors.saleMunicipality ? "danger" : ""}
                               errorMessage={errors.saleMunicipality?.message}
                               className="max-w-xs"
@@ -216,8 +223,9 @@ export function SaleRegister() {
                             <Input
                               {...field}
                               type="number"
-                              label="Sanción pecunaria"
+                              label="Sanción pecuniaria"
                               variant="bordered"
+                              endContent={<RequiredIcon/>}
                               color={errors.salePecuniaryPenalty ? "danger" : ""}
                               errorMessage={errors.salePecuniaryPenalty?.message}
                               className="max-w-xs"
@@ -234,11 +242,11 @@ export function SaleRegister() {
                                 required: "Campo requerido",
                                 minLength: {
                                   value: 3,
-                                  message: "Almenos 3 caracteres"
+                                  message: "Al menos 3 caracteres"
                                 },
                                 maxLength: {
                                   value: 200,
-                                  message: "Maximo 200 caracteres"
+                                  message: "Máximo 200 caracteres"
                                 }
                               }}
                               render={({ field }) => (
@@ -247,6 +255,7 @@ export function SaleRegister() {
                                   type="text"
                                   label="Limitaciones"
                                   variant="bordered"
+                                  endContent={<RequiredIcon/>}
                                   color={errors.saleLimitations ? "danger" : ""}
                                   errorMessage={errors.saleLimitations?.message}
                                   className="max-w-xs"

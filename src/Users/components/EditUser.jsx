@@ -23,7 +23,7 @@ export function EditUser(props) {
 
     const handleEvent = (event) => {
       event.preventDefault();
-      toast.error('No puedes actualizar un usuario inhabilitado.' ,{
+      toast.error('No puedes actualizar un usuario inhabilitado' ,{
         autoClose : 1500,
         position: toast.POSITION.TOP_CENTER
     });
@@ -62,7 +62,7 @@ export function EditUser(props) {
                                 field.onChange(e);
                               }}
                             >
-                              <SelectItem key='Cedula de ciudadania'>CC</SelectItem>
+                              <SelectItem key='Cédula de ciudadanía'>CC</SelectItem>
                             </Select>
                           )}
                         />
@@ -81,7 +81,7 @@ export function EditUser(props) {
                           },
                           maxLength : {
                             value : 15 ,
-                            message : 'Maximo 15 números'
+                            message : 'Máximo 15 números'
                           },
                           pattern: {
                             value: /^[0-9]*$/, 
@@ -114,11 +114,11 @@ export function EditUser(props) {
                             required: "Nombres requeridos",
                             minLength: {
                               value: 3,
-                              message: "Almenos 3 caracteres"
+                              message: "Al menos 3 caracteres"
                             },
                             maxLength: {
                               value: 40,
-                              message: "Maximo 40 caracteres"
+                              message: "Máximo 40 caracteres"
                             },
                             pattern: {
                               value: /^[a-zA-Z\s]*$/,
@@ -148,11 +148,11 @@ export function EditUser(props) {
                             required: "Nombres requeridos",
                             minLength: {
                               value: 3,
-                              message: "Almenos 3 caracteres"
+                              message: "Al menos 3 caracteres"
                             },
                             maxLength: {
                               value: 40,
-                              message: "Maximo 40 caracteres"
+                              message: "Máximo 40 caracteres"
                             },
                             pattern: {
                               value: /^[a-zA-Z\s]*$/,
@@ -185,11 +185,11 @@ export function EditUser(props) {
                             required: "Nombres requeridos",
                             minLength: {
                               value: 3,
-                              message: "Almenos 3 caracteres"
+                              message: "Al menos 3 caracteres"
                             },
                             maxLength: {
                               value: 40,
-                              message: "Maximo 40 caracteres"
+                              message: "Máximo 40 caracteres"
                             },
                             pattern: {
                               value: /^[a-zA-Z\s]*$/,
@@ -219,11 +219,11 @@ export function EditUser(props) {
                             required: "Apellidos requeridos",
                             minLength: {
                               value: 3,
-                              message: "Almenos 6 caracteres"
+                              message: "Al menos 3 caracteres"
                             },
                             maxLength: {
                               value: 40,
-                              message: "Maximo 40 caracteres"
+                              message: "Máximo 40 caracteres"
                             },
                             pattern: {
                               value: /^[a-zA-Z\s]*$/,
@@ -331,7 +331,7 @@ export function EditUser(props) {
                           <Input
                             {...field}
                             type="number"
-                            label="Telefono"
+                            label="Teléfono"
                             variant="bordered"
                             color={errors.userPhoneNumber? "danger" : ""}
                             errorMessage={errors.userPhoneNumber?.message}
@@ -363,7 +363,7 @@ export function EditUser(props) {
                           <Input
                             {...field}
                             type="number"
-                            label="Otro Telefono"
+                            label="Otro Télefono"
                             variant="bordered"
                             color={errors.userOtherPhoneNumber? "danger" : ""}
                             errorMessage={errors.userOtherPhoneNumber?.message}
@@ -387,7 +387,7 @@ export function EditUser(props) {
                             <Input
                               {...field}
                               type="text"
-                              label="Dirreción"
+                              label="Dirección"
                               variant="bordered"
                               color={errors.userAddress ? "danger" : ""}
                               errorMessage={errors.userAddress?.message}

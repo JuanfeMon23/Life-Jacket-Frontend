@@ -48,11 +48,11 @@ export  function  ClientEdit(props) {
                             required: "Campo requerido",
                             minLength: {
                               value: 3,
-                              message: "Almenos 3 caracteres"
+                              message: "Al menos 3 caracteres"
                             },
                             maxLength: {
                               value: 40,
-                              message: "Maximo 40 caracteres"
+                              message: "Máximo 40 caracteres"
                             },
                             pattern: {
                               value: /^[a-zA-Z\s]*$/,
@@ -82,11 +82,11 @@ export  function  ClientEdit(props) {
                             required: "Nombres requeridos",
                             minLength: {
                               value: 3,
-                              message: "Almenos 3 caracteres"
+                              message: "Al menos 3 caracteres"
                             },
                             maxLength: {
                               value: 40,
-                              message: "Maximo 40 caracteres"
+                              message: "Máximo 40 caracteres"
                             },
                             pattern: {
                               value: /^[a-zA-Z\s]*$/,
@@ -120,11 +120,11 @@ export  function  ClientEdit(props) {
                             required: "Nombres requeridos",
                             minLength: {
                               value: 3,
-                              message: "Almenos 3 caracteres"
+                              message: "Al menos 3 caracteres"
                             },
                             maxLength: {
                               value: 40,
-                              message: "Maximo 40 caracteres"
+                              message: "Máximo 40 caracteres"
                             },
                             pattern: {
                               value: /^[a-zA-Z\s]*$/,
@@ -154,11 +154,11 @@ export  function  ClientEdit(props) {
                             required: "Apellidos requeridos",
                             minLength: {
                               value: 3,
-                              message: "Almenos 6 caracteres"
+                              message: "Al menos 3 caracteres"
                             },
                             maxLength: {
                               value: 40,
-                              message: "Maximo 40 caracteres"
+                              message: "Máximo 40 caracteres"
                             },
                             pattern: {
                               value: /^[a-zA-Z\s]*$/,
@@ -193,7 +193,7 @@ export  function  ClientEdit(props) {
                             <Input
                               {...field}
                               type="text"
-                              label="Dirreción"
+                              label="Dirección"
                               variant="bordered"
                               color={errors.clientAddress ? "danger" : ""}
                               errorMessage={errors.clientAddress?.message}
@@ -225,7 +225,7 @@ export  function  ClientEdit(props) {
                           <Input
                             {...field}
                             type="number"
-                            label="Telefono"
+                            label="Teléfono"
                             variant="bordered"
                             color={errors.clientPhoneNumber? "danger" : ""}
                             errorMessage={errors.clientPhoneNumber?.message}
@@ -256,7 +256,7 @@ export  function  ClientEdit(props) {
                           <Input
                             {...field}
                             type="number"
-                            label="Otro Telefono"
+                            label="Otro teléfono"
                             variant="bordered"
                             color={errors.clientOtherPhoneNumber? "danger" : ""}
                             errorMessage={errors.clientOtherPhoneNumber?.message}
@@ -277,11 +277,11 @@ export  function  ClientEdit(props) {
                             required: "Nombres requeridos",
                             minLength: {
                               value: 3,
-                              message: "Almenos 3 caracteres"
+                              message: "Al menos 3 caracteres"
                             },
                             maxLength: {
                               value: 40,
-                              message: "Maximo 40 caracteres"
+                              message: "Máximo 40 caracteres"
                             },
                             pattern: {
                               value: /^[a-zA-Z\s]*$/,
@@ -292,7 +292,7 @@ export  function  ClientEdit(props) {
                             <Input
                               {...field}
                               type="text"
-                              label="Otro Contacto"
+                              label="Otro contacto"
                               variant="bordered"
                               color={errors.clientOtherContact ? "danger" : ""}
                               errorMessage={errors.clientOtherContact?.message}

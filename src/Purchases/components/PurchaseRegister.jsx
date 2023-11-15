@@ -5,6 +5,7 @@ import { usePurchases } from '../context/purchaseContext';
 import { useClients } from '../../Clients/context/clientsContext';
 import { useVehicles } from '../../Vehicles/context/vehiclesContext';
 import {AiOutlinePlusCircle} from 'react-icons/Ai';
+import { RequiredIcon } from '../../components/globalComponents/RequiredIcon.jsx';
 
 
 export function PurchaseRegister() {
@@ -35,13 +36,14 @@ export function PurchaseRegister() {
                               name='idClientPurchase'
                               control={control}
                               rules={{
-                                required : 'Campo obligatorio'
+                                required : 'Campo requerido'
                               }}
                               render={({field}) => (
                                 <Select
                                   {...field}
                                   label="Documento del cliente"
                                   variant="bordered"
+                                  endContent={<RequiredIcon/>}
                                   color={errors.idClientPurchase ? "danger" : ""}
                                   errorMessage={errors.idClientPurchase?.message}
                                   className="max-w-xs"
@@ -64,13 +66,14 @@ export function PurchaseRegister() {
                               name='idVehiclePurchase'
                               control={control}
                               rules={{
-                                required : 'Campo obligatorio'
+                                required : 'Campo requerido'
                               }}
                               render={({field}) => (
                                 <Select
                                   {...field}
                                   label="Placa del vehículo"
                                   variant="bordered"
+                                  endContent={<RequiredIcon/>}
                                   color={errors.idVehiclePurchase ? "danger" : ""}
                                   errorMessage={errors.idVehiclePurchase?.message}
                                   className="max-w-xs"
@@ -95,7 +98,7 @@ export function PurchaseRegister() {
                               name="purchaseDate"
                               control={control}
                               rules={{
-                                required : 'Campo obligatorio'
+                                required : 'Campo requerido'
                               }}
                               render={({ field }) => (
                                 <Input
@@ -103,6 +106,7 @@ export function PurchaseRegister() {
                                   type="datetime-local"
                                   label="Fecha de compra"
                                   variant="bordered"
+                                  endContent={<RequiredIcon/>}
                                   color={errors.purchaseDate ? "danger" : ""}
                                   errorMessage={errors.purchaseDate?.message}
                                   className="max-w-xs"
@@ -128,6 +132,7 @@ export function PurchaseRegister() {
                                   type="number"
                                   label="Precio de compra"
                                   variant="bordered"
+                                  endContent={<RequiredIcon/>}
                                   color={errors.purchaseFinalPrice? "danger" : ""}
                                   errorMessage={errors.purchaseFinalPrice?.message}
                                   className="max-w-xs"
@@ -147,11 +152,11 @@ export function PurchaseRegister() {
                             required: "Campo requerido",
                             minLength: {
                               value: 3,
-                              message: "Almenos 3 caracteres"
+                              message: "Al menos 3 caracteres"
                             },
                             maxLength: {
                               value: 40,
-                              message: "Maximo 40 caracteres"
+                              message: "Máximo 40 caracteres"
                             },
                             pattern: {
                               value: /^[a-zA-Z\s]*$/,
@@ -164,6 +169,7 @@ export function PurchaseRegister() {
                               type="text"
                               label="Departamento"
                               variant="bordered"
+                              endContent={<RequiredIcon/>}
                               color={errors.purchaseDepartment ? "danger" : ""}
                               errorMessage={errors.purchaseDepartment?.message}
                               className="max-w-xs"
@@ -180,11 +186,11 @@ export function PurchaseRegister() {
                             required: "Campo requerido",
                             minLength: {
                               value: 3,
-                              message: "Almenos 3 caracteres"
+                              message: "Al menos 3 caracteres"
                             },
                             maxLength: {
                               value: 40,
-                              message: "Maximo 40 caracteres"
+                              message: "Máximo 40 caracteres"
                             },
                             pattern: {
                               value: /^[a-zA-Z\s]*$/,
@@ -197,6 +203,7 @@ export function PurchaseRegister() {
                               type="text"
                               label="Ciudad o municipio"
                               variant="bordered"
+                              endContent={<RequiredIcon/>}
                               color={errors.purchaseMunicipality ? "danger" : ""}
                               errorMessage={errors.purchaseMunicipality?.message}
                               className="max-w-xs"
@@ -218,8 +225,9 @@ export function PurchaseRegister() {
                             <Input
                               {...field}
                               type="number"
-                              label="Sanción pecunaria"
+                              label="Sanción pecuniaria"
                               variant="bordered"
+                              endContent={<RequiredIcon/>}
                               color={errors.purchasePecuniaryPenalty ? "danger" : ""}
                               errorMessage={errors.purchasePecuniaryPenalty?.message}
                               className="max-w-xs"
@@ -236,11 +244,11 @@ export function PurchaseRegister() {
                                 required: "Campo requerido",
                                 minLength: {
                                   value: 3,
-                                  message: "Almenos 3 caracteres"
+                                  message: "Al menos 3 caracteres"
                                 },
                                 maxLength: {
                                   value: 200,
-                                  message: "Maximo 200 caracteres"
+                                  message: "Máximo 200 caracteres"
                                 }
                               }}
                               render={({ field }) => (
@@ -249,6 +257,7 @@ export function PurchaseRegister() {
                                   type="text"
                                   label="Limitaciones"
                                   variant="bordered"
+                                  endContent={<RequiredIcon/>}
                                   color={errors.purchaseLimitations ? "danger" : ""}
                                   errorMessage={errors.purchaseLimitations?.message}
                                   className="max-w-xs"

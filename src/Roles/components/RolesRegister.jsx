@@ -10,6 +10,7 @@ import {Switch} from "@nextui-org/react";
 import { useUsers } from '../../Users/Context/userContext';
 import {AiOutlinePlusCircle} from 'react-icons/Ai';
 import { AddLicenses } from './AddLicenses';
+import { RequiredIcon } from '../../components/globalComponents/RequiredIcon.jsx';
 
 export  function RolesRegister() {
 const {isOpen, onOpen, onOpenChange} = useDisclosure();
@@ -51,11 +52,11 @@ useEffect(() => {
                             required: "Campo requerido",
                             minLength: {
                               value: 3,
-                              message: "Almenos 3 caracteres"
+                              message: "Al menos 3 caracteres"
                             },
                             maxLength: {
                               value: 20,
-                              message: "Maximo 20 caracteres"
+                              message: "Máximo 20 caracteres"
                             },
                             pattern: {
                               value: /^[a-zA-Z\s]*$/,
@@ -68,6 +69,7 @@ useEffect(() => {
                               type="text"
                               label="Nombre del rol"
                               variant="bordered"
+                              endContent={<RequiredIcon/>}
                               color={errors.rolName ? "danger" : ""}
                               errorMessage={errors.rolName?.message}
                               className="max-w-xs"

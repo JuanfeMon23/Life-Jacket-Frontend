@@ -45,7 +45,7 @@ export function VehicleProvider({children}){
     const createVehicle = async (vehicle) => {
         try {
             const res = await createVehiclesRequest(vehicle);
-            toast.success('Vehiculo Creado con exito.',{
+            toast.success('Vehiculo creado con éxito!',{
                 position: toast.POSITION.TOP_CENTER,
                 autoClose : 1500
             });
@@ -66,7 +66,7 @@ export function VehicleProvider({children}){
     const updateVehicle = async (idVehicle, vehicle) => {
         try {
             await updateVehicleRequest(idVehicle, vehicle);
-            toast.success('Vehiculo actualizado con exito.',{
+            toast.success('Vehículo actualizado con éxito!',{
                 position: toast.POSITION.TOP_CENTER,
                 autoClose: 1500
             });
@@ -83,7 +83,7 @@ export function VehicleProvider({children}){
     const statusVehicle = async (idVehicle, vehicle) => {
         try {
             await statusVehicleRequest(idVehicle, vehicle);
-            toast.success('Vehiculo anulado  con exito.',{
+            toast.success('Estado actualizado con éxito!',{
                 position: toast.POSITION.TOP_CENTER,
                 autoClose :1500
             });
@@ -100,7 +100,7 @@ export function VehicleProvider({children}){
     const deleteVehicle = async (idVehicle) => {
         try {
             await deleteVehicleRequest(idVehicle);
-            toast.success('Vehiculo eliminado con exito.',{
+            toast.success('Vehículo eliminado con éxito!',{
                 position: toast.POSITION.TOP_CENTER,
                 autoClose :1500
             });

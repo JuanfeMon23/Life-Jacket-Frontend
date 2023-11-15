@@ -94,7 +94,7 @@ export function CardUsers() {
             </div>
 
             <div className=' flex my-2 items-center m-2'>
-                <p className=' mx-3 text-sm'>Correo: </p>
+                <p className=' mx-3 text-sm'>Correo electrónico: </p>
                 <p className='border-2 border-indigo-500/75 rounded-lg py-1 px-1 w-40 text-xs'>{data.userEmail}</p>
             </div>
 

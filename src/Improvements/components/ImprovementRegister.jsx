@@ -8,6 +8,7 @@ import {Select, SelectItem} from "@nextui-org/react";
 import { Button } from '@nextui-org/react';
 import { useParams, useNavigate } from 'react-router-dom';
 import {AiOutlinePlusCircle} from 'react-icons/Ai';
+import { RequiredIcon } from '../../components/globalComponents/RequiredIcon.jsx';
 
 export function ImprovementRegister() {
     const {isOpen, onOpen, onOpenChange} = useDisclosure();
@@ -34,7 +35,7 @@ export function ImprovementRegister() {
             <ModalContent>
             {(onClose) => (
                 <>
-                <ModalHeader className="flex flex-col gap-3">Datos de la Mejora</ModalHeader>
+                <ModalHeader className="flex flex-col gap-3">Datos de la mejora</ModalHeader>
                 <ModalBody>
                     <form onSubmit={handleSubmit(onSubmit)}>
                         <div className='flex-col m-3 w-[400px]'>
@@ -42,13 +43,14 @@ export function ImprovementRegister() {
                                 name='idVehicleImprovement'
                                 control={control}
                                 rules={{
-                                    required : 'Campo obligatorio'
+                                    required : 'Campo requerido'
                                 }}
                                 render={({field}) => (
                                     <Select
                                     {...field}
                                     label="Placa del vehículo"
                                     variant="bordered"
+                                    endContent={<RequiredIcon/>}
                                     color={errors.idVehicleImprovement ? "danger" : ""}
                                     errorMessage={errors.idVehicleImprovement?.message}
                                     className="max-w-xs"
@@ -72,7 +74,7 @@ export function ImprovementRegister() {
                               name="improvementDate"
                               control={control}
                               rules={{
-                                required : 'Campo obligatorio'
+                                required : 'Campo requerido'
                               }}
                               render={({ field }) => (
                                 <Input
@@ -80,6 +82,7 @@ export function ImprovementRegister() {
                                   type="date"
                                   label="Fecha de mejora"
                                   variant="bordered"
+                                  endContent={<RequiredIcon/>}
                                   color={errors.improvementDate ? "danger" : ""}
                                   errorMessage={errors.improvementDate?.message}
                                   className="max-w-xs"
@@ -105,6 +108,7 @@ export function ImprovementRegister() {
                                   type="number"
                                   label="Precio de mejora"
                                   variant="bordered"
+                                  endContent={<RequiredIcon/>}
                                   color={errors.improvementPrice? "danger" : ""}
                                   errorMessage={errors.improvementPrice?.message}
                                   className="max-w-xs"
@@ -123,19 +127,20 @@ export function ImprovementRegister() {
                             required: "Campo requerido",
                             minLength: {
                               value: 3,
-                              message: "Almenos 3 caracteres"
+                              message: "Al menos 3 caracteres"
                             },
                             maxLength: {
                               value: 40,
-                              message: "Maximo 40 caracteres"
+                              message: "Máximo 40 caracteres"
                             }
                           }}
                           render={({ field }) => (
                             <Textarea
                               {...field}
                               type="text"
-                              label="Descripcion de la mejora"
+                              label="Descripción de la mejora"
                               variant="bordered"
+                              endContent={<RequiredIcon/>}
                               color={errors.improvementDescription ? "danger" : ""}
                               errorMessage={errors.improvementDescription?.message}
                               className="max-w-xs"

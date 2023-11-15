@@ -10,8 +10,6 @@ export const useSells = () => {
     return context;
 };
 
-
-
 export function SellProvider({children}) {
     const [sells, setSells] = useState([]);
     const {getVehicles} = useVehicles();
@@ -28,7 +26,7 @@ export function SellProvider({children}) {
     const createSell = async (sell) => {
         try {
             const res = await createSellRequest(sell);
-            toast.success('Venta Creado con extio!',{
+            toast.success('Venta creada con éxito!',{
                 position: toast.POSITION.TOP_CENTER,
                 autoClose : 1500,
             });
@@ -36,7 +34,7 @@ export function SellProvider({children}) {
             getVehicles();
             return res.data;
         } catch (error) {
-            toast.error('Error al crear una venta.' ,{
+            toast.error('Error al crear una venta' ,{
                 position: toast.POSITION.TOP_CENTER,
                 autoClose : 1500
             });
@@ -48,7 +46,7 @@ export function SellProvider({children}) {
     const statusSale = async (idSale) => {
         try {
             await statusSaleRequest(idSale);
-            toast.success('Venta anulada con exito!',{
+            toast.success('Venta anulada con éxito!',{
                 position: toast.POSITION.TOP_CENTER,
                 autoClose : 1500,
             });
@@ -60,28 +58,33 @@ export function SellProvider({children}) {
             });
         }
     };
-
+     
     const informSale = async (firstParameter, secondParameter) => {
         try {
-            await informSaleRequest(firstParameter, secondParameter );
-            toast.success('Informe generado con exito!',{
+            const file = await informSaleRequest(firstParameter, secondParameter);
+            const url = window.URL.createObjectURL(new Blob([file]));
+            const link = document.createElement('a');
+            link.href = url;
+            link.setAttribute('download', 'reporteVenta.pdf');
+            document.body.appendChild(link);
+            link.click();
+            toast.success('Reporte generado con éxito!',{
                 position: toast.POSITION.TOP_CENTER,
                 autoClose : 1500,
             });
-            getSells();
         } catch (error) {
             console.log(error);
-            toast.error('Error al generar el informe' ,{
+            toast.error('Error al generar el informe', {
                 position: toast.POSITION.TOP_CENTER,
-                autoClose : 1500,
+                autoClose: 1500,
             });
         }
-    };
+     };
 
     const deleteSale = async (idSale) => {
         try {
             await deleteSaleRequest(idSale);
-            toast.success('Venta eliminada con exito',{
+            toast.success('Venta eliminada con éxito!',{
                 position: toast.POSITION.TOP_CENTER,
                 autoClose : 1500,
             });

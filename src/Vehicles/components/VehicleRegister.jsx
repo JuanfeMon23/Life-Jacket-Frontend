@@ -20,7 +20,7 @@ export  function VehicleRegister(props) {
         <ModalContent>
           {(onClose) => (
             <>
-              <ModalHeader className="flex flex-col gap-3">Datos del Vehiculo</ModalHeader>
+              <ModalHeader className="flex flex-col gap-3">Datos del vehículo</ModalHeader>
               <ModalBody>
                 <VehicleInfo/>      
               </ModalBody>

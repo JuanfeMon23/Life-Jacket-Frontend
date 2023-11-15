@@ -21,6 +21,7 @@ import {FaSearch} from 'react-icons/fa';
 import {IoIosArrowDown} from 'react-icons/io';
 import {capitalize} from '../../components/utils';
 import { useExchange } from '../context/ExchangeContext';
+import { ReportExchange } from './ReportExchange';
 
 const columns = [
   {name : "Fecha del cambio", uid : "d" },
@@ -191,6 +192,7 @@ export  function TableExchange() {
                 ))}
               </DropdownMenu>
             </Dropdown>
+            <ReportExchange />
             <Dropdown>
               <DropdownTrigger className="hidden sm:flex">
                 <Button  color="primary" variant="flat" startContent={<IoIosArrowDown/>}>

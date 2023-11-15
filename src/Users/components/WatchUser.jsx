@@ -10,7 +10,7 @@ export function WatchUser(props) {
 
   function handleview (event){
     event.preventDefault();
-    toast.error('No puedes ver un usuario inhabilitado.' ,{
+    toast.error('No puedes ver un usuario inhabilitado' ,{
       autoClose : 1500,
       position: toast.POSITION.TOP_CENTER
   });
@@ -24,7 +24,7 @@ export function WatchUser(props) {
         <ModalContent>
           {(onClose) => (
             <>
-              <ModalHeader className="  justify-center font-bold text-2xl ">Informacion del usuario</ModalHeader>
+              <ModalHeader className="  justify-center font-bold text-2xl ">Información del usuario</ModalHeader>
                 <ModalBody key={user.id}>
                 <div className="m-5 flex justify-around">
                     <div className=" flex flex-col">
@@ -35,7 +35,7 @@ export function WatchUser(props) {
                     </div>
 
                     <div className=" flex flex-col">
-                    <p className="font-bold">Numero de documento</p> 
+                    <p className="font-bold">Número de documento</p> 
                       <div className=" items-end border-2 border-indigo-500/75 rounded-lg w-[15rem] p-1">
                           <p className=" text-center">{user.userDocument}</p>
                       </div>
@@ -77,7 +77,7 @@ export function WatchUser(props) {
 
                 <div className=" flex justify-center m-3 ">
                   <div className=" flex flex-col">
-                    <p className="font-bold">Correo Electronico</p>
+                    <p className="font-bold">Correo electrónico</p>
                     <div className="border-2 border-indigo-500/75 rounded-lg p-1 w-[20rem]">
                         <p className=" text-center">{user.userEmail}</p>
                     </div>
@@ -86,14 +86,14 @@ export function WatchUser(props) {
                     
                 <div className="m-5 flex justify-around">
                     <div className=" flex flex-col">
-                      <p className="font-bold">Telefono</p> 
+                      <p className="font-bold">Teléfono</p> 
                       <div className=" border-2 border-indigo-500/75 rounded-lg w-[15rem] p-1 ">
                           <p className=" text-center">{user.userPhoneNumber}</p>
                       </div>
                     </div>
 
                     <div className=" flex flex-col">
-                    <p className="font-bold">Otro Telefono</p> 
+                    <p className="font-bold">Otro teléfono</p> 
                       <div className=" items-end border-2 border-indigo-500/75 rounded-lg w-[15rem] p-1">
                           <p className=" text-center">{user.userOtherPhoneNumber}</p>
                       </div>

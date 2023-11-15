@@ -71,7 +71,7 @@ export  function CardClient() {
       {searchResults.map((clients) => (
           <Card key={clients.idClient} className=' h-30 w-13 mx-2 my-2 shadow-2xl'>
           <div className='bg-gradient-to-r from-[#252525] to-[#231949] h-10 text-white justify-around flex mx-3 rounded-lg' >
-            <p>Cedula</p>
+            <p>Cédula</p>
             <p>{clients.clientDocument}</p>  
           </div>
     
@@ -85,7 +85,7 @@ export  function CardClient() {
                 </div>
             </div>
             <div className=' flex my-2 items-center'>
-                <p className=' mx-3 text-sm'>Telefono: </p>
+                <p className=' mx-3 text-sm'>Teléfono: </p>
                 <p className='border-2 border-indigo-500/75 rounded-lg py-1 px-1 w-40 text-xs'>{clients.clientPhoneNumber}</p>
             </div>
     

@@ -33,7 +33,7 @@ export function ClientProvider({children}){
     const createClient = async (client) => {
         try {
             const res = await createClientRequest(client);
-            toast.success('Cliente creado con exito.',{
+            toast.success('Cliente creado con éxito!',{
                 position: toast.POSITION.TOP_CENTER,
                 autoClose : 1500
             });
@@ -51,7 +51,7 @@ export function ClientProvider({children}){
     const updateClient = async (idClient, client) => {
         try {
             await updateClientRequest(idClient, client);
-            toast.success('Cliente actualizado con exito!',{
+            toast.success('Cliente actualizado con éxito!',{
                 position: toast.POSITION.TOP_CENTER,
                 autoClose : 1500
             });
@@ -68,7 +68,7 @@ export function ClientProvider({children}){
     const statusClient = async (idClient) => {
         try {
             await stateClientRequest(idClient);
-            toast.success('Estado actualizado con exito!',{
+            toast.success('Estado actualizado con éxito!',{
                 position: toast.POSITION.TOP_CENTER,
                 autoClose: 1500
             });
@@ -85,12 +85,12 @@ export function ClientProvider({children}){
     const deleteClient = async (idClient) => {
         try {
             await deleteClientRequest(idClient);
-            toast.success('Ciente eliminado con exito!',{
+            toast.success('Ciente eliminado con éxito!',{
                 position: toast.POSITION.TOP_CENTER
             });
             getClients();
         } catch (error) {
-            toast.error('Error al eliminar.' ,{
+            toast.error('Error al eliminar el cliente' ,{
                 autoClose : 1500,
                 position: toast.POSITION.TOP_CENTER
             });
