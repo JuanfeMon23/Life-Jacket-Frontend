@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
 import { Modal, ModalContent, ModalHeader, ModalBody, useDisclosure, Input, Button } from "@nextui-org/react";
 import { useForm, Controller } from 'react-hook-form';
-import axios from 'axios';
 import { ButtonAccept } from '../../components/ButtonAccept';
 import { useExchange } from '../context/ExchangeContext'; 
+import { IoDocumentTextOutline } from "react-icons/io5";
 
 export function ReportExchange() {
    const { isOpen, onOpen, onOpenChange } = useDisclosure();
@@ -16,7 +16,7 @@ export function ReportExchange() {
 
    return (
     <>
-        <Button onPress={onOpen}>Informe</Button>
+        <Button className=' bg-violet-600 text-white' startContent={<IoDocumentTextOutline/>} onPress={onOpen}>Informe</Button>
         <Modal isOpen={isOpen} onOpenChange={onOpenChange}>
             <ModalContent>
                 <ModalHeader className="flex flex-col gap-1">Informe de cambios</ModalHeader>

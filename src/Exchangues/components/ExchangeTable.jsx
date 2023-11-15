@@ -20,6 +20,7 @@ import {IoIosArrowDown} from 'react-icons/io';
 import {useExchange} from '../context/ExchangeContext'
 import { Navigate, useNavigate, Link } from "react-router-dom";
 import {AiOutlinePlusCircle} from 'react-icons/Ai';
+import { ReportExchange } from "./ReportExchange";
 
 
 const statusOptions = [
@@ -148,6 +149,7 @@ export function ExchangeTable() {
                     ))}
                   </DropdownMenu>
                 </Dropdown>
+                <ReportExchange/>
             <Link to='/Exchangues/create'><Button endContent={<AiOutlinePlusCircle className=' text-2xl'/>} color="primary" variant="solid"  className=' text-white font-bold'>Agregar</Button></Link>
               </div>
             </div>

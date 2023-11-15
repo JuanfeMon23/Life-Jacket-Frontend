@@ -22,6 +22,8 @@ import { WatchPurchase } from './WatchPurchase';
 import { StatusPurchase } from './StatusPurchase';
 import { PurchaseRegister } from './PurchaseRegister';
 import { ReportPurchase } from './ReportPurchase';
+import { IoDocumentTextOutline } from "react-icons/io5";
+
 
 const statusOptions = [
   { name: "Activo", uid: "true" },
@@ -139,7 +141,7 @@ export function TablePurchase() {
                 ))}
               </DropdownMenu>
             </Dropdown>
-            <ReportPurchase />
+            <ReportPurchase/>
             <PurchaseRegister />
           </div>
         </div>
