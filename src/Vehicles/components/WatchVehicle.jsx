@@ -1,16 +1,26 @@
 import React, { useEffect } from "react";
 import {Modal, ModalContent, ModalHeader, ModalBody, Button, useDisclosure} from "@nextui-org/react";
 import {FiEye}from "react-icons/fi";
+import { toast } from "react-toastify";
 import {Accordion, AccordionItem} from "@nextui-org/react";
 
 export function WatchVehicle (props) {
     const {isOpen, onOpen, onOpenChange} = useDisclosure();
     const vehicles = props.vehicle
 
+    function handleWatch(event){
+      event.preventDefault();
+      toast.error('No puedes ver un vehiculo inhabilitado.' ,{
+        autoClose : 1500,
+        position: toast.POSITION.TOP_CENTER
+    });
+    }
+
     return (
         <>
-        <Button isIconOnly  className='bg-gradient-to-r from-[#2D78BE] to-[#6D2CC0]' onPress={onOpen}><FiEye className="text-white text-2xl"/></Button>
-        <Modal isOpen={isOpen} onOpenChange={onOpenChange} size="2xl" scrollBehavior={'inside'}>
+        {vehicles.vehicleStatus === "true" ? <Button isIconOnly  className='bg-gradient-to-r from-[#2D78BE] to-[#6D2CC0]' onPress={onOpen}><FiEye className="text-white text-2xl"/></Button>
+         : <Button isIconOnly onClick={handleWatch} ><FiEye className="text-white text-2xl"/></Button> }
+        <Modal isOpen={isOpen} onOpenChange={onOpenChange} size="2xl" scrollBehavior={'inside'} isDismissable={false}>
           <ModalContent>
             {(onClose) => (
               <>
@@ -73,14 +83,14 @@ export function WatchVehicle (props) {
                               <div className=" flex flex-col">
                                 <p className="font-bold">Kilometraje</p> 
                                 <div className=" border-2 border-indigo-500/75 rounded-lg w-[15rem] p-1 ">
-                                    <p className=" text-center">{vehicles.mileage}</p>
+                                    <p className=" text-center">{vehicles.mileage ? vehicles.mileage : 'No hay datos.'}</p>
                                 </div>
                               </div>
 
                               <div className=" flex flex-col">
                               <p className="font-bold">Cilindraje</p> 
                                 <div className=" items-end border-2 border-indigo-500/75 rounded-lg w-[15rem] p-1">
-                                    <p className=" text-center">{vehicles.cylinderCapacity}</p>
+                                    <p className=" text-center">{vehicles.cylinderCapacity ? vehicles.cylinderCapacity : 'No hay datos.'}</p>
                                 </div>
                               </div>
                           </div> 
@@ -89,7 +99,7 @@ export function WatchVehicle (props) {
                               <div className=" flex flex-col">
                                 <p className="font-bold">Gasolina</p> 
                                 <div className=" border-2 border-indigo-500/75 rounded-lg w-[15rem] p-1 ">
-                                    <p className=" text-center">{vehicles.fuel}</p>
+                                    <p className=" text-center">{vehicles.fuel ? vehicles.fue : 'No hay datos.' }</p>
                                 </div>
                               </div>
 

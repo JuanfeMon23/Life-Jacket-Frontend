@@ -17,21 +17,23 @@ export  function StatusVehicle(props) {
         statusVehicle(vehicles.idVehicle)
     }
 
-    function handleState (){
-      toast.error('Vehiculo anulado.',{
-        
-      })
-    };    
+    function handleEdit(event){
+      event.preventDefault();
+      toast.error('No puedes interactuar con un vehiculo inhabilitado.' ,{
+        autoClose : 1500,
+        position: toast.POSITION.TOP_CENTER
+    });
+  }    
 
   return (
     <div className='flex'>
     {vehicles.vehicleStatus === "true" ? <Button  isIconOnly className=' bg-green-600 rounded-lg' onPress={onOpen}><GrStatusGood className='text-2xl'/></Button>
-     : <Button isIconOnly  onPress={onOpen}><TiDeleteOutline className='text-white text-2xl'/></Button>}
-      <Modal isOpen={isOpen} onOpenChange={onOpenChange}>
+     : <Button isIconOnly onClick={handleEdit} ><TiDeleteOutline className='text-white text-2xl'/></Button>}
+      <Modal isOpen={isOpen} onOpenChange={onOpenChange} isDismissable={false}>
         <ModalContent>
           {(onClose) => (
             <>
-              <ModalHeader className=" justify-center ">¿Deseas anular el vehículo?</ModalHeader>
+              <ModalHeader className=" justify-center text-2xl m-4 ">¿Deseas anular el vehículo?</ModalHeader>
               <ModalBody>
                 <form onSubmit={handleSubmit(onSubmit)}>
                     <div className=' text-center m-3'>

@@ -1,4 +1,4 @@
-import React from 'react'
+import React, {useState} from 'react'
 import {Modal, ModalContent, ModalHeader, ModalBody, ModalFooter, useDisclosure, Input, Button, Select, SelectItem, Textarea} from "@nextui-org/react";
 import {useForm, Controller} from 'react-hook-form';
 import { usePurchases } from '../context/purchaseContext';
@@ -49,8 +49,8 @@ export function PurchaseRegister() {
                                     field.onChange(e);
                                   }}
                                 >
-                                  {clients.filter(client => client.clientStatus === "true").map((client) => (
-                                    <SelectItem key={client.idClient} value={client.clientDocument}>
+                                  {clients.filter(client => client.clientStatus === "true").map((client, i) => (
+                                    <SelectItem key={i} value={client.clientDocument}>
                                         {client.clientDocument}
                                     </SelectItem>
                                   ))}
@@ -78,8 +78,8 @@ export function PurchaseRegister() {
                                     field.onChange(e);
                                   }}
                                 >
-                                {vehicles.filter(vehicles => vehicles.vehicleStatus === "true").map((vehicles) => (
-                                    <SelectItem key={vehicles.idVehicle} value={vehicles.licensePlate}>
+                                {vehicles.filter(vehicles => vehicles.vehicleStatus === "true").map((vehicles, i) => (
+                                    <SelectItem key={i} value={vehicles.licensePlate}>
                                         {vehicles.licensePlate}
                                     </SelectItem>
                                   ))}

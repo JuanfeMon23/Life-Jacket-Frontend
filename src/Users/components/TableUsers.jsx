@@ -231,8 +231,8 @@ export  function TableUsers() {
                 <TableRow key={item.idUser}>
                     <TableCell>{item.userName}</TableCell>
                     <TableCell>{item.userLastName}</TableCell> 
-                    <TableCell>{item.userEmail}</TableCell> 
                     <TableCell>{item.Role.rolName}</TableCell>
+                    <TableCell>{item.userEmail}</TableCell> 
                     <TableCell>{item.userStatus === "true" ?  <Chip color="success">Activo</Chip> : <Chip color="default">Inactivo</Chip>}</TableCell>
                     <TableCell className=" flex">
                         <WatchUser user={item}/>

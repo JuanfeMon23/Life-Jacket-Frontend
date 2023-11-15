@@ -15,21 +15,21 @@ import { SellProvider } from "./Sells/context/sellsContext.jsx";
 import { ImprovementProvider } from "./Improvements/context/improvementsContext.jsx";
 import { DashBoard } from "./Dashboard/pages/DashBoard.jsx";
 import { Improvements } from "./Improvements/pages/Improvements.jsx";
-import { NewNavigation } from "./components/globalComponents/NewNavigation.jsx";
 import { Exchangues } from "./Exchangues/pages/Exchangues.jsx";
 import {Roles} from "./Roles/pages/Roles.jsx";
 import 'react-toastify/dist/ReactToastify.css';
 import { AuthProvider } from "./Login/context/AuthContext.jsx";
 import { ProtectedRoute } from "./components/ProtectedRoute.jsx";
 import { ExchangeProvider } from "./Exchangues/context/ExchangeContext.jsx";
-import { TableOne } from "./Exchangues/components/Table.jsx";
 import { CreateExchange } from "./Exchangues/components/CreateExchange.jsx";
 import { Navigation } from "./components/globalComponents/Navigation.jsx";
+import { ForgotPassword } from "./Login/components/ForgotPassword.jsx";
+import { Resetpassword } from "./Login/components/Resetpassword.jsx";
 
 
 function Navigator (){
   const location = useLocation();
-  return location.pathname !== "/" && <Navigation/> ;
+  return location.pathname !== "/" && location.pathname !== "/ForgotPassword" && location.pathname !== "/ResetPassword" && <Navigation/> ;
 };
 
 function App() { 
@@ -37,19 +37,21 @@ function App() {
   return (
     <>
       <AuthProvider>
-        <VehicleProvider>
-        <ExchangeProvider>
+        <RolesProvider>
         <PurchaseProvider>
+        <VehicleProvider>
+        <ClientProvider>
+        <ExchangeProvider>
         <SellProvider>
         <UserProvider>
-        <RolesProvider>
-        <ClientProvider>
         <ImprovementProvider>       
                         <BrowserRouter>
                         <div className=" flex bg-violet-200/25 h-screen w-screen">
                           {<Navigator/>}
                             <Routes>
                               <Route path='/' element={<Login/>}/>
+                              <Route path='/ForgotPassword' element={<ForgotPassword/>}/>
+                              <Route path='/ResetPassword/:idUser' element={<Resetpassword/>}/>
                               
                               <Route element={<ProtectedRoute/>}>
                                 <Route path='/Users' element={<Users/>}/>
@@ -62,20 +64,19 @@ function App() {
                                 <Route path="/DashBoard" element={<DashBoard/>}/>
                                 <Route path="/Exchangues" element={<Exchangues/>}/>
                                 <Route path="/Exchangues/create" element={<CreateExchange/>}/>      
-                                <Route path="/Table" element={<TableOne/>}/>  
                               </Route>                    
                             </Routes>
                           <ToastContainer/> 
                           </div>      
                         </BrowserRouter>
           </ImprovementProvider>
-          </ClientProvider>
-          </RolesProvider>
           </UserProvider>
           </SellProvider>
-          </PurchaseProvider>
           </ExchangeProvider>
+          </ClientProvider>
           </VehicleProvider>
+          </PurchaseProvider>
+          </RolesProvider>
       </AuthProvider>
     </>
   )

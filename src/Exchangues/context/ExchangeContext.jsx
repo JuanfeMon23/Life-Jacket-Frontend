@@ -22,9 +22,9 @@ export function ExchangeProvider({children}){
         }
     };
 
-    const createExchange = async (exchange) => {
+    const createExchange = async () => {
         try {
-            const res = await createExchangeRequest(exchange);
+            const res = await createExchangeRequest();
             return res.data;
         } catch (error) {
             throw new Error(error.message);

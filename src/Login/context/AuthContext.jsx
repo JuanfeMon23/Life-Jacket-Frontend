@@ -1,6 +1,6 @@
 import { createContext, useContext, useEffect, useState } from "react";
 import { toast } from "react-toastify";
-import { loginRequest, verifyTokenRequest } from "../api/Auht";
+import { loginRequest, verifyTokenRequest, PasswordRecoveryRequest, resetPasswordRequest } from "../api/Auht";
 import { Navigate } from "react-router-dom";
 import Cookies from "js-cookie";
 
@@ -35,6 +35,40 @@ export function AuthProvider({children}){
             throw new Error(error.message);
         }
     };
+
+    const passwordRecovery = async (userEmail) => {
+        try {
+            await PasswordRecoveryRequest(userEmail);
+            toast.success('En ha enviado un enlace a su correo.' ,{
+                position: toast.POSITION.TOP_CENTER,
+                autoClose: 1500
+              })
+        } catch (error) {
+            console.log(error)
+            toast.error(error.response.data.message ,{
+                position: toast.POSITION.TOP_CENTER,
+                autoClose: 1500
+              })
+        }
+    };
+
+    const resetPassword = async (idUser, password) => {
+        try {
+            await resetPasswordRequest(idUser, password);
+            toast.success('Contraseña actualizada con exito.' ,{
+                position: toast.POSITION.TOP_CENTER,
+                autoClose: 1500
+              })
+        } catch (error) {
+            console.log(error)
+            toast.error(error.response.data.message ,{
+                position: toast.POSITION.TOP_CENTER,
+                autoClose: 1500
+              })
+        }
+    };
+
+    
 
     useEffect(() => {
       async function checkLogin(){
@@ -74,7 +108,7 @@ export function AuthProvider({children}){
     };
 
     return (
-        <AuthContext.Provider value={{user, login, logout, isAutenticated, loading, loading} } >
+        <AuthContext.Provider value={{user, login, logout, isAutenticated, loading, loading, passwordRecovery, resetPassword} } >
             {children}
         </AuthContext.Provider>
     )

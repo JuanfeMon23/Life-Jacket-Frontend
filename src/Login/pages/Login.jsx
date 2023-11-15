@@ -4,6 +4,7 @@ import {useForm, Controller} from 'react-hook-form';
 import { useAuth } from '../context/AuthContext';
 import { useNavigate } from 'react-router-dom';
 import { toast } from "react-toastify";
+import { Link } from 'react-router-dom';
 
 
 export function Login() {
@@ -71,6 +72,7 @@ export function Login() {
                     />
                     <button type='submit' className="bg-[#002D74] rounded-xl text-white py-2 hover:scale-105 duration-300">Iniciar sesión</button>
                   </form>
+                        <Link to='/ForgotPassword'>¿Olvidaste tu contraseña?</Link>
 
                 </div>
                 <div className="md:block hidden w-1/2">

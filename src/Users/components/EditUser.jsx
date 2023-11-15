@@ -41,69 +41,6 @@ export function EditUser(props) {
                     <>
                     <ModalHeader className="flex flex-col gap-3">Editar usuario</ModalHeader>
                     <form onSubmit={handleSubmit(onSubmit)}>
-                  <div className="flex ">
-                      <div className=' flex-col m-3 w-[200px]'>
-                        <Controller
-                          name='userTypeDocument'
-                          control={control}
-                          defaultValue={user.userTypeDocument}
-                          rules={{
-                            required : 'Campo obligatorio'
-                          }}
-                          render={({field}) => (
-                            <Select
-                              {...field}
-                              label="Tipo de documento"
-                              variant="bordered"
-                              color={errors.userTypeDocument ? "danger" : ""}
-                              errorMessage={errors.userTypeDocument?.message}
-                              className="max-w-xs"
-                              onChange={(e) => {
-                                field.onChange(e);
-                              }}
-                            >
-                              <SelectItem key='Cedula de ciudadania'>CC</SelectItem>
-                            </Select>
-                          )}
-                        />
-                      </div>
-
-                      <div className=' flex-col m-3'>
-                      <Controller
-                        name="userDocument"
-                        control={control}
-                        defaultValue={user.userDocument}
-                        rules={{
-                          required: "Campo requerido",
-                          minLength : {
-                            value : 7 ,
-                            message : 'Al menos 7 numeros'
-                          },
-                          maxLength : {
-                            value : 15 ,
-                            message : 'Maximo 15 números'
-                          },
-                          pattern: {
-                            value: /^[0-9]*$/, 
-                            message: "Solo números"
-                          }
-                        }}
-                        render={({ field }) => (
-                          <Input
-                            {...field}
-                            type="number"
-                            label="Documento"
-                            variant="bordered"
-                            color={errors.userDocument? "danger" : ""}
-                            errorMessage={errors.userDocument?.message}
-                            className="max-w-xs"
-                          />
-                        )}
-                      />
-                      </div>
-                      
-                  </div>
-
                   <div className=' flex'> 
                       <div className='flex-col m-3 w-[200px]'>
                       <Controller
@@ -245,8 +182,6 @@ export function EditUser(props) {
                       </div>
                     
                   </div>
-
-                  <div className=" flex">
                     <div className='flex-col m-3'>
                     <Controller
                         name="userEmail"
@@ -272,42 +207,7 @@ export function EditUser(props) {
                         )}
                       />
                     </div>
-
-
-                    <div className='flex-col m-3'> 
-                    <Controller
-                      name="userPassword"
-                      control={control}
-                      defaultValue={user.userPassword}
-                      rules={{
-                        required: "Contraseña requerida",
-                        minLength: {
-                          value: 8,
-                          message: "Al menos 8 caracteres"
-                        },
-                        pattern: {
-                          value: /^(?=.*[A-Z])/,
-                          message: "Al menos una letra mayúscula"
-                        },
-                        pattern : {
-                          value :  /^(?=.*[!@#$%^&*])/,
-                          message : 'Almenos un caracter especial'
-                        }
-                      }}
-                      render={({ field }) => (
-                        <Input
-                          {...field}
-                          type="password"
-                          label="Contraseña"
-                          variant="bordered"
-                          color={errors.userPassword ? "danger" : ""}
-                          errorMessage={errors.userPassword?.message}
-                          className="max-w-xs"
-                        />
-                      )}
-                    />
-                    </div>
-                  </div>
+                  
 
                   <div className=" flex">
                     <div className='flex-col m-3'>

@@ -4,9 +4,10 @@ import { Select, SelectItem, Button } from '@nextui-org/react';
 import { ButtonAccept } from '../../components/ButtonAccept';
 import { useForm , Controller } from 'react-hook-form';
 import { useVehicles } from '../context/vehiclesContext.jsx';
-import { useState , useEffect} from 'react';
+import { toast } from "react-toastify";
 import {Input} from "@nextui-org/react";
 import {AiTwotoneEdit} from 'react-icons/Ai';
+import { RequiredIcon } from '../../components/globalComponents/RequiredIcon.jsx';
 
 export  function EditVehicle (props) {
     const [scrollBehavior, setScrollBehavior] = React.useState("inside");
@@ -20,11 +21,19 @@ export  function EditVehicle (props) {
         updateVehicle(vehicles.idVehicle, data);
     };
 
+    function handleEdit(event){
+      event.preventDefault();
+      toast.error('No puedes editar un vehículo inhabilitado.' ,{
+        autoClose : 1500,
+        position: toast.POSITION.TOP_CENTER
+    });
+    }
 
   return (
     <div className='flex'>
-    <Button isIconOnly onPress={onOpen}className=' bg-gradient-to-r from-[#D99C23] to-[#D45229] rounded-lg text-white font-bold'>{<AiTwotoneEdit className='text-white text-2xl'/>}</Button>
-      <Modal isOpen={isOpen} onOpenChange={onOpenChange} scrollBehavior={scrollBehavior}>
+    {vehicles.vehicleStatus === "true" ?<Button isIconOnly onPress={onOpen}className=' bg-gradient-to-r from-[#D99C23] to-[#D45229] rounded-lg text-white font-bold'>{<AiTwotoneEdit className='text-white text-2xl'/>}</Button>
+    : <Button onClick={handleEdit} isIconOnly><AiTwotoneEdit className='text-white text-2xl'/></Button>}
+      <Modal isOpen={isOpen} onOpenChange={onOpenChange} scrollBehavior={scrollBehavior} isDismissable={false}>
         <ModalContent>
           {(onClose) => (
             <>
@@ -32,33 +41,6 @@ export  function EditVehicle (props) {
               <ModalBody>
                 <form onSubmit={handleSubmit(onSubmit)}>
                   <div className=" flex">
-                    <div className=' flex-col m-3'>
-                    <Controller
-                          name="licensePlate"
-                          control={control}
-                          defaultValue={vehicles.licensePlate}
-                          rules={{
-                            required: "Campo requerido",
-                            maxLength: {
-                              value: 6,
-                              message: "Maximo 6 caracteres"
-                            }
-                          }}
-                          render={({ field }) => (
-                            <Input
-                              {...field}                        
-                              type="text"
-                              label="Placa del vehículo"
-                              variant="bordered"
-                              color={errors.licensePlate ? "danger" : ""}
-                              errorMessage={errors.licensePlate?.message}
-                              className="max-w-xs"
-                            />
-                          )}
-                        /> 
-                    </div>
-
-                    <div className='flex-col m-3'>
                     <Controller
                           name="vehicleType"
                           control={control}
@@ -86,7 +68,6 @@ export  function EditVehicle (props) {
                             />
                           )}
                         /> 
-                    </div>
                   </div>
 
                   <div className=" flex">
@@ -283,8 +264,8 @@ export  function EditVehicle (props) {
                     <div className='flex-col m-3'>
                     <Controller
                           name="traction"
-                          control={control}
                           defaultValue={vehicles.traction}
+                          control={control}
                           rules={{
 
                           }}
@@ -308,8 +289,8 @@ export  function EditVehicle (props) {
                     <div className=' flex-col m-3'>
                       <Controller
                             name="soat"
-                            control={control}
                             defaultValue={vehicles.soat}
+                            control={control}
                             render={({ field }) => (
                               <Input
                                 {...field}
@@ -346,8 +327,9 @@ export  function EditVehicle (props) {
                     </div>
                   </div>
                   
-                  <div className=' m-3'>
-                  <Controller
+                  <div className=' flex '>
+                    <div className=' flex-col m-3'>
+                    <Controller
                           name="timingBelt"
                           control={control}
                           defaultValue={vehicles.timingBelt}
@@ -363,6 +345,33 @@ export  function EditVehicle (props) {
                             />
                           )}
                         /> 
+                    </div>
+                    <div className=' flex-col m-3'>
+                    <Controller
+                          name="color"
+                          control={control}
+                          defaultValue={vehicles.color}
+                          rules={{
+                            required: "Campo requerido",
+                            maxLength: {
+                              value: 15,
+                              message: "Maximo 15 caracteres"
+                            }
+                          }}
+                          render={({ field }) => (
+                            <Input
+                              {...field}
+                              type="text"
+                              label="Color"
+                              variant="bordered"
+                              endContent={<RequiredIcon/>}
+                              color={errors.color ? "danger" : ""}
+                              errorMessage={errors.color?.message}
+                              className="max-w-xs"
+                            />
+                          )}
+                        />      
+                    </div>
                   </div>
 
                   <div className=' flex'>

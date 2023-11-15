@@ -19,7 +19,8 @@ import {FaSearch} from 'react-icons/fa';
 import {IoIosArrowDown} from 'react-icons/io';
 import { useImprovements } from '../context/improvementsContext';
 import {ImprovementRegister} from './ImprovementRegister';
-import { StatusImprovement } from './StatusImprovement';
+import { EditImprovements } from './EditImprovements';
+import { DeleteImprovement } from './DeleteImprovement';
 
 const statusOptions = [
   {name: "Activo" , uid: "true"},
@@ -237,9 +238,10 @@ export  function TableImpovements() {
                 <TableCell>
                   {typeof item.improvementPrice === "number" ? item.improvementPrice.toLocaleString("es-ES", { style: "currency", currency: "COP" }) : "No válido"}
                 </TableCell>
-                <TableCell>{item.improvementStatus === "true" ?  <Chip color="success">Activo</Chip> : <Chip color="default">Inactivo</Chip>}</TableCell>
+                <TableCell>{item.improvementStatus === "true" ?  <Chip color="success">Activa</Chip> : <Chip color="default">Inactiva</Chip>}</TableCell>
                 <TableCell className=" flex">
-                    <StatusImprovement improvement={item}/>
+                    <EditImprovements  improvement={item}/>
+                    <DeleteImprovement improvement={item}/>
                 </TableCell>
             </TableRow>
         ))}
