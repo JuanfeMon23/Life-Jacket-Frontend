@@ -32,8 +32,8 @@ export function EditUser(props) {
 
   return (
     <div className='flex'>
-      {user.userStatus === "true" ? <Button isIconOnly onPress={onOpen}className=' bg-gradient-to-r from-[#D99C23] to-[#D45229] hover:bg-[#A37D1A] rounded-lg text-white font-bold '>{<AiTwotoneEdit className='text-white text-2xl'/>}</Button>
-       : <Button isIconOnly onClick={handleEvent}>{<AiTwotoneEdit className='text-white text-2xl'/>}</Button>}
+      {user.userStatus === "true" ? <Button isIconOnly onPress={onOpen}className=' bg-gradient-to-r from-[#D99C23] to-[#D45229] hover:bg-[#A37D1A] rounded-lg text-white mr-2 font-bold '>{<AiTwotoneEdit className='text-white text-2xl'/>}</Button>
+       : <Button isIconOnly className=" mr-2" onClick={handleEvent}>{<AiTwotoneEdit className='text-white text-2xl'/>}</Button>}
         
         <Modal isOpen={isOpen} onOpenChange={onOpenChange} isDismissable={false}>
             <ModalContent>

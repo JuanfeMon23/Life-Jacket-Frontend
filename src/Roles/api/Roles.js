@@ -8,7 +8,7 @@ export const createRolRequest = async (Roles) => axios.post(`/Roles`, Roles);
 
 export const updateRolRequest = async (Roles) => axios.put(`/Roles`, Roles);
 
-export const deleteRolRequest = async (id) => axios.delete(`Roles/${id}`);
+export const deleteRolRequest = async (idRol) => axios.delete(`Roles/${idRol}`);
 
 export const getLicensesRequest = async () => axios.get('/Licenses');
 

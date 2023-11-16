@@ -27,6 +27,7 @@ export function RolesProvider({children}) {
             const res = await getLicensesRequest();
             setLicenses(res.data);
         } catch (error) {
+            console.log(error)
             throw new Error(error.message);
         }
     };
@@ -83,10 +84,6 @@ export function RolesProvider({children}) {
     const addLicenses = async (idRol, licenses) => {
         try {
            await addLicensesRequest(idRol, licenses);
-           toast.success('Permisos asignados con exito.',{
-            position: toast.POSITION.TOP_CENTER,
-            autoClose : 1500
-        }); 
         getRoles();
         } catch (error) {
             toast.error( error.response.data.message ,{

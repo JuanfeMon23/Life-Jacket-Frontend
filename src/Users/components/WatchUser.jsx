@@ -18,9 +18,9 @@ export function WatchUser(props) {
  
   return (
     <>
-    {user.userStatus === "true" ? <Button isIconOnly className='bg-gradient-to-r from-[#2D78BE] to-[#6D2CC0]' onPress={onOpen}><FiEye className="text-white text-2xl"/></Button>
+    {user.userStatus === "true" ? <Button isIconOnly className='bg-gradient-to-r from-[#2D78BE] to-[#6D2CC0] mr-2' onPress={onOpen}><FiEye className="text-white text-2xl"/></Button>
      : <Button isIconOnly onClick={handleview}><FiEye className="text-white text-2xl"/></Button>}
-      <Modal isOpen={isOpen} onOpenChange={onOpenChange} size="2xl" isDismissable={false}>
+      <Modal isOpen={isOpen} className=" mr-2" onOpenChange={onOpenChange} size="2xl" isDismissable={false}>
         <ModalContent>
           {(onClose) => (
             <>

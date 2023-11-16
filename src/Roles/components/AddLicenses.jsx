@@ -21,7 +21,11 @@ export const AddLicenses = (props) => {
            addLicenses(roles.idRol, licenses );
         }
       }
-      console.log('Permisos asignados con éxito');
+      toast.success('Permisos asignados con exito.' ,{
+        autoClose : 1500,
+        position: toast.POSITION.TOP_CENTER
+    });
+
     } catch (error) {
       console.error(error);
     }
