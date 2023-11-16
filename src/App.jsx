@@ -29,7 +29,7 @@ import { Resetpassword } from "./Login/components/Resetpassword.jsx";
 
 function Navigator (){
   const location = useLocation();
-  return location.pathname !== "/" && location.pathname !== "/ForgotPassword" && location.pathname !== "/ResetPassword" && <Navigation/> ;
+  return location.pathname !== "/" && location.pathname !== "/ForgotPassword" && location.pathname !== "/ResetPassword/:idUser" && <Navigation/> ;
 };
 
 function App() { 

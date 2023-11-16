@@ -34,7 +34,7 @@ export function Login() {
                 <span className=' text-blue-800'>Alejandro</span>Vehículos
               </div>
               <div className=' py-10'>
-                  <h2 className=' text-3xl font-bold text-blue-800'>Inicar sesíon</h2>
+                  <h2 className=' text-3xl font-bold text-blue-800'>Iniciar sesíon</h2>
                   <div className='border-2 w-10 border-blue-800 inline-block mb-2'></div>
                   <div className=' flex flex-col items-center mt-8'>
                     <form onSubmit={handleSubmit(onSubmit)}>
@@ -89,7 +89,7 @@ export function Login() {
                   </div>
               </div>
             </div>
-            <div className=' w-2/5 bg-blue-800 text-white rounded-tr-2xl rounded-br-2xl py-36 px-12 '>
+            <div className='  w-2/5 bg-blue-800 text-white rounded-tr-2xl rounded-br-2xl py-36 px-12 '>
               <h2 className=' text 3xl font-bold mb-2'>Bienvenido a LifeJacket</h2>
               <div className=' border-2 w-10 border-white inline-block mb-2'></div>
               <div className=' items-center justify-center'>
