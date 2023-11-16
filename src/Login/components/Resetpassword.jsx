@@ -3,6 +3,8 @@ import * as Yup from 'yup';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { useAuth } from '../context/AuthContext';
 import { useNavigate, useParams } from "react-router-dom";
+import { Navigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import {useForm, Controller} from 'react-hook-form';
 import {Input} from "@nextui-org/react";
 import { MdOutlineMail } from "react-icons/md";
@@ -13,9 +15,9 @@ export  function Resetpassword() {
     const {resetPassword} = useAuth();
     const navigate = useNavigate();
     
-    const onSubmit  = async (data) => {
-        resetPassword(params.idUser, data);     
-        console.log(data);   
+    const onSubmit  =  (data) => {
+       {  onSubmit ?  resetPassword(params.idUser, data) &&  <Navigate to="/"  replace/> : 2}
+       
     };
     
     const validationSchema = Yup.object().shape({
@@ -33,8 +35,8 @@ export  function Resetpassword() {
     <section className=" flex flex-col items-center justify-center w-full flex-1 px-20 text-center">
     <div className=' bg-white rounded-2xl shadow-2xl flex w-[100%] max-w-4xl'>
       <div className=' w-[100%] p-5'>
-        <div className=' text-left font-bold'>
-          <span className=' text-blue-800'>Alejandro</span>Vehículos
+        <div className=' text-left font-bold '>
+          <Link to='/'> <span className=' text-blue-800 cursor-pointer'>Volver al inicio de sesión </span></Link>
         </div>
         <div className=' py-10'>
             <h2 className=' text-3xl font-bold text-blue-800'>Nueva Contraseña</h2>

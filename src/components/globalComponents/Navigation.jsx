@@ -12,7 +12,6 @@ import { FaExchangeAlt} from 'react-icons/fa'
 import { useLocation } from 'react-router-dom';
 import {PiGearSix} from 'react-icons/pi';
 import {HiX} from "react-icons/hi";
-import { useAuth } from '../../Login/context/AuthContext';
 import {
     Dropdown,
     DropdownTrigger,
@@ -22,10 +21,12 @@ import {
     Button
   } from "@nextui-org/react";
 import {BiSolidUser} from 'react-icons/bi'
+import { useAuth } from '../../Login/context/AuthContext';
 
 export  function Navigation() {
     const [open, setOpen] = useState(false);
-    const {logout} = useAuth();
+    const {logout, user} = useAuth();
+    console.log(user)
     const location = useLocation();
 
     function handleLogout(e) {

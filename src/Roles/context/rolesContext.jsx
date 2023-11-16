@@ -87,6 +87,7 @@ export function RolesProvider({children}) {
             position: toast.POSITION.TOP_CENTER,
             autoClose : 1500
         }); 
+        getRoles();
         } catch (error) {
             toast.error( error.response.data.message ,{
                 position: toast.POSITION.TOP_CENTER,
