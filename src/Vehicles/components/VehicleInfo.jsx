@@ -1,10 +1,12 @@
 import React from 'react'
+import { useState, useEffect } from 'react';
 import { Select, SelectItem, Button } from '@nextui-org/react';
 import { ButtonAccept } from '../../components/ButtonAccept';
 import { useForm , Controller } from 'react-hook-form';
 import {Input} from "@nextui-org/react";
 import { useVehicles } from '../context/vehiclesContext.jsx';
 import { RequiredIcon } from '../../components/globalComponents/RequiredIcon.jsx';
+import { years } from './years.js';
 
 export  function VehicleInfo() {
     const { handleSubmit : handleSubmitVehicle, formState : {errors}, control : controlVehicle, reset : resetVehicle} = useForm();
@@ -13,6 +15,44 @@ export  function VehicleInfo() {
     const onSubmit = (data) => {   
         {onSubmit ? createVehicle({...data}) && resetVehicle : 2 }
     };
+
+    const [vehicleTypes, setVehicleTypes] = useState([]);
+    const [vehicleBrands, setVehicleBrands] = useState([]);
+    const [vehicleLines, setVehicleLines] = useState([]);
+    const [selectedVehicleType, setSelectedVehicleType] = useState('');
+    const [selectedBrandName, setSelectedBrandName] = useState('');
+
+
+  useEffect(() => {
+    // Función para obtener tipos de vehículos, marcas y líneas
+    const fetchData = async () => {
+      try {
+        // Obtener tipos de vehículos
+        const typesResponse = await fetch('http://localhost:3000/api/vehicle-types');
+        const typesData = await typesResponse.json();
+        setVehicleTypes(typesData);
+
+        // Obtener marcas de vehículos si hay un tipo seleccionado
+        if (selectedVehicleType) {
+          const brandsResponse = await fetch(`http://localhost:3000/api/vehicles-brand?vehicleType=${selectedVehicleType}`);
+          const brandsData = await brandsResponse.json();
+          setVehicleBrands(brandsData);
+
+          // Obtener líneas de vehículos si hay una marca seleccionada
+          if (selectedBrandName) {
+            const linesResponse = await fetch(`http://localhost:3000/api/vehicles-lines?vehicleType=${selectedVehicleType}&brandName=${selectedBrandName}`);
+            const linesData = await linesResponse.json();
+            setVehicleLines(linesData);
+          }
+        }
+      } catch (error) {
+        console.error('Error fetching data:', error);
+      }
+    };
+
+    // Llamar a la función para obtener tipos, marcas y líneas
+    fetchData();
+  }, [selectedVehicleType, selectedBrandName]);
   return (
     <div>
         <form onSubmit={handleSubmitVehicle(onSubmit)}>
@@ -45,159 +85,162 @@ export  function VehicleInfo() {
                         /> 
                     </div>
 
-                    <div className='flex-col m-3'>
+                    <div className='flex-col m-3 w-[200px]'>
                     <Controller
-                          name="vehicleType"
-                          control={controlVehicle}
-                          rules={{
-                            required: "Campo requerido",
-                            maxLength: {
-                              value: 15,
-                              message: "Máximo 15 caracteres"
-                            },
-                            pattern: {
-                              value: /^[a-zA-Z\s]*$/,
-                              message: "Solo letras"
-                            }
-                          }}
-                          render={({ field }) => (
-                            <Input
-                              {...field}
-                              type="text"
-                              label="Vehículo"
-                              variant="bordered"
-                              endContent={<RequiredIcon/>}
-                              color={errors.vehicleType ? "danger" : ""}
-                              errorMessage={errors.vehicleType?.message}
-                              className="max-w-xs"
-                            />
-                          )}
-                        /> 
-                    </div>
-                  </div>
-
-                  <div className=" flex">
-                    <div className=' flex-col m-3'>
-                    <Controller
-                          name="brand"
-                          control={controlVehicle}
-                          rules={{
-                            required: "Campo requerido",
-                            minLength: {
-                              value: 3,
-                              message: "Al menos 3 caracteres"
-                            },
-                            maxLength: {
-                              value: 40,
-                              message: "Máximo 40 caracteres"
-                            },
-                            pattern: {
-                              value: /^[a-zA-Z\s]*$/,
-                              message: "Solo letras"
-                            }
-                          }}
-                          render={({ field }) => (
-                            <Input
-                              {...field}
-                              type="text"
-                              label="Marca"
-                              variant="bordered"
-                              endContent={<RequiredIcon/>}
-                              color={errors.brand ? "danger" : ""}
-                              errorMessage={errors.brand?.message}
-                              className="max-w-xs"
-                            />
-                          )}
-                        /> 
-                    </div>
-
-                    <div className='flex-col m-3'>
-                    <Controller
-                        name="model"
-                        control={controlVehicle}
-                        rules={{
-                          required: "Campo requerido",
-                          pattern: {
-                            value: /^[0-9]*$/, 
-                            message: "Solo números"
-                          }
-                        }}
-                        render={({ field }) => (
-                          <Input
-                            {...field}
-                            type="number"
-                            label="Modelo"
-                            variant="bordered"
-                            endContent={<RequiredIcon/>}
-                            color={errors.model? "danger" : ""}
-                            errorMessage={errors.model?.message}
-                            className="max-w-xs"
-                          />
+                                name="vehicleType"
+                                control={controlVehicle}
+                                rules={{
+                                  required : 'Campo obligatorio'
+                                }}
+                                render={({ field }) => (
+                                  <Select {...field}
+                                   onChange={(e) =>{
+                                    field.onChange(e);
+                                    setSelectedVehicleType(e.target.value);
+                                   }}
+                                   aria-labelledby="vehicleTypeLabel"
+                                   className="max-w-xs"
+                                   endContent={<RequiredIcon/>}
+                                   color={errors.vehicleType ? "danger" : ""}
+                                   errorMessage={errors.vehicleType?.message}
+                                   variant='bordered'
+                                   label='Tipo de vehículo'
+                                   >
+                                    {vehicleTypes.map((type) => (
+                                      <SelectItem key={type.VehicleType} value={type.VehicleType}>
+                                        {type.VehicleType}
+                                      </SelectItem>
+                                    ))}
+                                  </Select>
                         )}
                       />
                     </div>
                   </div>
 
                   <div className=" flex">
-                    <div className=' flex-col m-3'>
+                    <div className=' flex-col m-3 w-[200px]'>
                     <Controller
-                          name="type"
-                          control={controlVehicle}
-                          rules={{
-                            required: "Campo requerido",
-                            minLength: {
-                              value: 3,
-                              message: "Al menos 3 caracteres"
-                            },
-                            maxLength: {
-                              value: 40,
-                              message: "Máximo 40 caracteres"
-                            },
-                            pattern: {
-                              value: /^[a-zA-Z\s]*$/,
-                              message: "Solo letras"
-                            }
-                          }}
-                          render={({ field }) => (
-                            <Input
-                              {...field}
-                              type="text"
-                              label="Tipo"
-                              variant="bordered"
-                              endContent={<RequiredIcon/>}
-                              color={errors.type ? "danger" : ""}
-                              errorMessage={errors.type?.message}
-                              className="max-w-xs"
-                            />
-                          )}
-                        /> 
+                        name="brand"
+                        control={controlVehicle}
+                        rules={{
+                          required : 'Campo obligatorio'
+                        }}
+                        render={({ field }) => (
+                          <Select
+                           {...field} 
+                           onChange={(e) => {
+                            field.onChange(e);
+                            setSelectedBrandName(e.target.value)
+                          }} 
+                          aria-labelledby="brands"
+                          className="max-w-xs"
+                          endContent={<RequiredIcon/>}
+                          color={errors.brand ? "danger" : ""}
+                          errorMessage={errors.brand?.message}
+                          variant='bordered'
+                          label='Marca'
+                          >
+                            {vehicleBrands.map((brand) => (
+                              <SelectItem key={brand.NameBrand} value={brand.NameBrand}>
+                                {brand.NameBrand}
+                              </SelectItem>
+                            ))}
+                          </Select>
+                        )}
+                      />
                     </div>
 
-                    <div className='flex-col m-3'>
-                    <Controller
-                          name="line"
-                          control={controlVehicle}
-                          rules={{
-                            required: "Campo requerido",
-                            maxLength: {
-                              value: 40,
-                              message: "Máximo 40 caracteres"
-                            }
-                          }}
-                          render={({ field }) => (
-                            <Input
-                              {...field}
-                              type="text"
-                              label="Línea"
-                              variant="bordered"
+                        <div className='flex-col m-3 w-[200px]'>
+                        <Controller
+                            name="line"
+                            control={controlVehicle}
+                            rules={{
+                              required : 'Campo obligatorio'
+                            }}
+                            render={({ field }) => (
+                              <Select
+                               {...field} 
+                              aria-labelledby="lines"
+                              className="max-w-xs"
                               endContent={<RequiredIcon/>}
                               color={errors.line ? "danger" : ""}
                               errorMessage={errors.line?.message}
+                              variant='bordered'
+                              label='Linea'
+                              >
+                                {vehicleLines.map((line) => (
+                                  <SelectItem key={line.BrandLine} value={line.BrandLine}>
+                                    {line.BrandLine}
+                                  </SelectItem>
+                                ))}
+                              </Select>
+                            )}
+                          /> 
+                        </div>
+                  </div>
+
+                  <div className=" flex">
+                    <div className='flex-col m-3 w-[200px]'>
+                    <Controller
+                            name="model"
+                            control={controlVehicle}
+                            rules={{
+                              required : 'Campo obligatorio'
+                            }}
+                            render={({ field }) => (
+                              <Select
+                               {...field} 
+                              aria-labelledby="models"
                               className="max-w-xs"
-                            />
-                          )}
-                        /> 
+                              endContent={<RequiredIcon/>}
+                              color={errors.model ? "danger" : ""}
+                              errorMessage={errors.model?.message}
+                              variant='bordered'
+                              label='Modelo'
+                              >
+                                {years.map((model) => (
+                                  <SelectItem key={model} value={model}>
+                                    {model}
+                                  </SelectItem>
+                                ))}
+                              </Select>
+                            )}
+                          /> 
                     </div>
+
+                          <div className=' flex-col m-3'>
+                          <Controller
+                                name="type"
+                                control={controlVehicle}
+                                rules={{
+                                  required: "Campo requerido",
+                                  minLength: {
+                                    value: 3,
+                                    message: "Al menos 3 caracteres"
+                                  },
+                                  maxLength: {
+                                    value: 40,
+                                    message: "Máximo 40 caracteres"
+                                  },
+                                  pattern: {
+                                    value: /^[a-zA-Z\s]*$/,
+                                    message: "Solo letras"
+                                  }
+                                }}
+                                render={({ field }) => (
+                                  <Input
+                                    {...field}
+                                    type="text"
+                                    label="Tipo"
+                                    variant="bordered"
+                                    endContent={<RequiredIcon/>}
+                                    color={errors.type ? "danger" : ""}
+                                    errorMessage={errors.type?.message}
+                                    className="max-w-xs"
+                                  />
+                                )}
+                              /> 
+                          </div>
                   </div>
 
                   <div className=" flex">

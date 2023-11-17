@@ -2,9 +2,10 @@ import React from 'react'
 import {Modal, ModalContent, ModalHeader, ModalBody, ModalFooter, useDisclosure} from "@nextui-org/react";
 import {Button} from "@nextui-org/react";
 import {useForm} from 'react-hook-form';
-import {GrStatusGood} from 'react-icons/gr'
+import {HiOutlineCheckCircle} from 'react-icons/hi';
 import {TiDeleteOutline} from 'react-icons/ti'
 import { useVehicles } from '../context/vehiclesContext';
+import {toast} from 'react-toastify'
 
 export  function StatusVehicle(props) {
     const {isOpen, onOpen, onOpenChange} = useDisclosure();
@@ -26,8 +27,8 @@ export  function StatusVehicle(props) {
 
   return (
     <div className='flex'>
-    {vehicles.vehicleStatus === "true" ? <Button title='Cambiar estado del vehículo'  isIconOnly className=' bg-green-600 rounded-lg mr-2' onPress={onOpen}><GrStatusGood className='text-2xl'/></Button>
-     : <Button title='Cambiar estado del vehículo' className=' mr-2' isIconOnly onClick={handleEdit} ><TiDeleteOutline className='text-white text-2xl'/></Button>}
+    {vehicles.vehicleStatus === "true" ? <Button title='Cambiar estado del vehículo'  isIconOnly className=' bg-yellow-950/70 rounded-lg mr-2' onPress={onOpen}><TiDeleteOutline className='text-2xl text-white'/></Button>
+     : <Button title='Cambiar estado del vehículo' className=' bg-emerald-600 mr-2' isIconOnly onClick={handleEdit} ><HiOutlineCheckCircle className='text-white text-2xl'/></Button>}
       <Modal isOpen={isOpen} onOpenChange={onOpenChange} isDismissable={false}>
         <ModalContent>
           {(onClose) => (

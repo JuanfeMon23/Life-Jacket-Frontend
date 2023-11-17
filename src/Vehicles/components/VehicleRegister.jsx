@@ -12,6 +12,7 @@ export  function VehicleRegister(props) {
 
 
 
+
   return (
     <div className='flex'>
       <Button title='Agregar vehículo' endContent={<AiOutlinePlusCircle className=' text-2xl'/>} color="primary" variant="solid" onPress={onOpen} className=' text-white font-bold'>Agregar</Button>    
