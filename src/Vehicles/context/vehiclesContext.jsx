@@ -1,6 +1,6 @@
 import { createContext, useContext, useState } from "react";
 import { toast } from "react-toastify";
-import { getVehiclesRequest, getVehicleRequest, createVehiclesRequest, updateVehicleRequest, getVehicleTypeRequest , statusVehicleRequest, deleteVehicleRequest } from "../api/Vehicles";
+import { getVehiclesRequest, createVehiclesRequest, updateVehicleRequest, getVehicleTypeRequest , statusVehicleRequest, deleteVehicleRequest } from "../api/Vehicles";
 
 const VehiclesContext = createContext();
 
@@ -30,16 +30,6 @@ export function VehicleProvider({children}){
             throw new Error(error.message);
         }
     };
-
-    const getVehicle = async (idVehicle, vehicle) => {
-        try {
-            const res = await getVehicleRequest(idVehicle, vehicle);
-            setVehicles(res.data);
-        } catch (error) {
-            throw new Error(error.message);
-        }
-    };
-
 
 
     const createVehicle = async (vehicle) => {
@@ -118,7 +108,7 @@ export function VehicleProvider({children}){
 
 
     return(
-        <VehiclesContext.Provider value={{vehicles, getVehicle, getVehicles, createVehicle, updateVehicle, getVehicletype, statusVehicle, deleteVehicle}}>
+        <VehiclesContext.Provider value={{vehicles, getVehicles, createVehicle, updateVehicle, getVehicletype, statusVehicle, deleteVehicle}}>
             {children}
         </VehiclesContext.Provider>
     )

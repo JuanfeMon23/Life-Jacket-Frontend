@@ -1,7 +1,7 @@
 import { createContext, useContext, useState } from "react";
 import { toast } from "react-toastify";
-import { createUserRequest, getUserRequest, getUsersRequest, updateUserRequest, deleteUserRequest, stateUserRequest } from "../api/Users.js";
-import { useAuth } from "../../Login/context/AuthContext.jsx"; 
+import { createUserRequest, getUsersRequest, updateUserRequest, deleteUserRequest, stateUserRequest } from "../api/Users.js";
+
 
 const UserContext = createContext();
 
@@ -24,16 +24,6 @@ export function UserProvider ({children}) {
             throw new Error(error.message);
         }
     };
-
-    const getUser = async (idUser) => {
-        try {
-            const res = await getUserRequest(idUser);
-            return res.data;
-        } catch (error) {
-            throw new Error(error.message);
-        }
-    };
-
 
     const createUser = async (user) => {
         try {
@@ -109,7 +99,7 @@ export function UserProvider ({children}) {
 
     return (
         <UserContext.Provider
-        value={{users,getUser,getUsers,createUser,updateUser,deleteUser, statusUser
+        value={{users,getUsers,createUser,updateUser,deleteUser, statusUser
         }}
         >
             {children}         

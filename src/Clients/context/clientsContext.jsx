@@ -1,6 +1,6 @@
 import { createContext, useContext, useState } from "react";
 import { toast } from "react-toastify";
-import { createClientRequest, getClientRequest, getClientsRequest, stateClientRequest, updateClientRequest, deleteClientRequest } from "../api/Clients";
+import { createClientRequest, getClientsRequest, stateClientRequest, updateClientRequest, deleteClientRequest } from "../api/Clients";
 
 const ClientContext = createContext();
 
@@ -21,14 +21,6 @@ export function ClientProvider({children}){
         }
     };
 
-    const getClient =  async (idClient,client) => {
-        try {
-            const res = await getClientRequest(idClient,client);
-            return res.data;
-        } catch (error) {
-            throw new Error(error.message);
-        }
-    };
 
     const createClient = async (client) => {
         try {
@@ -101,7 +93,7 @@ export function ClientProvider({children}){
 
 
     return(
-        <ClientContext.Provider value={{clients, getClient, getClients, createClient, updateClient, statusClient, deleteClient}}>
+        <ClientContext.Provider value={{clients, getClients, createClient, updateClient, statusClient, deleteClient}}>
             {children}
         </ClientContext.Provider>
     )

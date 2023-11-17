@@ -1,6 +1,6 @@
 import { createContext, useContext, useState } from "react";
 import { toast } from "react-toastify";
-import { createRolRequest, addLicensesRequest, getRolesRequest, updateRolRequest , deleteRolRequest , getLicensesRequest} from "../api/Roles";
+import { createRolRequest, addLicensesRequest, getRolesRequest , deleteRolRequest , getLicensesRequest} from "../api/Roles";
 
 const RolesContext = createContext();
 
