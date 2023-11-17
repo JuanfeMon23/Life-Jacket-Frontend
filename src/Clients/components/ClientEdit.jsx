@@ -8,6 +8,7 @@ import { useClients } from '../context/clientsContext';
 import {AiTwotoneEdit} from 'react-icons/Ai';
 import { Select, SelectItem } from '@nextui-org/react';
 import { toast } from "react-toastify";
+import { RequiredIcon } from '../../components/globalComponents/RequiredIcon.jsx';
 
 export  function  ClientEdit(props) {
     const {isOpen, onOpen, onOpenChange} = useDisclosure();
@@ -35,7 +36,7 @@ export  function  ClientEdit(props) {
         <ModalContent>
           {(onClose) => (
             <>
-              <ModalHeader className="flex flex-col gap-3">Datos del cliente</ModalHeader>
+              <ModalHeader className="flex flex-col gap-3">Editar cliente</ModalHeader>
               <ModalBody>
                 <form onSubmit={handleSubmit(onSubmit)}>
                   <div className=' flex'> 
@@ -65,6 +66,7 @@ export  function  ClientEdit(props) {
                               type="text"
                               label="Departamento"
                               variant="bordered"
+                              endContent={<RequiredIcon/>}
                               color={errors.clientDepartment ? "danger" : ""}
                               errorMessage={errors.clientDepartment?.message}
                               className="max-w-xs"
@@ -99,6 +101,7 @@ export  function  ClientEdit(props) {
                               type="text"
                               label="Ciudad o municipio"
                               variant="bordered"
+                              endContent={<RequiredIcon/>}
                               color={errors.clientMunicipality ? "danger" : ""}
                               errorMessage={errors.clientMunicipality?.message}
                               className="max-w-xs"
@@ -137,6 +140,7 @@ export  function  ClientEdit(props) {
                               type="text"
                               label="Nombres"
                               variant="bordered"
+                              endContent={<RequiredIcon/>}
                               color={errors.clientName ? "danger" : ""}
                               errorMessage={errors.clientName?.message}
                               className="max-w-xs"
@@ -171,6 +175,7 @@ export  function  ClientEdit(props) {
                               type="text"
                               label="Apellidos"
                               variant="bordered"
+                              endContent={<RequiredIcon/>}
                               color={errors.clientLastName ? "danger" : ""}
                               errorMessage={errors.clientLastName?.message}
                               className="max-w-xs"
@@ -195,6 +200,7 @@ export  function  ClientEdit(props) {
                               type="text"
                               label="Dirección"
                               variant="bordered"
+                              endContent={<RequiredIcon/>}
                               color={errors.clientAddress ? "danger" : ""}
                               errorMessage={errors.clientAddress?.message}
                               className="max-w-xs"
@@ -227,6 +233,7 @@ export  function  ClientEdit(props) {
                             type="number"
                             label="Teléfono"
                             variant="bordered"
+                            endContent={<RequiredIcon/>}
                             color={errors.clientPhoneNumber? "danger" : ""}
                             errorMessage={errors.clientPhoneNumber?.message}
                             className="max-w-xs"
@@ -258,6 +265,7 @@ export  function  ClientEdit(props) {
                             type="number"
                             label="Otro teléfono"
                             variant="bordered"
+                            endContent={<RequiredIcon/>}
                             color={errors.clientOtherPhoneNumber? "danger" : ""}
                             errorMessage={errors.clientOtherPhoneNumber?.message}
                             className="max-w-xs"
@@ -294,6 +302,7 @@ export  function  ClientEdit(props) {
                               type="text"
                               label="Otro contacto"
                               variant="bordered"
+                              endContent={<RequiredIcon/>}
                               color={errors.clientOtherContact ? "danger" : ""}
                               errorMessage={errors.clientOtherContact?.message}
                               className="max-w-xs"

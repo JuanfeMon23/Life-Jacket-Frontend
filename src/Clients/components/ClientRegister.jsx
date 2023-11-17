@@ -50,7 +50,7 @@ const onSubmit = (data) => {
                                 field.onChange(e);
                               }}
                             >
-                              <SelectItem key='Cédula de ciudadania'>CC</SelectItem>
+                              <SelectItem key='CC'>Cédula de ciudadanÍa</SelectItem>
                             </Select>
                           )}
                         />

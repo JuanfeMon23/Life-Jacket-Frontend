@@ -30,10 +30,10 @@ const statusOptions = [
   ];  
 
   const columns = [
-    {name: "Cedula", uid: "role", sortable: true},
+    {name: "Cédula", uid: "role", sortable: true},
     {name: "Nombres", uid: "name", sortable: true},
     {name: "Apellidos", uid: "sortname", sortable: true},
-    {name: "Telefono", uid: "email"},
+    {name: "Teléfono", uid: "email"},
     {name: "Estado", uid: "status", sortable: true},
     {name: "Acciones", uid: "actions"},
   ];

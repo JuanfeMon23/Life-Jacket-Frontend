@@ -52,7 +52,7 @@ export  function UserRegister() {
                                 field.onChange(e);
                               }}
                             >
-                              <SelectItem key='Cédula de ciudadania'>CC</SelectItem>
+                              <SelectItem key='CC'>Cédula de ciudadanía</SelectItem>
                             </Select>
                           )}
                         />

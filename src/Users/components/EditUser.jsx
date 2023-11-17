@@ -8,6 +8,7 @@ import { useUsers } from '../Context/userContext';
 import {Select, SelectItem} from "@nextui-org/react";
 import { toast } from "react-toastify";
 import { useRoles } from '../../Roles/context/rolesContext';
+import { RequiredIcon } from '../../components/globalComponents/RequiredIcon.jsx';
 
 export function EditUser(props) {
     const {isOpen, onOpen, onOpenChange} = useDisclosure();
@@ -49,7 +50,7 @@ export function EditUser(props) {
                           control={control}
                           defaultValue={user.userDepartment}
                           rules={{
-                            required: "Nombres requeridos",
+                            required: "Campo requerido",
                             minLength: {
                               value: 3,
                               message: "Al menos 3 caracteres"
@@ -69,6 +70,7 @@ export function EditUser(props) {
                               type="text"
                               label="Departamento"
                               variant="bordered"
+                              endContent={<RequiredIcon/>}
                               color={errors.userDepartment ? "danger" : ""}
                               errorMessage={errors.userDepartment?.message}
                               className="max-w-xs"
@@ -83,7 +85,7 @@ export function EditUser(props) {
                           control={control}
                           defaultValue={user.userMunicipality}
                           rules={{
-                            required: "Nombres requeridos",
+                            required: "Campo requerido",
                             minLength: {
                               value: 3,
                               message: "Al menos 3 caracteres"
@@ -103,6 +105,7 @@ export function EditUser(props) {
                               type="text"
                               label="Ciudad o municipio"
                               variant="bordered"
+                              endContent={<RequiredIcon/>}
                               color={errors.userMunicipality ? "danger" : ""}
                               errorMessage={errors.userMunicipality?.message}
                               className="max-w-xs"
@@ -120,7 +123,7 @@ export function EditUser(props) {
                           control={control}
                           defaultValue={user.userName}
                           rules={{
-                            required: "Nombres requeridos",
+                            required: "Campo requerido",
                             minLength: {
                               value: 3,
                               message: "Al menos 3 caracteres"
@@ -140,6 +143,7 @@ export function EditUser(props) {
                               type="text"
                               label="Nombres"
                               variant="bordered"
+                              endContent={<RequiredIcon/>}
                               color={errors.userName ? "danger" : ""}
                               errorMessage={errors.userName?.message}
                               className="max-w-xs"
@@ -154,7 +158,7 @@ export function EditUser(props) {
                           control={control}
                           defaultValue={user.userLastName}
                           rules={{
-                            required: "Apellidos requeridos",
+                            required: "Campo requerido",
                             minLength: {
                               value: 3,
                               message: "Al menos 3 caracteres"
@@ -174,6 +178,7 @@ export function EditUser(props) {
                               type="text"
                               label="Apellidos"
                               variant="bordered"
+                              endContent={<RequiredIcon/>}
                               color={errors.userLastName ? "danger" : ""}
                               errorMessage={errors.userLastName?.message}
                               className="max-w-xs"
@@ -189,7 +194,7 @@ export function EditUser(props) {
                         control={control}
                         defaultValue={user.userEmail}
                         rules={{
-                          required: "Email requerido",
+                          required: "Campo requerido",
                           pattern: {
                             value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i,
                             message: "Email invalido"
@@ -201,6 +206,7 @@ export function EditUser(props) {
                             type="email"
                             label="Email"
                             variant="bordered"
+                            endContent={<RequiredIcon/>}
                             color={errors.userEmail ? "danger" : ""}
                             errorMessage={errors.userEmail?.message}
                             className="max-w-xs"
@@ -220,9 +226,8 @@ export function EditUser(props) {
                           required: "Campo requerido",
                           minLength : {
                             value : 7 ,
-                            message : 'Al menos 7 numeros'
+                            message : 'Al menos 7 números'
                           },
-
                           pattern: {
                             value: /^[0-9]*$/, // This pattern will only match numbers
                             message: "Solo números"
@@ -234,6 +239,7 @@ export function EditUser(props) {
                             type="number"
                             label="Teléfono"
                             variant="bordered"
+                            endContent={<RequiredIcon/>}
                             color={errors.userPhoneNumber? "danger" : ""}
                             errorMessage={errors.userPhoneNumber?.message}
                             className="max-w-xs"
@@ -252,7 +258,7 @@ export function EditUser(props) {
                           required: "Campo requerido",
                           minLength : {
                             value : 7 ,
-                            message : 'Al menos 7 numeros'
+                            message : 'Al menos 7 números'
                           },
 
                           pattern: {
@@ -266,6 +272,7 @@ export function EditUser(props) {
                             type="number"
                             label="Otro Télefono"
                             variant="bordered"
+                            endContent={<RequiredIcon/>}
                             color={errors.userOtherPhoneNumber? "danger" : ""}
                             errorMessage={errors.userOtherPhoneNumber?.message}
                             className="max-w-xs"
@@ -290,6 +297,7 @@ export function EditUser(props) {
                               type="text"
                               label="Dirección"
                               variant="bordered"
+                              endContent={<RequiredIcon/>}
                               color={errors.userAddress ? "danger" : ""}
                               errorMessage={errors.userAddress?.message}
                               className="max-w-xs"

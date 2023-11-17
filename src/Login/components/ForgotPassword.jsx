@@ -25,7 +25,7 @@ export  function ForgotPassword() {
             <h2 className=' text-3xl font-bold text-blue-800'>Recuperación de la cuenta</h2>
             <div className='border-2 w-10 border-blue-800 inline-block mb-2'></div>
             <div className=' flex flex-col'>
-              <span>Ingresa el correo electronico en el cual inicias sesion en el aplicativo</span>
+              <span>Verifica el correo electrónico en el cual inicias sesión en el aplicativo</span>
               <span>para enviarte un enlace de recuperación</span>
             </div>
 

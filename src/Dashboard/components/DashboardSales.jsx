@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
-import { Chart as ChartJS, BarElement, CategoryScale, LinearScale, PointElement, LineElement, Title, Tooltip, Legend, Filler } from 'chart.js';
-import { Bar } from 'react-chartjs-2';
+import { Chart as ChartJS, LineElement, CategoryScale, LinearScale, PointElement, Title, Tooltip, Legend } from 'chart.js';
+import { Line } from 'react-chartjs-2';
 import { getDashboardSalesRequest } from "../api/dashboard";
 import { SelectItem, Select } from "@nextui-org/select";
 
@@ -34,15 +34,13 @@ export function DashboardSales() {
     };
 
     ChartJS.register(
-        BarElement,
+        LineElement,
         CategoryScale,
         LinearScale,
         PointElement,
-        LineElement,
         Title,
         Tooltip,
-        Legend,
-        Filler
+        Legend
     );
 
     const chartData = {
@@ -50,9 +48,12 @@ export function DashboardSales() {
         datasets: [{
             label: `Ventas en ${selectedYear}`,
             data: prepareChartData(),
-            fill: true,
-            backgroundColor: '#73b4ff',
-            type : 'bar',
+            fill: false,
+            borderColor: '#73b4ff',
+            borderWidth: 2,
+            pointRadius: 4,
+            pointBackgroundColor: '#73b4ff',
+            type: 'line'
         }],
     };
 
@@ -103,7 +104,7 @@ export function DashboardSales() {
                 ))}
               </Select>
             </div>
-            <Bar data={chartData} options={options} />
+            <Line data={chartData} options={options} />
           </div>
         </div>  
       );
