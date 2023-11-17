@@ -33,7 +33,6 @@ export  function DeleteUsers(props) {
           {(onClose) => (
             <> 
             <ModalHeader className=" justify-center text-2xl m-4  ">¿Deseas Eliminar el usuario?</ModalHeader>
-            <ModalHeader className=" justify-center ">¿Deseas eliminar el usuario?</ModalHeader>
               <ModalBody>
                 <form onSubmit={handleSubmit(onSubmit)}>
                     <div className=' text-center m-3'>
