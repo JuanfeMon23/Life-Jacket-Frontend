@@ -52,7 +52,7 @@ export function PurchaseRegister() {
                                   }}
                                 >
                                   {clients.filter(client => client.clientStatus === "true").map((client, i) => (
-                                    <SelectItem key={i} value={client.clientDocument}>
+                                    <SelectItem key={client.idClient} value={client.clientDocument}>
                                         {client.clientDocument}
                                     </SelectItem>
                                   ))}
@@ -82,7 +82,7 @@ export function PurchaseRegister() {
                                   }}
                                 >
                                 {vehicles.filter(vehicles => vehicles.vehicleStatus === "true").map((vehicles, i) => (
-                                    <SelectItem key={i} value={vehicles.licensePlate}>
+                                    <SelectItem key={vehicles.idVehicle} value={vehicles.licensePlate}>
                                         {vehicles.licensePlate}
                                     </SelectItem>
                                   ))}

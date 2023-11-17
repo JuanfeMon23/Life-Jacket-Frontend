@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Chart as ChartJS, BarElement, CategoryScale, LinearScale, PointElement, LineElement, Title, Tooltip, Legend, Filler } from 'chart.js';
+import { Chart as ChartJS, LineElement, CategoryScale, LinearScale, PointElement, Title, Tooltip, Legend } from 'chart.js';
 import { Line } from 'react-chartjs-2';
 import { getDashboardExchangesRequest } from "../api/dashboard";
 import { SelectItem, Select } from "@nextui-org/select";
@@ -35,26 +35,26 @@ export function DashboardExchanges() {
     };
 
     ChartJS.register(
-        BarElement,
+        LineElement,
         CategoryScale,
         LinearScale,
         PointElement,
-        LineElement,
         Title,
         Tooltip,
-        Legend,
-        Filler
+        Legend
     );
-
 
     const chartData = {
         labels: months,
         datasets: [{
             label: `Intercambios en ${selectedYear}`,
             data: prepareChartData(),
-            fill: true,
-            backgroundColor: '#9B59B6',
-            type: 'line',
+            fill: false,
+            borderColor: '#9B59B6',
+            borderWidth: 2,
+            pointRadius: 4,
+            pointBackgroundColor: '#9B59B6',
+            type: 'line'
         }],
     };
 
@@ -124,7 +124,7 @@ export function DashboardExchanges() {
                 </div>
                 <Line data={chartData} options={options} />
             </div>
-        </div>    
+        </div>
     );
 }
 

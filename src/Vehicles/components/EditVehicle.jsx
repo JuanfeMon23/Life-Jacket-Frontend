@@ -62,6 +62,7 @@ export  function EditVehicle (props) {
                               type="text"
                               label="Vehículo"
                               variant="bordered"
+                              endContent={<RequiredIcon/>}
                               color={errors.vehicleType ? "danger" : ""}
                               errorMessage={errors.vehicleType?.message}
                               className="max-w-xs"
@@ -97,6 +98,7 @@ export  function EditVehicle (props) {
                               type="text"
                               label="Marca"
                               variant="bordered"
+                              endContent={<RequiredIcon/>}
                               color={errors.brand ? "danger" : ""}
                               errorMessage={errors.brand?.message}
                               className="max-w-xs"
@@ -123,6 +125,7 @@ export  function EditVehicle (props) {
                             type="number"
                             label="Modelo"
                             variant="bordered"
+                            endContent={<RequiredIcon/>}
                             color={errors.model? "danger" : ""}
                             errorMessage={errors.model?.message}
                             className="max-w-xs"
@@ -159,6 +162,7 @@ export  function EditVehicle (props) {
                               type="text"
                               label="Tipo"
                               variant="bordered"
+                              endContent={<RequiredIcon/>}
                               color={errors.type ? "danger" : ""}
                               errorMessage={errors.type?.message}
                               className="max-w-xs"
@@ -185,6 +189,7 @@ export  function EditVehicle (props) {
                               type="text"
                               label="Línea"
                               variant="bordered"
+                              endContent={<RequiredIcon/>}
                               color={errors.line ? "danger" : ""}
                               errorMessage={errors.line?.message}
                               className="max-w-xs"
@@ -328,25 +333,7 @@ export  function EditVehicle (props) {
                   </div>
                   
                   <div className=' flex '>
-                    <div className=' flex-col m-3'>
-                    <Controller
-                          name="timingBelt"
-                          control={control}
-                          defaultValue={vehicles.timingBelt}
-                          render={({ field }) => (
-                            <Input
-                              {...field}
-                              type="text"
-                              label="Correa dentada"
-                              variant="bordered"
-                              color={errors.timingBelt ? "danger" : ""}
-                              errorMessage={errors.timingBelt?.message}
-                              className="max-w-xs"
-                            />
-                          )}
-                        /> 
-                    </div>
-                    <div className=' flex-col m-3'>
+                  <div className=' flex-col m-3'>
                     <Controller
                           name="color"
                           control={control}
@@ -371,6 +358,24 @@ export  function EditVehicle (props) {
                             />
                           )}
                         />      
+                    </div>
+                    <div className=' flex-col m-3'>
+                    <Controller
+                          name="timingBelt"
+                          control={control}
+                          defaultValue={vehicles.timingBelt}
+                          render={({ field }) => (
+                            <Input
+                              {...field}
+                              type="text"
+                              label="Correa dentada"
+                              variant="bordered"
+                              color={errors.timingBelt ? "danger" : ""}
+                              errorMessage={errors.timingBelt?.message}
+                              className="max-w-xs"
+                            />
+                          )}
+                        /> 
                     </div>
                   </div>
 

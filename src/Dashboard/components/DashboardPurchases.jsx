@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Chart as ChartJS, BarElement, CategoryScale, LinearScale, PointElement, LineElement, Title, Tooltip, Legend, Filler } from 'chart.js';
+import { Chart as ChartJS, LineElement, CategoryScale, LinearScale, PointElement, Title, Tooltip, Legend } from 'chart.js';
 import { Line } from 'react-chartjs-2';
 import { getDashboardPurchasesRequest } from "../api/dashboard";
 import { SelectItem, Select } from "@nextui-org/select";
@@ -34,26 +34,27 @@ export function DashboardPurchases() {
     };
 
     ChartJS.register(
-    BarElement,
-    CategoryScale,
-    LinearScale,
-    PointElement,
-    LineElement,
-    Title,
-    Tooltip,
-    Legend,
-    Filler
-);
+        LineElement,
+        CategoryScale,
+        LinearScale,
+        PointElement,
+        Title,
+        Tooltip,
+        Legend
+    );
 
     const chartData = {
-      labels: months,
-      datasets: [{
-          label: `Compras en ${selectedYear}`,
-          data: prepareChartData(),
-          fill: true,
-          backgroundColor: '#ffcb80',
-          type : 'line'
-      }],
+        labels: months,
+        datasets: [{
+            label: `Compras en ${selectedYear}`,
+            data: prepareChartData(),
+            fill: false,
+            borderColor: '#ffcb80',
+            borderWidth: 2,
+            pointRadius: 4,
+            pointBackgroundColor: '#ffcb80',
+            type: 'line'
+        }],
     };
 
     const options = {
@@ -80,33 +81,33 @@ export function DashboardPurchases() {
     };
 
     const handleYearChange = (event) => {
-      setSelectedYear(parseInt(event.target.value));
+        setSelectedYear(parseInt(event.target.value));
     };
 
     return (
         <div className="flex-grow">
-          <div className="bg-white rounded-lg m-3 p-3">
-            <div className="m-3 p-2 flex justify-between">
-              <label className="font-bold text-sm md:text-lg lg:text-xl">
-                Dinero invertido en compras
-              </label>
-              <Select
-                className="w-[140px] h-[32px]"
-                label="Seleccionar año"
-                value={selectedYear}
-                onChange={handleYearChange}
-              >
-                {years.map((year) => (
-                  <SelectItem key={year} value={year}>
-                    {year}
-                  </SelectItem>
-                ))}
-              </Select>
+            <div className="bg-white rounded-lg m-3 p-3">
+                <div className="m-3 p-2 flex justify-between">
+                    <label className="font-bold text-sm md:text-lg lg:text-xl">
+                        Dinero invertido en compras
+                    </label>
+                    <Select
+                        className="w-[140px] h-[32px]"
+                        label="Seleccionar año"
+                        value={selectedYear}
+                        onChange={handleYearChange}
+                    >
+                        {years.map((year) => (
+                            <SelectItem key={year} value={year}>
+                                {year}
+                            </SelectItem>
+                        ))}
+                    </Select>
+                </div>
+                <Line data={chartData} options={options} />
             </div>
-            <Line data={chartData} options={options} />
-          </div>
-        </div>  
-      );
+        </div>
+    );
 }
 
 const monthNames = {

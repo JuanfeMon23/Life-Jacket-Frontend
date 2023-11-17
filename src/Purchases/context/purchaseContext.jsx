@@ -32,8 +32,10 @@ export function PurchaseProvider ({children}) {
         } catch (error) {
             console.log(error)
             toast.error('Error al crear la compra' ,{
-                position: toast.POSITION.TOP_CENTER
+                position: toast.POSITION.TOP_CENTER,
+                autoClose : 1500
             });
+            console.log(error)
             throw new Error(error.message);
         }
     };

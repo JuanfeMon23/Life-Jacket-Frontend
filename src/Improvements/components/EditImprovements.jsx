@@ -7,6 +7,7 @@ import { toast } from "react-toastify";
 import {Input} from "@nextui-org/react";
 import {AiTwotoneEdit} from 'react-icons/Ai';
 import { useVehicles } from '../../Vehicles/context/vehiclesContext.jsx';
+import { RequiredIcon } from '../../components/globalComponents/RequiredIcon.jsx';
 
 export  function EditImprovements(props) {
     const {vehicles} = useVehicles();
@@ -54,6 +55,7 @@ export  function EditImprovements(props) {
                                   type="date"
                                   label="Fecha de mejora"
                                   variant="bordered"
+                                  endContent={<RequiredIcon/>}
                                   color={errors.improvementDate ? "danger" : ""}
                                   errorMessage={errors.improvementDate?.message}
                                   className="max-w-xs"
@@ -80,6 +82,7 @@ export  function EditImprovements(props) {
                                   type="number"
                                   label="Precio de mejora"
                                   variant="bordered"
+                                  endContent={<RequiredIcon/>}
                                   color={errors.improvementPrice? "danger" : ""}
                                   errorMessage={errors.improvementPrice?.message}
                                   className="max-w-xs"
@@ -112,6 +115,7 @@ export  function EditImprovements(props) {
                               type="text"
                               label="Descripcion de la mejora"
                               variant="bordered"
+                              endContent={<RequiredIcon/>}
                               color={errors.improvementDescription ? "danger" : ""}
                               errorMessage={errors.improvementDescription?.message}
                               className="max-w-xs"
