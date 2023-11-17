@@ -50,27 +50,13 @@ export function RolesProvider({children}) {
         }
     };
 
-    const updateRol = async (idroles, roles) => {
-        try {
-            await updateRolRequest(idroles, roles);
-            toast.success('Rol modificado con exito.',{
-                position: toast.POSITION.TOP_CENTER
-            });
-            getRoles();
-        } catch (error) {
-            toast.error( error.response.data.message ,{
-                position: toast.POSITION.TOP_CENTER,
-                autoClose : 1500
-            });
-            throw new Error(error.message);
-        }
-    };
 
-    const deleteRol = async (roles) => {
+    const deleteRol = async (idRol) => {
         try {
-             await deleteRolRequest(roles);
+             await deleteRolRequest(idRol);
              toast.success('Rol eliminado con exito.',{
-                position: toast.POSITION.TOP_CENTER
+                position: toast.POSITION.TOP_CENTER,
+                autoClose :1500
             });
             getRoles();
         } catch (error) {
@@ -95,7 +81,7 @@ export function RolesProvider({children}) {
 
     return(
         <RolesContext.Provider 
-        value={{roles, licenses, getRoles, createRol, updateRol, deleteRol, getLicenses, addLicenses}}>
+        value={{roles, licenses, getRoles, createRol, deleteRol, getLicenses, addLicenses}}>
             {children}
         </RolesContext.Provider>
     )

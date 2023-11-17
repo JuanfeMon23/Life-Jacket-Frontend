@@ -1,7 +1,6 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { Modal, ModalContent, ModalHeader, ModalBody, useDisclosure, Input, Button } from "@nextui-org/react";
 import { useForm, Controller } from 'react-hook-form';
-import axios from 'axios';
 import { ButtonAccept } from '../../components/ButtonAccept';
 import { useSells } from '../context/sellsContext'; 
 import { IoDocumentTextOutline } from "react-icons/io5";

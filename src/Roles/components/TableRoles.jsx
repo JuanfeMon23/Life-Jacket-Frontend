@@ -20,6 +20,7 @@ import {FaSearch} from 'react-icons/fa';
 import {IoIosArrowDown} from 'react-icons/io';
 import { useRoles } from "../context/rolesContext";
 import { AddLicenses } from "./AddLicenses";
+import { DeleteRol } from "./DeleteRol";
 
 
 const statusOptions = [
@@ -227,6 +228,7 @@ export  function TableRoles() {
                     <TableCell>{item.rolStatus === "true" ?  <Chip color="success">Activo</Chip> : <Chip color="default">Inactivo</Chip>}</TableCell>
                     <TableCell className=" flex justify-normal">
                         <AddLicenses roles={item} />
+                        <DeleteRol roles={item} />
                     </TableCell>
                 </TableRow>
             ))}

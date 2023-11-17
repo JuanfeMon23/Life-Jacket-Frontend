@@ -18,8 +18,8 @@ export function WatchVehicle (props) {
 
     return (
         <>
-        {vehicles.vehicleStatus === "true" ? <Button isIconOnly  className='bg-gradient-to-r from-[#2D78BE] to-[#6D2CC0]' onPress={onOpen}><FiEye className="text-white text-2xl"/></Button>
-         : <Button isIconOnly onClick={handleWatch} ><FiEye className="text-white text-2xl"/></Button> }
+        {vehicles.vehicleStatus === "true" ? <Button isIconOnly  className='bg-gradient-to-r from-[#2D78BE] to-[#6D2CC0] mr-2' onPress={onOpen}><FiEye className="text-white text-2xl"/></Button>
+         : <Button isIconOnly className=" mr-2" onClick={handleWatch} ><FiEye className="text-white text-2xl"/></Button> }
         <Modal isOpen={isOpen} onOpenChange={onOpenChange} size="2xl" scrollBehavior={'inside'} isDismissable={false}>
           <ModalContent>
             {(onClose) => (

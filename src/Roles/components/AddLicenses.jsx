@@ -1,5 +1,4 @@
 import React from 'react';
-import axios from 'axios';
 import { useForm, Controller } from 'react-hook-form';
 import {Modal, ModalContent, ModalHeader, ModalBody, useDisclosure} from "@nextui-org/react";
 import { useRoles } from '../context/rolesContext';
@@ -42,8 +41,8 @@ export const AddLicenses = (props) => {
 
   return (
     <div className=' flex'>
-      { roles.Licenses <= 0 ? <Button isIconOnly endContent={<AiOutlinePlusCircle className=' text-2xl'/>} color="primary" variant="solid" onPress={onOpen} className=' text-white font-bold'/>
-   :  <Button isIconOnly onClick={handleAddLicenses} endContent={<AiOutlinePlusCircle className=' text-2xl'/>} variant="solid"  className=' text-white font-bold'/>  }
+      { roles.Licenses <= 0 ? <Button isIconOnly endContent={<AiOutlinePlusCircle className=' text-2xl'/>} color="primary" variant="solid" onPress={onOpen} className=' text-white font-bold mr-2'/>
+   :  <Button isIconOnly  onClick={handleAddLicenses} endContent={<AiOutlinePlusCircle className=' text-2xl'/>} variant="solid"  className=' text-white font-bold mr-2'/>  }
         <Modal isOpen={isOpen} onOpenChange={onOpenChange} isDismissable={false}>
         <ModalContent>
             {(onclose) => (

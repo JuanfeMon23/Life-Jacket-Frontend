@@ -6,7 +6,7 @@ import {useForm, Controller} from 'react-hook-form';
 import {Modal, ModalContent, ModalHeader, ModalBody, ModalFooter, useDisclosure} from "@nextui-org/react";
 import {Select, SelectItem} from "@nextui-org/react";
 import { Button } from '@nextui-org/react';
-import { useParams, useNavigate } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 import {AiOutlinePlusCircle} from 'react-icons/Ai';
 import { RequiredIcon } from '../../components/globalComponents/RequiredIcon.jsx';
 
