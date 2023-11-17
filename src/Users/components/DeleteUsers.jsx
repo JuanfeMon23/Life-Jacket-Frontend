@@ -2,8 +2,6 @@ import React from 'react'
 import {Modal, ModalContent, ModalHeader, ModalBody, ModalFooter, useDisclosure} from "@nextui-org/react";
 import {Button} from "@nextui-org/react";
 import {useForm} from 'react-hook-form';
-import {GrStatusGood} from 'react-icons/gr'
-import {TiDeleteOutline} from 'react-icons/ti';
 import { toast } from "react-toastify";
 import { useUsers } from '../Context/userContext';
 import {AiOutlineDelete} from 'react-icons/Ai';

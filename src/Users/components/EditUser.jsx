@@ -5,7 +5,6 @@ import {Input} from "@nextui-org/react";
 import {useForm, Controller} from 'react-hook-form';
 import {AiTwotoneEdit} from 'react-icons/Ai';
 import { useUsers } from '../Context/userContext';
-import {Select, SelectItem} from "@nextui-org/react";
 import { toast } from "react-toastify";
 import { useRoles } from '../../Roles/context/rolesContext';
 

@@ -4,8 +4,6 @@ import {Button} from "@nextui-org/react";
 import {useForm} from 'react-hook-form';
 import { useImprovements } from '../context/improvementsContext';
 import { toast } from "react-toastify";
-import {GrStatusGood} from 'react-icons/gr';
-import {TiDeleteOutline} from 'react-icons/ti';
 import {AiOutlineDelete} from 'react-icons/Ai';
 export  function DeleteImprovement(props) {
     const {isOpen, onOpen, onOpenChange} = useDisclosure();

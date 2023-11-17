@@ -1,7 +1,6 @@
 import React from 'react'
 import {Modal, ModalContent, ModalHeader, ModalBody, useDisclosure} from "@nextui-org/react";
-import { Select, SelectItem, Button, Textarea} from '@nextui-org/react';
-import { ButtonAccept } from '../../components/ButtonAccept';
+import {  Button, Textarea} from '@nextui-org/react';
 import { useForm , Controller } from 'react-hook-form';
 import { useImprovements } from '../context/improvementsContext.jsx';
 import { toast } from "react-toastify";
@@ -31,8 +30,8 @@ export  function EditImprovements(props) {
 
   return (
     <div className='flex'>
-        {improvement.improvementStatus === "true" ? <Button isIconOnly onPress={onOpen}className=' bg-gradient-to-r from-[#D99C23] to-[#D45229] rounded-lg text-white font-bold'>{<AiTwotoneEdit className='text-white text-2xl'/>}</Button>
-        : <Button isIconOnly onClick={handleEdit}>{<AiTwotoneEdit className='text-white text-2xl'/>}</Button> }
+        {improvement.improvementStatus === "true" ? <Button isIconOnly onPress={onOpen}className=' bg-gradient-to-r from-[#D99C23] to-[#D45229] rounded-lg text-white font-bold mr-2'>{<AiTwotoneEdit className='text-white text-2xl'/>}</Button>
+        : <Button  className=' mr-2' isIconOnly onClick={handleEdit}>{<AiTwotoneEdit className='text-white text-2xl'/>}</Button> }
         <Modal isOpen={isOpen} onOpenChange={onOpenChange} isDismissable={false}>
             <ModalContent>
             {(onClose) => (
