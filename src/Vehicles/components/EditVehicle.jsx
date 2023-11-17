@@ -31,8 +31,8 @@ export  function EditVehicle (props) {
 
   return (
     <div className='flex'>
-    {vehicles.vehicleStatus === "true" ?<Button isIconOnly onPress={onOpen}className=' bg-gradient-to-r from-[#D99C23] to-[#D45229] mr-2 rounded-lg text-white font-bold'>{<AiTwotoneEdit className='text-white text-2xl'/>}</Button>
-    : <Button  className=' mr-2'onClick={handleEdit} isIconOnly><AiTwotoneEdit className='text-white text-2xl'/></Button>}
+    {vehicles.vehicleStatus === "true" ?<Button title='Editar vehículo' isIconOnly onPress={onOpen}className=' bg-gradient-to-r from-[#D99C23] to-[#D45229] mr-2 rounded-lg text-white font-bold'>{<AiTwotoneEdit className='text-white text-2xl'/>}</Button>
+    : <Button  title='Editar vehículo' className=' mr-2'onClick={handleEdit} isIconOnly><AiTwotoneEdit className='text-white text-2xl'/></Button>}
       <Modal isOpen={isOpen} onOpenChange={onOpenChange} scrollBehavior={scrollBehavior} isDismissable={false}>
         <ModalContent>
           {(onClose) => (

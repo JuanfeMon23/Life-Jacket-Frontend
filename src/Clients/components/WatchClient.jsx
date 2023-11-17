@@ -17,8 +17,8 @@ export function WatchClient (props) {
 
     return (
         <>
-          {client.clientStatus === "true" ? <Button isIconOnly onPress={onOpen}className='bg-gradient-to-r from-[#2D78BE] to-[#6D2CC0] mr-2'>{<FiEye className='text-white text-2xl'/>}</Button>
-            :  <Button isIconOnly className=" mr-2" onClick={handleEvent} >{<FiEye className='text-white text-2xl'/>}</Button>} 
+          {client.clientStatus === "true" ? <Button title='Ver cliente' isIconOnly onPress={onOpen}className='bg-gradient-to-r from-[#2D78BE] to-[#6D2CC0] mr-2'>{<FiEye className='text-white text-2xl'/>}</Button>
+            :  <Button title='Ver cliente' isIconOnly className=" mr-2" onClick={handleEvent} >{<FiEye className='text-white text-2xl'/>}</Button>} 
         <Modal isOpen={isOpen} onOpenChange={onOpenChange} size="2xl">
           <ModalContent>
             {(onClose) => (

@@ -27,8 +27,8 @@ export  function DeleteClient(props) {
 
   return (
     <div className=' flex'>
-        {clients.sales <= 0 && clients.purchases <= 0 && clients.exchanges <= 0 ? <Button className=' bg-red-400 mr-2' isIconOnly onPress={onOpen}><AiOutlineDelete className='text-white text-2xl '/></Button>
-         : <Button isIconOnly className=' mr-2'  onClick={handleDelete}><AiOutlineDelete className='text-white text-2xl'/></Button>}
+        {clients.sales <= 0 && clients.purchases <= 0 && clients.exchanges <= 0 ? <Button title='Eliminar cliente' className=' bg-red-400 mr-2' isIconOnly onPress={onOpen}><AiOutlineDelete className='text-white text-2xl '/></Button>
+         : <Button title='Eliminar cliente' isIconOnly className=' mr-2'  onClick={handleDelete}><AiOutlineDelete className='text-white text-2xl'/></Button>}
         <Modal isOpen={isOpen} onOpenChange={onOpenChange}>
         <ModalContent>
           {(onClose) => (

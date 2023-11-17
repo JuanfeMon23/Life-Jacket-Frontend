@@ -26,8 +26,8 @@ export  function DeleteImprovement(props) {
 
   return (
     <div className='flex'>
-    {improvement.improvementStatus === "true" ? <Button isIconOnly className=' bg-red-400 rounded-lg' onPress={onOpen}><AiOutlineDelete className={`text-2xl text-white`}/></Button> 
-    : <Button isIconOnly onClick={handleDelete}><AiOutlineDelete className='text-white text-2xl'/></Button>}
+    {improvement.improvementStatus === "true" ? <Button title='Eliminar mejora' isIconOnly className=' bg-red-400 rounded-lg' onPress={onOpen}><AiOutlineDelete className={`text-2xl text-white`}/></Button> 
+    : <Button title='Eliminar mejora' isIconOnly onClick={handleDelete}><AiOutlineDelete className='text-white text-2xl'/></Button>}
       <Modal isOpen={isOpen} onOpenChange={onOpenChange}>
         <ModalContent>
           {(onClose) => (

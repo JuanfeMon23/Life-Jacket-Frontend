@@ -41,8 +41,8 @@ export const AddLicenses = (props) => {
 
   return (
     <div className=' flex'>
-      { roles.Licenses <= 0 ? <Button isIconOnly endContent={<AiOutlinePlusCircle className=' text-2xl'/>} color="primary" variant="solid" onPress={onOpen} className=' text-white font-bold mr-2'/>
-   :  <Button isIconOnly  onClick={handleAddLicenses} endContent={<AiOutlinePlusCircle className=' text-2xl'/>} variant="solid"  className=' text-white font-bold mr-2'/>  }
+      { roles.Licenses <= 0 ? <Button title='Añadir permisos' isIconOnly endContent={<AiOutlinePlusCircle className=' text-2xl'/>} color="primary" variant="solid" onPress={onOpen} className=' text-white font-bold mr-2'/>
+   :  <Button isIconOnly title='Añadir permisos'  onClick={handleAddLicenses} endContent={<AiOutlinePlusCircle className=' text-2xl'/>} variant="solid"  className=' text-white font-bold mr-2'/>  }
         <Modal isOpen={isOpen} onOpenChange={onOpenChange} isDismissable={false}>
         <ModalContent>
             {(onclose) => (

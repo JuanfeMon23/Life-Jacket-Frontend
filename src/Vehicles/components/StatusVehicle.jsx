@@ -26,17 +26,17 @@ export  function StatusVehicle(props) {
 
   return (
     <div className='flex'>
-    {vehicles.vehicleStatus === "true" ? <Button  isIconOnly className=' bg-green-600 rounded-lg mr-2' onPress={onOpen}><GrStatusGood className='text-2xl'/></Button>
-     : <Button className=' mr-2' isIconOnly onClick={handleEdit} ><TiDeleteOutline className='text-white text-2xl'/></Button>}
+    {vehicles.vehicleStatus === "true" ? <Button title='Cambiar estado del vehículo'  isIconOnly className=' bg-green-600 rounded-lg mr-2' onPress={onOpen}><GrStatusGood className='text-2xl'/></Button>
+     : <Button title='Cambiar estado del vehículo' className=' mr-2' isIconOnly onClick={handleEdit} ><TiDeleteOutline className='text-white text-2xl'/></Button>}
       <Modal isOpen={isOpen} onOpenChange={onOpenChange} isDismissable={false}>
         <ModalContent>
           {(onClose) => (
             <>
-              <ModalHeader className=" justify-center ">¿Deseas anular el vehículo?</ModalHeader>
+              <ModalHeader className=" justify-center text-2xl m-4 ">¿Deseas anular el vehículo?</ModalHeader>
               <ModalBody>
                 <form onSubmit={handleSubmit(onSubmit)}>
                     <div className=' text-center m-3'>
-                        <Button className=' bg-green-600  w-20 h-18 p-3 rounded-lg text-white' type='submit'>Aceptar</Button>
+                        <Button className=' bg-emerald-600 hover:bg-emerald-900  w-20 h-18 p-3 rounded-lg text-white' type='submit'>Aceptar</Button>
                     </div>
 
                 </form>

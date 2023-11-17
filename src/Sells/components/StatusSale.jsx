@@ -27,17 +27,17 @@ export  function StatusSale(props) {
 
   return (
     <div className='flex'>
-    {sale.saleStatus === "true" ? <Button className=' bg-green-600 rounded-lg mr-2' onPress={onOpen}><GrStatusGood className='text-2xl'/></Button>
-     : <Button className=' mr-2' onClick={handleStatus} ><TiDeleteOutline className='text-white text-2xl'/></Button>}
+    {sale.saleStatus === "true" ? <Button title='Anular venta' className=' bg-green-600 rounded-lg mr-2' onPress={onOpen}><GrStatusGood className='text-2xl'/></Button>
+     : <Button title='Anular venta' className=' mr-2' onClick={handleStatus} ><TiDeleteOutline className='text-white text-2xl'/></Button>}
       <Modal isOpen={isOpen} onOpenChange={onOpenChange}>
         <ModalContent>
           {(onClose) => (
             <>
-              <ModalHeader className=" items-center">¿Deseas anular la venta?</ModalHeader>
+              <ModalHeader className=" justify-center text-2xl m-4">¿Deseas anular la venta?</ModalHeader>
               <ModalBody>
                 <form onSubmit={handleSubmit(onSubmit)}>
                     <div className=' text-center m-3'>
-                        <button className=' bg-green-600  w-20 h-18 p-3 rounded-lg text-white' type='submit'>Aceptar</button>
+                        <button className=' bg-emerald-600 hover:bg-emerald-900  w-20 h-18 p-3 rounded-lg text-white' type='submit'>Aceptar</button>
                     </div>
 
                 </form>
