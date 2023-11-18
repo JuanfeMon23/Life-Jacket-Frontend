@@ -38,7 +38,7 @@ export function Login() {
                   <div className='border-2 w-10 border-blue-800 inline-block mb-2'></div>
                   <div className=' flex flex-col items-center mt-8'>
                     <form onSubmit={handleSubmit(onSubmit)}>
-                      <div className=' relative left-20 w-[10rem] sm:w-[20rem] sm:relative sm:left-0 mb-3'>
+                      <div className=' relative left-20 w-[10rem] sm:w-[20rem] sm:relative sm:left-0 mb-10'>
                         <Controller
                             name="userEmail"
                             control={control}
