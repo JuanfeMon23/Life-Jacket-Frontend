@@ -15,25 +15,16 @@ export  function StatusVehicle(props) {
 
     function onSubmit (){
         statusVehicle(vehicles.idVehicle)
-    }
-
-    function handleEdit(event){
-      event.preventDefault();
-      toast.error('No puedes interactuar con un vehiculo inhabilitado.' ,{
-        autoClose : 1500,
-        position: toast.POSITION.TOP_CENTER
-    });
-  }    
+    } 
 
   return (
     <div className='flex'>
-    {vehicles.vehicleStatus === "true" ? <Button title='Cambiar estado del vehículo'  isIconOnly className=' bg-yellow-950/70 rounded-lg mr-2' onPress={onOpen}><TiDeleteOutline className='text-2xl text-white'/></Button>
-     : <Button title='Cambiar estado del vehículo' className=' bg-emerald-600 mr-2' isIconOnly onClick={handleEdit} ><HiOutlineCheckCircle className='text-white text-2xl'/></Button>}
+    <Button title='Cambiar estado del vehículo'  isIconOnly className=' bg-yellow-950/70 rounded-lg mr-2' onPress={onOpen}><TiDeleteOutline className='text-2xl text-white'/></Button>
       <Modal isOpen={isOpen} onOpenChange={onOpenChange} isDismissable={false}>
         <ModalContent>
           {(onClose) => (
             <>
-              <ModalHeader className=" justify-center text-2xl m-4 ">¿Deseas anular el vehículo?</ModalHeader>
+              <ModalHeader className=" justify-center text-2xl m-4 ">¿Deseas {vehicles.vehicleStatus === 'false' ? 'habilitar' : 'inhabilitar'} el  vehículo?</ModalHeader>
               <ModalBody>
                 <form onSubmit={handleSubmit(onSubmit)}>
                     <div className=' text-center m-3'>
