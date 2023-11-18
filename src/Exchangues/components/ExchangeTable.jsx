@@ -206,7 +206,7 @@ export function ExchangeTable() {
 
 
   return (
-        <div className=" w-screen">
+        <div className=" ml-3 w-[23rem] sm:ml-5 sm:w-full md:w-full lg:w-[83rem] xl:w-[117rem] mx-auto ">
                     <Table
                         aria-label="Exchange Table"
                         isCompact

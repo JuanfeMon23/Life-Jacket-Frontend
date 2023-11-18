@@ -20,10 +20,10 @@ export  function ExchangeInfo() {
     };
 
   return (
-    <aside className=' border-2 border-blue-600/70 bg-white justify-end rounded-lg ml-5'>
+    <aside className=' border-2 border-blue-600/70 bg-white rounded-lg ml-5'>
         <h1 className=' text-3xl text-center font-bold m-5'>Datos del cambio</h1>
         <form onSubmit={handleSubmit(onSubmit)}>
-                <div className='flex-col m-3 relative right-[86rem] '>
+                <div className=' ml-10 mb-3 '>
                 <Controller
                               name='idClientPurchase'
                               control={control}
@@ -220,8 +220,8 @@ export  function ExchangeInfo() {
             </div>
 
             <div className=' flex justify-around mb-7'>
-                    <Button size='lg' color='primary' type='submit'>Registrar</Button>
-                    <Button size='lg' color='danger'>Cancelar</Button>
+                    <Button size='lg' color='primary' className=' hover:bg-blue-900' type='submit'>Registrar</Button>
+                    <Button size='lg' color='danger' className=' hover:bg-pink-900'>Cancelar</Button>
             </div>
         </form>
     </aside>

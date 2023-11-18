@@ -21,40 +21,53 @@ import {
     {name: "Estado", uid: "status", sortable: true}
   ];
 
+
+  function onSubmit(){
+
+  }
+
 export  function ExchangeDetail() {
     const {vehicles} = useVehicles();
+    console.log(vehicles)
     const { handleSubmit, formState:{errors}, control, reset} = useForm();
   return (
     <> 
-    <div className=' relative top-[20rem] ml-5'>
-    <div className=' ml-4 w-[400px]'>
-        <Controller
-            name='idVehiclePurchase'
-            control={control}
-            rules={{
-                required : 'Campo obligatorio'
-            }}
-            render={({field}) => (
-         <Select
-            {...field}
-            label="Placa del vehículo"
-                                  variant="bordered"
-                                  color={errors.idVehiclePurchase ? "danger" : ""}
-                                  errorMessage={errors.idVehiclePurchase?.message}
-                                  className="max-w-xs"
-                                  onChange={(e) => {
-                                    field.onChange(e);
-                                  }}
-                                >
-                                {vehicles.filter(vehicles => vehicles.vehicleStatus === "true").map((vehicles, i) => (
-                                    <SelectItem key={i} value={vehicles.licensePlate}>
-                                        {vehicles.licensePlate}
-                                    </SelectItem>
-                                  ))}
-                                  </Select>
-                              )}
-    />
-    </div>
+    <div className='  ml-5'>
+            <form onSubmit={handleSubmit(onSubmit)}> 
+            <div className=' flex justify-between'>
+                <div className=' w-[400px]'>
+                    <Controller
+                        name='idExchangeVehicle'
+                        control={control}
+                        rules={{
+                            required : 'Campo obligatorio'
+                        }}
+                        render={({field}) => (
+                    <Select
+                        {...field}
+                        label="Seleccionar vehículo"
+                        variant="bordered"
+                        color={errors.idExchangeVehicle ? "danger" : ""}
+                        errorMessage={errors.idExchangeVehicle?.message}
+                        className="max-w-xs"
+                        onChange={(e) => {
+                            field.onChange(e);
+                        }}
+                    >
+                    {vehicles.filter(vehicles => vehicles.vehicleStatus === "true").map((vehicles, i) => (
+                        <SelectItem key={i} value={vehicles.licensePlate}>
+                            {vehicles.licensePlate}
+                        </SelectItem>
+                        ))}
+                    </Select>
+                    )}
+                    />
+                </div>
+                <div>
+                    <Button type='submit' size='lg'  className=' text-white bg-green-600 hover:bg-green-800'>Agregar</Button>
+                </div>
+            </div>
+            </form>
     <div className=' w-[85rem] mt-7'>
     <Table
         aria-label="Exchange Table"

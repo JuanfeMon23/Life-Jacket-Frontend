@@ -25,7 +25,6 @@ export  function DeleteRol(props) {
       });
       };
 
-      console.log(roles)
 
   return (
     <div className=' flex'>

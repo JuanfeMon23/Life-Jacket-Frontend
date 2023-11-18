@@ -29,7 +29,7 @@ import { Resetpassword } from "./Login/components/Resetpassword.jsx";
 
 function Navigator (){
   const location = useLocation();
-  return location.pathname !== "/" && location.pathname !== "/ForgotPassword" && location.pathname !== "/ResetPassword/:idUser" && <Navigation/> ;
+  return location.pathname !== "/" && location.pathname !== "/ForgotPassword" && location.pathname !== "/ResetPassword/idUser" && <Navigation/> ;
 };
 
 function App() { 
@@ -38,13 +38,13 @@ function App() {
     <>
       <AuthProvider>
         <RolesProvider>
-        <PurchaseProvider>
         <VehicleProvider>
-        <ClientProvider>
-        <ExchangeProvider>
-        <SellProvider>
-        <UserProvider>
-        <ImprovementProvider>       
+          <PurchaseProvider>
+          <ClientProvider>
+          <ExchangeProvider>
+          <SellProvider>
+          <UserProvider>
+          <ImprovementProvider>       
                         <BrowserRouter>
                         <div className=" flex bg-violet-200/25 h-screen w-screen">
                           {<Navigator/>}
@@ -69,13 +69,13 @@ function App() {
                           <ToastContainer/> 
                           </div>      
                         </BrowserRouter>
-          </ImprovementProvider>
-          </UserProvider>
-          </SellProvider>
-          </ExchangeProvider>
-          </ClientProvider>
+            </ImprovementProvider>
+            </UserProvider>
+            </SellProvider>
+            </ExchangeProvider>
+            </ClientProvider>
+            </PurchaseProvider>
           </VehicleProvider>
-          </PurchaseProvider>
           </RolesProvider>
       </AuthProvider>
     </>
