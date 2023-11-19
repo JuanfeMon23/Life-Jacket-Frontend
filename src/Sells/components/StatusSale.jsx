@@ -27,8 +27,8 @@ export  function StatusSale(props) {
 
   return (
     <div className='flex'>
-    {sale.saleStatus === "true" ? <Button title='Anular venta' className=' bg-green-600 rounded-lg mr-2' onPress={onOpen}><GrStatusGood className='text-2xl'/></Button>
-     : <Button title='Anular venta' className=' mr-2' onClick={handleStatus} ><TiDeleteOutline className='text-white text-2xl'/></Button>}
+    {sale.saleStatus === "true" ? <Button isIconOnly title='Anular venta' className=' bg-green-600 rounded-lg mr-2' onPress={onOpen}><GrStatusGood className='text-2xl'/></Button>
+     : <Button isIconOnly title='Anular venta' className=' mr-2' onClick={handleStatus} ><TiDeleteOutline className='text-white text-2xl'/></Button>}
       <Modal isOpen={isOpen} onOpenChange={onOpenChange}>
         <ModalContent>
           {(onClose) => (

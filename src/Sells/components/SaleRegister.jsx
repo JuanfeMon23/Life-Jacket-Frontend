@@ -91,7 +91,7 @@ export function SaleRegister() {
                     </div>
 
                     <div className=' flex'>
-                        <div className=' flex-col m-3 w-[200px]'>
+                        <div className=' flex-col m-3 w-[176px]'>
                         <Controller
                               name="saleDate"
                               control={control}
@@ -102,7 +102,7 @@ export function SaleRegister() {
                                 <Input
                                   {...field}
                                   type="datetime-local"
-                                  label="Fecha de compra"
+                                  label="Fecha de venta"
                                   variant="bordered"
                                   endContent={<RequiredIcon/>}
                                   color={errors.saleDate ? "danger" : ""}
@@ -113,7 +113,7 @@ export function SaleRegister() {
                           /> 
                         </div>
 
-                        <div className=' flex-col m-3'>
+                        <div className=' flex-col m-3 '>
                         <Controller
                               name="saleFinalPrice"
                               control={control}
@@ -212,7 +212,7 @@ export function SaleRegister() {
 
                     </div>
 
-                    <div className=' m-3'>
+                    <div className=' m-3 w-[23rem]'>
                     <Controller
                           name="salePecuniaryPenalty"
                           control={control}
@@ -228,13 +228,12 @@ export function SaleRegister() {
                               endContent={<RequiredIcon/>}
                               color={errors.salePecuniaryPenalty ? "danger" : ""}
                               errorMessage={errors.salePecuniaryPenalty?.message}
-                              className="max-w-xs"
                             />
                           )}
                         />
                     </div>
 
-                    <div className=' m-3'>
+                    <div className=' m-3 w-[23rem]'>
                     <Controller
                               name="saleLimitations"
                               control={control}
@@ -258,7 +257,6 @@ export function SaleRegister() {
                                   endContent={<RequiredIcon/>}
                                   color={errors.saleLimitations ? "danger" : ""}
                                   errorMessage={errors.saleLimitations?.message}
-                                  className="max-w-xs"
                                 />
                               )}
                             />
