@@ -15,3 +15,9 @@ export const informPurchaseRequest = async (firstParameter, secondParameter) => 
 
 export const deletePurchaseRequest = async (idPurchase) => axios.delete(`/Purchases/${idPurchase}`);
 
+export const contractPurchaseRequest = async (idPurchase) => {
+    const response = await  axios.get(`/Purchases/Contract/${idPurchase}`,{
+        responseType : 'blob',
+    });
+    return response.data;
+}; 

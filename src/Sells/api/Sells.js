@@ -14,3 +14,10 @@ export const informSaleRequest = async (firstParameter, secondParameter) => {
  };
  
 export const deleteSaleRequest = async (idSale) => axios.delete(`/Sales/${idSale}`);
+
+export const contractSaleRequest = async (idSale) => {
+    const response = await  axios.get(`/Sales/Contract/${idSale}`,{
+        responseType : 'blob',
+    });
+    return response.data;
+}; 

@@ -22,6 +22,7 @@ import { WatchPurchase } from './WatchPurchase';
 import { StatusPurchase } from './StatusPurchase';
 import { PurchaseRegister } from './PurchaseRegister';
 import { ReportPurchase } from './ReportPurchase';
+import { ContractPurchase } from './ContractPurchase';
 import { IoDocumentTextOutline } from "react-icons/io5";
 
 
@@ -240,6 +241,7 @@ export function TablePurchase() {
               <TableCell className=" flex justify-normal">
                 <WatchPurchase purchase={item} />
                 <StatusPurchase purchase={item} />
+                <ContractPurchase purchase={item}  />
               </TableCell>
             </TableRow>
           ))}

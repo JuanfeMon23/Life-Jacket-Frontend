@@ -1,6 +1,6 @@
 import { createContext, useContext, useState } from "react";
 import { toast } from "react-toastify";
-import { createPurchaseRequest, getPurchasesRequest, statusPurchasesRequest, informPurchaseRequest, deletePurchaseRequest } from "../api/Purchases";
+import { createPurchaseRequest, getPurchasesRequest, statusPurchasesRequest, informPurchaseRequest, deletePurchaseRequest, contractPurchaseRequest } from "../api/Purchases";
 
 const PurchaseContext = createContext();
 
@@ -76,6 +76,28 @@ export function PurchaseProvider ({children}) {
         }
     };
 
+    const contractPurchase = async (idPurchase) => {
+        try {
+            const contract = await contractPurchaseRequest(idPurchase);
+            const url = window.URL.createObjectURL(new Blob([contract]));
+            const link = document.createElement('a');
+            link.href = url;
+            link.setAttribute('download', 'ContratoDeCompra.pdf');
+            document.body.appendChild(link);
+            link.click();
+            toast.success('Contrato de compra generado con éxito!', {
+                position: toast.POSITION.TOP_CENTER,
+                autoClose: 1500,
+            });
+        } catch (error) {
+            console.log(error);
+            toast.error(error.response.data.message, {
+                position: toast.POSITION.TOP_CENTER,
+                autoClose: 1500,
+            });
+        }
+    };
+
     const deletePurchase = async (idPurchase) => {
         try {
             await deletePurchaseRequest(idPurchase);
@@ -93,7 +115,7 @@ export function PurchaseProvider ({children}) {
     };
 
     return(
-        <PurchaseContext.Provider value={{purchases, getPurchases, createPurchase, statusPurchase, informPurchase, deletePurchase}}>
+        <PurchaseContext.Provider value={{purchases, getPurchases, createPurchase, statusPurchase, informPurchase, deletePurchase, contractPurchase}}>
             {children}
         </PurchaseContext.Provider>
     )

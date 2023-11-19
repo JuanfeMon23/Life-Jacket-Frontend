@@ -21,7 +21,7 @@ import { useSells } from '../context/sellsContext';
 import { SaleRegister } from './SaleRegister';
 import { WatchSale } from './WatchSale';
 import { StatusSale } from './StatusSale';
-import { DeleteSale } from './DeleteSale';
+import { ContractSale } from './ContractSale';
 import { ReportSale } from './ReportSale';
 
 const statusOptions = [
@@ -243,6 +243,7 @@ export function TableSale() {
               <TableCell className="flex justify-normal">
                 <WatchSale sale={item} />
                 <StatusSale sale={item} />
+                <ContractSale sale={item} />
               </TableCell>
             </TableRow>
           ))}

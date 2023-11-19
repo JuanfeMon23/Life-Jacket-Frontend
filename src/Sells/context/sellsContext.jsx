@@ -1,7 +1,8 @@
 import { createContext, useContext, useState } from "react";
 import { toast } from "react-toastify";
-import { createSellRequest, getSellsRequest , statusSaleRequest, informSaleRequest, deleteSaleRequest } from "../api/Sells";
+import { createSellRequest, getSellsRequest , statusSaleRequest, informSaleRequest, deleteSaleRequest, contractSaleRequest } from "../api/Sells";
 import { useVehicles } from "../../Vehicles/context/vehiclesContext";
+
 
 const SellContext = createContext();
 
@@ -81,6 +82,28 @@ export function SellProvider({children}) {
         }
      };
 
+     const contractSale = async (idSale) => {
+        try {
+            const contract = await contractSaleRequest(idSale);
+            const url = window.URL.createObjectURL(new Blob([contract]));
+            const link = document.createElement('a');
+            link.href = url;
+            link.setAttribute('download', 'ContratoDeVenta.pdf');
+            document.body.appendChild(link);
+            link.click();
+            toast.success('Contrato de Venta generado con éxito!', {
+                position: toast.POSITION.TOP_CENTER,
+                autoClose: 1500,
+            }); 
+        } catch (error) {
+            toast.error(error.response.data.message, {
+                position: toast.POSITION.TOP_CENTER,
+                autoClose: 1500,
+            });
+            
+        }
+     };
+
     const deleteSale = async (idSale) => {
         try {
             await deleteSaleRequest(idSale);
@@ -99,7 +122,7 @@ export function SellProvider({children}) {
     };
 
     return(
-        <SellContext.Provider value={{sells, getSells, createSell, statusSale, informSale, deleteSale }}>
+        <SellContext.Provider value={{sells, getSells, createSell, statusSale, informSale, deleteSale, contractSale }}>
             {children}
         </SellContext.Provider>
     )
