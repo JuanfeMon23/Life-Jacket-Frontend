@@ -42,7 +42,7 @@ export  function Navigation() {
         {title: 'Compras', path:'/Purchases', icon : FaCartPlus},
         {title : 'Ventas', path:'/Sells', icon: FaMoneyBillWave },
         {title: 'Clientes', path:'/Clients' , icon : FaUserPlus},
-        {title : 'Cambios', path:'/Exchangues', icon : FaExchangeAlt},
+        {title : 'Intercambios', path:'/Exchangues', icon : FaExchangeAlt},
         {title : 'Mejoras', path:'/Improvements', icon : FaTools}
     ]
 

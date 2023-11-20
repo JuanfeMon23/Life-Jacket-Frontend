@@ -45,7 +45,7 @@ export  function ExchangeDetail() {
             <div className=' flex justify-between'>
                 <div className=' w-[400px]'>
                     <Controller
-                        name='idExchangeVehicle'
+                        name='idVehicleExchange'
                         control={control}
                         rules={{
                             required : 'Campo obligatorio'
@@ -55,8 +55,8 @@ export  function ExchangeDetail() {
                         {...field}
                         label="Seleccionar vehículo"
                         variant="bordered"
-                        color={errors.idExchangeVehicle ? "danger" : ""}
-                        errorMessage={errors.idExchangeVehicle?.message}
+                        color={errors.idVehicleExchange ? "danger" : ""}
+                        errorMessage={errors.idVehicleExchange?.message}
                         className="max-w-xs"
                         onChange={(e) => {
                             field.onChange(e);
@@ -69,6 +69,35 @@ export  function ExchangeDetail() {
                         ))}
                     </Select>
                     )}
+                    />
+                </div>
+                <div className=' w-[400px]'>
+                    <Controller 
+                            name='vehicleStatusExchange'
+                            control={control}
+                            rules={{
+                                required : "Campo requerido"
+                            }}
+                            render={({field}) => (
+                                <Select
+                                {...field}
+                                label="Estado del vehiculo"
+                                variant="bordered"
+                                color={errors.vehicleStatusExchange ? "danger" : ""}
+                                errorMessage={errors.vehicleStatusExchange?.message}
+                                className="max-w-xs"
+                                onChange={(e) => {
+                                  field.onChange(e);
+                                }}
+                                >
+                                    <SelectItem  key="true" value="true">
+                                        Entrante
+                                    </SelectItem>
+                                    <SelectItem  key="false" value="false">
+                                        Saliente
+                                    </SelectItem>
+                                </Select>
+                            )}
                     />
                 </div>
                 <div>

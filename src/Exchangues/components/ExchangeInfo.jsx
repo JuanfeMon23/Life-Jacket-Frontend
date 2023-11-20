@@ -8,20 +8,26 @@ import { useClients } from '../../Clients/context/clientsContext';
 
 export  function ExchangeInfo() {
     const { handleSubmit, formState:{errors}, control, reset} = useForm();
-    const {updateExchange, cancelExchange} = useExchange();
+    const {updateExchange, cancelExchange, createExchange} = useExchange();
     const {clients, getClients} = useClients();
 
     useEffect(() => {
         getClients();
+  
     },[])
 
+    // useEffect(() => {
+    //     createExchange();
+    //     console.log('created')
+    // },[])
 
+ 
     const onSubmit = () => {
 
     };
 
     const handleCancelExchange = () => {
-        
+        cancelExchange();
     };
 
   return (

@@ -43,11 +43,13 @@ export function ExchangeTable() {
     const [filterValue, setFilterValue] = React.useState("");
     const [selectedKeys, setSelectedKeys] = React.useState(new Set([]));
     const [statusFilter, setStatusFilter] = React.useState("all");
+    const navigate = useNavigate();
     const [rowsPerPage, setRowsPerPage] = React.useState(5);
 
     function handleCreateExchange(event){
         event.preventDefault();
         createExchange();
+        navigate('/Exchangues/create');
     }
 
     const [page, setPage] = React.useState(1);
@@ -150,7 +152,15 @@ export function ExchangeTable() {
                   </DropdownMenu>
                 </Dropdown>
                 <ReportExchange/>
-            <Link to='/Exchangues/create'><Button endContent={<AiOutlinePlusCircle className=' text-2xl'/>} color="primary" variant="solid"  className=' text-white font-bold'>Agregar</Button></Link>
+                <Button
+                    onClick={handleCreateExchange}
+                    endContent={<AiOutlinePlusCircle className='text-2xl' />}
+                    color="primary"
+                    variant="solid"
+                    className='text-white font-bold'
+                  >
+                    Agregar
+                </Button>
               </div>
             </div>
             <div className="flex justify-between items-center">
@@ -228,7 +238,7 @@ export function ExchangeTable() {
                             </TableColumn>
                         ))}
                 </TableHeader>
-                <TableBody emptyContent={"No hay cambios registradas"}>
+                <TableBody emptyContent={"No hay intercambios registrados"}>
                         {items.map((item) => (
                             <TableRow key={item.idExchange}>
                                 <TableCell>
