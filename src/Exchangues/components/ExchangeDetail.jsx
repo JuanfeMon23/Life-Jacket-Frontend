@@ -1,5 +1,6 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { useVehicles } from '../../Vehicles/context/vehiclesContext'
+import { useExchange } from '../context/ExchangeContext';
 import {useForm, Controller} from 'react-hook-form';
 import {
     Table,
@@ -27,9 +28,16 @@ import {
   }
 
 export  function ExchangeDetail() {
-    const {vehicles} = useVehicles();
-    console.log(vehicles)
+    const {vehicles, getVehicles} = useVehicles();
     const { handleSubmit, formState:{errors}, control, reset} = useForm();
+
+    useEffect(() => {
+        getVehicles();
+    } ,[])
+
+    function onSubmit(event){
+
+    };
   return (
     <> 
     <div className='  ml-5'>

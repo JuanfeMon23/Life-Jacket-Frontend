@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import {Select, SelectItem} from "@nextui-org/react";
 import {useForm, Controller} from 'react-hook-form';
 import {Input, Textarea} from "@nextui-org/react";
@@ -9,7 +9,12 @@ import { useClients } from '../../Clients/context/clientsContext';
 export  function ExchangeInfo() {
     const { handleSubmit, formState:{errors}, control, reset} = useForm();
     const {updateExchange, cancelExchange} = useExchange();
-    const {clients} = useClients();
+    const {clients, getClients} = useClients();
+
+    useEffect(() => {
+        getClients();
+    },[])
+
 
     const onSubmit = () => {
 
@@ -24,26 +29,26 @@ export  function ExchangeInfo() {
         <h1 className=' text-3xl text-center font-bold m-5'>Datos del cambio</h1>
         <form onSubmit={handleSubmit(onSubmit)}>
                 <div className=' ml-10 mb-3 '>
-                <Controller
-                              name='idClientPurchase'
+                    <Controller
+                              name='idClientExchange'
                               control={control}
                               rules={{
-                                required : 'Campo obligatorio'
+                                required : 'Campo requerido'
                               }}
                               render={({field}) => (
                                 <Select
                                   {...field}
                                   label="Documento del cliente"
                                   variant="bordered"
-                                  color={errors.idClientPurchase ? "danger" : ""}
-                                  errorMessage={errors.idClientPurchase?.message}
+                                  color={errors.idClientExchange ? "danger" : ""}
+                                  errorMessage={errors.idClientExchange?.message}
                                   className="max-w-xs"
                                   onChange={(e) => {
                                     field.onChange(e);
                                   }}
                                 >
-                                  {clients.filter(client => client.clientStatus === "true").map((client, i) => (
-                                    <SelectItem key={i} value={client.clientDocument}>
+                                  {clients.filter(client => client.clientStatus === "true").map((client) => (
+                                    <SelectItem key={client.idClient} value={client.clientDocument}>
                                         {client.clientDocument}
                                     </SelectItem>
                                   ))}
@@ -164,8 +169,39 @@ export  function ExchangeInfo() {
                             )}
                         />
                     </div>
+                    <div className=' flex-col m-3 w-[200px]'>
+                        <Controller 
+                            name='exchangeCashPriceStatus'
+                            control={control}
+                            rules={{
+                                required : "Campo requerido"
+                            }}
+                            render={({field}) => (
+                                <Select
+                                {...field}
+                                label="Tipo de efectivo"
+                                variant="bordered"
+                                color={errors.exchangeCashPriceStatus ? "danger" : ""}
+                                errorMessage={errors.exchangeCashPriceStatus?.message}
+                                className="max-w-xs"
+                                onChange={(e) => {
+                                  field.onChange(e);
+                                }}
+                                >
+                                    <SelectItem  key="true" value="true">
+                                        Entrante
+                                    </SelectItem>
+                                    <SelectItem  key="false" value="false">
+                                        Saliente
+                                    </SelectItem>
+                                </Select>
+                            )}
+                        />
+                    </div>
 
-                    <div className=' flex-col m-3'>
+
+                </div>
+                <div className=' flex'>
                         <Controller
                             name="exchangePecunaryPenalty"
                             control={control}
@@ -197,7 +233,6 @@ export  function ExchangeInfo() {
                             )}
                         />
                         </div> 
-                </div>
                 <div className=' flex'>
                         <Controller
                             name="exchangeLimitations"
