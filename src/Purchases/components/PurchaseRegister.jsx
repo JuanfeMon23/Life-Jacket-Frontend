@@ -91,58 +91,7 @@ export function PurchaseRegister() {
                             />
                         </div>
                     </div>
-
-                    <div className=' flex'>
-                        <div className=' flex-col m-3 w-[200px]'>
-                            <Controller
-                              name="purchaseDate"
-                              control={control}
-                              rules={{
-                                required : 'Campo requerido'
-                              }}
-                              render={({ field }) => (
-                                <Input
-                                  {...field}
-                                  type="datetime-local"
-                                  label="Fecha de compra"
-                                  variant="bordered"
-                                  endContent={<RequiredIcon/>}
-                                  color={errors.purchaseDate ? "danger" : ""}
-                                  errorMessage={errors.purchaseDate?.message}
-                                  className="max-w-xs"
-                                />
-                            )}
-                          /> 
-                        </div>
-
-                        <div className=' flex-col m-3'>
-                            <Controller
-                              name="purchaseFinalPrice"
-                              control={control}
-                              rules={{
-                                required: "Campo requerido",
-                                pattern: {
-                                  value: /^[0-9]*$/, 
-                                  message: "Solo números"
-                                }
-                              }}
-                              render={({ field }) => (
-                                <Input
-                                  {...field}
-                                  type="number"
-                                  label="Precio de compra"
-                                  variant="bordered"
-                                  endContent={<RequiredIcon/>}
-                                  color={errors.purchaseFinalPrice? "danger" : ""}
-                                  errorMessage={errors.purchaseFinalPrice?.message}
-                                  className="max-w-xs"
-                                />
-                              )}
-                            />
-                        </div>  
-
-                    </div>
-                    
+                      
                     <div className=' flex'>
                         <div className=' flex-col m-3'>
                         <Controller
@@ -213,6 +162,54 @@ export function PurchaseRegister() {
                         </div>  
 
                     </div>
+                        <div className=' flex-col m-3'>
+                            <Controller
+                              name="purchaseDate"
+                              control={control}
+                              rules={{
+                                required : 'Campo requerido'
+                              }}
+                              render={({ field }) => (
+                                <Input
+                                  {...field}
+                                  type="datetime-local"
+                                  label="Fecha de compra"
+                                  variant="bordered"
+                                  endContent={<RequiredIcon/>}
+                                  color={errors.purchaseDate ? "danger" : ""}
+                                  errorMessage={errors.purchaseDate?.message}
+                                  className="max-w-xs"
+                                />
+                            )}
+                          /> 
+                        </div>
+
+                        <div className=' flex-col m-3'>
+                            <Controller
+                              name="purchaseFinalPrice"
+                              control={control}
+                              rules={{
+                                required: "Campo requerido",
+                                pattern: {
+                                  value: /^[0-9]*$/, 
+                                  message: "Solo números"
+                                }
+                              }}
+                              render={({ field }) => (
+                                <Input
+                                  {...field}
+                                  type="number"
+                                  label="Precio de compra"
+                                  variant="bordered"
+                                  endContent={<RequiredIcon/>}
+                                  color={errors.purchaseFinalPrice? "danger" : ""}
+                                  errorMessage={errors.purchaseFinalPrice?.message}
+                                  className="max-w-xs"
+                                />
+                              )}
+                            />
+                        </div>  
+                  
 
                     <div className=' m-3'>
                     <Controller

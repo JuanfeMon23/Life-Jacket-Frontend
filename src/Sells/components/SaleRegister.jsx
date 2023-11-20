@@ -89,58 +89,6 @@ export function SaleRegister() {
                             />
                         </div>
                     </div>
-
-                    <div className=' flex'>
-                        <div className=' flex-col m-3 w-[176px]'>
-                        <Controller
-                              name="saleDate"
-                              control={control}
-                              rules={{
-                                required : 'Campo requerido'
-                              }}
-                              render={({ field }) => (
-                                <Input
-                                  {...field}
-                                  type="datetime-local"
-                                  label="Fecha de venta"
-                                  variant="bordered"
-                                  endContent={<RequiredIcon/>}
-                                  color={errors.saleDate ? "danger" : ""}
-                                  errorMessage={errors.saleDate?.message}
-                                  className="max-w-xs"
-                                />
-                            )}
-                          /> 
-                        </div>
-
-                        <div className=' flex-col m-3 '>
-                        <Controller
-                              name="saleFinalPrice"
-                              control={control}
-                              rules={{
-                                required: "Campo requerido",
-                                pattern: {
-                                  value: /^[0-9]*$/, 
-                                  message: "Solo números"
-                                }
-                              }}
-                              render={({ field }) => (
-                                <Input
-                                  {...field}
-                                  type="number"
-                                  label="Precio de venta"
-                                  variant="bordered"
-                                  endContent={<RequiredIcon/>}
-                                  color={errors.saleFinalPrice? "danger" : ""}
-                                  errorMessage={errors.saleFinalPrice?.message}
-                                  className="max-w-xs"
-                                />
-                              )}
-                            />
-                        </div>  
-
-                    </div>
-
                     <div className=' flex'>
                         <div className=' flex-col m-3'>
                         <Controller
@@ -212,7 +160,54 @@ export function SaleRegister() {
 
                     </div>
 
-                    <div className=' m-3 w-[23rem]'>
+                        <div className=' flex-col m-3'>
+                        <Controller
+                              name="saleDate"
+                              control={control}
+                              rules={{
+                                required : 'Campo requerido'
+                              }}
+                              render={({ field }) => (
+                                <Input
+                                  {...field}
+                                  type="datetime-local"
+                                  label="Fecha de venta"
+                                  variant="bordered"
+                                  endContent={<RequiredIcon/>}
+                                  color={errors.saleDate ? "danger" : ""}
+                                  errorMessage={errors.saleDate?.message}
+                                  className="max-w-xs"
+                                />
+                            )}
+                          /> 
+                        </div>
+
+                        <div className=' flex-col m-3 '>
+                        <Controller
+                              name="saleFinalPrice"
+                              control={control}
+                              rules={{
+                                required: "Campo requerido",
+                                pattern: {
+                                  value: /^[0-9]*$/, 
+                                  message: "Solo números"
+                                }
+                              }}
+                              render={({ field }) => (
+                                <Input
+                                  {...field}
+                                  type="number"
+                                  label="Precio de venta"
+                                  variant="bordered"
+                                  endContent={<RequiredIcon/>}
+                                  color={errors.saleFinalPrice? "danger" : ""}
+                                  errorMessage={errors.saleFinalPrice?.message}
+                                  className="max-w-xs"
+                                />
+                              )}
+                            />
+                        </div>  
+                    <div className=' flex-col  m-3'>
                     <Controller
                           name="salePecuniaryPenalty"
                           control={control}
@@ -228,12 +223,13 @@ export function SaleRegister() {
                               endContent={<RequiredIcon/>}
                               color={errors.salePecuniaryPenalty ? "danger" : ""}
                               errorMessage={errors.salePecuniaryPenalty?.message}
+                              className="max-w-xs"
                             />
                           )}
                         />
                     </div>
 
-                    <div className=' m-3 w-[23rem]'>
+                    <div className=' flex-col  m-3 '>
                     <Controller
                               name="saleLimitations"
                               control={control}
@@ -257,6 +253,7 @@ export function SaleRegister() {
                                   endContent={<RequiredIcon/>}
                                   color={errors.saleLimitations ? "danger" : ""}
                                   errorMessage={errors.saleLimitations?.message}
+                                  className="max-w-xs"
                                 />
                               )}
                             />

@@ -28,12 +28,12 @@ const statusOptions = [
 ];  
 
 const columns = [
-  {name: "Placa del vehículo", uid: "name", sortable: true},
-  {name: "Descripcion", uid: "sortname", sortable: true},
-  {name: "Fecha", uid: "role", sortable: true},
-  {name: "Valor de la mejora", uid: "email"},
-  {name: "Estado", uid: "status", sortable: true},
-  {name: "Acciones", uid: "actions"},
+  {name: "Placa del vehículo", uid: "improvementPlate", sortable: true},
+  {name: "Descripcion", uid: "improvementDescription", sortable: true},
+  {name: "Fecha", uid: "improvementDate", sortable: true},
+  {name: "Valor de la mejora", uid: "improvementPrice"},
+  {name: "Estado", uid: "improvementStatus", sortable: true},
+  {name: "Acciones", uid: "improvementActions"},
 ];
 
 export  function TableImpovements() {

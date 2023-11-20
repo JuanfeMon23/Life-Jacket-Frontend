@@ -186,27 +186,64 @@ export  function  ClientEdit(props) {
 
                   </div>
 
-                  <div className=' m-3'>
-                  <Controller
-                          name="clientAddress"
-                          control={control}
-                          defaultValue={clients.clientAddress}
-                          rules={{
-                            required: "Campo requerido"
-                          }}
-                          render={({ field }) => (
-                            <Input
-                              {...field}
-                              type="text"
-                              label="Dirección"
-                              variant="bordered"
-                              endContent={<RequiredIcon/>}
-                              color={errors.clientAddress ? "danger" : ""}
-                              errorMessage={errors.clientAddress?.message}
-                              className="max-w-xs"
-                            />
-                          )}
-                        />
+                  <div className=' flex'>
+                    <div className='flex-col m-3'>
+                      <Controller
+                            name="clientAddress"
+                            control={control}
+                            defaultValue={clients.clientAddress}
+                            rules={{
+                              required: "Campo requerido"
+                            }}
+                            render={({ field }) => (
+                              <Input
+                                {...field}
+                                type="text"
+                                label="Dirección"
+                                variant="bordered"
+                                endContent={<RequiredIcon/>}
+                                color={errors.clientAddress ? "danger" : ""}
+                                errorMessage={errors.clientAddress?.message}
+                                className="max-w-xs"
+                              />
+                            )}
+                          />
+                    </div>
+                    <div className='flex-col m-3'>
+                      <Controller
+                            name="clientOtherContact"
+                            control={control}
+                            defaultValue={clients.clientOtherContact}
+                            rules={{
+                              required: "Nombres requeridos",
+                              minLength: {
+                                value: 3,
+                                message: "Al menos 3 caracteres"
+                              },
+                              maxLength: {
+                                value: 40,
+                                message: "Máximo 40 caracteres"
+                              },
+                              pattern: {
+                                value: /^[a-zA-Z\s]*$/,
+                                message: "Solo letras"
+                              }
+                            }}
+                            render={({ field }) => (
+                              <Input
+                                {...field}
+                                type="text"
+                                label="Otro contacto"
+                                variant="bordered"
+                                endContent={<RequiredIcon/>}
+                                color={errors.clientOtherContact ? "danger" : ""}
+                                errorMessage={errors.clientOtherContact?.message}
+                                className="max-w-xs"
+                              />
+                            )}
+                          />
+                    </div>
+
                   </div>
 
                   <div className=' flex'>
@@ -276,45 +313,6 @@ export  function  ClientEdit(props) {
                     </div>
                   </div>
 
-                  <div className='m-3'>
-                  <Controller
-                          name="clientOtherContact"
-                          control={control}
-                          defaultValue={clients.clientOtherContact}
-                          rules={{
-                            required: "Nombres requeridos",
-                            minLength: {
-                              value: 3,
-                              message: "Al menos 3 caracteres"
-                            },
-                            maxLength: {
-                              value: 40,
-                              message: "Máximo 40 caracteres"
-                            },
-                            pattern: {
-                              value: /^[a-zA-Z\s]*$/,
-                              message: "Solo letras"
-                            }
-                          }}
-                          render={({ field }) => (
-                            <Input
-                              {...field}
-                              type="text"
-                              label="Otro contacto"
-                              variant="bordered"
-                              endContent={<RequiredIcon/>}
-                              color={errors.clientOtherContact ? "danger" : ""}
-                              errorMessage={errors.clientOtherContact?.message}
-                              className="max-w-xs"
-                            />
-                          )}
-                        />
-                  </div>
-
-
-                  <div className=" flex">
-                    
-                  </div>
                   <div className=' text-center my-3 '>
                     <ButtonAccept/>
                   </div>

@@ -25,6 +25,7 @@ import { CreateExchange } from "./Exchangues/components/CreateExchange.jsx";
 import { Navigation } from "./components/globalComponents/Navigation.jsx";
 import { ForgotPassword } from "./Login/components/ForgotPassword.jsx";
 import { Resetpassword } from "./Login/components/Resetpassword.jsx";
+import { Brands } from "./Vehicles/pages/Brands.jsx";
 
 
 function Navigator (){
@@ -59,6 +60,7 @@ function App() {
                                 <Route path='/Clients' element={<Clients/>}/>
                                 <Route path='/Sells' element={<Sells/>}/>
                                 <Route path='/Vehicles' element={<Vehicles/>}/>
+                                <Route path='/Brands' element={<Brands/>}/>
                                 <Route path='/Purchases' element={<Purchases/>}/>
                                 <Route path="/Improvements" element={<Improvements/>}/>
                                 <Route path="/DashBoard" element={<DashBoard/>}/>

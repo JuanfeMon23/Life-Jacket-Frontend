@@ -13,3 +13,11 @@ export const updateVehicleRequest = async (idVehicle, vehicle) => axios.put(`/Ve
 export const statusVehicleRequest = async (idVehicle, vehicle) => axios.patch(`/Vehicles/${idVehicle}`, vehicle);
 
 export const deleteVehicleRequest = async (idVehicle) => axios.delete(`/Vehicles/${idVehicle}`);
+
+
+
+export const getBrandsRequest = async () => axios.get('/Brands');
+
+export const createBrandsRequest = async (brand) => axios.post('/Brands/Create', brand);
+
+export const deleteBrandsRequest = async (idBrand) => axios.delete(`/Brands/Delete/${idBrand}`);

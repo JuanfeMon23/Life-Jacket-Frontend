@@ -40,278 +40,282 @@ export function EditUser(props) {
                 {(onclose) => (
                     <>
                     <ModalHeader className="flex flex-col gap-3">Editar usuario</ModalHeader>
-                    <form onSubmit={handleSubmit(onSubmit)}>
-                
-                  <div className=' flex'> 
-                      <div className='flex-col m-3 w-[200px]'>
-                      <Controller
-                          name="userDepartment"
-                          control={control}
-                          defaultValue={user.userDepartment}
-                          rules={{
-                            required: "Campo requerido",
-                            minLength: {
-                              value: 3,
-                              message: "Al menos 3 caracteres"
-                            },
-                            maxLength: {
-                              value: 40,
-                              message: "Máximo 40 caracteres"
-                            },
-                            pattern: {
-                              value: /^[a-zA-Z\s]*$/,
-                              message: "Solo letras"
-                            }
-                          }}
-                          render={({ field }) => (
-                            <Input
-                              {...field}
-                              type="text"
-                              label="Departamento"
-                              variant="bordered"
-                              endContent={<RequiredIcon/>}
-                              color={errors.userDepartment ? "danger" : ""}
-                              errorMessage={errors.userDepartment?.message}
-                              className="max-w-xs"
-                            />
-                          )}
-                        /> 
-                      </div>
-
-                      <div className='flex-col m-3 w-[200px]'>
-                      <Controller
-                          name="userMunicipality"
-                          control={control}
-                          defaultValue={user.userMunicipality}
-                          rules={{
-                            required: "Campo requerido",
-                            minLength: {
-                              value: 3,
-                              message: "Al menos 3 caracteres"
-                            },
-                            maxLength: {
-                              value: 40,
-                              message: "Máximo 40 caracteres"
-                            },
-                            pattern: {
-                              value: /^[a-zA-Z\s]*$/,
-                              message: "Solo letras"
-                            }
-                          }}
-                          render={({ field }) => (
-                            <Input
-                              {...field}
-                              type="text"
-                              label="Ciudad o municipio"
-                              variant="bordered"
-                              endContent={<RequiredIcon/>}
-                              color={errors.userMunicipality ? "danger" : ""}
-                              errorMessage={errors.userMunicipality?.message}
-                              className="max-w-xs"
-                            />
-                          )}
-                        />
-                      </div>
-                  </div>
-
-
-                    <div className="flex ">
-                      <div className=' flex-col m-3'>
-                      <Controller
-                          name="userName"
-                          control={control}
-                          defaultValue={user.userName}
-                          rules={{
-                            required: "Campo requerido",
-                            minLength: {
-                              value: 3,
-                              message: "Al menos 3 caracteres"
-                            },
-                            maxLength: {
-                              value: 40,
-                              message: "Máximo 40 caracteres"
-                            },
-                            pattern: {
-                              value: /^[a-zA-Z\s]*$/,
-                              message: "Solo letras"
-                            }
-                          }}
-                          render={({ field }) => (
-                            <Input
-                              {...field}
-                              type="text"
-                              label="Nombres"
-                              variant="bordered"
-                              endContent={<RequiredIcon/>}
-                              color={errors.userName ? "danger" : ""}
-                              errorMessage={errors.userName?.message}
-                              className="max-w-xs"
-                            />
-                          )}
-                        />
-                      </div>
-
-                      <div className=' flex-col m-3'>
-                      <Controller
-                          name="userLastName"
-                          control={control}
-                          defaultValue={user.userLastName}
-                          rules={{
-                            required: "Campo requerido",
-                            minLength: {
-                              value: 3,
-                              message: "Al menos 3 caracteres"
-                            },
-                            maxLength: {
-                              value: 40,
-                              message: "Máximo 40 caracteres"
-                            },
-                            pattern: {
-                              value: /^[a-zA-Z\s]*$/,
-                              message: "Solo letras"
-                            }
-                          }}
-                          render={({ field }) => (
-                            <Input
-                              {...field}
-                              type="text"
-                              label="Apellidos"
-                              variant="bordered"
-                              endContent={<RequiredIcon/>}
-                              color={errors.userLastName ? "danger" : ""}
-                              errorMessage={errors.userLastName?.message}
-                              className="max-w-xs"
-                            />
-                          )}
-                        />
-                      </div>
+                    <ModalBody>
+                        <form onSubmit={handleSubmit(onSubmit)}>
                     
-                  </div>
-                    <div className='flex-col m-3'>
-                    <Controller
-                        name="userEmail"
-                        control={control}
-                        defaultValue={user.userEmail}
-                        rules={{
-                          required: "Campo requerido",
-                          pattern: {
-                            value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i,
-                            message: "Email invalido"
-                          }
-                        }}
-                        render={({ field }) => (
-                          <Input
-                            {...field}
-                            type="email"
-                            label="Email"
-                            variant="bordered"
-                            endContent={<RequiredIcon/>}
-                            color={errors.userEmail ? "danger" : ""}
-                            errorMessage={errors.userEmail?.message}
-                            className="max-w-xs"
-                          />
-                        )}
-                      />
-                    </div>
-                  
+                      <div className=' flex'> 
+                          <div className='flex-col m-3 w-[200px]'>
+                          <Controller
+                              name="userDepartment"
+                              control={control}
+                              defaultValue={user.userDepartment}
+                              rules={{
+                                required: "Campo requerido",
+                                minLength: {
+                                  value: 3,
+                                  message: "Al menos 3 caracteres"
+                                },
+                                maxLength: {
+                                  value: 40,
+                                  message: "Máximo 40 caracteres"
+                                },
+                                pattern: {
+                                  value: /^[a-zA-Z\s]*$/,
+                                  message: "Solo letras"
+                                }
+                              }}
+                              render={({ field }) => (
+                                <Input
+                                  {...field}
+                                  type="text"
+                                  label="Departamento"
+                                  variant="bordered"
+                                  endContent={<RequiredIcon/>}
+                                  color={errors.userDepartment ? "danger" : ""}
+                                  errorMessage={errors.userDepartment?.message}
+                                  className="max-w-xs"
+                                />
+                              )}
+                            /> 
+                          </div>
 
-                  <div className=" flex">
-                    <div className='flex-col m-3'>
-                        <Controller
-                        name="userPhoneNumber"
-                        control={control}
-                        defaultValue={user.userPhoneNumber}
-                        rules={{
-                          required: "Campo requerido",
-                          minLength : {
-                            value : 7 ,
-                            message : 'Al menos 7 números'
-                          },
-                          pattern: {
-                            value: /^[0-9]*$/, // This pattern will only match numbers
-                            message: "Solo números"
-                          }
-                        }}
-                        render={({ field }) => (
-                          <Input
-                            {...field}
-                            type="number"
-                            label="Teléfono"
-                            variant="bordered"
-                            endContent={<RequiredIcon/>}
-                            color={errors.userPhoneNumber? "danger" : ""}
-                            errorMessage={errors.userPhoneNumber?.message}
-                            className="max-w-xs"
-                          />
-                        )}
-                      />
-                    </div>
-
-
-                    <div className='flex-col m-3'> 
-                    <Controller
-                        name="userOtherPhoneNumber"
-                        control={control}
-                        defaultValue={user.userOtherPhoneNumber}
-                        rules={{
-                          required: "Campo requerido",
-                          minLength : {
-                            value : 7 ,
-                            message : 'Al menos 7 números'
-                          },
-
-                          pattern: {
-                            value: /^[0-9]*$/, // This pattern will only match numbers
-                            message: "Solo números"
-                          }
-                        }}
-                        render={({ field }) => (
-                          <Input
-                            {...field}
-                            type="number"
-                            label="Otro Télefono"
-                            variant="bordered"
-                            endContent={<RequiredIcon/>}
-                            color={errors.userOtherPhoneNumber? "danger" : ""}
-                            errorMessage={errors.userOtherPhoneNumber?.message}
-                            className="max-w-xs"
-                          />
-                        )}
-                      />
-                    </div>
-                  </div>
-
-                  <div className=" flex">
-                    <div className='flex-col m-3 '>
-                    <Controller
-                          name="userAddress"
-                          control={control}
-                          defaultValue={user.userAddress}
-                          rules={{
-                            required: "Campo requerido"
-                          }}
-                          render={({ field }) => (
-                            <Input
-                              {...field}
-                              type="text"
-                              label="Dirección"
-                              variant="bordered"
-                              endContent={<RequiredIcon/>}
-                              color={errors.userAddress ? "danger" : ""}
-                              errorMessage={errors.userAddress?.message}
-                              className="max-w-xs"
+                          <div className='flex-col m-3 w-[200px]'>
+                          <Controller
+                              name="userMunicipality"
+                              control={control}
+                              defaultValue={user.userMunicipality}
+                              rules={{
+                                required: "Campo requerido",
+                                minLength: {
+                                  value: 3,
+                                  message: "Al menos 3 caracteres"
+                                },
+                                maxLength: {
+                                  value: 40,
+                                  message: "Máximo 40 caracteres"
+                                },
+                                pattern: {
+                                  value: /^[a-zA-Z\s]*$/,
+                                  message: "Solo letras"
+                                }
+                              }}
+                              render={({ field }) => (
+                                <Input
+                                  {...field}
+                                  type="text"
+                                  label="Ciudad o municipio"
+                                  variant="bordered"
+                                  endContent={<RequiredIcon/>}
+                                  color={errors.userMunicipality ? "danger" : ""}
+                                  errorMessage={errors.userMunicipality?.message}
+                                  className="max-w-xs"
+                                />
+                              )}
                             />
-                          )}
-                        />
-                    </div>     
-                  </div>
+                          </div>
+                      </div>
 
 
-                  <div className=' text-center my-3 '>
-                    <button type='submit' className='bg-gradient-to-r from-cyan-500 to-blue-800 text-white font-bold w-20 h-10 rounded-lg'>Editar</button>
-                  </div>
-                  
-                </form> 
+                        <div className="flex ">
+                          <div className=' flex-col m-3'>
+                          <Controller
+                              name="userName"
+                              control={control}
+                              defaultValue={user.userName}
+                              rules={{
+                                required: "Campo requerido",
+                                minLength: {
+                                  value: 3,
+                                  message: "Al menos 3 caracteres"
+                                },
+                                maxLength: {
+                                  value: 40,
+                                  message: "Máximo 40 caracteres"
+                                },
+                                pattern: {
+                                  value: /^[a-zA-Z\s]*$/,
+                                  message: "Solo letras"
+                                }
+                              }}
+                              render={({ field }) => (
+                                <Input
+                                  {...field}
+                                  type="text"
+                                  label="Nombres"
+                                  variant="bordered"
+                                  endContent={<RequiredIcon/>}
+                                  color={errors.userName ? "danger" : ""}
+                                  errorMessage={errors.userName?.message}
+                                  className="max-w-xs"
+                                />
+                              )}
+                            />
+                          </div>
+
+                          <div className=' flex-col m-3'>
+                          <Controller
+                              name="userLastName"
+                              control={control}
+                              defaultValue={user.userLastName}
+                              rules={{
+                                required: "Campo requerido",
+                                minLength: {
+                                  value: 3,
+                                  message: "Al menos 3 caracteres"
+                                },
+                                maxLength: {
+                                  value: 40,
+                                  message: "Máximo 40 caracteres"
+                                },
+                                pattern: {
+                                  value: /^[a-zA-Z\s]*$/,
+                                  message: "Solo letras"
+                                }
+                              }}
+                              render={({ field }) => (
+                                <Input
+                                  {...field}
+                                  type="text"
+                                  label="Apellidos"
+                                  variant="bordered"
+                                  endContent={<RequiredIcon/>}
+                                  color={errors.userLastName ? "danger" : ""}
+                                  errorMessage={errors.userLastName?.message}
+                                  className="max-w-xs"
+                                />
+                              )}
+                            />
+                          </div>
+                        
+                      </div>
+                        <div className=' flex'>
+                            <div className=' flex-col m-3'>
+                                <Controller
+                                name="userEmail"
+                                control={control}
+                                defaultValue={user.userEmail}
+                                rules={{
+                                  required: "Campo requerido",
+                                  pattern: {
+                                    value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i,
+                                    message: "Email invalido"
+                                  }
+                                }}
+                                render={({ field }) => (
+                                  <Input
+                                    {...field}
+                                    type="email"
+                                    label="Email"
+                                    variant="bordered"
+                                    endContent={<RequiredIcon/>}
+                                    color={errors.userEmail ? "danger" : ""}
+                                    errorMessage={errors.userEmail?.message}
+                                    className="max-w-xs"
+                                  />
+                                )}
+                              />
+                            </div>
+                            <div className='flex-col m-3'>
+                                <Controller
+                                name="userPhoneNumber"
+                                control={control}
+                                defaultValue={user.userPhoneNumber}
+                                rules={{
+                                  required: "Campo requerido",
+                                  minLength : {
+                                    value : 7 ,
+                                    message : 'Al menos 7 números'
+                                  },
+                                  pattern: {
+                                    value: /^[0-9]*$/, // This pattern will only match numbers
+                                    message: "Solo números"
+                                  }
+                                }}
+                                render={({ field }) => (
+                                  <Input
+                                    {...field}
+                                    type="number"
+                                    label="Teléfono"
+                                    variant="bordered"
+                                    endContent={<RequiredIcon/>}
+                                    color={errors.userPhoneNumber? "danger" : ""}
+                                    errorMessage={errors.userPhoneNumber?.message}
+                                    className="max-w-xs"
+                                  />
+                                )}
+                              />
+                        </div>
+
+                        </div>
+                      
+
+                      <div className=" flex">
+                      <div className='flex-col m-3 '>
+                        <Controller
+                              name="userAddress"
+                              control={control}
+                              defaultValue={user.userAddress}
+                              rules={{
+                                required: "Campo requerido"
+                              }}
+                              render={({ field }) => (
+                                <Input
+                                  {...field}
+                                  type="text"
+                                  label="Dirección"
+                                  variant="bordered"
+                                  endContent={<RequiredIcon/>}
+                                  color={errors.userAddress ? "danger" : ""}
+                                  errorMessage={errors.userAddress?.message}
+                                  className="max-w-xs"
+                                />
+                              )}
+                            />
+                        </div> 
+
+                        <div className='flex-col m-3'> 
+                          <Controller
+                              name="userOtherPhoneNumber"
+                              control={control}
+                              defaultValue={user.userOtherPhoneNumber}
+                              rules={{
+                                required: "Campo requerido",
+                                minLength : {
+                                  value : 7 ,
+                                  message : 'Al menos 7 números'
+                                },
+
+                                pattern: {
+                                  value: /^[0-9]*$/, // This pattern will only match numbers
+                                  message: "Solo números"
+                                }
+                              }}
+                              render={({ field }) => (
+                                <Input
+                                  {...field}
+                                  type="number"
+                                  label="Otro Télefono"
+                                  variant="bordered"
+                                  endContent={<RequiredIcon/>}
+                                  color={errors.userOtherPhoneNumber? "danger" : ""}
+                                  errorMessage={errors.userOtherPhoneNumber?.message}
+                                  className="max-w-xs"
+                                />
+                              )}
+                            />
+                        </div>
+                      </div>
+
+    
+
+
+
+                      <div className=' text-center my-3 '>
+                        <button type='submit' className='bg-gradient-to-r from-cyan-500 to-blue-800 text-white font-bold w-20 h-10 rounded-lg'>Editar</button>
+                      </div>
+                      
+                    </form> 
+                    </ModalBody>
                     </>
                 )}
             </ModalContent>

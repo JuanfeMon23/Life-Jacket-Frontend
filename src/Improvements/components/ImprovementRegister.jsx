@@ -68,8 +68,7 @@ export function ImprovementRegister() {
                                 />
                         </div>
 
-                        <div className=' flex'>
-                            <div className=' flex-col m-3'>
+                            <div className=' flex-col m-3 w-[400px]'>
                             <Controller
                               name="improvementDate"
                               control={control}
@@ -79,7 +78,7 @@ export function ImprovementRegister() {
                               render={({ field }) => (
                                 <Input
                                   {...field}
-                                  type="date"
+                                  type="datetime-local"
                                   label="Fecha de mejora"
                                   variant="bordered"
                                   endContent={<RequiredIcon/>}
@@ -91,7 +90,7 @@ export function ImprovementRegister() {
                           /> 
                             </div>
 
-                            <div className=' flex-col m-3'>
+                            <div className=' flex-col m-3 w-[400px]'>
                             <Controller
                               name="improvementPrice"
                               control={control}
@@ -116,8 +115,6 @@ export function ImprovementRegister() {
                               )}
                             />
                             </div>  
-
-                        </div>
 
                         <div className='flex-col m-3 w-[400px]'>
                         <Controller

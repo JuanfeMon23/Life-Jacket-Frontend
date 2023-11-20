@@ -24,21 +24,17 @@ export  function VehicleInfo() {
 
 
   useEffect(() => {
-    // Función para obtener tipos de vehículos, marcas y líneas
     const fetchData = async () => {
       try {
-        // Obtener tipos de vehículos
         const typesResponse = await fetch('http://localhost:3000/api/vehicle-types');
         const typesData = await typesResponse.json();
         setVehicleTypes(typesData);
-
-        // Obtener marcas de vehículos si hay un tipo seleccionado
+ 
         if (selectedVehicleType) {
           const brandsResponse = await fetch(`http://localhost:3000/api/vehicles-brand?vehicleType=${selectedVehicleType}`);
           const brandsData = await brandsResponse.json();
           setVehicleBrands(brandsData);
 
-          // Obtener líneas de vehículos si hay una marca seleccionada
           if (selectedBrandName) {
             const linesResponse = await fetch(`http://localhost:3000/api/vehicles-lines?vehicleType=${selectedVehicleType}&brandName=${selectedBrandName}`);
             const linesData = await linesResponse.json();
@@ -50,7 +46,7 @@ export  function VehicleInfo() {
       }
     };
 
-    // Llamar a la función para obtener tipos, marcas y líneas
+
     fetchData();
   }, [selectedVehicleType, selectedBrandName]);
   return (
@@ -243,6 +239,45 @@ export  function VehicleInfo() {
                           </div>
                   </div>
 
+
+                    <div className=' flex-col m-3'>
+                      <Controller
+                            name="soat"
+                            control={controlVehicle}
+                            render={({ field }) => (
+                              <Input
+                                {...field}
+                                type="date"
+                                label="Soat"
+                                variant="bordered"
+                                color={errors.soat ? "danger" : ""}
+                                errorMessage={errors.soat?.message}
+                                className="max-w-xs"
+                              />
+                            )}
+                          /> 
+                    
+                    </div>
+
+                    <div className='flex-col m-3'>
+                    <Controller
+                          name="technomechanics"
+                          control={controlVehicle}
+                          render={({ field }) => (
+                            <Input
+                              {...field}
+                              type="date"
+                              label="Tecnomecánica"
+                              variant="bordered"
+                              color={errors.technomechanics ? "danger" : ""}
+                              errorMessage={errors.technomechanics?.message}
+                              className="max-w-xs"
+                            />
+                          )}
+                        /> 
+
+                    </div>
+
                   <div className=" flex">
                     <div className=' flex-col m-3'>
                     <Controller
@@ -326,47 +361,6 @@ export  function VehicleInfo() {
                             />
                           )}
                         />  
-                    </div>
-                  </div>
-
-                  
-                  <div className=" flex">
-                    <div className=' flex-col m-3'>
-                      <Controller
-                            name="soat"
-                            control={controlVehicle}
-                            render={({ field }) => (
-                              <Input
-                                {...field}
-                                type="date"
-                                label="Soat"
-                                variant="bordered"
-                                color={errors.soat ? "danger" : ""}
-                                errorMessage={errors.soat?.message}
-                                className="max-w-xs"
-                              />
-                            )}
-                          /> 
-                    
-                    </div>
-
-                    <div className='flex-col m-3'>
-                    <Controller
-                          name="technomechanics"
-                          control={controlVehicle}
-                          render={({ field }) => (
-                            <Input
-                              {...field}
-                              type="date"
-                              label="Tecnomecánica"
-                              variant="bordered"
-                              color={errors.technomechanics ? "danger" : ""}
-                              errorMessage={errors.technomechanics?.message}
-                              className="max-w-xs"
-                            />
-                          )}
-                        /> 
-
                     </div>
                   </div>
                   <div className='flex'>

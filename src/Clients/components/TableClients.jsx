@@ -30,12 +30,12 @@ const statusOptions = [
   ];  
 
   const columns = [
-    {name: "Cédula", uid: "role", sortable: true},
-    {name: "Nombres", uid: "name", sortable: true},
-    {name: "Apellidos", uid: "sortname", sortable: true},
-    {name: "Teléfono", uid: "email"},
-    {name: "Estado", uid: "status", sortable: true},
-    {name: "Acciones", uid: "actions"},
+    {name: "Cédula", uid: "clientNumber", sortable: true},
+    {name: "Nombres", uid: "clientName", sortable: true},
+    {name: "Apellidos", uid: "clientSortname", sortable: true},
+    {name: "Teléfono", uid: "clientCelphone"},
+    {name: "Estado", uid: "clientStatus", sortable: true},
+    {name: "Acciones", uid: "clientActions"},
   ];
 
 export  function TableClients() {

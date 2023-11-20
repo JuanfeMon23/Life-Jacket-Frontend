@@ -30,12 +30,12 @@ import {VehicleRegister} from './VehicleRegister';
   ];
   
   const columns = [
-    {name: "Placa", uid: "name", sortable: true},
-    {name: "Marca", uid: "sortname", sortable: true},
-    {name: "Linea", uid: "sortname", sortable: true},
-    {name: "Modelo", uid: "status", sortable: true},
-    {name: "Estado", uid: "status", sortable: true},
-    {name: "Acciones", uid: "role", sortable: true}
+    {name: "Placa", uid: "Placa", sortable: true},
+    {name: "Marca", uid: "Marca", sortable: true},
+    {name: "Linea", uid: "Linea", sortable: true},
+    {name: "Modelo", uid: "Modelo", sortable: true},
+    {name: "Estado", uid: "statusV", sortable: true},
+    {name: "Acciones", uid: "AccionesV", sortable: true}
   ];  
 
 
@@ -206,7 +206,7 @@ export  function TableVehicles() {
   return (
     <div className=" ml-3 w-[23rem] sm:ml-5 sm:w-full md:w-full lg:w-[83rem] xl:w-[117rem] mx-auto ">
         <Table
-            aria-label="roles Table"
+            aria-label="vehicles Table"
             isCompact
             color='primary'
             bottomContentPlacement="outside"

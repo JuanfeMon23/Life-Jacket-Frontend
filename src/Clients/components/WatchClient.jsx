@@ -28,15 +28,15 @@ export function WatchClient (props) {
                     
                     <div className="m-5 flex justify-around">
                       <div className=" flex flex-col">
-                        <p className="font-bold">Nombres</p> 
-                        <div className=" border-2 border-indigo-500/75 rounded-lg w-[15rem] p-1 ">
+                        <p className="text-xs md:text-sm font-bold">Nombres</p> 
+                        <div className=" border-2 border-indigo-500/75 rounded-lg w-[7rem] md:w-[15rem] p-1 ">
                             <p className=" text-center">{client.clientName}</p>
                         </div>
                       </div>
   
                       <div className=" flex flex-col">
-                      <p className="font-bold">Apellidos</p> 
-                        <div className=" items-end border-2 border-indigo-500/75 rounded-lg w-[15rem] p-1">
+                      <p className="text-xs md:text-sm font-bold">Apellidos</p> 
+                        <div className=" items-end border-2 border-indigo-500/75 rounded-lg w-[7rem] md:w-[15rem] p-1">
                             <p className=" text-center">{client.clientLastName}</p>
                         </div>
                       </div>
@@ -45,8 +45,8 @@ export function WatchClient (props) {
   
                   <div className=" flex justify-center m-5 ">
                     <div className="flex flex-col">
-                      <p className="font-bold">Cédula</p>
-                      <div className="border-2 border-indigo-500/75 rounded-lg p-1 w-[15rem]">
+                      <p className="text-xs md:text-sm font-bold">Cédula</p>
+                      <div className="border-2 border-indigo-500/75 rounded-lg p-1 w-[7rem] md:w-[15rem]">
                           <p className=" text-center">{client.clientDocument}</p>
                       </div>
                     </div>
@@ -54,15 +54,15 @@ export function WatchClient (props) {
 
                   <div className=" m-5 flex justify-around ">
                     <div className=" flex flex-col">
-                      <p className="font-bold">Departamento</p>
-                      <div className="border-2 border-indigo-500/75 rounded-lg p-1 w-[15rem]">
+                      <p className="text-xs md:text-sm font-bold">Departamento</p>
+                      <div className="border-2 border-indigo-500/75 rounded-lg p-1 w-[7rem] md:w-[15rem]">
                           <p className=" text-center">{client.clientDepartment}</p>
                       </div>
                     </div>
 
                     <div className=" flex flex-col">
-                      <p className="font-bold">Ciudad o municipio</p>
-                      <div className="border-2 border-indigo-500/75 rounded-lg p-1 w-[15rem]">
+                      <p className="text-xs md:text-sm font-bold">Ciudad o municipio</p>
+                      <div className="border-2 border-indigo-500/75 rounded-lg p-1 w-[7rem] md:w-[15rem]">
                           <p className=" text-center">{client.clientMunicipality}</p>
                       </div>
                     </div>
@@ -70,15 +70,15 @@ export function WatchClient (props) {
                       
                   <div className="m-5 flex justify-around">
                       <div className=" flex flex-col">
-                        <p className="font-bold">Teléfono</p> 
-                        <div className=" border-2 border-indigo-500/75 rounded-lg w-[15rem] p-1 ">
+                        <p className="text-xs md:text-sm font-bold">Teléfono</p> 
+                        <div className=" border-2 border-indigo-500/75 rounded-lg w-[7rem] md:w-[15rem] p-1 ">
                             <p className=" text-center">{client.clientPhoneNumber}</p>
                         </div>
                       </div>
   
                       <div className=" flex flex-col">
-                      <p className="font-bold">Otro teléfono</p> 
-                        <div className=" items-end border-2 border-indigo-500/75 rounded-lg w-[15rem] p-1">
+                      <p className="text-xs md:text-sm font-bold">Otro teléfono</p> 
+                        <div className=" items-end border-2 border-indigo-500/75 rounded-lg w-[7rem] md:w-[15rem] p-1">
                             <p className=" text-center">{client.clientOtherPhoneNumber}</p>
                         </div>
                       </div>
@@ -86,15 +86,15 @@ export function WatchClient (props) {
   
                     <div className="m-5 flex justify-around">
                       <div className=" flex flex-col">
-                        <p className="font-bold">Dirección</p> 
-                        <div className=" border-2 border-indigo-500/75 rounded-lg w-[15rem] p-1 ">
+                        <p className="text-xs md:text-sm font-bold">Dirección</p> 
+                        <div className=" border-2 border-indigo-500/75 rounded-lg w-[7rem] md:w-[15rem] p-1 ">
                             <p className=" text-center">{client.clientAddress}</p>
                         </div>
                       </div>
   
                       <div className=" flex flex-col">
-                      <p className="font-bold">Otro contacto</p> 
-                        <div className=" items-end border-2 border-indigo-500/75 rounded-lg w-[15rem] p-1">
+                      <p className="text-xs md:text-sm font-bold">Otro contacto</p> 
+                        <div className=" items-end border-2 border-indigo-500/75 rounded-lg w-[7rem] md:w-[15rem] p-1">
                             <p className=" text-center">{client.clientOtherContact}</p>
                         </div>
                       </div>

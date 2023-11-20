@@ -30,12 +30,12 @@ const statusOptions = [
 ];
 
 const columns = [
-  { name: "Fecha de venta", uid: "name", sortable: true },
-  { name: "Precio", uid: "sortname", sortable: true },
-  { name: "Placa del vehículo", uid: "sortname", sortable: true },
-  { name: "Nombre del cliente", uid: "status", sortable: true },
-  { name: "Estado", uid: "status", sortable: true },
-  { name: "Acciones", uid: "role", sortable: true }
+  { name: "Fecha de venta", uid: "dateSale", sortable: true },
+  { name: "Precio", uid: "priceSale", sortable: true },
+  { name: "Placa del vehículo", uid: "plateSale", sortable: true },
+  { name: "Nombre del cliente", uid: "clientSale", sortable: true },
+  { name: "Estado", uid: "statusSale", sortable: true },
+  { name: "Acciones", uid: "actionsSale", sortable: true }
 ];
 
 export function TableSale() {

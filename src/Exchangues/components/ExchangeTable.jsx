@@ -30,11 +30,11 @@ const statusOptions = [
 
 
   const columns = [
-    {name: "Fecha del cambio", uid: "name", sortable: true},
-    {name: "Nombre del cliente", uid: "sortname", sortable: true},
-    {name: "Efectivo involucrado", uid: "role", sortable: true},
-    {name: "Estado", uid: "status", sortable: true},
-    {name: "Acciones", uid: "actions"},
+    {name: "Fecha del cambio", uid: "exchangeDate", sortable: true},
+    {name: "Nombre del cliente", uid: "exchangeClient", sortable: true},
+    {name: "Efectivo involucrado", uid: "exchangePrice", sortable: true},
+    {name: "Estado", uid: "exchangeStatus", sortable: true},
+    {name: "Acciones", uid: "exchangeActions"},
   ];
 
 

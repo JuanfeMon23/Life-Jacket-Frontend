@@ -26,6 +26,7 @@ import { useAuth } from '../../Login/context/AuthContext';
 export  function Navigation() {
     const [open, setOpen] = useState(false);
     const {logout, user} = useAuth();
+    console.log(user)
     const location = useLocation();
 
     function handleLogout(e) {
@@ -47,23 +48,19 @@ export  function Navigation() {
 
   return (
     <div className=' bg-white py-3 fixed top-0  left-0 right-0 shadow-md z-50'>     
-            <div className=' flex justify-between'>
-                <div>
-                    <button className=' ml-4' onClick={() => setOpen(true)}>
-                        <FaBars className=' text-sky-600 '/>
-                    </button>
-                    <span className=' ml-3 font-bold  text-sky-600'> LifeJacket</span>
-                </div> 
-                <div className=' mr-2'>
-                    <Dropdown>
-                        <DropdownTrigger>
-                            <Button isIconOnly> <BiSolidUser className=' text-xl text-sky-600'/></Button>
-                        </DropdownTrigger>
-                        <DropdownMenu aria-label="logout" >
-                            <DropdownItem    className="text-danger" color="danger" onClick={handleLogout} > Cerrar sesion</DropdownItem>
-                        </DropdownMenu>
-                    </Dropdown>
-                </div> 
+            <div className=' justify-between'>
+                <button className=' ml-4' onClick={() => setOpen(true)}>
+                    <FaBars className=' text-sky-600 '/>
+                </button>
+                <span className=' ml-3 font-bold  text-sky-600'> LifeJacket</span>
+                <Dropdown>
+                    <DropdownTrigger>
+                        <Button isIconOnly> <BiSolidUser className=' text-2xl text-sky-600'/></Button>
+                    </DropdownTrigger>
+                    <DropdownMenu>
+                        <DropdownItem   className="text-danger" color="danger" onClick={handleLogout} > Cerrar sesion</DropdownItem>
+                    </DropdownMenu>
+                </Dropdown>
             </div>
 
             <div className={`${!open && "hidden"} bg-gray-600/40 min-h-screen w-full fixed top-0 left-0 right-0 `} onClick={() => setOpen(false)}></div>

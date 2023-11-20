@@ -1,47 +1,37 @@
-import React from "react";
+import React from 'react'
+import { useVehicles } from '../../context/vehiclesContext';
 import {
-  Table,
-  TableHeader,
-  TableColumn,
-  TableBody,
-  TableRow,
-  TableCell,
-  Input,
-  Button,
-  DropdownTrigger,
-  Dropdown,
-  DropdownMenu,
-  DropdownItem,
-  Chip,
-  Pagination,
-} from "@nextui-org/react";
-import {RolesRegister} from './RolesRegister'
+    Table,
+    TableHeader,
+    TableColumn,
+    TableBody,
+    TableRow,
+    TableCell,
+    Input,
+    Button,
+    DropdownTrigger,
+    Dropdown,
+    DropdownMenu,
+    DropdownItem,
+    Chip,
+    Pagination,
+  } from "@nextui-org/react";
 import {FaSearch} from 'react-icons/fa';
-import {IoIosArrowDown} from 'react-icons/io';
-import { useRoles } from "../context/rolesContext";
-import { AddLicenses } from "./AddLicenses";
-import { DeleteRol } from "./DeleteRol";
+import { BrandsRegister } from './BrandsRegister';
+import { DeleteBrands } from './DeleteBrands';
 
-
-const statusOptions = [
-    {name: "Activo" , uid: "true"},
-    {name: "Inactivo", uid: "false"}
-  ];    
-
-
-  const columns = [
-    {name: "Nombre del rol", uid: "nameRol", sortable: true},
-    {name: "Permisos", uid: "licensesRol", sortable: true},
-    {name: "Estado", uid: "statusRol", sortable: true},
-    {name: "Acciones", uid: "actionsRol", sortable: true}
+const columns = [
+    {name: "Tipo", uid: "type", sortable: true},
+    {name: "Marca", uid: "brand", sortable: true},
+    {name: "Linea", uid: "line", sortable: true},
+    {name: "Acciones", uid: "actionsBrands", sortable: true}
   ];  
 
 
-export  function TableRoles() {
-    const {roles} = useRoles();
+export  function TableBrands() {
+    const {brands} = useVehicles();
     const [filterValue, setFilterValue] = React.useState("");
     const [selectedKeys, setSelectedKeys] = React.useState(new Set([]));
-    const [statusFilter, setStatusFilter] = React.useState("all");
     const [rowsPerPage, setRowsPerPage] = React.useState(5);
 
     const [page, setPage] = React.useState(1);
@@ -49,23 +39,21 @@ export  function TableRoles() {
     const hasSearchFilter = Boolean(filterValue);
 
     const filteredItems = React.useMemo(() => {
-        let filteredRoles = [...roles];
+        let filteredBrands = [...brands];
     
         if (hasSearchFilter) {
-          filteredRoles = filteredRoles.filter((roles) =>
-            roles.rolName.toLowerCase().includes(filterValue.toLowerCase()) 
+          filteredBrands = filteredBrands.filter((brands) =>
+          brands.VehicleType.toLowerCase().includes(filterValue.toLowerCase()) ||
+          brands.NameBrand.toLowerCase().includes(filterValue.toLowerCase())  ||
+          brands.BrandLine.toLowerCase().includes(filterValue.toLowerCase()) 
           );
         }
     
-        if (statusFilter !== "all" && Array.from(statusFilter).length !== statusOptions.length) {
-          filteredRoles = filteredRoles.filter((roles) => 
-            Array.from(statusFilter).includes(roles.rolStatus) 
-          );
-        }
     
-        return filteredRoles;
-      }, [roles, filterValue, statusFilter]);
+        return filteredBrands;
+      }, [brands, filterValue]);
 
+      
       const pages = Math.ceil(filteredItems.length / rowsPerPage);
 
       const items = React.useMemo(() => {
@@ -122,32 +110,11 @@ export  function TableRoles() {
                 onValueChange={onSearchChange}
               />
               <div className="flex gap-3">
-                <Dropdown>
-                  <DropdownTrigger className="hidden sm:flex">
-                    <Button startContent={<IoIosArrowDown/>} color="primary" variant="flat" >
-                      Estado
-                    </Button>
-                  </DropdownTrigger>
-                  <DropdownMenu
-                    disallowEmptySelection
-                    aria-label="Table Columns"
-                    closeOnSelect={false}
-                    selectedKeys={statusFilter}
-                    selectionMode="multiple"
-                    onSelectionChange={setStatusFilter}
-                  >
-                    {statusOptions.map((status) => (
-                      <DropdownItem key={status.uid} className="capitalize">
-                        {status.name}
-                      </DropdownItem>
-                    ))}
-                  </DropdownMenu>
-                </Dropdown>
-                <RolesRegister/>
+                <BrandsRegister/>
               </div>
             </div>
             <div className="flex justify-between items-center">
-              <span className="text-default-400 text-small">Total de roles: {roles.length} </span>
+              <span className="text-default-400 text-small">Total de datos: {brands.length} </span>
               <label className="flex items-center text-default-400 text-small">
                 Filas por pagina
                 <select
@@ -164,9 +131,8 @@ export  function TableRoles() {
         );
       }, [
         filterValue,
-        statusFilter,
         onRowsPerPageChange,
-        roles.length,
+        brands.length,
         onSearchChange,
         hasSearchFilter,
       ]);
@@ -200,7 +166,7 @@ export  function TableRoles() {
   return (
     <div className=" ml-3 w-[23rem] sm:ml-5 sm:w-full md:w-full lg:w-[83rem] xl:w-[117rem] mx-auto ">
         <Table
-            aria-label="roles Table"
+            aria-label="brands Table"
             isCompact
             color='primary'
             bottomContentPlacement="outside"
@@ -220,15 +186,14 @@ export  function TableRoles() {
                 </TableColumn>
             ))}
       </TableHeader>
-      <TableBody emptyContent={"No hay roles registrados"}>
+      <TableBody emptyContent={"No hay marcas registradas"}>
             {items.map((item) => (
-                <TableRow key={item.idRol}>
-                    <TableCell>{item.rolName}</TableCell>
-                    <TableCell>permisos</TableCell> 
-                    <TableCell>{item.rolStatus === "true" ?  <Chip color="success">Activo</Chip> : <Chip color="default">Inactivo</Chip>}</TableCell>
+                <TableRow key={item.idBrand}>
+                    <TableCell>{item.VehicleType}</TableCell>
+                    <TableCell>{item.NameBrand}</TableCell> 
+                    <TableCell>{item.BrandLine}</TableCell> 
                     <TableCell className=" flex justify-normal">
-                        <AddLicenses roles={item} />
-                        <DeleteRol roles={item} />
+                        <DeleteBrands brand={item} />
                     </TableCell>
                 </TableRow>
             ))}
