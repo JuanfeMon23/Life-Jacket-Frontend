@@ -2,6 +2,7 @@ import React, { useEffect } from 'react'
 import { useVehicles } from '../../Vehicles/context/vehiclesContext'
 import { useExchange } from '../context/ExchangeContext';
 import {useForm, Controller} from 'react-hook-form';
+import {AiOutlineDelete} from 'react-icons/Ai';
 import {
     Table,
     TableHeader,
@@ -12,32 +13,41 @@ import {
     Input,
     Button,
     Select,
-    SelectItem
+    SelectItem,
+    Chip
   } from "@nextui-org/react";
 
   const columns = [
     {name: "Placa", uid: "name", sortable: true},
     {name: "Marca", uid: "sortname", sortable: true},
     {name: "Modelo", uid: "role", sortable: true},
-    {name: "Estado", uid: "status", sortable: true}
+    {name: "Estado", uid: "status", sortable: true},
+    {name: "Acciones", uid : "actionsDetail"}
   ];
 
 
-  function onSubmit(){
 
-  }
 
-export  function ExchangeDetail() {
+export  function ExchangeDetail(props) {
     const {vehicles, getVehicles} = useVehicles();
+    const {createExchangeDetail, exchanges, cancelExchangeDetail} = useExchange()
     const { handleSubmit, formState:{errors}, control, reset} = useForm();
+    const idExchange = props.idExchange
+
+
+
 
     useEffect(() => {
         getVehicles();
     } ,[])
 
-    function onSubmit(event){
 
+    const onSubmit = (data) => {
+        console.log(data)
+        createExchangeDetail(idExchange, data)
     };
+
+
   return (
     <> 
     <div className='  ml-5'>
@@ -62,8 +72,8 @@ export  function ExchangeDetail() {
                             field.onChange(e);
                         }}
                     >
-                    {vehicles.filter(vehicles => vehicles.vehicleStatus === "true").map((vehicles, i) => (
-                        <SelectItem key={i} value={vehicles.licensePlate}>
+                    {vehicles.filter(vehicles => vehicles.vehicleStatus === "true").map((vehicles) => (
+                        <SelectItem key={vehicles.idVehicle} value={vehicles.licensePlate}>
                             {vehicles.licensePlate}
                         </SelectItem>
                         ))}
@@ -119,17 +129,25 @@ export  function ExchangeDetail() {
                             </TableColumn>
                         ))}
             </TableHeader>
-                <TableBody >
-                    <TableRow>
-                        <TableCell></TableCell>
-                        <TableCell></TableCell>
-                        <TableCell></TableCell>
-                        <TableCell></TableCell>
-                    </TableRow>
+                <TableBody emptyContent={'Aun no hay vehiculos asociados al intercambio'} >
+                {exchanges.filter(exchange => exchange.idExchange === idExchange).map((exchange) => (
+                        exchange.vehiclesExchange.map((vehicle) => (
+                        <TableRow key={vehicle.idVehicle}>
+                            <TableCell>{vehicle.licensePlate}</TableCell>
+                            <TableCell>{vehicle.brand}</TableCell>
+                            <TableCell>{vehicle.model}</TableCell>
+                            <TableCell>{vehicle.ExchangesDetails.vehicleStatusExchange === "true" ? <Chip color="success">Entrante</Chip>  : <Chip color="danger">Saliente</Chip>  }</TableCell>
+                            <TableCell><Button onClick={() => {
+                                cancelExchangeDetail(vehicle.ExchangesDetails.idExchangeDetail)
+                            } } title='Eliminar vehiculo del intercambio' isIconOnly className=' bg-red-400'><AiOutlineDelete className={`text-2xl text-white`}/></Button></TableCell>
+                        </TableRow>
+                        ))
+                    ))}  
                 </TableBody>
             </Table>
         </div>
     </div>
+    
 
     </>
   )

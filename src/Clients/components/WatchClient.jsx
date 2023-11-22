@@ -2,6 +2,7 @@ import React from "react";
 import {Modal, ModalContent, ModalHeader, ModalBody, ModalFooter, Button, useDisclosure} from "@nextui-org/react";
 import {FiEye}from "react-icons/fi";
 import { toast } from "react-toastify";
+import { styles } from "../../components/styles.js";
 
 export function WatchClient (props) {
     const {isOpen, onOpen, onOpenChange} = useDisclosure();
@@ -26,11 +27,11 @@ export function WatchClient (props) {
                 <ModalHeader className=" flex items-center ">Información del cliente</ModalHeader>
                   <ModalBody key={client.id}>
                     
-                    <div className="m-5 flex justify-around">
-                      <div className=" flex flex-col">
-                        <p className="text-xs md:text-sm font-bold">Nombres</p> 
-                        <div className=" border-2 border-indigo-500/75 rounded-lg w-[7rem] md:w-[15rem] p-1 ">
-                            <p className=" text-center">{client.clientName}</p>
+                    <div className={styles.firstContainer}>
+                      <div className={styles.secondContainer}>
+                        <p className={styles.firstP}>Nombres</p> 
+                        <div className={styles.thirdContainer}>
+                            <p className={styles.secondP}>{client.clientName}</p>
                         </div>
                       </div>
   
