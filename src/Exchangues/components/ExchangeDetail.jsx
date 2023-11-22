@@ -101,7 +101,7 @@ export  function ExchangeDetail() {
                     />
                 </div>
                 <div>
-                    <Button type='submit' size='lg'  className=' text-white bg-green-600 hover:bg-green-800'>Agregar</Button>
+                    <Button type='submit' size='lg' title='Agregar vehículo' className=' text-white bg-green-600 hover:bg-green-800'>Agregar</Button>
                 </div>
             </div>
             </form>

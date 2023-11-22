@@ -6,6 +6,7 @@ import { useClients } from '../../Clients/context/clientsContext';
 import { useVehicles } from '../../Vehicles/context/vehiclesContext';
 import {AiOutlinePlusCircle} from 'react-icons/Ai';
 import { RequiredIcon } from '../../components/globalComponents/RequiredIcon.jsx';
+import { ButtonAccept } from '../../components/ButtonAccept';
 
 
 export function PurchaseRegister() {
@@ -265,7 +266,7 @@ export function PurchaseRegister() {
 
 
                   <div className=' text-center my-3 '>
-                    <button type='submit' className='bg-gradient-to-r from-cyan-500 to-blue-800 text-white font-bold w-20 h-10 rounded-lg'>Crear</button>
+                      <ButtonAccept/>
                   </div>
                   
                 </form>

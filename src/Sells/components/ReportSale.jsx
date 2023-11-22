@@ -16,7 +16,7 @@ export function ReportSale() {
 
    return (
     <>
-        <Button title='Informe de venta' className=' bg-violet-600 text-white' startContent={<IoDocumentTextOutline/>} onPress={onOpen}>Informe</Button>
+        <Button title='Genrerar informe de venta' className=' bg-violet-600 text-white' startContent={<IoDocumentTextOutline/>} onPress={onOpen}>Informe</Button>
         <Modal isOpen={isOpen} onOpenChange={onOpenChange}>
             <ModalContent>
                 <ModalHeader className="flex flex-col gap-1">Informe de ventas</ModalHeader>

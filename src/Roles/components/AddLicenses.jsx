@@ -69,7 +69,7 @@ export const AddLicenses = (props) => {
                         ))}
                   </div>
 
-                        <Button className=' mt-3' color='primary' type='submit'>Asignar Permisos</Button>
+                        <Button className=' mt-3' color='primary' type='submit'>Asignar permisos</Button>
                     </form>
               </ModalBody>
                 </>

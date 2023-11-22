@@ -16,7 +16,7 @@ export function ReportExchange() {
 
    return (
     <>
-        <Button className=' bg-violet-600 text-white' startContent={<IoDocumentTextOutline/>} onPress={onOpen}>Informe</Button>
+        <Button className=' bg-violet-600 text-white' title='Generar informe de intercambios'  startContent={<IoDocumentTextOutline/>} onPress={onOpen}>Informe</Button>
         <Modal isOpen={isOpen} onOpenChange={onOpenChange}>
             <ModalContent>
                 <ModalHeader className="flex flex-col gap-1">Informe de cambios</ModalHeader>

@@ -112,6 +112,7 @@ export function TablePurchase() {
       <div className="flex flex-col gap-4 mt-5">
         <div className="flex justify-between gap-3 items-end">
           <Input
+            title='Buscar compra'
             isClearable
             className=" sm:max-w-[30%] shadow-xl"
             placeholder="Buscar..."
@@ -123,7 +124,7 @@ export function TablePurchase() {
           <div className="flex gap-3">
             <Dropdown>
               <DropdownTrigger className="hidden sm:flex">
-                <Button startContent={<IoIosArrowDown />} color="primary" variant="flat" >
+                <Button startContent={<IoIosArrowDown />} title='Filtrar las compras por su estado' color="primary" variant="flat" >
                   Estado
                 </Button>
               </DropdownTrigger>
@@ -186,10 +187,10 @@ export function TablePurchase() {
           onChange={setPage}
         />
         <div className="hidden sm:flex w-[30%] justify-end gap-2">
-          <Button isDisabled={pages === 1} size="sm" color="primary" onPress={onPreviousPage}>
+          <Button isDisabled={pages === 1} size="sm" title='Página anterior' color="primary" onPress={onPreviousPage}>
             Anterior
           </Button>
-          <Button isDisabled={pages === 1} size="sm" color="primary" onPress={onNextPage}>
+          <Button isDisabled={pages === 1} size="sm" title='Página siguiente' color="primary" onPress={onNextPage}>
             Siguiente
           </Button>
         </div>

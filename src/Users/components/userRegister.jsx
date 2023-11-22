@@ -8,6 +8,7 @@ import {Select, SelectItem} from "@nextui-org/react";
 import { useRoles } from '../../Roles/context/rolesContext';
 import {AiOutlinePlusCircle} from 'react-icons/Ai';
 import { RequiredIcon } from '../../components/globalComponents/RequiredIcon.jsx';
+import { ButtonAccept } from '../../components/ButtonAccept';
 
 export  function UserRegister() {
   const {isOpen, onOpen, onOpenChange} = useDisclosure();
@@ -420,7 +421,7 @@ export  function UserRegister() {
 
 
                   <div className=' text-center my-3 '>
-                    <button type='submit' className='bg-gradient-to-r from-cyan-500 to-blue-800 text-white font-bold w-20 h-10 rounded-lg'>Crear</button>
+                      <ButtonAccept/>
                   </div>
                   
                 </form>

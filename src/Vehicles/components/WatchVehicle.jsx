@@ -24,7 +24,7 @@ export function WatchVehicle (props) {
           <ModalContent>
             {(onClose) => (
               <>
-                <ModalHeader className="  flex items-center ">Informacion del Vehículo</ModalHeader>
+                <ModalHeader className="  flex items-center ">Información del vehículo</ModalHeader>
                   <ModalBody key={vehicles.idVehicle}>      
                   <Accordion variant="bordered" color="primary">
                         <AccordionItem key="1" aria-label="Datos" title="Datos principales">

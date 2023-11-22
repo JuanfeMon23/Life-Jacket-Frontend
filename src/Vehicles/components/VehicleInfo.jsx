@@ -86,7 +86,7 @@ export  function VehicleInfo() {
                                 name="vehicleType"
                                 control={controlVehicle}
                                 rules={{
-                                  required : 'Campo obligatorio'
+                                  required : 'Campo requerido'
                                 }}
                                 render={({ field }) => (
                                   <Select {...field}
@@ -119,7 +119,7 @@ export  function VehicleInfo() {
                         name="brand"
                         control={controlVehicle}
                         rules={{
-                          required : 'Campo obligatorio'
+                          required : 'Campo requerido'
                         }}
                         render={({ field }) => (
                           <Select
@@ -151,7 +151,7 @@ export  function VehicleInfo() {
                             name="line"
                             control={controlVehicle}
                             rules={{
-                              required : 'Campo obligatorio'
+                              required : 'Campo requerido'
                             }}
                             render={({ field }) => (
                               <Select
@@ -181,7 +181,7 @@ export  function VehicleInfo() {
                             name="model"
                             control={controlVehicle}
                             rules={{
-                              required : 'Campo obligatorio'
+                              required : 'Campo requerido'
                             }}
                             render={({ field }) => (
                               <Select

@@ -65,7 +65,7 @@ export  function BrandsRegister() {
                                 name="VehicleType"
                                 control={control}
                                 rules={{
-                                  required : 'Campo obligatorio'
+                                  required : 'Campo requerido'
                                 }}
                                 render={({ field }) => (
                                   <Select {...field}
@@ -94,7 +94,7 @@ export  function BrandsRegister() {
                         name="NameBrand"
                         control={control}
                         rules={{
-                          required : 'Campo obligatorio'
+                          required : 'Campo requerido'
                         }}
                         render={({ field }) => (
                           <Select

@@ -33,7 +33,7 @@ export  function DeleteVehicle(props) {
         <ModalContent>
           {(onClose) => (
             <>
-              <ModalHeader className=" justify-center text-2xl m-4">¿Deseas eliminar el Vehiculo?</ModalHeader>
+              <ModalHeader className=" justify-center text-2xl m-4">¿Deseas eliminar el vehículo?</ModalHeader>
               <ModalBody>
                 <form onSubmit={handleSubmit(onSubmit)}>
                     <div className=' text-center m-3'>

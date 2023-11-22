@@ -16,7 +16,7 @@ export function ReportPurchase() {
 
    return (
     <>
-        <Button title='Informe de compras' className=' bg-violet-600 text-white' startContent={<IoDocumentTextOutline/>} onPress={onOpen}>Informe</Button>
+        <Button title='Generar informe de compras' className=' bg-violet-600 text-white' startContent={<IoDocumentTextOutline/>} onPress={onOpen}>Informe</Button>
         <Modal isOpen={isOpen} onOpenChange={onOpenChange}>
             <ModalContent>
                 <ModalHeader className="flex flex-col gap-1">Informe de compras</ModalHeader>

@@ -261,8 +261,8 @@ export  function ExchangeInfo() {
             </div>
 
             <div className=' flex justify-around mb-7'>
-                    <Button size='lg' color='primary' className=' hover:bg-blue-900' type='submit'>Registrar</Button>
-                    <Button size='lg' color='danger' className=' hover:bg-pink-900'>Cancelar</Button>
+                    <Button size='lg' color='primary' title='Registrar intercambio'  className=' hover:bg-blue-900' type='submit'>Registrar</Button>
+                    <Button size='lg' color='danger' title='Cancelar intercambio' className=' hover:bg-pink-900'>Cancelar</Button>
             </div>
         </form>
     </aside>
