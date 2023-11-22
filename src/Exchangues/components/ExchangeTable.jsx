@@ -21,6 +21,8 @@ import {useExchange} from '../context/ExchangeContext'
 import { Navigate, useNavigate, Link } from "react-router-dom";
 import {AiOutlinePlusCircle} from 'react-icons/Ai';
 import { ReportExchange } from "./ReportExchange";
+import { WatchExchange } from "./WatchExchange";
+import { StatusExchange } from "./StatusExchange";
 
 
 const statusOptions = [
@@ -252,12 +254,14 @@ export function ExchangeTable() {
                                         minute: "2-digit"
                                     })}
                                 </TableCell>
-                                <TableCell>{item.exchange.clientName}</TableCell> 
+                                <TableCell>{item.client.clientName}</TableCell> 
                                 <TableCell>
-                                    {typeof item.exchangeCashPrice === "number" ? item.purchaseFinalPrice.toLocaleString("es-ES", { style: "currency", currency: "COP" }) : "No válido"}
+                                    {typeof item.exchangeCashPrice === "number" ? item.exchangeCashPrice.toLocaleString("es-ES", { style: "currency", currency: "COP" }) : "No válido"}
                                 </TableCell> 
                                 <TableCell>{item.exchangeStatus === "true" ?  <Chip color="success">Activo</Chip> : <Chip color="default">Inactivo</Chip>}</TableCell>
                                 <TableCell className=" flex justify-normal">
+                                  <WatchExchange exchange={item} />
+                                  <StatusExchange exchange={item} />
                                 </TableCell>
                             </TableRow>
                         ))}

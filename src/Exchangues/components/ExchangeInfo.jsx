@@ -5,11 +5,16 @@ import {Input, Textarea} from "@nextui-org/react";
 import {Button} from "@nextui-org/react";
 import { useExchange } from '../context/ExchangeContext';
 import { useClients } from '../../Clients/context/clientsContext';
+import { useNavigate } from 'react-router-dom';
 
-export  function ExchangeInfo() {
+export  function ExchangeInfo(props) {
     const { handleSubmit, formState:{errors}, control, reset} = useForm();
     const {updateExchange, cancelExchange, createExchange} = useExchange();
     const {clients, getClients} = useClients();
+    const navigate = useNavigate();
+    const idExchange = props.idExchange
+
+    console.log(idExchange)
 
     useEffect(() => {
         getClients();
@@ -22,13 +27,16 @@ export  function ExchangeInfo() {
     // },[])
 
  
-    const onSubmit = () => {
-
+    function onSubmit(data){
+        updateExchange(idExchange, data)
+        navigate('/Exchangues')
     };
 
-    const handleCancelExchange = () => {
-        cancelExchange();
-    };
+    function handleCancelExchange(event) {
+        event.preventDefault();
+        cancelExchange(idExchange)
+        navigate('/Exchangues')
+    }
 
   return (
     <aside className=' border-2 border-blue-600/70 bg-white rounded-lg ml-5'>
@@ -85,7 +93,7 @@ export  function ExchangeInfo() {
             <div className="flex ">
                     <div className=' flex-col m-3 w-[200px]'>
                     <Controller
-                            name="exchangeDeparment"
+                            name="exchangeDepartment"
                             control={control}
                             rules={{
                             required: "Campo requerido",
@@ -104,8 +112,8 @@ export  function ExchangeInfo() {
                                 type="text"
                                 label="Departamento"
                                 variant="bordered"
-                                color={errors.exchangeDeparment? "danger" : ""}
-                                errorMessage={errors.exchangeDeparment?.message}
+                                color={errors.exchangeDepartment? "danger" : ""}
+                                errorMessage={errors.exchangeDepartment?.message}
                                 className="max-w-xs"
                             />
                             )}
@@ -130,7 +138,7 @@ export  function ExchangeInfo() {
                             render={({ field }) => (
                             <Input
                                 {...field}
-                                type="number"
+                                type="text"
                                 label="Municipio"
                                 variant="bordered"
                                 color={errors.exchangeMunicipality? "danger" : ""}
@@ -150,8 +158,8 @@ export  function ExchangeInfo() {
                             rules={{
                             required: "Campo requerido",
                             minLength : {
-                                value : 7 ,
-                                message : 'Al menos 7 numeros'
+                                value : 1 ,
+                                message : 'Al menos 1 numero'
                             },
                             maxLength : {
                                 value : 12,
@@ -180,7 +188,7 @@ export  function ExchangeInfo() {
                             name='exchangeCashPriceStatus'
                             control={control}
                             rules={{
-                                required : "Campo requerido"
+                                required : "Campo requerido"                                
                             }}
                             render={({field}) => (
                                 <Select
@@ -200,6 +208,9 @@ export  function ExchangeInfo() {
                                     <SelectItem  key="false" value="false">
                                         Saliente
                                     </SelectItem>
+                                    <SelectItem  key="No aplica" value="false">
+                                        No aplica
+                                    </SelectItem>
                                 </Select>
                             )}
                         />
@@ -209,22 +220,10 @@ export  function ExchangeInfo() {
                 </div>
                 <div className=' flex'>
                         <Controller
-                            name="exchangePecunaryPenalty"
+                            name="exchangePecuniaryPenalty"
                             control={control}
                             rules={{
                             required: "Campo requerido",
-                            minLength : {
-                                value : 7 ,
-                                message : 'Al menos 7 numeros'
-                            },
-                            maxLength : {
-                                value : 12,
-                                message : 'Maximo 12 números'
-                            },
-                            pattern: {
-                                value: /^[0-9]*$/, 
-                                message: "Solo números"
-                            }
                             }}
                             render={({ field }) => (
                             <Input
@@ -232,8 +231,8 @@ export  function ExchangeInfo() {
                                 type="number"
                                 label="Sancion pecunaria"
                                 variant="bordered"
-                                color={errors.exchangePecunaryPenalty? "danger" : ""}
-                                errorMessage={errors.exchangePecunaryPenalty?.message}
+                                color={errors.exchangePecuniaryPenalty? "danger" : ""}
+                                errorMessage={errors.exchangePecuniaryPenalty?.message}
                                 className="max-w-xs"
                             />
                             )}
@@ -249,7 +248,7 @@ export  function ExchangeInfo() {
                             render={({ field }) => (
                             <Textarea
                             {...field}
-                            type="datetime-local"
+                            type="text"
                             label="Limitaciones"
                              variant="bordered"
                             color={errors.exchangeLimitations ? "danger" : ""}
@@ -261,8 +260,8 @@ export  function ExchangeInfo() {
             </div>
 
             <div className=' flex justify-around mb-7'>
-                    <Button size='lg' color='primary' title='Registrar intercambio'  className=' hover:bg-blue-900' type='submit'>Registrar</Button>
-                    <Button size='lg' color='danger' title='Cancelar intercambio' className=' hover:bg-pink-900'>Cancelar</Button>
+                    <Button size='lg' color='primary' title='Registrar intercambio' className=' hover:bg-blue-900' type='submit'>Registrar</Button>
+                    <Button size='lg' color='danger' title='Cancelar intercambio' onClick={handleCancelExchange} className=' hover:bg-pink-900'>Cancelar</Button>
             </div>
         </form>
     </aside>

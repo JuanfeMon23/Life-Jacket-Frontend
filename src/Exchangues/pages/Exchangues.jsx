@@ -12,9 +12,9 @@ export function Exchangues() {
 
 
   useEffect(() => {
+    getExchanges();
     getClients();
     getVehicles();
-    getExchanges();
   },[]);
 
   return (

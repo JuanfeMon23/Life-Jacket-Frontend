@@ -29,7 +29,7 @@ export function WatchUser(props) {
                 <div className="m-5 flex justify-around">
                     <div className=" flex flex-col">
                       <p className="text-xs md:text-sm font-bold">Tipo de documento</p> 
-                      <div className=" border-2 border-indigo-500/75 rounded-lg w-[7rem] md:w-[15rem] p-1 ">
+                      <div className="">
                           <p className=" text-center">{user.userTypeDocument}</p>
                       </div>
                     </div>

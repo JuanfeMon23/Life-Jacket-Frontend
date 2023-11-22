@@ -25,6 +25,7 @@ export function ExchangeProvider({children}){
     const createExchange = async () => {
         try {
             const res = await createExchangeRequest();
+            getExchanges();
             return res.data;
         } catch (error) {
             throw new Error(error.message);
@@ -49,8 +50,12 @@ export function ExchangeProvider({children}){
 
     const createExchangeDetail = async (idExchange, exchangeDetail) => {
         try {
-            const res = await createExchangeDetailRequest(idExchange,exchangeDetail );
-            setExchanges(res);
+             await createExchangeDetailRequest(idExchange,exchangeDetail );
+             toast.success('Vehiculo agregado al intercambio con exito.',{
+                position: toast.POSITION.TOP_CENTER,
+                autoClose : 1500
+            });
+            getExchanges();
         } catch (error) {
             toast.error(error.response.data.message ,{
                 position: toast.POSITION.TOP_CENTER,
@@ -82,6 +87,7 @@ export function ExchangeProvider({children}){
                 position: toast.POSITION.TOP_CENTER,
                 autoClose : 1500
             });
+            getExchanges();
         } catch (error) {
             toast.error(error.response.data.message ,{
                 position: toast.POSITION.TOP_CENTER,
@@ -97,6 +103,7 @@ export function ExchangeProvider({children}){
                 position: toast.POSITION.TOP_CENTER,
                 autoClose : 1500
             });
+            getExchanges();
         } catch (error) {
             toast.error(error.response.data.message ,{
                 position: toast.POSITION.TOP_CENTER,
