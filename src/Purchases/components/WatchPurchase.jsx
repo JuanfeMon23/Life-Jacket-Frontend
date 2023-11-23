@@ -62,7 +62,7 @@ export function WatchPurchase(props) {
                   </div>  
                   </AccordionItem>
 
-                  <AccordionItem key='2' aria-label="datos" title="Datos del Vehículo">
+                  <AccordionItem key='2' aria-label="datos" title="Datos del vehículo">
                   <div className="m-5 flex justify-around">
                     <div className=" flex flex-col">
                       <p className="font-bold">Placa</p> 

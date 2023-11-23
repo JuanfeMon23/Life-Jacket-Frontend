@@ -163,7 +163,7 @@ export function PurchaseRegister() {
                         </div>  
 
                     </div>
-                        <div className=' flex-col m-3'>
+                        <div className='flex flex-col m-3 justify-center items-center'>
                             <Controller
                               name="purchaseDate"
                               control={control}
@@ -185,7 +185,7 @@ export function PurchaseRegister() {
                           /> 
                         </div>
 
-                        <div className=' flex-col m-3'>
+                        <div className='flex flex-col m-3 justify-center items-center'>
                             <Controller
                               name="purchaseFinalPrice"
                               control={control}
@@ -212,7 +212,7 @@ export function PurchaseRegister() {
                         </div>  
                   
 
-                    <div className=' m-3'>
+                    <div className='flex flex-col m-3 justify-center items-center'>
                     <Controller
                           name="purchasePecuniaryPenalty"
                           control={control}
@@ -234,7 +234,7 @@ export function PurchaseRegister() {
                         />
                     </div>
 
-                    <div className=' m-3'>
+                    <div className='flex flex-col m-3 justify-center items-center'>
                             <Controller
                               name="purchaseLimitations"
                               control={control}

@@ -39,7 +39,7 @@ export function ImprovementRegister() {
                 <ModalHeader className="flex flex-col gap-3">Datos de la mejora</ModalHeader>
                 <ModalBody>
                     <form onSubmit={handleSubmit(onSubmit)}>
-                        <div className='flex-col m-3 w-[400px]'>
+                        <div className='flex flex-col m-3 justify-center items-center'>
                             <Controller
                                 name='idVehicleImprovement'
                                 control={control}
@@ -69,7 +69,7 @@ export function ImprovementRegister() {
                                 />
                         </div>
 
-                            <div className=' flex-col m-3 w-[400px]'>
+                            <div className='flex flex-col m-3 justify-center items-center'>
                             <Controller
                               name="improvementDate"
                               control={control}
@@ -91,7 +91,7 @@ export function ImprovementRegister() {
                           /> 
                             </div>
 
-                            <div className=' flex-col m-3 w-[400px]'>
+                            <div className='flex flex-col m-3 justify-center items-center'>
                             <Controller
                               name="improvementPrice"
                               control={control}
@@ -117,7 +117,7 @@ export function ImprovementRegister() {
                             />
                             </div>  
 
-                        <div className='flex-col m-3 w-[400px]'>
+                        <div className='flex flex-col m-3 justify-center items-center'>
                         <Controller
                           name="improvementDescription"
                           control={control}

@@ -40,9 +40,9 @@ export  function ExchangeInfo(props) {
 
   return (
     <aside className=' border-2 border-blue-600/70 bg-white rounded-lg ml-5'>
-        <h1 className=' text-3xl text-center font-bold m-5'>Datos del cambio</h1>
+        <h1 className=' text-3xl text-center font-bold m-5'>Datos del intercambio</h1>
         <form onSubmit={handleSubmit(onSubmit)}>
-                <div className=' ml-10 mb-3 '>
+                <div className='flex flex-col m-3 justify-center items-center '>
                     <Controller
                               name='idClientExchange'
                               control={control}
@@ -70,22 +70,22 @@ export  function ExchangeInfo(props) {
                               )}
                             />
                 </div>
-                <div className=' flex'>
+                <div className='flex flex-col m-5 justify-center items-center'>
                         <Controller
                             name="exchangeDate"
                             control={control}
                             rules={{
-                                required : 'Campo obligatorio'
+                                required : 'Campo requerido'
                               }}
                             render={({ field }) => (
                             <Input
                             {...field}
                             type="datetime-local"
-                            label="Fecha del cambio"
+                            label="Fecha del intercambio"
                              variant="bordered"
                             color={errors.exchangeDate ? "danger" : ""}
                             errorMessage={errors.exchangeDate?.message}
-                            className="max-w-xs ml-10"
+                            className="max-w-xs"
                         />
                     )}
                  /> 
@@ -99,11 +99,11 @@ export  function ExchangeInfo(props) {
                             required: "Campo requerido",
                             minLength : {
                                 value : 4 ,
-                                message : 'Al menos 4 numeros'
+                                message : 'Al menos 4 números'
                             },
                             maxLength : {
                                 value : 20,
-                                message : 'Maximo 20 números'
+                                message : 'Máximo 20 números'
                             },
                             }}
                             render={({ field }) => (
@@ -120,7 +120,7 @@ export  function ExchangeInfo(props) {
                         />
                     </div>
 
-                    <div className=' flex-col m-3'>
+                    <div className='flex-col m-3 w-[200px]'>
                         <Controller
                             name="exchangeMunicipality"
                             control={control}
@@ -132,7 +132,7 @@ export  function ExchangeInfo(props) {
                             },
                             maxLength : {
                                 value : 12,
-                                message : 'Maximo 20 letras'
+                                message : 'Máximo 20 letras'
                             }
                             }}
                             render={({ field }) => (
@@ -159,11 +159,11 @@ export  function ExchangeInfo(props) {
                             required: "Campo requerido",
                             minLength : {
                                 value : 1 ,
-                                message : 'Al menos 1 numero'
+                                message : 'Al menos 1 número'
                             },
                             maxLength : {
                                 value : 12,
-                                message : 'Maximo 12 números'
+                                message : 'Máximo 12 números'
                             },
                             pattern: {
                                 value: /^[0-9]*$/, 
@@ -218,7 +218,7 @@ export  function ExchangeInfo(props) {
 
 
                 </div>
-                <div className=' flex'>
+                <div className=' flex flex-col m-3 justify-center items-center'>
                         <Controller
                             name="exchangePecuniaryPenalty"
                             control={control}
@@ -229,7 +229,7 @@ export  function ExchangeInfo(props) {
                             <Input
                                 {...field}
                                 type="number"
-                                label="Sancion pecunaria"
+                                label="Sanción pecuniaria"
                                 variant="bordered"
                                 color={errors.exchangePecuniaryPenalty? "danger" : ""}
                                 errorMessage={errors.exchangePecuniaryPenalty?.message}
@@ -238,12 +238,12 @@ export  function ExchangeInfo(props) {
                             )}
                         />
                         </div> 
-                <div className=' flex'>
+                <div className='flex flex-col m-5 justify-center items-center'>
                         <Controller
                             name="exchangeLimitations"
                             control={control}
                             rules={{
-                                required : 'Campo obligatorio'
+                                required : 'Campo requerido'
                               }}
                             render={({ field }) => (
                             <Textarea
@@ -253,7 +253,7 @@ export  function ExchangeInfo(props) {
                              variant="bordered"
                             color={errors.exchangeLimitations ? "danger" : ""}
                             errorMessage={errors.exchangeLimitations?.message}
-                            className="max-w-xs ml-10 mb-10"
+                            className="max-w-xs"
                         />
                     )}
                  /> 

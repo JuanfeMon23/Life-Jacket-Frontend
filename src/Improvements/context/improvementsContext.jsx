@@ -24,13 +24,13 @@ export function ImprovementProvider({children}){
     const createImprovement = async (improvement) => {
         try {
             const res = await createImprovementsRequest(improvement);
-            toast.success('Mejora creada con exito!',{
+            toast.success('Mejora registrada con éxito!',{
                 position: toast.POSITION.TOP_CENTER
             });
             getImprovements();
             return res.data;
         } catch (error) {
-            toast.error('Error al crear la mejora' ,{
+            toast.error('Error al registrar la mejora' ,{
                 position: toast.POSITION.TOP_CENTER
             });
             console.log(error);
@@ -41,7 +41,7 @@ export function ImprovementProvider({children}){
     const statusImprovement = async (idImprovement) => {
         try {
             await statusImprovementRequest(idImprovement);
-            toast.success('Cambio de estado con éxito!',{
+            toast.success('Estado actualizado con éxito!',{
                 position: toast.POSITION.TOP_CENTER
             });
             getImprovements();
@@ -56,7 +56,7 @@ export function ImprovementProvider({children}){
     const editImprovement = async (idImprovement, improvement) => {
         try {
             await editImprovementRequest(idImprovement, improvement);
-            toast.success('Mejora editada con exito.',{
+            toast.success('Mejora editada con éxito!',{
                 position: toast.POSITION.TOP_CENTER,
                 autoClose :1500
             });
@@ -74,7 +74,7 @@ export function ImprovementProvider({children}){
     const deleteImprovement = async (idImprovements) => {
         try {
             await deleteImprovementRequest(idImprovements);
-            toast.success('Mejora eliminada con exito.',{
+            toast.success('Mejora eliminada con éxito!',{
                 position: toast.POSITION.TOP_CENTER
             });
             getImprovements();

@@ -240,7 +240,7 @@ export  function VehicleInfo() {
                   </div>
 
 
-                    <div className=' flex-col m-3'>
+                    <div className='flex flex-col m-3 justify-center items-center'>
                       <Controller
                             name="soat"
                             control={controlVehicle}
@@ -259,7 +259,7 @@ export  function VehicleInfo() {
                     
                     </div>
 
-                    <div className='flex-col m-3'>
+                    <div className='flex flex-col m-3 justify-center items-center'>
                     <Controller
                           name="technomechanics"
                           control={controlVehicle}

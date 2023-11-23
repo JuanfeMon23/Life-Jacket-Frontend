@@ -78,7 +78,7 @@ export function WatchVehicle (props) {
                        </div> 
                            
                         </AccordionItem>
-                        <AccordionItem key="2" aria-label="Datos fisicos" title="Datos fisicos">
+                        <AccordionItem key="2" aria-label="Datos fisicos" title="Datos físicos">
                             <div className="m-5 flex justify-around">
                               <div className=" flex flex-col">
                                 <p className="text-xs md:text-sm font-bold">Kilometraje</p> 

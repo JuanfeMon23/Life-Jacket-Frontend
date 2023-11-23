@@ -35,7 +35,7 @@ export function ExchangeProvider({children}){
     const updateExchange  =  async (idExchange, exchange) => {
         try {
             await updateExchangeRequest(idExchange, exchange);
-            toast.success('Cambio creado con exito.',{
+            toast.success('Intercambio registrado con éxito!',{
                 position: toast.POSITION.TOP_CENTER,
                 autoClose : 1500
             });
@@ -51,7 +51,7 @@ export function ExchangeProvider({children}){
     const createExchangeDetail = async (idExchange, exchangeDetail) => {
         try {
              await createExchangeDetailRequest(idExchange,exchangeDetail );
-             toast.success('Vehiculo agregado al intercambio con exito.',{
+             toast.success('Vehículo agregado al intercambio con éxito!',{
                 position: toast.POSITION.TOP_CENTER,
                 autoClose : 1500
             });
@@ -67,7 +67,7 @@ export function ExchangeProvider({children}){
     const cancelExchange = async (idExchange) => {
         try {
             await cancelExchangeRequest(idExchange);
-            toast.success('Cambio Cancelado.',{
+            toast.success('Intercambio cancelado',{
                 position: toast.POSITION.TOP_CENTER,
                 autoClose : 1500
             });
@@ -83,7 +83,7 @@ export function ExchangeProvider({children}){
     const cancelExchangeDetail = async (idExchangeDetail) => {
         try {
             await cancelExchangeDetailRequest(idExchangeDetail);
-            toast.success('Vehiculo elminado del intercambio.',{
+            toast.success('Vehículo eliminado del intercambio',{
                 position: toast.POSITION.TOP_CENTER,
                 autoClose : 1500
             });
@@ -99,7 +99,7 @@ export function ExchangeProvider({children}){
     const nullifyExchange = async (idExchange) => {
         try {
             await nullifyExchangeRequest(idExchange);
-            toast.success('Cambio anulado con exito.',{
+            toast.success('Intercambio anulado con éxito!',{
                 position: toast.POSITION.TOP_CENTER,
                 autoClose : 1500
             });

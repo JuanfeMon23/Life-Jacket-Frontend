@@ -24,14 +24,14 @@ export function PurchaseProvider ({children}) {
     const createPurchase = async (purchase) => {
         try {
             const res = await createPurchaseRequest(purchase);
-            toast.success('Compra creada con éxito!',{
+            toast.success('Compra registrada con éxito!',{
                 position: toast.POSITION.TOP_CENTER
             });
             getPurchases();
             return res.data;
         } catch (error) {
             console.log(error)
-            toast.error('Error al crear la compra' ,{
+            toast.error('Error al registrar la compra' ,{
                 position: toast.POSITION.TOP_CENTER,
                 autoClose : 1500
             });

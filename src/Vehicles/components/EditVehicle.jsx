@@ -40,7 +40,7 @@ export  function EditVehicle (props) {
               <ModalHeader className="flex flex-col gap-3">Editar vehículo</ModalHeader>
               <ModalBody>
                 <form onSubmit={handleSubmit(onSubmit)}>
-                    <div className='flex-col m-3'>
+                    <div className='flex flex-col m-3 justify-center items-center'>
                     <Controller
                           name="vehicleType"
                           control={control}
@@ -290,8 +290,7 @@ export  function EditVehicle (props) {
                   </div>
 
                   
-                  <div className=" flex">
-                    <div className=' flex-col m-3'>
+                    <div className='flex flex-col m-3 justify-center items-center'>
                       <Controller
                             name="soat"
                             defaultValue={vehicles.soat}
@@ -311,7 +310,7 @@ export  function EditVehicle (props) {
                     
                     </div>
 
-                    <div className='flex-col m-3'>
+                    <div className='flex flex-col m-3 justify-center items-center'>
                     <Controller
                           name="technomecanics"
                           control={control}
@@ -330,7 +329,6 @@ export  function EditVehicle (props) {
                         /> 
 
                     </div>
-                  </div>
                   
                   <div className=' flex '>
                   <div className=' flex-col m-3'>

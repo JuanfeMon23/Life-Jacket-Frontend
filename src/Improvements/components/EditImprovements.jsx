@@ -24,7 +24,7 @@ export  function EditImprovements(props) {
 
     function handleEdit(event){
         event.preventDefault();
-        toast.error('No puedes editar mejoras inhabilitadas.' ,{
+        toast.error('No puedes editar mejoras inhabilitadas' ,{
           autoClose : 1500,
           position: toast.POSITION.TOP_CENTER
       });
@@ -94,7 +94,7 @@ export  function EditImprovements(props) {
 
                         </div>
 
-                        <div className='flex-col m-3 w-[400px]'>
+                        <div className='flex flex-col m-3 justify-center items-center'>
                         <Controller
                           name="improvementDescription"
                           defaultValue={improvement.improvementDescription}

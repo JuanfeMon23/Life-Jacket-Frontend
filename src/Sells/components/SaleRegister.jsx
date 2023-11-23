@@ -161,7 +161,7 @@ export function SaleRegister() {
 
                     </div>
 
-                        <div className=' flex-col m-3'>
+                        <div className='flex flex-col m-3 justify-center items-center'>
                         <Controller
                               name="saleDate"
                               control={control}
@@ -183,7 +183,7 @@ export function SaleRegister() {
                           /> 
                         </div>
 
-                        <div className=' flex-col m-3 '>
+                        <div className='flex flex-col m-3 justify-center items-center'>
                         <Controller
                               name="saleFinalPrice"
                               control={control}
@@ -208,7 +208,7 @@ export function SaleRegister() {
                               )}
                             />
                         </div>  
-                    <div className=' flex-col  m-3'>
+                    <div className='flex flex-col m-3 justify-center items-center'>
                     <Controller
                           name="salePecuniaryPenalty"
                           control={control}
@@ -230,7 +230,7 @@ export function SaleRegister() {
                         />
                     </div>
 
-                    <div className=' flex-col  m-3 '>
+                    <div className='flex flex-col m-3 justify-center items-center'>
                     <Controller
                               name="saleLimitations"
                               control={control}

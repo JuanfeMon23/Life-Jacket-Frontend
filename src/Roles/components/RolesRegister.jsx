@@ -33,61 +33,59 @@ useEffect(() => {
   getUsers();
 },[]);
 
-  return (
-    <div className='flex'>
-      <Button title='Agregar rol' endContent={<AiOutlinePlusCircle className=' text-2xl'/>} color="primary" variant="solid" onPress={onOpen} className=' text-white font-bold'>Agregar</Button>      
-      <Modal isOpen={isOpen} onOpenChange={onOpenChange}>
-        <ModalContent>
-          {(onClose) => (
-            <>
-              <ModalHeader className="flex flex-col gap-3">Datos del rol</ModalHeader>
-              <ModalBody>
-                <form onSubmit={handleSubmit(onSubmit)}>
+return (
+  <div className='flex'>
+    <Button title='Agregar rol' endContent={<AiOutlinePlusCircle className=' text-2xl'/>} color="primary" variant="solid" onPress={onOpen} className=' text-white font-bold'>Agregar</Button>      
+    <Modal isOpen={isOpen} onOpenChange={onOpenChange}>
+      <ModalContent>
+        {(onClose) => (
+          <>
+            <ModalHeader className="flex flex-col gap-3">Datos del rol</ModalHeader>
+            <ModalBody className='flex justify-center items-center'>
+              <form onSubmit={handleSubmit(onSubmit)}>
+                <div className='flex justify-center items-center lg:w-[400px]'>
+                  <Controller
+                    name="rolName"
+                    control={control}
+                    rules={{
+                      required: "Campo requerido",
+                      minLength: {
+                        value: 3,
+                        message: "Al menos 3 caracteres"
+                      },
+                      maxLength: {
+                        value: 20,
+                        message: "Máximo 20 caracteres"
+                      },
+                      pattern: {
+                        value: /^[a-zA-Z\s]*$/,
+                        message: "Solo letras"
+                      }
+                    }}
+                    render={({ field }) => (
+                      <Input
+                        {...field}
+                        type="text"
+                        label="Nombre del rol"
+                        variant="bordered"
+                        endContent={<RequiredIcon/>}
+                        color={errors.rolName ? "danger" : ""}
+                        errorMessage={errors.rolName?.message}
+                        className="max-w-xs"
+                      />
+                    )}
+                  />
+                </div>
+                <div className='text-center my-3'>
+                  <ButtonAccept/>
+                </div>       
+              </form>    
+            </ModalBody>
+          </>
+        )}
+      </ModalContent>
+    </Modal>
+  </div>
+);
 
-                <div className='flex-col m-3 lg:w-[400px]'>
-                      <Controller
-                          name="rolName"
-                          control={control}
-                          rules={{
-                            required: "Campo requerido",
-                            minLength: {
-                              value: 3,
-                              message: "Al menos 3 caracteres"
-                            },
-                            maxLength: {
-                              value: 20,
-                              message: "Máximo 20 caracteres"
-                            },
-                            pattern: {
-                              value: /^[a-zA-Z\s]*$/,
-                              message: "Solo letras"
-                            }
-                          }}
-                          render={({ field }) => (
-                            <Input
-                              {...field}
-                              type="text"
-                              label="Nombre del rol"
-                              variant="bordered"
-                              endContent={<RequiredIcon/>}
-                              color={errors.rolName ? "danger" : ""}
-                              errorMessage={errors.rolName?.message}
-                              className="max-w-xs"
-                            />
-                          )}
-                        /> 
-                      </div>
-
-                    
-                  <div className=' text-center my-3 '>
-                      <ButtonAccept/>
-                  </div>       
-                </form>    
-              </ModalBody>
-            </>
-          )}
-        </ModalContent>
-      </Modal>
-    </div>
-  )
 }

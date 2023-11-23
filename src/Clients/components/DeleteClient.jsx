@@ -27,17 +27,17 @@ export  function DeleteClient(props) {
 
   return (
     <div className=' flex'>
-        {clients.sales <= 0 && clients.purchases <= 0 && clients.exchanges <= 0 ? <Button title='Eliminar cliente' className=' bg-red-400 mr-2' isIconOnly onPress={onOpen}><AiOutlineDelete className='text-white text-2xl '/></Button>
+        {clients.sales <= 0 && clients.purchases <= 0 && clients.exchanges <= 0 ? <Button title='Eliminar cliente' className=' bg-red-400 ' isIconOnly onPress={onOpen}><AiOutlineDelete className='text-white text-2xl '/></Button>
          : <Button title='Eliminar cliente' isIconOnly className=' mr-2'  onClick={handleDelete}><AiOutlineDelete className='text-white text-2xl'/></Button>}
         <Modal isOpen={isOpen} onOpenChange={onOpenChange}>
         <ModalContent>
           {(onClose) => (
             <>
-              <ModalHeader className=" items-center">¿Deseas eliminar el cliente?</ModalHeader>
+              <ModalHeader className=" justify-center text-2xl m-4">¿Deseas eliminar el cliente?</ModalHeader>
               <ModalBody>
                 <form onSubmit={handleSubmit(onSubmit)}>
                     <div className=' text-center m-3'>
-                        <Button className=' bg-green-600  w-20 h-18 p-3 rounded-lg text-white' type='submit'>Aceptar</Button>
+                        <Button className=' bg-emerald-600  w-20 h-18 p-3 rounded-lg text-white' type='submit'>Aceptar</Button>
                     </div>
 
                 </form>

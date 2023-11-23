@@ -27,7 +27,7 @@ export function SellProvider({children}) {
     const createSell = async (sell) => {
         try {
             const res = await createSellRequest(sell);
-            toast.success('Venta creada con éxito!',{
+            toast.success('Venta registrada con éxito!',{
                 position: toast.POSITION.TOP_CENTER,
                 autoClose : 1500,
             });
@@ -35,7 +35,7 @@ export function SellProvider({children}) {
             getVehicles();
             return res.data;
         } catch (error) {
-            toast.error('Error al crear una venta' ,{
+            toast.error('Error al registrar una venta' ,{
                 position: toast.POSITION.TOP_CENTER,
                 autoClose : 1500
             });

@@ -35,7 +35,7 @@ export function RolesProvider({children}) {
     const createRol = async (roles) => {
         try {
             const res = await createRolRequest(roles);
-            toast.success('Rol creado con exito.',{
+            toast.success('Rol registrado con éxito!',{
                 position: toast.POSITION.TOP_CENTER,
                 autoClose : 1500
             }); 
@@ -54,7 +54,7 @@ export function RolesProvider({children}) {
     const deleteRol = async (idRol) => {
         try {
              await deleteRolRequest(idRol);
-             toast.success('Rol eliminado con exito.',{
+             toast.success('Rol eliminado con éxito!',{
                 position: toast.POSITION.TOP_CENTER,
                 autoClose :1500
             });

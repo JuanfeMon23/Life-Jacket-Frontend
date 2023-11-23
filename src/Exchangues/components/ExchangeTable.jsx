@@ -32,7 +32,7 @@ const statusOptions = [
 
 
   const columns = [
-    {name: "Fecha del cambio", uid: "exchangeDate", sortable: true},
+    {name: "Fecha del intercambio", uid: "exchangeDate", sortable: true},
     {name: "Nombre del cliente", uid: "exchangeClient", sortable: true},
     {name: "Efectivo involucrado", uid: "exchangePrice", sortable: true},
     {name: "Estado", uid: "exchangeStatus", sortable: true},
@@ -168,7 +168,7 @@ export function ExchangeTable() {
               </div>
             </div>
             <div className="flex justify-between items-center">
-              <span className="text-default-400 text-small">Total de cambios: {exchanges.length} </span>
+              <span className="text-default-400 text-small">Total de intercambios: {exchanges.length} </span>
               <label className="flex items-center text-default-400 text-small">
                 Filas por página
                 <select
