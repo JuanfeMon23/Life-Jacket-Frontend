@@ -6,8 +6,6 @@ import { useClients } from '../../Clients/context/clientsContext';
 import { useVehicles } from '../../Vehicles/context/vehiclesContext';
 import {AiOutlinePlusCircle} from 'react-icons/Ai';
 import { RequiredIcon } from '../../components/globalComponents/RequiredIcon.jsx';
-import { departamentos } from '../../../colombia.js';
-
 
 
 export function PurchaseRegister() {
@@ -128,42 +126,41 @@ export function PurchaseRegister() {
                               />
                             </div>
 
-                            <div className='flex-col m-3 w-[200px]'>
-                                <Controller
-                                  name="purchaseMunicipality"
-                                  control={control}
-                                  rules={{ required: 'Campo requerido' }}
-                                  render={({ field }) => {
-                                    const departamento = departamentos.find((d) => d.id === parseInt(departamentoSeleccionado, 10));
-                                    console.log(departamento)
-                                    const ciudades = departamento ? departamento.ciudades : [];
-                                    return (
-                                      <Select
-                                        {...field}
-                                        label="Ciudad o municipio"
-                                        variant="bordered"
-                                        endContent={<RequiredIcon />}
-                                        color={errors.purchaseMunicipality ? "danger" : ""}
-                                        errorMessage={errors.purchaseMunicipality?.message}
-                                        className="max-w-xs"
-                                        value={ciudades.length > 0 ? ciudades[0] : ''}
-                                        onChange={(e) => {
-                                          field.onChange(e.target.value);
-                                        }}
-                                      >
-                                        {ciudades.map((ciudad, i) => (
-                                          <SelectItem key={i} value={ciudad.valueOf}>
-                                            {ciudad}
-                                          </SelectItem>
-                                        ))}
-                                      </Select>
-                                    );
-                                  }}
-                                />
-                            </div>
-                          </div>
-                        )}
+                        <div className=' flex-col m-3'>
+                        <Controller
+                          name="purchaseMunicipality"
+                          control={control}
+                          rules={{
+                            required: "Campo requerido",
+                            minLength: {
+                              value: 3,
+                              message: "Al menos 3 caracteres"
+                            },
+                            maxLength: {
+                              value: 40,
+                              message: "Máximo 40 caracteres"
+                            },
+                            pattern: {
+                              value: /^[a-zA-Z\s]*$/,
+                              message: "Solo letras"
+                            }
+                          }}
+                          render={({ field }) => (
+                            <Input
+                              {...field}
+                              type="text"
+                              label="Ciudad o municipio"
+                              variant="bordered"
+                              endContent={<RequiredIcon/>}
+                              color={errors.purchaseMunicipality ? "danger" : ""}
+                              errorMessage={errors.purchaseMunicipality?.message}
+                              className="max-w-xs"
+                            />
+                          )}
+                        />
+                        </div>  
 
+                    </div>
                         <div className=' flex-col m-3'>
                             <Controller
                               name="purchaseDate"
@@ -198,7 +195,7 @@ export function PurchaseRegister() {
                           /> 
                         </div>
 
-                        <div className=' flex-col m-3'>
+                        <div className='flex flex-col m-3 justify-center items-center'>
                             <Controller
                               name="purchaseFinalPrice"
                               control={control}
@@ -225,7 +222,7 @@ export function PurchaseRegister() {
                         </div>  
                   
 
-                    <div className=' m-3'>
+                    <div className='flex flex-col m-3 justify-center items-center'>
                     <Controller
                           name="purchasePecuniaryPenalty"
                           control={control}
@@ -247,7 +244,7 @@ export function PurchaseRegister() {
                         />
                     </div>
 
-                    <div className=' m-3'>
+                    <div className='flex flex-col m-3 justify-center items-center'>
                             <Controller
                               name="purchaseLimitations"
                               control={control}
@@ -279,7 +276,7 @@ export function PurchaseRegister() {
 
 
                   <div className=' text-center my-3 '>
-                    <button type='submit' className='bg-gradient-to-r from-cyan-500 to-blue-800 text-white font-bold w-20 h-10 rounded-lg'>Crear</button>
+                      <ButtonAccept/>
                   </div>
                   
                 </form>

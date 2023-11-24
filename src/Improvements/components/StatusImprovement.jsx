@@ -19,7 +19,7 @@ export  function StatusImprovement(props) {
     
   return (
     <div className='flex'>
-    {improvement.improvementStatus === true ? <Button className=' bg-green-600 rounded-lg' onPress={onOpen}><GrStatusGood className='text-2xl'/></Button> : <Button className=' bg-slate-600 rounded-lg' onPress={onOpen}><TiDeleteOutline className='text-white text-2xl'/></Button>}
+    {improvement.improvementStatus === true ? <Button className=' bg-green-600 rounded-lg' title='Cambiar estado de la mejora' onPress={onOpen}><GrStatusGood className='text-2xl'/></Button> : <Button className=' bg-slate-600 rounded-lg' title='Cambiar estado de la mejora'  onPress={onOpen}><TiDeleteOutline className='text-white text-2xl'/></Button>}
       <Modal isOpen={isOpen} onOpenChange={onOpenChange}>
         <ModalContent>
           {(onClose) => (

@@ -58,7 +58,7 @@ export  function ExchangeDetail(props) {
                         name='idVehicleExchange'
                         control={control}
                         rules={{
-                            required : 'Campo obligatorio'
+                            required : 'Campo requerido'
                         }}
                         render={({field}) => (
                     <Select
@@ -91,7 +91,7 @@ export  function ExchangeDetail(props) {
                             render={({field}) => (
                                 <Select
                                 {...field}
-                                label="Estado del vehiculo"
+                                label="Estado del vehículo"
                                 variant="bordered"
                                 color={errors.vehicleStatusExchange ? "danger" : ""}
                                 errorMessage={errors.vehicleStatusExchange?.message}
@@ -111,7 +111,7 @@ export  function ExchangeDetail(props) {
                     />
                 </div>
                 <div>
-                    <Button type='submit' size='lg'  className=' text-white bg-green-600 hover:bg-green-800'>Agregar</Button>
+                    <Button type='submit' size='lg' title='Agregar vehículo' className=' text-white bg-green-600 hover:bg-green-800'>Agregar</Button>
                 </div>
             </div>
             </form>
@@ -129,7 +129,7 @@ export  function ExchangeDetail(props) {
                             </TableColumn>
                         ))}
             </TableHeader>
-                <TableBody emptyContent={'Aun no hay vehiculos asociados al intercambio'} >
+                <TableBody emptyContent={'Aún no hay vehículos asociados al intercambio'} >
                 {exchanges.filter(exchange => exchange.idExchange === idExchange).map((exchange) => (
                         exchange.vehiclesExchange.map((vehicle) => (
                         <TableRow key={vehicle.idVehicle}>
@@ -139,7 +139,7 @@ export  function ExchangeDetail(props) {
                             <TableCell>{vehicle.ExchangesDetails.vehicleStatusExchange === "true" ? <Chip color="success">Entrante</Chip>  : <Chip color="danger">Saliente</Chip>  }</TableCell>
                             <TableCell><Button onClick={() => {
                                 cancelExchangeDetail(vehicle.ExchangesDetails.idExchangeDetail)
-                            } } title='Eliminar vehiculo del intercambio' isIconOnly className=' bg-red-400'><AiOutlineDelete className={`text-2xl text-white`}/></Button></TableCell>
+                            } } title='Eliminar vehículo del intercambio' isIconOnly className=' bg-red-400'><AiOutlineDelete className={`text-2xl text-white`}/></Button></TableCell>
                         </TableRow>
                         ))
                     ))}  

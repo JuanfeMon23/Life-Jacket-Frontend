@@ -116,6 +116,7 @@ export  function TableClients() {
           <div className="flex flex-col gap-4 mt-5">
             <div className="flex justify-between gap-3 items-end">
               <Input
+                title='Buscar cliente'
                 isClearable
                 className=" sm:max-w-[30%] shadow-xl"
                 placeholder="Buscar..."
@@ -127,7 +128,7 @@ export  function TableClients() {
               <div className="flex gap-3">
                 <Dropdown>
                   <DropdownTrigger className="hidden sm:flex">
-                    <Button startContent={<IoIosArrowDown/>} color="primary" variant="flat" >
+                    <Button startContent={<IoIosArrowDown/>} title='Filtrar los clientes por su estado' color="primary" variant="flat" >
                       Estado
                     </Button>
                   </DropdownTrigger>
@@ -152,7 +153,7 @@ export  function TableClients() {
             <div className="flex justify-between items-center">
               <span className="text-default-400 text-small">Total de clientes: {clients.length} </span>
               <label className="flex items-center text-default-400 text-small">
-                Filas por pagina
+                Filas por página
                 <select
                   className="bg-transparent outline-none text-default-400 text-small"
                   onChange={onRowsPerPageChange}
@@ -189,10 +190,10 @@ export  function TableClients() {
               onChange={setPage}
             />
             <div className="hidden sm:flex w-[30%] justify-end gap-2">
-              <Button isDisabled={pages === 1} size="sm"  color="primary" onPress={onPreviousPage}>
+              <Button isDisabled={pages === 1} size="sm"  title='Página anterior' color="primary" onPress={onPreviousPage}>
                 Anterior
               </Button>
-              <Button isDisabled={pages === 1} size="sm"  color="primary" onPress={onNextPage}>
+              <Button isDisabled={pages === 1} size="sm" title='Página siguiente' color="primary" onPress={onNextPage}>
                 Siguiente
               </Button>
             </div>

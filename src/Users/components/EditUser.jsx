@@ -8,6 +8,7 @@ import { useUsers } from '../Context/userContext';
 import { toast } from "react-toastify";
 import { useRoles } from '../../Roles/context/rolesContext';
 import { RequiredIcon } from '../../components/globalComponents/RequiredIcon.jsx';
+import { ButtonAccept } from '../../components/ButtonAccept';
 
 export function EditUser(props) {
     const {isOpen, onOpen, onOpenChange} = useDisclosure();
@@ -311,7 +312,7 @@ export function EditUser(props) {
 
 
                       <div className=' text-center my-3 '>
-                        <button type='submit' className='bg-gradient-to-r from-cyan-500 to-blue-800 text-white font-bold w-20 h-10 rounded-lg'>Editar</button>
+                      <ButtonAccept/>
                       </div>
                       
                     </form> 

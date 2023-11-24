@@ -33,11 +33,11 @@ export  function DeleteRol(props) {
             <ModalContent>
             {(onClose) => (
                 <> 
-                <ModalHeader className=" justify-center text-2xl m-4  ">¿Deseas Eliminar el Rol?</ModalHeader>
+                <ModalHeader className=" justify-center text-2xl m-4  ">¿Deseas eliminar el rol?</ModalHeader>
                 <ModalBody>
                     <form onSubmit={handleSubmit(onSubmit)}>
                         <div className=' text-center m-3'>
-                            <button className=' bg-green-600  w-20 h-18 p-3 rounded-lg text-white' type='submit'>Aceptar</button>
+                            <button className=' bg-emerald-600  w-20 h-18 p-3 rounded-lg text-white' type='submit'>Aceptar</button>
                         </div>
 
                     </form>

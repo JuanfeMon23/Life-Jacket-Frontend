@@ -8,6 +8,7 @@ import {Input} from "@nextui-org/react";
 import {AiTwotoneEdit} from 'react-icons/Ai';
 import { useVehicles } from '../../Vehicles/context/vehiclesContext.jsx';
 import { RequiredIcon } from '../../components/globalComponents/RequiredIcon.jsx';
+import { ButtonAccept } from '../../components/ButtonAccept';
 
 export  function EditImprovements(props) {
     const {vehicles} = useVehicles();
@@ -23,7 +24,7 @@ export  function EditImprovements(props) {
 
     function handleEdit(event){
         event.preventDefault();
-        toast.error('No puedes editar mejoras inhabilitadas.' ,{
+        toast.error('No puedes editar mejoras inhabilitadas' ,{
           autoClose : 1500,
           position: toast.POSITION.TOP_CENTER
       });
@@ -93,7 +94,7 @@ export  function EditImprovements(props) {
 
                         </div>
 
-                        <div className='flex-col m-3 w-[400px]'>
+                        <div className='flex flex-col m-3 justify-center items-center'>
                         <Controller
                           name="improvementDescription"
                           defaultValue={improvement.improvementDescription}
@@ -124,9 +125,9 @@ export  function EditImprovements(props) {
                         /> 
                         </div>
 
-                    <div className=' text-center my-3 '>
-                        <button type='submit' className='bg-gradient-to-r from-cyan-500 to-blue-800 text-white font-bold w-20 h-10 rounded-lg'>Crear</button>
-                    </div>
+                      <div className=' text-center my-3 '>
+                      <ButtonAccept/>
+                      </div>
                     
                     </form>
                 </ModalBody>

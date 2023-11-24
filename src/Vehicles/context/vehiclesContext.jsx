@@ -26,7 +26,7 @@ export function VehicleProvider({children}){
     const createBrand = async (brand) => {
         try {
             const res = await createBrandsRequest(brand);
-            toast.success('Marca creada con éxito.',{
+            toast.success('Marca registrada con éxito!',{
                 position: toast.POSITION.TOP_CENTER,
                 autoClose : 1500
             });
@@ -45,7 +45,7 @@ export function VehicleProvider({children}){
     const deleteBrands = async (idBrand) => {
         try {
             await deleteBrandsRequest(idBrand);
-            toast.success('Marca eliminada con éxito.',{
+            toast.success('Marca eliminada con éxito!',{
                 position: toast.POSITION.TOP_CENTER,
                 autoClose : 1500
             });
@@ -82,7 +82,7 @@ export function VehicleProvider({children}){
     const createVehicle = async (vehicle) => {
         try {
             const res = await createVehiclesRequest(vehicle);
-            toast.success('Vehiculo creado con éxito!',{
+            toast.success('Vehículo creado con éxito!',{
                 position: toast.POSITION.TOP_CENTER,
                 autoClose : 1500
             });

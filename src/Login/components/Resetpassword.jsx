@@ -44,7 +44,7 @@ export  function Resetpassword() {
           <Link to='/'> <span className=' text-blue-800 cursor-pointer'>Volver al inicio de sesión </span></Link>
         </div>
         <div className=' py-10'>
-            <h2 className=' text-3xl font-bold text-blue-800'>Nueva Contraseña</h2>
+            <h2 className=' text-3xl font-bold text-blue-800'>Nueva contraseña</h2>
             <div className='border-2 w-10 border-blue-800 inline-block mb-2'></div>
             <div className=' flex flex-col items-center mt-8'>
               <form onSubmit={handleSubmit(onSubmit)}>

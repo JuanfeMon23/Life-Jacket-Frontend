@@ -5,6 +5,7 @@ import { useRoles } from '../context/rolesContext';
 import {Button, Checkbox} from "@nextui-org/react";
 import {AiOutlinePlusCircle} from 'react-icons/Ai';
 import { toast } from "react-toastify";
+import { ButtonAccept } from '../../components/ButtonAccept';
 
 export const AddLicenses = (props) => {
     const {licenses, addLicenses} = useRoles();
@@ -20,7 +21,7 @@ export const AddLicenses = (props) => {
            addLicenses(roles.idRol, licenses );
         }
       }
-      toast.success('Permisos asignados con exito.' ,{
+      toast.success('Permisos asignados con éxito!' ,{
         autoClose : 1500,
         position: toast.POSITION.TOP_CENTER
     });
@@ -32,7 +33,7 @@ export const AddLicenses = (props) => {
 
   function handleAddLicenses (e) {
     e.preventDefault();
-    toast.error('Permisos ya asignados.' ,{
+    toast.error('Permisos ya asignados' ,{
       autoClose : 1500,
       position: toast.POSITION.TOP_CENTER
   });
@@ -50,7 +51,7 @@ export const AddLicenses = (props) => {
                 <ModalHeader className="flex flex-col gap-3">Asignar permisos</ModalHeader>
               <ModalBody>
                 <form onSubmit={handleSubmit(onSubmit)}>
-                  <div className=' flex flex-col'>
+                  <div className=' flex flex-col justify-center items-center p-0 m-0'>
                   {licenses.map((licenses) => (
                             <label key={licenses.idLicense}>
                             <Controller
@@ -68,9 +69,10 @@ export const AddLicenses = (props) => {
                             </label>
                         ))}
                   </div>
-
-                        <Button className=' mt-3' color='primary' type='submit'>Asignar Permisos</Button>
-                    </form>
+                  <div className='text-center my-3'>
+                    <ButtonAccept/>
+                  </div> 
+                  </form>
               </ModalBody>
                 </>
             )}

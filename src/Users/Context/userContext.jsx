@@ -28,7 +28,7 @@ export function UserProvider ({children}) {
     const createUser = async (user) => {
         try {
             const res = await createUserRequest(user );
-            toast.success('Usuario creado con éxito!',{
+            toast.success('Usuario registrado con éxito!',{
                 position: toast.POSITION.TOP_CENTER,
                 autoClose : 1500
             });

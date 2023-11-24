@@ -16,14 +16,14 @@ export function ReportExchange() {
 
    return (
     <>
-        <Button className=' bg-violet-600 text-white' startContent={<IoDocumentTextOutline/>} onPress={onOpen}>Informe</Button>
+        <Button className=' bg-violet-600 text-white' title='Generar informe de intercambios'  startContent={<IoDocumentTextOutline/>} onPress={onOpen}>Informe</Button>
         <Modal isOpen={isOpen} onOpenChange={onOpenChange}>
             <ModalContent>
-                <ModalHeader className="flex flex-col gap-1">Informe de cambios</ModalHeader>
+                <ModalHeader className="flex flex-col ">Informe de intercambios</ModalHeader>
                 <ModalBody>
                     <form onSubmit={handleSubmit(onSubmit)}>
                         <div className="flex">
-                            <div className='flex-col m-3'>
+                            <div className='flex flex-col m-1 justify-center items-center'>
                                 <Controller
                                     name="firstParameter"
                                     control={control}
@@ -42,7 +42,7 @@ export function ReportExchange() {
                                 />
                             </div>
 
-                            <div className='flex-col m-3'>
+                            <div className='flex flex-col m-2 justify-center items-center'>
                                 <Controller
                                     name="secondParameter"
                                     control={control}

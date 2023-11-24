@@ -25,7 +25,7 @@ export function ClientProvider({children}){
     const createClient = async (client) => {
         try {
             const res = await createClientRequest(client);
-            toast.success('Cliente creado con éxito!',{
+            toast.success('Cliente registrado con éxito!',{
                 position: toast.POSITION.TOP_CENTER,
                 autoClose : 1500
             });

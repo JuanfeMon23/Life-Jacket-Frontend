@@ -18,7 +18,7 @@ export  function DeleteImprovement(props) {
 
     const handleDelete = (event) => {
         event.preventDefault();
-        toast.error('No puedes eliminar una mejora deshabilitada.' ,{
+        toast.error('No puedes eliminar una mejora deshabilitada' ,{
           autoClose : 1500,
           position: toast.POSITION.TOP_CENTER
       });
@@ -32,11 +32,11 @@ export  function DeleteImprovement(props) {
         <ModalContent>
           {(onClose) => (
             <>
-              <ModalHeader className=" justify-center text-2xl m-4 ">¿Deseas eliminar la mejora?</ModalHeader>
+              <ModalHeader className=" items-center">¿Deseas eliminar la mejora?</ModalHeader>
               <ModalBody>
                 <form onSubmit={handleSubmit(onSubmit)}>
                     <div className=' text-center m-3'>
-                        <button className=' bg-green-600  w-20 h-18 p-3 rounded-lg text-white' type='submit'>Aceptar</button>
+                        <button className=' bg-emerald-600  w-20 h-18 p-3 rounded-lg text-white' type='submit'>Aceptar</button>
                     </div>
 
                 </form>

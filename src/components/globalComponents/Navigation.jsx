@@ -86,7 +86,7 @@ export  function Navigation() {
                             <Button isIconOnly> <BiSolidUser className=' text-2xl text-sky-600'/></Button>
                         </DropdownTrigger>
                         <DropdownMenu aria-labelledby='logout'>
-                            <DropdownItem   className="text-danger" color="danger" onClick={handleLogout} > Cerrar sesion</DropdownItem>
+                            <DropdownItem   className="text-danger" color="danger" onClick={handleLogout} > Cerrar sesión</DropdownItem>
                         </DropdownMenu>
                     </Dropdown>
                 </div>

@@ -97,7 +97,7 @@ export  function WatchExchange(props) {
                             </div>
 
                             <div className={styles.secondContainer}>
-                                <p className={styles.firstP}>Numero</p> 
+                                <p className={styles.firstP}>Número</p> 
                                 <div className={styles.thirdContainer}>
                                     <p className={styles.secondP}>{`${exchange.client.clientDocument}`}</p>
                                 </div>
@@ -123,7 +123,7 @@ export  function WatchExchange(props) {
                         
                         <div className={styles.firstContainer}>
                             <div className={styles.secondContainer}>
-                                <p className={styles.firstP}>Numero </p> 
+                                <p className={styles.firstP}>Número </p> 
                                 <div className={styles.thirdContainer}>
                                     <p className={styles.secondP}>{`${exchange.client.clientPhoneNumber}`}</p>
                                 </div>
@@ -139,7 +139,7 @@ export  function WatchExchange(props) {
 
                         
                         </AccordionItem>
-                        <AccordionItem key='3' aria-aria-label='exchangeVehiclesDates' title='Datos de los vehiculos'>
+                        <AccordionItem key='3' aria-aria-label='exchangeVehiclesDates' title='Datos de los vehículos'>
                             {exchange.vehiclesExchange.map((exchange, i) => (
                                 <div className=' border-2 mb-5 rounded-lg' key={i}>
                                     <div className={styles.firstContainer}>
@@ -167,7 +167,7 @@ export  function WatchExchange(props) {
                                         </div>
 
                                         <div className={styles.secondContainer}>
-                                            <p className={styles.firstP}>Linea</p> 
+                                            <p className={styles.firstP}>Línea</p> 
                                             <div className={styles.thirdContainer}>
                                                 <p className={styles.secondP}>{`${exchange.line}`}</p>
                                             </div>

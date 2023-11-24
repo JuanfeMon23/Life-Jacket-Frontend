@@ -16,14 +16,14 @@ export function ReportSale() {
 
    return (
     <>
-        <Button title='Informe de venta' className=' bg-violet-600 text-white' startContent={<IoDocumentTextOutline/>} onPress={onOpen}>Informe</Button>
+        <Button title='Genrerar informe de venta' className=' bg-violet-600 text-white' startContent={<IoDocumentTextOutline/>} onPress={onOpen}>Informe</Button>
         <Modal isOpen={isOpen} onOpenChange={onOpenChange}>
             <ModalContent>
-                <ModalHeader className="flex flex-col gap-1">Informe de ventas</ModalHeader>
+                <ModalHeader className="flex flex-col ">Informe de ventas</ModalHeader>
                 <ModalBody>
                     <form onSubmit={handleSubmit(onSubmit)}>
                         <div className="flex">
-                            <div className='flex-col m-3'>
+                            <div className='flex flex-col m-1 justify-center items-center'>
                                 <Controller
                                     name="firstParameter"
                                     control={control}
@@ -42,7 +42,7 @@ export function ReportSale() {
                                 />
                             </div>
 
-                            <div className='flex-col m-3'>
+                            <div className='flex flex-col m-2 justify-center items-center'>
                                 <Controller
                                     name="secondParameter"
                                     control={control}

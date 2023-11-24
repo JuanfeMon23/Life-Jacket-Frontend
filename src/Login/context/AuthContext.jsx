@@ -37,7 +37,7 @@ export function AuthProvider({children}){
     const passwordRecovery = async (userEmail) => {
         try {
             await PasswordRecoveryRequest(userEmail);
-            toast.success('Se ha enviado un enlace a su correo.' ,{
+            toast.success('En ha enviado un enlace a su correo.' ,{
                 position: toast.POSITION.TOP_CENTER,
                 autoClose: 1500
               })
@@ -53,7 +53,7 @@ export function AuthProvider({children}){
     const resetPassword = async (idUser, password) => {
         try {
             await resetPasswordRequest(idUser, password);
-            toast.success('Contraseña actualizada con exito.' ,{
+            toast.success('Contraseña actualizada con éxito!' ,{
                 position: toast.POSITION.TOP_CENTER,
                 autoClose: 1500
               })
