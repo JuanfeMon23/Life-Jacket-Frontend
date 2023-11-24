@@ -3,8 +3,8 @@ import { usePurchases } from '../context/purchaseContext';
 import {Modal, ModalContent, ModalHeader, ModalBody, ModalFooter, useDisclosure} from "@nextui-org/react";
 import {Button} from "@nextui-org/react";
 import {useForm} from 'react-hook-form';
-import {GrStatusGood} from 'react-icons/gr'
 import {TiDeleteOutline} from 'react-icons/ti'
+import {HiOutlineCheckCircle} from 'react-icons/hi';
 
 export function StatusPurchase(props) {
     const {isOpen, onOpen, onOpenChange} = useDisclosure();
@@ -17,8 +17,8 @@ export function StatusPurchase(props) {
     };    
   return (
     <div className='flex'>
-    {purchase.purchaseStatus === "true" ? <Button title='Anular compra' isIconOnly className=' bg-green-600 rounded-lg mr-2' onPress={onOpen}><GrStatusGood className='text-2xl'/></Button> 
-    : <Button isIconOnly className=' mr-2' title='Anular compra' onPress={onOpen}><TiDeleteOutline className='text-white text-2xl'/></Button>}
+    {purchase.purchaseStatus === "true" ? <Button title='Anular compra' isIconOnly className=' bg-yellow-950/70 rounded-lg mr-2' onPress={onOpen}><TiDeleteOutline className='text-2xl text-white'/></Button> 
+    : <Button isIconOnly className=' mr-2' title='Anular compra' onPress={onOpen}><HiOutlineCheckCircle className='text-white text-2xl'/></Button>}
       <Modal isOpen={isOpen} onOpenChange={onOpenChange}>
         <ModalContent>
           {(onClose) => (

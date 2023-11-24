@@ -20,11 +20,10 @@ export  function CreateExchange() {
     idUltimoExchange = ultimoExchange.idExchange;
   }
 
-  console.log(idUltimoExchange);
   return (
     <div>
       <Title Title='Crear intercambio'/>
-      <div className=' flex'> 
+      <div className=' flex flex-col sm:flex-row'> 
         <ExchangeDetail idExchange={idUltimoExchange}/>
         <ExchangeInfo idExchange={idUltimoExchange}/>
       </div>

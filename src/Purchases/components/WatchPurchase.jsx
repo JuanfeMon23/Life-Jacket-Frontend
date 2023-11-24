@@ -24,7 +24,7 @@ export function WatchPurchase(props) {
                       <div className=" flex flex-col">
                         <p className="font-bold">Precio de la compra</p> 
                         <div className=" border-2 border-indigo-500/75 rounded-lg w-[15rem] p-1 ">
-                            <p className=" text-center">{`$${purchase.purchaseFinalPrice}`}</p>
+                            <p className=" text-center">  {typeof purchase.purchaseFinalPrice === "number" ? purchase.purchaseFinalPrice.toLocaleString("es-ES", { style: "currency", currency: "COP" }) : "No válido"}</p>
                         </div>
                       </div>
 
@@ -56,7 +56,13 @@ export function WatchPurchase(props) {
                     <div className=" flex flex-col">
                       <p className="font-bold">Fecha</p> 
                       <div className=" border-2 border-indigo-500/75 rounded-lg w-[15rem] p-1 ">
-                          <p className=" text-center">{purchase.purchaseDate}</p>
+                          <p className=" text-center">{new Date(purchase.purchaseDate).toLocaleString("es-ES", {
+                            year: "numeric",
+                            month: "2-digit",
+                            day: "2-digit",
+                            hour: "2-digit",
+                            minute: "2-digit"
+                          })}</p>
                       </div>
                     </div>
                   </div>  

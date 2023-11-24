@@ -1,4 +1,4 @@
-import React from 'react'
+import React,{useState, useEffect} from 'react'
 import {Modal, ModalContent, ModalHeader, ModalBody, ModalFooter, useDisclosure, user} from "@nextui-org/react";
 import {Input} from "@nextui-org/react";
 import {Button} from "@nextui-org/react";
@@ -20,6 +20,30 @@ export  function UserRegister() {
   const onSubmit = (data) => {
     { onSubmit ? createUser(data) && reset() : ''  }
   };
+
+  const [departments, setDepartments] = useState([]);
+  const [municipes, setMunicipes] = useState([]);
+  const [selectedDepartment, setselectedDepartment] = useState('');
+
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const typesResponse = await fetch('http://localhost:3000/api/Departments-departments');
+        const typesData = await typesResponse.json();
+        setDepartments(typesData);
+
+        if(selectedDepartment) {
+          const municipesResponse = await fetch(`http://localhost:3000/api/Departments-municipes?department=${selectedDepartment}`);
+          const municipesData = await municipesResponse.json();
+          setMunicipes(municipesData);
+        }
+      } catch (error) {
+        console.error('Error fetching data:', error);
+      }
+    };
+    fetchData();
+  }, [selectedDepartment]);
 
   return (
     <div className='flex'>
@@ -101,30 +125,30 @@ export  function UserRegister() {
                           control={control}
                           rules={{
                             required: "Campo requerido",
-                            minLength: {
-                              value: 3,
-                              message: "Al menos 3 caracteres"
-                            },
-                            maxLength: {
-                              value: 40,
-                              message: "Máximo 40 caracteres"
-                            },
-                            pattern: {
-                              value: /^[a-zA-Z\s]*$/,
-                              message: "Solo letras"
-                            }
                           }}
                           render={({ field }) => (
-                            <Input
+                            <Select
                               {...field}
-                              type="text"
+                              onChange={(e) => {
+                                field.onChange(e);
+                                setselectedDepartment(e.target.value);
+                              }}
                               label="Departamento"
                               variant="bordered"
                               endContent={<RequiredIcon/>}
                               color={errors.userDepartment ? "danger" : ""}
                               errorMessage={errors.userDepartment?.message}
                               className="max-w-xs"
-                            />
+                            >
+                              {departments.map((department) => (
+                                <SelectItem key={department.Department} value={department.Department}>
+                                  {department.Department}
+                                </SelectItem>
+                              ))
+
+                              }
+
+                            </Select>
                           )}
                         /> 
                       </div>
@@ -135,30 +159,23 @@ export  function UserRegister() {
                           control={control}
                           rules={{
                             required: "Campo requerido",
-                            minLength: {
-                              value: 3,
-                              message: "Al menos 3 caracteres"
-                            },
-                            maxLength: {
-                              value: 40,
-                              message: "Máximo 40 caracteres"
-                            },
-                            pattern: {
-                              value: /^[a-zA-Z\s]*$/,
-                              message: "Solo letras"
-                            }
                           }}
                           render={({ field }) => (
-                            <Input
+                            <Select
                               {...field}
-                              type="text"
                               label="Ciudad o municipio"
                               variant="bordered"
                               endContent={<RequiredIcon/>}
                               color={errors.userMunicipality ? "danger" : ""}
                               errorMessage={errors.userMunicipality?.message}
                               className="max-w-xs"
-                            />
+                            >
+                              {municipes.map((municipe) => (
+                                <SelectItem key={municipe.Municipe} value={municipe.Municipe}>
+                                  {municipe.Municipe}
+                                </SelectItem>
+                              ))}
+                            </Select>
                           )}
                         />
                       </div>
@@ -181,7 +198,7 @@ export  function UserRegister() {
                               message: "Máximo 40 caracteres"
                             },
                             pattern: {
-                              value: /^[a-zA-Z\s]*$/,
+                              value: /^[a-zA-ZáéíóúÁÉÍÓÚ\s]*$/,
                               message: "Solo letras"
                             }
                           }}
@@ -215,7 +232,7 @@ export  function UserRegister() {
                               message: "Máximo 40 caracteres"
                             },
                             pattern: {
-                              value: /^[a-zA-Z\s]*$/,
+                              value: /^[a-zA-ZáéíóúÁÉÍÓÚ\s]*$/,
                               message: "Solo letras"
                             }
                           }}
@@ -274,13 +291,9 @@ export  function UserRegister() {
                           value: 8,
                           message: "Al menos 8 caracteres"
                         },
-                        pattern: {
-                          value: /^(?=.*[A-Z])/,
-                          message: "Al menos una letra mayúscula"
-                        },
                         pattern : {
-                          value :  /^(?=.*[!@#$%^&*])/,
-                          message : 'Al menos un caracter especial'
+                          value :  /^(?=.*[A-Z])(?=.*[\W])/,
+                          message : 'Al menos una letra mayúscula y un caracter especial'
                         }
                       }}
                       render={({ field }) => (
@@ -310,9 +323,12 @@ export  function UserRegister() {
                             value : 7 ,
                             message : 'Al menos 7 números'
                           },
-
+                          maxLength : {
+                            value : 12,
+                            message : 'Máximo 12 números'
+                          },
                           pattern: {
-                            value: /^[0-9]*$/, // This pattern will only match numbers
+                            value: /^[0-9]*$/,
                             message: "Solo números"
                           }
                         }}
@@ -342,7 +358,10 @@ export  function UserRegister() {
                             value : 7 ,
                             message : 'Al menos 7 números'
                           },
-
+                          maxLength : {
+                            value : 12,
+                            message : 'Máximo 12 números'
+                          },
                           pattern: {
                             value: /^[0-9]*$/, // This pattern will only match numbers
                             message: "Solo números"

@@ -25,7 +25,8 @@ export function PurchaseProvider ({children}) {
         try {
             const res = await createPurchaseRequest(purchase);
             toast.success('Compra creada con éxito!',{
-                position: toast.POSITION.TOP_CENTER
+                position: toast.POSITION.TOP_CENTER,
+                autoClose : 1500
             });
             getPurchases();
             return res.data;
@@ -44,12 +45,14 @@ export function PurchaseProvider ({children}) {
         try {
             await statusPurchasesRequest(idPurchase);
             toast.success('Compra anulada con éxito!',{
-                position: toast.POSITION.TOP_CENTER
+                position: toast.POSITION.TOP_CENTER,
+                autoClose : 1500
             });
             getPurchases();
         } catch (error) {
             toast.error(error.response.data.message  ,{
-                position: toast.POSITION.TOP_CENTER
+                position: toast.POSITION.TOP_CENTER,
+                autoClose : 1500
             });
         }
     };

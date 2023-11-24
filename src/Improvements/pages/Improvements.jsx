@@ -1,13 +1,24 @@
 import React from 'react'
 import { useEffect } from "react";
-import { Navigation } from "../../components/globalComponents/Navigation";
 import { Title } from "../../components/globalComponents/Title";
 import { useImprovements } from '../context/improvementsContext';
-import {ImprovementRegister} from '../components/ImprovementRegister';
 import { TableImpovements } from '../components/TableImpovements';
+import { useNavigate } from 'react-router-dom';
+import { useAuth } from "../../Login/context/AuthContext";
 
 export function Improvements() {
     const {getImprovements} = useImprovements();
+    const {user} = useAuth();
+    const navigate = useNavigate();
+
+    useEffect(() => {
+      async function verificate(){
+        if(!user.Licenses.includes('Mejoras')){
+          navigate('/DashBoard');
+        }
+      }
+      verificate();
+    },[])
 
     useEffect(() => {
         getImprovements();

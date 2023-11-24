@@ -1,7 +1,6 @@
 import { createContext, useContext, useEffect, useState } from "react";
 import { toast } from "react-toastify";
 import { loginRequest, verifyTokenRequest, PasswordRecoveryRequest, resetPasswordRequest } from "../api/Auht";
-import { Navigate } from "react-router-dom";
 import Cookies from "js-cookie";
 
 
@@ -38,7 +37,7 @@ export function AuthProvider({children}){
     const passwordRecovery = async (userEmail) => {
         try {
             await PasswordRecoveryRequest(userEmail);
-            toast.success('En ha enviado un enlace a su correo.' ,{
+            toast.success('Se ha enviado un enlace a su correo.' ,{
                 position: toast.POSITION.TOP_CENTER,
                 autoClose: 1500
               })
@@ -70,37 +69,42 @@ export function AuthProvider({children}){
     
 
     useEffect(() => {
-      async function checkLogin(){
+        let isMounted = true; // variable de montaje
+        async function checkLogin() {
           const cookies = Cookies.get();
-          console.log(cookies)
-
-          if(!cookies.token) {
+          if (!cookies.token) {
+            if (isMounted) {
               setIsAutenticated(false);
               setLoading(false);
-              return setUser(null);
-          };
-
-          try {
-              const res = await verifyTokenRequest(cookies.token);
-              if(!res.data){
-                  setIsAutenticated(false);
-                  setLoading(false);
-                  if(isAutenticated === false) return <Navigate to='/' />
-              }
-
-              setIsAutenticated(true);
-              setUser(res.data);
-              setLoading(false);
-          } catch (error) {
-              setIsAutenticated(false);
               setUser(null);
+            }
+          } else {
+            try {
+              const res = await verifyTokenRequest(cookies.token);
+              if (res.data && isMounted) {
+                setIsAutenticated(true);
+                setUser(res.data);
+                setLoading(false);
+              } else if (isMounted) {
+                setIsAutenticated(false);
+                setLoading(false);
+              }
+            } catch (error) {
+              if (isMounted) {
+                setIsAutenticated(false);
+                setUser(null);
+              }
+            }
           }
-      }
-      checkLogin();
-  }, [])
+        }
+        checkLogin();
+        return () => {
+          isMounted = false; // limpiar el efecto si el componente se desmonta antes de que la solicitud se complete
+        };
+      }, []);
 
+    console.log(user)
 
-    
     const logout = () => {
         Cookies.remove("token");
         setUser(null);

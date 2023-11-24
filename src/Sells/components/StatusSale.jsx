@@ -3,8 +3,8 @@ import { useSells } from '../context/sellsContext';
 import {Modal, ModalContent, ModalHeader, ModalBody, ModalFooter, useDisclosure} from "@nextui-org/react";
 import {Button} from "@nextui-org/react";
 import {useForm} from 'react-hook-form';
-import {GrStatusGood} from 'react-icons/gr';
 import {TiDeleteOutline} from 'react-icons/ti'
+import {HiOutlineCheckCircle} from 'react-icons/hi';
 import { toast } from "react-toastify";
 
 export  function StatusSale(props) {
@@ -27,8 +27,8 @@ export  function StatusSale(props) {
 
   return (
     <div className='flex'>
-    {sale.saleStatus === "true" ? <Button isIconOnly title='Anular venta' className=' bg-green-600 rounded-lg mr-2' onPress={onOpen}><GrStatusGood className='text-2xl'/></Button>
-     : <Button isIconOnly title='Anular venta' className=' mr-2' onClick={handleStatus} ><TiDeleteOutline className='text-white text-2xl'/></Button>}
+    {sale.saleStatus === "true" ? <Button isIconOnly title='Anular venta' className=' bg-yellow-950/70 rounded-lg mr-2' onPress={onOpen}><TiDeleteOutline className='text-2xl text-white'/></Button>
+     : <Button isIconOnly title='Anular venta' className=' mr-2' onClick={handleStatus} ><HiOutlineCheckCircle className='text-white text-2xl'/></Button>}
       <Modal isOpen={isOpen} onOpenChange={onOpenChange}>
         <ModalContent>
           {(onClose) => (

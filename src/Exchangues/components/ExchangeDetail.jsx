@@ -52,7 +52,7 @@ export  function ExchangeDetail(props) {
     <> 
     <div className='  ml-5'>
             <form onSubmit={handleSubmit(onSubmit)}> 
-            <div className=' flex justify-between'>
+            <div className=' flex flex-col sm:flex-row justify-between'>
                 <div className=' w-[400px]'>
                     <Controller
                         name='idVehicleExchange'
@@ -115,7 +115,7 @@ export  function ExchangeDetail(props) {
                 </div>
             </div>
             </form>
-    <div className=' w-[85rem] mt-7'>
+    <div className=' w-[22rem] md:w-[50rem] xl:w-[93rem] mt-7'>
     <Table
         aria-label="Exchange Table"
         isCompact

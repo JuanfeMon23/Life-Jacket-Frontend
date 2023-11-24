@@ -35,6 +35,7 @@ const statusOptions = [
     {name: "Fecha del cambio", uid: "exchangeDate", sortable: true},
     {name: "Nombre del cliente", uid: "exchangeClient", sortable: true},
     {name: "Efectivo involucrado", uid: "exchangePrice", sortable: true},
+    {name: "Tipo de intercambio", uuid : "exchnageType"},
     {name: "Estado", uid: "exchangeStatus", sortable: true},
     {name: "Acciones", uid: "exchangeActions"},
   ];
@@ -241,8 +242,8 @@ export function ExchangeTable() {
                         ))}
                 </TableHeader>
                 <TableBody emptyContent={"No hay intercambios registrados"}>
-                        {items.map((item) => (
-                            <TableRow key={item.idExchange}>
+                        {items.map((item, i) => (
+                            <TableRow key={i}>
                                 <TableCell>
                                 {new Date(item.exchangeDate).toLocaleString("es-ES", {
                                         year: "numeric",
@@ -256,6 +257,11 @@ export function ExchangeTable() {
                                 <TableCell>
                                     {typeof item.exchangeCashPrice === "number" ? item.exchangeCashPrice.toLocaleString("es-ES", { style: "currency", currency: "COP" }) : "No válido"}
                                 </TableCell> 
+                                <TableCell>
+                                  {item.exchangeCashPriceStatus === "true" ? <Chip color="success">Entrante</Chip> 
+                                  : item.exchangeCashPriceStatus === "false" ? <Chip color="danger">Saliente</Chip> 
+                                  : <Chip>No aplica</Chip>}
+                                </TableCell>
                                 <TableCell>{item.exchangeStatus === "true" ?  <Chip color="success">Activo</Chip> : <Chip color="default">Inactivo</Chip>}</TableCell>
                                 <TableCell className=" flex justify-normal">
                                   <WatchExchange exchange={item} />

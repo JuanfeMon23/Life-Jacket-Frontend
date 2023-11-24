@@ -1,5 +1,5 @@
 import React from 'react'
-import {Modal, ModalContent, ModalHeader, ModalBody, Accordion, AccordionItem, Button, useDisclosure} from "@nextui-org/react";
+import {Modal, ModalContent, ModalHeader, ModalBody, Accordion, AccordionItem, Button, useDisclosure, Chip} from "@nextui-org/react";
 import {FiEye}from "react-icons/fi";
 import { toast } from "react-toastify";
 import { styles } from '../../components/styles';
@@ -172,6 +172,10 @@ export  function WatchExchange(props) {
                                                 <p className={styles.secondP}>{`${exchange.line}`}</p>
                                             </div>
                                         </div>
+                                    </div> 
+
+                                    <div className={styles.firstContainer}>
+                                        {exchange.ExchangesDetails.vehicleStatusExchange === "true" ?  <Chip color='success'>Entrante</Chip> : <Chip color='danger'>Saliente</Chip> }
                                     </div> 
                                 </div>
                             ))}

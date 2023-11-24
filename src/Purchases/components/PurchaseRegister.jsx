@@ -6,6 +6,8 @@ import { useClients } from '../../Clients/context/clientsContext';
 import { useVehicles } from '../../Vehicles/context/vehiclesContext';
 import {AiOutlinePlusCircle} from 'react-icons/Ai';
 import { RequiredIcon } from '../../components/globalComponents/RequiredIcon.jsx';
+import { departamentos } from '../../../colombia.js';
+
 
 
 export function PurchaseRegister() {
@@ -19,6 +21,8 @@ export function PurchaseRegister() {
         e.preventDefault();
         createPurchase(data);
     };
+
+    const [departamentoSeleccionado, setDepartamentoSeleccionado] = useState('');
 
   return (
     <div className='flex'>
@@ -92,82 +96,92 @@ export function PurchaseRegister() {
                         </div>
                     </div>
                       
-                    <div className=' flex'>
-                        <div className=' flex-col m-3'>
-                        <Controller
-                          name="purchaseDepartment"
-                          control={control}
-                          rules={{
-                            required: "Campo requerido",
-                            minLength: {
-                              value: 3,
-                              message: "Al menos 3 caracteres"
-                            },
-                            maxLength: {
-                              value: 40,
-                              message: "Máximo 40 caracteres"
-                            },
-                            pattern: {
-                              value: /^[a-zA-Z\s]*$/,
-                              message: "Solo letras"
-                            }
-                          }}
-                          render={({ field }) => (
-                            <Input
-                              {...field}
-                              type="text"
-                              label="Departamento"
-                              variant="bordered"
-                              endContent={<RequiredIcon/>}
-                              color={errors.purchaseDepartment ? "danger" : ""}
-                              errorMessage={errors.purchaseDepartment?.message}
-                              className="max-w-xs"
-                            />
-                          )}
-                        /> 
-                        </div>
 
-                        <div className=' flex-col m-3'>
-                        <Controller
-                          name="purchaseMunicipality"
-                          control={control}
-                          rules={{
-                            required: "Campo requerido",
-                            minLength: {
-                              value: 3,
-                              message: "Al menos 3 caracteres"
-                            },
-                            maxLength: {
-                              value: 40,
-                              message: "Máximo 40 caracteres"
-                            },
-                            pattern: {
-                              value: /^[a-zA-Z\s]*$/,
-                              message: "Solo letras"
-                            }
-                          }}
-                          render={({ field }) => (
-                            <Input
-                              {...field}
-                              type="text"
-                              label="Ciudad o municipio"
-                              variant="bordered"
-                              endContent={<RequiredIcon/>}
-                              color={errors.purchaseMunicipality ? "danger" : ""}
-                              errorMessage={errors.purchaseMunicipality?.message}
-                              className="max-w-xs"
-                            />
-                          )}
-                        />
-                        </div>  
+                    {departamentos && departamentos.length > 0 && (
+                          <div className='flex'>
+                            <div className='flex-col m-3 w-[200px]'>
+                              <Controller
+                                name="purchaseDepartment"
+                                control={control}
+                                rules={{ required: 'Campo requerido' }}
+                                render={({ field }) => (
+                                  <Select
+                                    {...field}
+                                    label="Departamento"
+                                    variant="bordered"
+                                    endContent={<RequiredIcon />}
+                                    color={errors.purchaseDepartment ? "danger" : ""}
+                                    errorMessage={errors.purchaseDepartment?.message}
+                                    className="max-w-xs"
+                                    onChange={(e) => {
+                                      field.onChange(e.target.value);
+                                      setDepartamentoSeleccionado(e.target.value);
+                                    }}
+                                  >
+                                    {departamentos.map((departamento, i) => (
+                                      <SelectItem key={i} value={departamento.departamento}>
+                                        {departamento.departamento}
+                                        </SelectItem>
+                                    ))}
+                                  </Select>
+                                )}
+                              />
+                            </div>
 
-                    </div>
+                            <div className='flex-col m-3 w-[200px]'>
+                                <Controller
+                                  name="purchaseMunicipality"
+                                  control={control}
+                                  rules={{ required: 'Campo requerido' }}
+                                  render={({ field }) => {
+                                    const departamento = departamentos.find((d) => d.id === parseInt(departamentoSeleccionado, 10));
+                                    console.log(departamento)
+                                    const ciudades = departamento ? departamento.ciudades : [];
+                                    return (
+                                      <Select
+                                        {...field}
+                                        label="Ciudad o municipio"
+                                        variant="bordered"
+                                        endContent={<RequiredIcon />}
+                                        color={errors.purchaseMunicipality ? "danger" : ""}
+                                        errorMessage={errors.purchaseMunicipality?.message}
+                                        className="max-w-xs"
+                                        value={ciudades.length > 0 ? ciudades[0] : ''}
+                                        onChange={(e) => {
+                                          field.onChange(e.target.value);
+                                        }}
+                                      >
+                                        {ciudades.map((ciudad, i) => (
+                                          <SelectItem key={i} value={ciudad.valueOf}>
+                                            {ciudad}
+                                          </SelectItem>
+                                        ))}
+                                      </Select>
+                                    );
+                                  }}
+                                />
+                            </div>
+                          </div>
+                        )}
+
                         <div className=' flex-col m-3'>
                             <Controller
                               name="purchaseDate"
                               control={control}
                               rules={{
-                                required : 'Campo requerido'
+                                required : 'Campo requerido',
+                                validate: value => {
+                                  const currentDate = new Date();
+                                  const selectedDate = new Date(value);
+                                  if (selectedDate > currentDate) {
+                                    return 'La fecha no puede ser mayor a la fecha actual';
+                                  }
+                                  const minDate = new Date().setDate(currentDate.getDate() - 15);
+                                  if (selectedDate < minDate) {
+                                    return 'La fecha no puede ser menor a 15 días antes de la fecha actual';
+                                  }
+                                  return true;
+                                }
                               }}
                               render={({ field }) => (
                                 <Input

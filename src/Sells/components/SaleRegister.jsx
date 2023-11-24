@@ -165,7 +165,19 @@ export function SaleRegister() {
                               name="saleDate"
                               control={control}
                               rules={{
-                                required : 'Campo requerido'
+                                required : 'Campo requerido',
+                                validate: value => {
+                                  const currentDate = new Date();
+                                  const selectedDate = new Date(value);
+                                  if (selectedDate > currentDate) {
+                                    return 'La fecha no puede ser mayor a la fecha actual';
+                                  }
+                                  const minDate = new Date().setDate(currentDate.getDate() - 15);
+                                  if (selectedDate < minDate) {
+                                    return 'La fecha no puede ser menor a 15 días antes de la fecha actual';
+                                  }
+                                  return true;
+                                }
                               }}
                               render={({ field }) => (
                                 <Input

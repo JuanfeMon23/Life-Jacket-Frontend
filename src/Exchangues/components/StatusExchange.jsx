@@ -27,7 +27,7 @@ export function StatusExchange(props) {
     
   return (
 <div className='flex'>
-    {exchange.exchangeStatus === "true" ? <Button title="Anular intercambio" isIconOnly className='  bg-red-400 rounded-lg mr-2' onPress={onOpen}>< TiDeleteOutline className={`text-2xl text-white`}/></Button> 
+    {exchange.exchangeStatus === "true" ? <Button title="Anular intercambio" isIconOnly className='  bg-yellow-950/70 rounded-lg mr-2' onPress={onOpen}>< TiDeleteOutline className={`text-2xl text-white`}/></Button> 
     : <Button title="Anular intercambio" onClick={handleAnulate}   isIconOnly>< HiOutlineCheckCircle className='text-white text-2xl'/></Button>}
       <Modal isOpen={isOpen} onOpenChange={onOpenChange} isDismissable={false}>
         <ModalContent>

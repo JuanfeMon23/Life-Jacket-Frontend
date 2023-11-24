@@ -26,6 +26,7 @@ import { Navigation } from "./components/globalComponents/Navigation.jsx";
 import { ForgotPassword } from "./Login/components/ForgotPassword.jsx";
 import { Resetpassword } from "./Login/components/Resetpassword.jsx";
 import { Brands } from "./Vehicles/pages/Brands.jsx";
+import { Manuals } from "./Manuals/pages/Manuals.jsx";
 
 
 function Navigator (){
@@ -47,7 +48,7 @@ function App() {
           <UserProvider>
           <ImprovementProvider>       
                         <BrowserRouter>
-                        <div className=" flex bg-violet-200/25 h-screen w-screen">
+                        <div className=" flex  h-screen w-screen">
                           {<Navigator/>}
                             <Routes>
                               <Route path='/' element={<Login/>}/>
@@ -65,7 +66,8 @@ function App() {
                                 <Route path="/Improvements" element={<Improvements/>}/>
                                 <Route path="/DashBoard" element={<DashBoard/>}/>
                                 <Route path="/Exchangues" element={<Exchangues/>}/>
-                                <Route path="/Exchangues/create" element={<CreateExchange/>}/>      
+                                <Route path="/Exchangues/create" element={<CreateExchange/>}/>
+                                <Route path="/Manuals" element={<Manuals/>}/>       
                               </Route>                    
                             </Routes>
                           <ToastContainer/> 

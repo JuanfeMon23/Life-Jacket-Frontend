@@ -3,6 +3,7 @@ import { toast } from "react-toastify";
 import { getExchangesRequest,  createExchangeRequest,  updateExchangeRequest, createExchangeDetailRequest ,
     cancelExchangeRequest, cancelExchangeDetailRequest, nullifyExchangeRequest, informPurchaseRequest } from "../api/Exchangues";
 
+
 const ExchangeContext = createContext();
 
 export const useExchange = () => {
@@ -41,6 +42,7 @@ export function ExchangeProvider({children}){
             });
             getExchanges();
         } catch (error) {
+            console.log(error)
             toast.error(error.response.data.message ,{
                 position: toast.POSITION.TOP_CENTER,
                 autoClose : 1500

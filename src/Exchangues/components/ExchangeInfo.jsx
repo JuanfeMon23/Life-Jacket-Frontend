@@ -21,15 +21,9 @@ export  function ExchangeInfo(props) {
   
     },[])
 
-    // useEffect(() => {
-    //     createExchange();
-    //     console.log('created')
-    // },[])
-
  
     function onSubmit(data){
         updateExchange(idExchange, data)
-        navigate('/Exchangues')
     };
 
     function handleCancelExchange(event) {
@@ -39,10 +33,10 @@ export  function ExchangeInfo(props) {
     }
 
   return (
-    <aside className=' border-2 border-blue-600/70 bg-white rounded-lg ml-5'>
+    <aside className=' border-2 border-blue-600/70 bg-white rounded-lg w-[22rem] ml-5'>
         <h1 className=' text-3xl text-center font-bold m-5'>Datos del cambio</h1>
         <form onSubmit={handleSubmit(onSubmit)}>
-                <div className=' ml-10 mb-3 '>
+                <div className=' ml-3 mb-3 '>
                     <Controller
                               name='idClientExchange'
                               control={control}
@@ -70,12 +64,24 @@ export  function ExchangeInfo(props) {
                               )}
                             />
                 </div>
-                <div className=' flex'>
+                <div className=' ml-3  md:mb-3'>
                         <Controller
                             name="exchangeDate"
                             control={control}
                             rules={{
-                                required : 'Campo obligatorio'
+                                required : 'Campo obligatorio',
+                                validate: value => {
+                                    const currentDate = new Date();
+                                    const selectedDate = new Date(value);
+                                    if (selectedDate > currentDate) {
+                                      return 'La fecha no puede ser mayor a la fecha actual';
+                                    }
+                                    const minDate = new Date().setDate(currentDate.getDate() - 15);
+                                    if (selectedDate < minDate) {
+                                      return 'La fecha no puede ser menor a 15 días antes de la fecha actual';
+                                    }
+                                    return true;
+                                  }
                               }}
                             render={({ field }) => (
                             <Input
@@ -85,7 +91,7 @@ export  function ExchangeInfo(props) {
                              variant="bordered"
                             color={errors.exchangeDate ? "danger" : ""}
                             errorMessage={errors.exchangeDate?.message}
-                            className="max-w-xs ml-10"
+                            className="max-w-xs"
                         />
                     )}
                  /> 
@@ -218,7 +224,7 @@ export  function ExchangeInfo(props) {
 
 
                 </div>
-                <div className=' flex'>
+                <div className=' ml-3 mb-3'>
                         <Controller
                             name="exchangePecuniaryPenalty"
                             control={control}
@@ -238,7 +244,7 @@ export  function ExchangeInfo(props) {
                             )}
                         />
                         </div> 
-                <div className=' flex'>
+                <div className=' ml-3 mb-3'>
                         <Controller
                             name="exchangeLimitations"
                             control={control}
@@ -253,7 +259,7 @@ export  function ExchangeInfo(props) {
                              variant="bordered"
                             color={errors.exchangeLimitations ? "danger" : ""}
                             errorMessage={errors.exchangeLimitations?.message}
-                            className="max-w-xs ml-10 mb-10"
+                            className="max-w-xs"
                         />
                     )}
                  /> 

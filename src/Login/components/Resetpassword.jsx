@@ -22,7 +22,12 @@ export  function Resetpassword() {
     
     const validationSchema = Yup.object().shape({
         newUserPassword: Yup.string()
-        .required('Contraseña requerida'),
+        .required('Contraseña requerida')
+        .min(8, 'La contraseña debe tener al menos 8 caracteres')
+        .matches(
+            /^(?=.*[A-Z])(?=.*[\W])/,
+            'La contraseña debe contener al menos una letra mayúscula y un carácter especial'
+        ),
         confirmPassword: Yup.string()
         .required('Confirmación de contraseña requerida')
         .oneOf([Yup.ref('newUserPassword')], 'Las contraseñas no coinciden'),
