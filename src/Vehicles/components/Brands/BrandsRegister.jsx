@@ -61,6 +61,7 @@ export  function BrandsRegister() {
               <ModalHeader className="flex flex-col gap-3">Crear registro</ModalHeader>
               <ModalBody>
                 <form onSubmit={handleSubmit(onSubmit)}>
+                    <div className='flex flex-col m-3 justify-center items-center'>
                     <Controller
                                 name="VehicleType"
                                 control={control}
@@ -89,7 +90,8 @@ export  function BrandsRegister() {
                                   </Select>
                         )}
                       />
-
+                    </div>
+                    <div className=' flex flex-col m-3 justify-center items-center'>
                     <Controller
                         name="NameBrand"
                         control={control}
@@ -119,7 +121,8 @@ export  function BrandsRegister() {
                           </Select>
                         )}
                       />
-
+                      </div>
+                      <div className='flex flex-col m-3 justify-center items-center'>
                             <Controller
                                 name="BrandLine"
                                 control={control}
@@ -147,11 +150,11 @@ export  function BrandsRegister() {
                                   />
                                 )}
                               /> 
-
+                            </div>
                             <div className=' text-center my-3 '>
                                     <ButtonAccept/>
                             </div>
-
+           
 
                 </form>
               </ModalBody>

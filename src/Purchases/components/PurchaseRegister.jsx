@@ -1,4 +1,4 @@
-import React, {useState} from 'react'
+import React, {useEffect, useState} from 'react'
 import {Modal, ModalContent, ModalHeader, ModalBody, ModalFooter, useDisclosure, Input, Button, Select, SelectItem, Textarea} from "@nextui-org/react";
 import {useForm, Controller} from 'react-hook-form';
 import { usePurchases } from '../context/purchaseContext';
@@ -6,6 +6,7 @@ import { useClients } from '../../Clients/context/clientsContext';
 import { useVehicles } from '../../Vehicles/context/vehiclesContext';
 import {AiOutlinePlusCircle} from 'react-icons/Ai';
 import { RequiredIcon } from '../../components/globalComponents/RequiredIcon.jsx';
+import { ButtonAccept } from '../../components/ButtonAccept';
 
 
 export function PurchaseRegister() {
@@ -20,7 +21,28 @@ export function PurchaseRegister() {
         createPurchase(data);
     };
 
-    const [departamentoSeleccionado, setDepartamentoSeleccionado] = useState('');
+    const [departments, setDepartments] = useState([]);
+    const [municipes, setMunicipes] = useState([]);
+    const [selectedDepartment, setselectedDepartment] = useState('');
+
+    useEffect(() => {
+      const fetchData = async () => {
+        try {
+          const typesResponse = await fetch('http://localhost:3000/api/Departments-departments');
+          const typesData = await typesResponse.json();
+          setDepartments(typesData);
+  
+          if(selectedDepartment) {
+            const municipesResponse = await fetch(`http://localhost:3000/api/Departments-municipes?department=${selectedDepartment}`);
+            const municipesData = await municipesResponse.json();
+            setMunicipes(municipesData);
+          }
+        } catch (error) {
+          console.error('Error fetching data:', error);
+        }
+      };
+      fetchData();
+    }, [selectedDepartment]);
 
   return (
     <div className='flex'>
@@ -95,73 +117,69 @@ export function PurchaseRegister() {
                     </div>
                       
 
-                    {departamentos && departamentos.length > 0 && (
-                          <div className='flex'>
-                            <div className='flex-col m-3 w-[200px]'>
-                              <Controller
-                                name="purchaseDepartment"
-                                control={control}
-                                rules={{ required: 'Campo requerido' }}
-                                render={({ field }) => (
-                                  <Select
-                                    {...field}
-                                    label="Departamento"
-                                    variant="bordered"
-                                    endContent={<RequiredIcon />}
-                                    color={errors.purchaseDepartment ? "danger" : ""}
-                                    errorMessage={errors.purchaseDepartment?.message}
-                                    className="max-w-xs"
-                                    onChange={(e) => {
-                                      field.onChange(e.target.value);
-                                      setDepartamentoSeleccionado(e.target.value);
-                                    }}
-                                  >
-                                    {departamentos.map((departamento, i) => (
-                                      <SelectItem key={i} value={departamento.departamento}>
-                                        {departamento.departamento}
-                                        </SelectItem>
-                                    ))}
-                                  </Select>
-                                )}
-                              />
-                            </div>
-
-                        <div className=' flex-col m-3'>
-                        <Controller
-                          name="purchaseMunicipality"
+                    <div className=' flex'> 
+                      <div className='flex-col m-3 w-[200px]'>
+                      <Controller
+                          name="purchaseDepartment"
                           control={control}
                           rules={{
                             required: "Campo requerido",
-                            minLength: {
-                              value: 3,
-                              message: "Al menos 3 caracteres"
-                            },
-                            maxLength: {
-                              value: 40,
-                              message: "Máximo 40 caracteres"
-                            },
-                            pattern: {
-                              value: /^[a-zA-Z\s]*$/,
-                              message: "Solo letras"
-                            }
                           }}
                           render={({ field }) => (
-                            <Input
+                            <Select
                               {...field}
-                              type="text"
-                              label="Ciudad o municipio"
+                              onChange={(e) => {
+                                field.onChange(e);
+                                setselectedDepartment(e.target.value);
+                              }}
+                              label="Departamento"
                               variant="bordered"
                               endContent={<RequiredIcon/>}
-                              color={errors.purchaseMunicipality ? "danger" : ""}
-                              errorMessage={errors.purchaseMunicipality?.message}
+                              color={errors.purchaseDepartment ? "danger" : ""}
+                              errorMessage={errors.purchaseDepartment?.message}
                               className="max-w-xs"
-                            />
-                          )}
-                        />
-                        </div>  
+                            >
+                              {departments.map((department) => (
+                                <SelectItem key={department.Department} value={department.Department}>
+                                  {department.Department}
+                                </SelectItem>
+                              ))
 
-                    </div>
-                        <div className=' flex-col m-3'>
+                              }
+
+                            </Select>
+                          )}
+                        /> 
+                      </div>
+
+                      <div className='flex-col m-3 w-[200px]'>
+                        <Controller
+                            name="purchaseMunicipality"
+                            control={control}
+                            rules={{
+                              required: "Campo requerido",
+                            }}
+                            render={({ field }) => (
+                              <Select
+                                {...field}
+                                label="Ciudad o municipio"
+                                variant="bordered"
+                                endContent={<RequiredIcon/>}
+                                color={errors.purchaseMunicipality ? "danger" : ""}
+                                errorMessage={errors.purchaseMunicipality?.message}
+                                className="max-w-xs"
+                              >
+                                {municipes.map((municipe) => (
+                                  <SelectItem key={municipe.Municipe} value={municipe.Municipe}>
+                                    {municipe.Municipe}
+                                  </SelectItem>
+                                ))}
+                              </Select>
+                            )}
+                          />
+                          </div>
+                      </div>
+                        <div className='flex flex-col m-2 justify-center items-center'>
                             <Controller
                               name="purchaseDate"
                               control={control}

@@ -23,7 +23,7 @@ import { DeleteBrands } from './DeleteBrands';
 const columns = [
     {name: "Tipo", uid: "type", sortable: true},
     {name: "Marca", uid: "brand", sortable: true},
-    {name: "Linea", uid: "line", sortable: true},
+    {name: "Línea", uid: "line", sortable: true},
     {name: "Acciones", uid: "actionsBrands", sortable: true}
   ];  
 

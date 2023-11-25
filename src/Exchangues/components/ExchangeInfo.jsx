@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import {Select, SelectItem} from "@nextui-org/react";
 import {useForm, Controller} from 'react-hook-form';
 import {Input, Textarea} from "@nextui-org/react";
@@ -6,6 +6,7 @@ import {Button} from "@nextui-org/react";
 import { useExchange } from '../context/ExchangeContext';
 import { useClients } from '../../Clients/context/clientsContext';
 import { useNavigate } from 'react-router-dom';
+import { RequiredIcon } from '../../components/globalComponents/RequiredIcon.jsx';
 
 export  function ExchangeInfo(props) {
     const { handleSubmit, formState:{errors}, control, reset} = useForm();
@@ -32,18 +33,35 @@ export  function ExchangeInfo(props) {
         navigate('/Exchangues')
     }
 
+    const [departments, setDepartments] = useState([]);
+    const [municipes, setMunicipes] = useState([]);
+    const [selectedDepartment, setselectedDepartment] = useState('');
+
+    useEffect(() => {
+      const fetchData = async () => {
+        try {
+          const typesResponse = await fetch('http://localhost:3000/api/Departments-departments');
+          const typesData = await typesResponse.json();
+          setDepartments(typesData);
+  
+          if(selectedDepartment) {
+            const municipesResponse = await fetch(`http://localhost:3000/api/Departments-municipes?department=${selectedDepartment}`);
+            const municipesData = await municipesResponse.json();
+            setMunicipes(municipesData);
+          }
+        } catch (error) {
+          console.error('Error fetching data:', error);
+        }
+      };
+      fetchData();
+    }, [selectedDepartment]);
+
+
   return (
-<<<<<<< HEAD
     <aside className=' border-2 border-blue-600/70 bg-white rounded-lg w-[22rem] ml-5'>
-        <h1 className=' text-3xl text-center font-bold m-5'>Datos del cambio</h1>
-        <form onSubmit={handleSubmit(onSubmit)}>
-                <div className=' ml-3 mb-3 '>
-=======
-    <aside className=' border-2 border-blue-600/70 bg-white rounded-lg ml-5'>
         <h1 className=' text-3xl text-center font-bold m-5'>Datos del intercambio</h1>
         <form onSubmit={handleSubmit(onSubmit)}>
-                <div className='flex flex-col m-3 justify-center items-center '>
->>>>>>> a9343e52172521fecc61c3dc0b4b89bfa0d03e30
+                <div className=' ml-3 mb-3 '>
                     <Controller
                               name='idClientExchange'
                               control={control}
@@ -55,6 +73,7 @@ export  function ExchangeInfo(props) {
                                   {...field}
                                   label="Documento del cliente"
                                   variant="bordered"
+                                  endContent={<RequiredIcon/>}
                                   color={errors.idClientExchange ? "danger" : ""}
                                   errorMessage={errors.idClientExchange?.message}
                                   className="max-w-xs"
@@ -71,17 +90,12 @@ export  function ExchangeInfo(props) {
                               )}
                             />
                 </div>
-<<<<<<< HEAD
                 <div className=' ml-3  md:mb-3'>
-=======
-                <div className='flex flex-col m-5 justify-center items-center'>
->>>>>>> a9343e52172521fecc61c3dc0b4b89bfa0d03e30
                         <Controller
                             name="exchangeDate"
                             control={control}
                             rules={{
-<<<<<<< HEAD
-                                required : 'Campo obligatorio',
+                                required : 'Campo requerido',
                                 validate: value => {
                                     const currentDate = new Date();
                                     const selectedDate = new Date(value);
@@ -94,9 +108,6 @@ export  function ExchangeInfo(props) {
                                     }
                                     return true;
                                   }
-=======
-                                required : 'Campo requerido'
->>>>>>> a9343e52172521fecc61c3dc0b4b89bfa0d03e30
                               }}
                             render={({ field }) => (
                             <Input
@@ -104,6 +115,7 @@ export  function ExchangeInfo(props) {
                             type="datetime-local"
                             label="Fecha del intercambio"
                              variant="bordered"
+                             endContent={<RequiredIcon/>}
                             color={errors.exchangeDate ? "danger" : ""}
                             errorMessage={errors.exchangeDate?.message}
                             className="max-w-xs"
@@ -117,26 +129,29 @@ export  function ExchangeInfo(props) {
                             name="exchangeDepartment"
                             control={control}
                             rules={{
-                            required: "Campo requerido",
-                            minLength : {
-                                value : 4 ,
-                                message : 'Al menos 4 números'
-                            },
-                            maxLength : {
-                                value : 20,
-                                message : 'Máximo 20 números'
-                            },
+                              required: "Campo requerido",
                             }}
                             render={({ field }) => (
-                            <Input
+                              <Select
                                 {...field}
-                                type="text"
+                                onChange={(e) => {
+                                  field.onChange(e);
+                                  setselectedDepartment(e.target.value);
+                                }}
                                 label="Departamento"
                                 variant="bordered"
-                                color={errors.exchangeDepartment? "danger" : ""}
+                                endContent={<RequiredIcon/>}
+                                color={errors.exchangeDepartment ? "danger" : ""}
                                 errorMessage={errors.exchangeDepartment?.message}
                                 className="max-w-xs"
-                            />
+                              >
+                                {departments.map((department) => (
+                                  <SelectItem key={department.Department} value={department.Department}>
+                                    {department.Department}
+                                  </SelectItem>
+                                ))
+                                }
+                              </Select>
                             )}
                         />
                     </div>
@@ -146,26 +161,24 @@ export  function ExchangeInfo(props) {
                             name="exchangeMunicipality"
                             control={control}
                             rules={{
-                            required: "Campo requerido",
-                            minLength : {
-                                value : 4 ,
-                                message : 'Al menos 4 letras'
-                            },
-                            maxLength : {
-                                value : 12,
-                                message : 'Máximo 20 letras'
-                            }
+                              required: "Campo requerido",
                             }}
                             render={({ field }) => (
-                            <Input
+                              <Select
                                 {...field}
-                                type="text"
-                                label="Municipio"
+                                label="Ciudad o municipio"
                                 variant="bordered"
-                                color={errors.exchangeMunicipality? "danger" : ""}
+                                endContent={<RequiredIcon/>}
+                                color={errors.exchangeMunicipality ? "danger" : ""}
                                 errorMessage={errors.exchangeMunicipality?.message}
                                 className="max-w-xs"
-                            />
+                              >
+                                {municipes.map((municipe) => (
+                                  <SelectItem key={municipe.Municipe} value={municipe.Municipe}>
+                                    {municipe.Municipe}
+                                  </SelectItem>
+                                ))}
+                              </Select>
                             )}
                         />
                         </div> 
@@ -197,6 +210,7 @@ export  function ExchangeInfo(props) {
                                 type="number"
                                 label="Efectivo involucrado"
                                 variant="bordered"
+                                endContent={<RequiredIcon/>}
                                 color={errors.exchangeCashPrice? "danger" : ""}
                                 errorMessage={errors.exchangeCashPrice?.message}
                                 className="max-w-xs"
@@ -216,6 +230,7 @@ export  function ExchangeInfo(props) {
                                 {...field}
                                 label="Tipo de efectivo"
                                 variant="bordered"
+                                endContent={<RequiredIcon/>}
                                 color={errors.exchangeCashPriceStatus ? "danger" : ""}
                                 errorMessage={errors.exchangeCashPriceStatus?.message}
                                 className="max-w-xs"
@@ -239,11 +254,7 @@ export  function ExchangeInfo(props) {
 
 
                 </div>
-<<<<<<< HEAD
                 <div className=' ml-3 mb-3'>
-=======
-                <div className=' flex flex-col m-3 justify-center items-center'>
->>>>>>> a9343e52172521fecc61c3dc0b4b89bfa0d03e30
                         <Controller
                             name="exchangePecuniaryPenalty"
                             control={control}
@@ -256,6 +267,7 @@ export  function ExchangeInfo(props) {
                                 type="number"
                                 label="Sanción pecuniaria"
                                 variant="bordered"
+                                endContent={<RequiredIcon/>}
                                 color={errors.exchangePecuniaryPenalty? "danger" : ""}
                                 errorMessage={errors.exchangePecuniaryPenalty?.message}
                                 className="max-w-xs"
@@ -263,11 +275,7 @@ export  function ExchangeInfo(props) {
                             )}
                         />
                         </div> 
-<<<<<<< HEAD
                 <div className=' ml-3 mb-3'>
-=======
-                <div className='flex flex-col m-5 justify-center items-center'>
->>>>>>> a9343e52172521fecc61c3dc0b4b89bfa0d03e30
                         <Controller
                             name="exchangeLimitations"
                             control={control}
@@ -280,6 +288,7 @@ export  function ExchangeInfo(props) {
                             type="text"
                             label="Limitaciones"
                              variant="bordered"
+                             endContent={<RequiredIcon/>}
                             color={errors.exchangeLimitations ? "danger" : ""}
                             errorMessage={errors.exchangeLimitations?.message}
                             className="max-w-xs"

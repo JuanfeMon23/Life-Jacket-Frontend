@@ -10,15 +10,36 @@ import {AiOutlinePlusCircle} from 'react-icons/Ai';
 import { RequiredIcon } from '../../components/globalComponents/RequiredIcon.jsx';
 
 export  function ClientRegister() {
-const {isOpen, onOpen, onOpenChange} = useDisclosure();
-const {register , handleSubmit, setValue,  formState:{errors}, control, reset} = useForm();
-const {createClient} = useClients();
+  const {isOpen, onOpen, onOpenChange} = useDisclosure();
+  const {register , handleSubmit, setValue,  formState:{errors}, control, reset} = useForm();
+  const {createClient} = useClients();
 
-const onSubmit = (data) => {
-    { onSubmit ? createClient(data) && reset : ''}
-};
+  const onSubmit = (data) => {
+      { onSubmit ? createClient(data) && reset : ''}
+  };
 
+  const [departments, setDepartments] = useState([]);
+  const [municipes, setMunicipes] = useState([]);
+  const [selectedDepartment, setselectedDepartment] = useState('');
 
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const typesResponse = await fetch('http://localhost:3000/api/Departments-departments');
+        const typesData = await typesResponse.json();
+        setDepartments(typesData);
+
+        if(selectedDepartment) {
+          const municipesResponse = await fetch(`http://localhost:3000/api/Departments-municipes?department=${selectedDepartment}`);
+          const municipesData = await municipesResponse.json();
+          setMunicipes(municipesData);
+        }
+      } catch (error) {
+        console.error('Error fetching data:', error);
+      }
+    };
+    fetchData();
+  }, [selectedDepartment]);
   return (
     <div className='flex'>
          <Button title='Agregar cliente' endContent={<AiOutlinePlusCircle className=' text-2xl'/>} color="primary" variant="solid" onPress={onOpen} className=' text-white font-bold'>Agregar</Button>
@@ -99,71 +120,61 @@ const onSubmit = (data) => {
                           control={control}
                           rules={{
                             required: "Campo requerido",
-                            minLength: {
-                              value: 3,
-                              message: "Al menos 3 caracteres"
-                            },
-                            maxLength: {
-                              value: 40,
-                              message: "Máximo 40 caracteres"
-                            },
-                            pattern: {
-                              value: /^[a-zA-Z\s]*$/,
-                              message: "Solo letras"
-                            }
                           }}
                           render={({ field }) => (
-                            <Input
+                            <Select
                               {...field}
-                              type="text"
+                              onChange={(e) => {
+                                field.onChange(e);
+                                setselectedDepartment(e.target.value);
+                              }}
                               label="Departamento"
                               variant="bordered"
                               endContent={<RequiredIcon/>}
                               color={errors.clientDepartment ? "danger" : ""}
                               errorMessage={errors.clientDepartment?.message}
                               className="max-w-xs"
-                            />
+                            >
+                              {departments.map((department) => (
+                                <SelectItem key={department.Department} value={department.Department}>
+                                  {department.Department}
+                                </SelectItem>
+                              ))
+
+                              }
+
+                            </Select>
                           )}
-                        />
+                        /> 
                       </div>
 
                       <div className='flex-col m-3 w-[200px]'>
-                      <Controller
-                          name="clientMunicipality"
-                          control={control}
-                          rules={{
-                            required: "Campo requerido",
-                            minLength: {
-                              value: 3,
-                              message: "Al menos 3 caracteres"
-                            },
-                            maxLength: {
-                              value: 40,
-                              message: "Máximo 40 caracteres"
-                            },
-                            pattern: {
-                              value: /^[a-zA-Z\s]*$/,
-                              message: "Solo letras"
-                            }
-                          }}
-                          render={({ field }) => (
-                            <Input
-                              {...field}
-                              type="text"
-                              label="Ciudad o municipio"
-                              variant="bordered"
-                              endContent={<RequiredIcon/>}
-                              color={errors.clientMunicipality ? "danger" : ""}
-                              errorMessage={errors.clientMunicipality?.message}
-                              className="max-w-xs"
-                            />
-                          )}
-                        />
+                        <Controller
+                            name="clientMunicipality"
+                            control={control}
+                            rules={{
+                              required: "Campo requerido",
+                            }}
+                            render={({ field }) => (
+                              <Select
+                                {...field}
+                                label="Ciudad o municipio"
+                                variant="bordered"
+                                endContent={<RequiredIcon/>}
+                                color={errors.clientMunicipality ? "danger" : ""}
+                                errorMessage={errors.clientMunicipality?.message}
+                                className="max-w-xs"
+                              >
+                                {municipes.map((municipe) => (
+                                  <SelectItem key={municipe.Municipe} value={municipe.Municipe}>
+                                    {municipe.Municipe}
+                                  </SelectItem>
+                                ))}
+                              </Select>
+                            )}
+                          />
+                          </div>
                       </div>
-                  </div>
-
-
-
                   <div className=" flex">
                     <div className=' flex-col m-3'>
                     <Controller

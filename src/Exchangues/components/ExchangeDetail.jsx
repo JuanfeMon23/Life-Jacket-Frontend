@@ -3,6 +3,7 @@ import { useVehicles } from '../../Vehicles/context/vehiclesContext'
 import { useExchange } from '../context/ExchangeContext';
 import {useForm, Controller} from 'react-hook-form';
 import {AiOutlineDelete} from 'react-icons/Ai';
+import { RequiredIcon } from '../../components/globalComponents/RequiredIcon.jsx';
 import {
     Table,
     TableHeader,
@@ -65,6 +66,7 @@ export  function ExchangeDetail(props) {
                         {...field}
                         label="Seleccionar vehículo"
                         variant="bordered"
+                        endContent={<RequiredIcon/>}
                         color={errors.idVehicleExchange ? "danger" : ""}
                         errorMessage={errors.idVehicleExchange?.message}
                         className="max-w-xs"
@@ -93,6 +95,7 @@ export  function ExchangeDetail(props) {
                                 {...field}
                                 label="Estado del vehículo"
                                 variant="bordered"
+                                endContent={<RequiredIcon/>}
                                 color={errors.vehicleStatusExchange ? "danger" : ""}
                                 errorMessage={errors.vehicleStatusExchange?.message}
                                 className="max-w-xs"

@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react';
 import {Modal, ModalContent, ModalHeader, ModalBody, useDisclosure} from "@nextui-org/react";
 import { Select, SelectItem, Button } from '@nextui-org/react';
 import { ButtonAccept } from '../../components/ButtonAccept';
@@ -47,10 +47,6 @@ export  function EditVehicle (props) {
                           defaultValue={vehicles.vehicleType}
                           rules={{
                             required: "Campo requerido",
-                            maxLength: {
-                              value: 15,
-                              message: "Máximo 15 caracteres"
-                            },
                             pattern: {
                               value: /^[a-zA-Z\s]*$/,
                               message: "Solo letras"
