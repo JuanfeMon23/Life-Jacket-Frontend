@@ -10,7 +10,7 @@ import { useAuth } from "../../Login/context/AuthContext";
 export function Exchangues() {
   const {getClients} = useClients();
   const {getVehicles} = useVehicles();
-  const {getExchanges} = useExchange();
+  const {getExchangesFiltered} = useExchange();
   const {user} = useAuth();
   const navigate = useNavigate();
 
@@ -26,7 +26,7 @@ export function Exchangues() {
 
 
   useEffect(() => {
-    getExchanges();
+    getExchangesFiltered();
     getClients();
     getVehicles();
   },[]);

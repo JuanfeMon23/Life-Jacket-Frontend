@@ -37,7 +37,7 @@ export function AuthProvider({children}){
     const passwordRecovery = async (userEmail) => {
         try {
             await PasswordRecoveryRequest(userEmail);
-            toast.success('En ha enviado un enlace a su correo.' ,{
+            toast.success('Se ha enviado un enlace a su correo' ,{
                 position: toast.POSITION.TOP_CENTER,
                 autoClose: 1500
               })

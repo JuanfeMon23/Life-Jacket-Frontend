@@ -35,14 +35,14 @@ const statusOptions = [
     {name: "Fecha del intercambio", uid: "exchangeDate", sortable: true},
     {name: "Nombre del cliente", uid: "exchangeClient", sortable: true},
     {name: "Efectivo involucrado", uid: "exchangePrice", sortable: true},
-    {name: "Tipo de intercambio", uuid : "exchnageType"},
+    {name: "Tipo de efectivo", uuid : "exchnageType"},
     {name: "Estado", uid: "exchangeStatus", sortable: true},
     {name: "Acciones", uid: "exchangeActions"},
   ];
 
 
 export function ExchangeTable() {
-    const {exchanges, createExchange } = useExchange();
+    const {exchangesFiltered, createExchange } = useExchange();
     const [filterValue, setFilterValue] = React.useState("");
     const [selectedKeys, setSelectedKeys] = React.useState(new Set([]));
     const [statusFilter, setStatusFilter] = React.useState("all");
@@ -60,7 +60,7 @@ export function ExchangeTable() {
     const hasSearchFilter = Boolean(filterValue);
 
     const filteredItems = React.useMemo(() => {
-        let filteredExchanges = [...exchanges];
+        let filteredExchanges = [...exchangesFiltered];
     
         if (hasSearchFilter) {
           filteredExchanges = filteredExchanges.filter((exchange) =>
@@ -75,7 +75,7 @@ export function ExchangeTable() {
         }
     
         return filteredExchanges;
-      }, [exchanges, filterValue, statusFilter]);
+      }, [exchangesFiltered, filterValue, statusFilter]);
 
       const pages = Math.ceil(filteredItems.length / rowsPerPage);
 
@@ -169,7 +169,7 @@ export function ExchangeTable() {
               </div>
             </div>
             <div className="flex justify-between items-center">
-              <span className="text-default-400 text-small">Total de intercambios: {exchanges.length} </span>
+              <span className="text-default-400 text-small">Total de intercambios: {exchangesFiltered.length} </span>
               <label className="flex items-center text-default-400 text-small">
                 Filas por página
                 <select
@@ -188,7 +188,7 @@ export function ExchangeTable() {
         filterValue,
         statusFilter,
         onRowsPerPageChange,
-        exchanges.length,
+        exchangesFiltered.length,
         onSearchChange,
         hasSearchFilter,
       ]);

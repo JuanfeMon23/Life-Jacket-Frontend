@@ -1,7 +1,7 @@
 import { createContext, useContext, useState } from "react";
 import { toast } from "react-toastify";
 import { getExchangesRequest,  createExchangeRequest,  updateExchangeRequest, createExchangeDetailRequest ,
-    cancelExchangeRequest, cancelExchangeDetailRequest, nullifyExchangeRequest, informPurchaseRequest } from "../api/Exchangues";
+    cancelExchangeRequest, cancelExchangeDetailRequest, nullifyExchangeRequest, informPurchaseRequest, getExchangesFiteredRequest } from "../api/Exchangues";
 
 
 const ExchangeContext = createContext();
@@ -13,11 +13,21 @@ export const useExchange = () => {
 
 export function ExchangeProvider({children}){
     const [exchanges, setExchanges] = useState([]);
+    const [exchangesFiltered, setExchangesFiltered] = useState([]);
 
     const getExchanges = async () => {
         try {
             const res = await getExchangesRequest();
             setExchanges(res.data);
+        } catch (error) {
+            throw new Error(error.message);
+        }
+    };
+
+    const getExchangesFiltered = async () => {
+        try {
+            const res = await getExchangesFiteredRequest();
+            setExchangesFiltered(res.data);
         } catch (error) {
             throw new Error(error.message);
         }
@@ -140,7 +150,7 @@ export function ExchangeProvider({children}){
 
     return(
         <ExchangeContext.Provider
-        value={{exchanges, getExchanges, createExchange, updateExchange, createExchangeDetail, cancelExchange, cancelExchangeDetail, nullifyExchange, informExchange}}
+        value={{exchanges, getExchanges, createExchange, updateExchange, createExchangeDetail, cancelExchange, cancelExchangeDetail, nullifyExchange, informExchange, getExchangesFiltered, exchangesFiltered}}
         >
             {children}
         </ExchangeContext.Provider>

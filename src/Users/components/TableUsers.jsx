@@ -34,7 +34,7 @@ import {DeleteUsers} from "./DeleteUsers";
     {name: "Nombres", uid: "nameUser", sortable: true},
     {name: "Apellidos", uid: "sortnameUser", sortable: true},
     {name: "Rol", uid: "roleUser", sortable: true},
-    {name: "Email", uid: "emailUser"},
+    {name: "Correo electrónico", uid: "emailUser"},
     {name: "Estado", uid: "statusUser", sortable: true},
     {name: "Acciones", uid: "actionsUser"},
   ];

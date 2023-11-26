@@ -2,6 +2,8 @@ import axios from '../../api/axios.js';
 
 export const getExchangesRequest = async () => axios.get('/Exchange');
 
+export const getExchangesFiteredRequest = async () => axios.get('/Exchange-Filtered');
+
 export const createExchangeRequest = async () => axios.post('/Exchange',);
 
 export const updateExchangeRequest = async (idExchange, Exchange) => axios.put(`/Exchange/${idExchange}`, Exchange);
