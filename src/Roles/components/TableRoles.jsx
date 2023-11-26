@@ -225,7 +225,7 @@ export  function TableRoles() {
             {items.map((item) => (
                 <TableRow key={item.idRol}>
                     <TableCell>{item.rolName}</TableCell>
-                    <TableCell>permisos</TableCell> 
+                    <TableCell>{item.Licenses.map((licenses) =>  (licenses.licenseName + ", " ))}</TableCell> 
                     <TableCell>{item.rolStatus === "true" ?  <Chip color="success">Activo</Chip> : <Chip color="default">Inactivo</Chip>}</TableCell>
                     <TableCell className=" flex justify-normal">
                         <AddLicenses roles={item} />

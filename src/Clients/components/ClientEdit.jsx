@@ -28,6 +28,29 @@ export  function  ClientEdit(props) {
     });
     };
 
+    const [departments, setDepartments] = useState([]);
+    const [municipes, setMunicipes] = useState([]);
+    const [selectedDepartment, setselectedDepartment] = useState('');
+  
+    useEffect(() => {
+      const fetchData = async () => {
+        try {
+          const typesResponse = await fetch('http://localhost:3000/api/Departments-departments');
+          const typesData = await typesResponse.json();
+          setDepartments(typesData);
+  
+          if(selectedDepartment) {
+            const municipesResponse = await fetch(`http://localhost:3000/api/Departments-municipes?department=${selectedDepartment}`);
+            const municipesData = await municipesResponse.json();
+            setMunicipes(municipesData);
+          }
+        } catch (error) {
+          console.error('Error fetching data:', error);
+        }
+      };
+      fetchData();
+    }, [selectedDepartment]);
+
   return (
     <div className='flex'>
     {clients.clientStatus === "true" ? <Button title='Editar cliente' isIconOnly onPress={onOpen}className=' bg-gradient-to-r from-[#D99C23] to-[#D45229] rounded-lg text-white font-bold mr-2'>{<AiTwotoneEdit className='text-white text-2xl'/>}</Button>
@@ -44,70 +67,63 @@ export  function  ClientEdit(props) {
                       <Controller
                           name="clientDepartment"
                           control={control}
-                          defaultValue={clients.clientDepartment}
                           rules={{
                             required: "Campo requerido",
-                            minLength: {
-                              value: 3,
-                              message: "Al menos 3 caracteres"
-                            },
-                            maxLength: {
-                              value: 40,
-                              message: "Máximo 40 caracteres"
-                            },
-                            pattern: {
-                              value: /^[a-zA-Z\s]*$/,
-                              message: "Solo letras"
-                            }
                           }}
                           render={({ field }) => (
-                            <Input
+                            <Select
                               {...field}
-                              type="text"
+                              onChange={(e) => {
+                                field.onChange(e);
+                                setselectedDepartment(e.target.value);
+                              }}
                               label="Departamento"
+                              defaultSelectedKeys={[clients.clientDepartment]}
                               variant="bordered"
                               endContent={<RequiredIcon/>}
                               color={errors.clientDepartment ? "danger" : ""}
                               errorMessage={errors.clientDepartment?.message}
                               className="max-w-xs"
-                            />
+                            >
+                              {departments.map((department) => (
+                                <SelectItem key={department.Department} value={department.Department}>
+                                  {department.Department}
+                                </SelectItem>
+                              ))
+
+                              }
+
+                            </Select>
                           )}
-                        />
+                        /> 
                       </div>
 
                       <div className='flex-col m-3 w-[200px]'>
                       <Controller
-                          name="clientMunicipality"
-                          control={control}
-                          defaultValue={clients.clientMunicipality}
-                          rules={{
-                            required: "Nombres requeridos",
-                            minLength: {
-                              value: 3,
-                              message: "Al menos 3 caracteres"
-                            },
-                            maxLength: {
-                              value: 40,
-                              message: "Máximo 40 caracteres"
-                            },
-                            pattern: {
-                              value: /^[a-zA-Z\s]*$/,
-                              message: "Solo letras"
-                            }
-                          }}
-                          render={({ field }) => (
-                            <Input
-                              {...field}
-                              type="text"
-                              label="Ciudad o municipio"
-                              variant="bordered"
-                              endContent={<RequiredIcon/>}
-                              color={errors.clientMunicipality ? "danger" : ""}
-                              errorMessage={errors.clientMunicipality?.message}
-                              className="max-w-xs"
-                            />
-                          )}
-                        />
+                            name="clientMunicipality"
+                            control={control}
+                            rules={{
+                              required: "Campo requerido",
+                            }}
+                            render={({ field }) => (
+                              <Select
+                                {...field}
+                                label="Ciudad o municipio"
+                                defaultSelectedKeys={[clients.clientMunicipality]}
+                                variant="bordered"
+                                endContent={<RequiredIcon/>}
+                                color={errors.clientMunicipality ? "danger" : ""}
+                                errorMessage={errors.clientMunicipality?.message}
+                                className="max-w-xs"
+                              >
+                                {municipes.map((municipe) => (
+                                  <SelectItem key={municipe.Municipe} value={municipe.Municipe}>
+                                    {municipe.Municipe}
+                                  </SelectItem>
+                                ))}
+                              </Select>
+                            )}
+                          />
                       </div>
                   </div>
 
