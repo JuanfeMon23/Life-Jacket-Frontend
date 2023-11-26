@@ -348,8 +348,8 @@ export  function EditVehicle (props) {
                     <div className='flex flex-col m-3 justify-center items-center'>
                     <Controller
                           name="technomecanics"
-                          control={control}
                           defaultValue={vehicles.technomecanics}
+                          control={control}
                           render={({ field }) => (
                             <Input
                               {...field}
