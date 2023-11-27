@@ -26,7 +26,7 @@ export  function Resetpassword() {
         .min(8, 'La contraseña debe tener al menos 8 caracteres')
         .matches(
             /^(?=.*[A-Z])(?=.*[\W])/,
-            'La contraseña debe contener al menos una letra mayúscula y un carácter especial'
+            'La contraseña debe contener al menos una letra mayúscula y un caracter especial'
         ),
         confirmPassword: Yup.string()
         .required('Confirmación de contraseña requerida')
@@ -70,7 +70,7 @@ export  function Resetpassword() {
                 <Input
                     {...field}
                     type="password"
-                    label="Confirmar Contraseña"
+                    label="Confirmar contraseña"
                     variant="bordered"
                     color={errors.confirmPassword ? "danger" : ""}
                     errorMessage={errors.confirmPassword?.message}

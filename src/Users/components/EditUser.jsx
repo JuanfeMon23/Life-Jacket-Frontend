@@ -30,30 +30,6 @@ export function EditUser(props) {
     });
     };
 
-    const [departments, setDepartments] = useState([]);
-    const [municipes, setMunicipes] = useState([]);
-    const [selectedDepartment, setselectedDepartment] = useState('');
-  
-  
-    useEffect(() => {
-      const fetchData = async () => {
-        try {
-          const typesResponse = await fetch('http://localhost:3000/api/Departments-departments');
-          const typesData = await typesResponse.json();
-          setDepartments(typesData);
-  
-          if(selectedDepartment) {
-            const municipesResponse = await fetch(`http://localhost:3000/api/Departments-municipes?department=${selectedDepartment}`);
-            const municipesData = await municipesResponse.json();
-            setMunicipes(municipesData);
-          }
-        } catch (error) {
-          console.error('Error fetching data:', error);
-        }
-      };
-      fetchData();
-    }, [selectedDepartment]);
-
 
   return (
     <div className='flex'>
@@ -73,33 +49,20 @@ export function EditUser(props) {
                           <Controller
                           name="userDepartment"
                           control={control}
+                          defaultValue={user.userDepartment}
                           rules={{
                             required: "Campo requerido",
                           }}
                           render={({ field }) => (
-                            <Select
+                            <Input
                               {...field}
-                              onChange={(e) => {
-                                field.onChange(e);
-                                setselectedDepartment(e.target.value);
-                              }}
                               label="Departamento"
                               variant="bordered"
-                              defaultSelectedKeys={[user.userDepartment]}
                               endContent={<RequiredIcon/>}
                               color={errors.userDepartment ? "danger" : ""}
                               errorMessage={errors.userDepartment?.message}
                               className="max-w-xs"
-                            >
-                              {departments.map((department) => (
-                                <SelectItem key={department.Department} value={department.Department}>
-                                  {department.Department}
-                                </SelectItem>
-                              ))
-
-                              }
-
-                            </Select>
+                            />
                           )}
                         /> 
                           </div>
@@ -107,27 +70,21 @@ export function EditUser(props) {
                           <div className='flex-col m-3 w-[200px]'>
                           <Controller
                           name="userMunicipality"
+                          defaultValue={user.userMunicipality}
                           control={control}
                           rules={{
                             required: "Campo requerido",
                           }}
                           render={({ field }) => (
-                            <Select
+                            <Input
                               {...field}
                               label="Ciudad o municipio"
                               variant="bordered"
-                              defaultSelectedKeys={[user.userMunicipality]}
                               endContent={<RequiredIcon/>}
                               color={errors.userMunicipality ? "danger" : ""}
                               errorMessage={errors.userMunicipality?.message}
                               className="max-w-xs"
-                            >
-                              {municipes.map((municipe) => (
-                                <SelectItem key={municipe.Municipe} value={municipe.Municipe}>
-                                  {municipe.Municipe}
-                                </SelectItem>
-                              ))}
-                            </Select>
+                            />
                           )}
                         />
                           </div>

@@ -591,7 +591,7 @@ export  function VehicleInfo() {
                                 rules={{
                                   minLength: {
                                     value: 1,
-                                    message: "Al menos 1 caracteres"
+                                    message: "Al menos 1 caracter"
                                   },
                                   maxLength: {
                                     value: 2,
@@ -601,7 +601,7 @@ export  function VehicleInfo() {
                                 render={({ field }) => (
                                   <Input
                                     {...field}
-                                    type="text"
+                                    type="number"
                                     label="Capacidad"
                                     variant="bordered"
                                     color={errors.capacity ? "danger" : ""}
@@ -629,7 +629,7 @@ export  function VehicleInfo() {
                                   field.onChange(e);
                                 }}
                               >
-                                <SelectItem key='Publico'>Público</SelectItem>
+                                <SelectItem key='Público'>Público</SelectItem>
                                 <SelectItem key='Privado'>Privado</SelectItem>
                               </Select>
                             )}

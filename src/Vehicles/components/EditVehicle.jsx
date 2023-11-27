@@ -72,167 +72,7 @@ export  function EditVehicle (props) {
               <ModalHeader className="flex flex-col gap-3">Editar vehículo</ModalHeader>
               <ModalBody>
                 <form onSubmit={handleSubmit(onSubmit)}>
-                    <div className='flex flex-col m-3 justify-center items-center'>
-                    <Controller
-                                name="vehicleType"
-                                control={control}
-                                rules={{
-                                  required : 'Campo requerido'
-                                }}
-                                render={({ field }) => (
-                                  <Select {...field}
-                                   onChange={(e) =>{
-                                    field.onChange(e);
-                                    setSelectedVehicleType(e.target.value);
-                                   }}
-                                   aria-labelledby="vehicleTypeLabel"
-                                   className="max-w-xs"
-                                   defaultSelectedKeys={[vehicles.vehicleType]}
-                                   endContent={<RequiredIcon/>}
-                                   color={errors.vehicleType ? "danger" : ""}
-                                   errorMessage={errors.vehicleType?.message}
-                                   variant='bordered'
-                                   label='Tipo de vehículo'
-                                   >
-                                    {vehicleTypes.map((type) => (
-                                      <SelectItem key={type.VehicleType} value={type.VehicleType}>
-                                        {type.VehicleType}
-                                      </SelectItem>
-                                    ))}
-                                  </Select>
-                        )}
-                      />
-                  </div>
 
-                  <div className=" flex">
-                    <div className=' flex-col m-3 w-[200px]'>
-                    <Controller
-                        name="brand"
-                        control={control}
-                        rules={{
-                          required : 'Campo requerido'
-                        }}
-                        render={({ field }) => (
-                          <Select
-                           {...field} 
-                           onChange={(e) => {
-                            field.onChange(e);
-                            setSelectedBrandName(e.target.value)
-                          }} 
-                          aria-labelledby="brands"
-                          defaultSelectedKeys={[vehicles.brand]}
-                          className="max-w-xs"
-                          endContent={<RequiredIcon/>}
-                          color={errors.brand ? "danger" : ""}
-                          errorMessage={errors.brand?.message}
-                          variant='bordered'
-                          label='Marca'
-                          >
-                            {vehicleBrands.map((brand) => (
-                              <SelectItem key={brand.NameBrand} value={brand.NameBrand}>
-                                {brand.NameBrand}
-                              </SelectItem>
-                            ))}
-                          </Select>
-                        )}
-                      />
-                    </div>
-
-                    <div className='flex-col m-3 w-[200px]'>
-                    <Controller
-                            name="line"
-                            control={control}
-                            rules={{
-                              required : 'Campo requerido'
-                            }}
-                            render={({ field }) => (
-                              <Select
-                               {...field} 
-                              aria-labelledby="lines"
-                              defaultSelectedKeys={[vehicles.Line]}
-                              className="max-w-xs"
-                              endContent={<RequiredIcon/>}
-                              color={errors.line ? "danger" : ""}
-                              errorMessage={errors.line?.message}
-                              variant='bordered'
-                              label='Linea'
-                              >
-                                {vehicleLines.map((line) => (
-                                  <SelectItem key={line.BrandLine} value={line.BrandLine}>
-                                    {line.BrandLine}
-                                  </SelectItem>
-                                ))}
-                              </Select>
-                            )}
-                          /> 
-                    </div>
-                  </div>
-
-                  <div className=" flex">
-                    <div className=' flex-col m-3'>
-                    <Controller
-                          name="type"
-                          control={control}
-                          defaultValue={vehicles.type}
-                          rules={{
-                            required: "Campo requerido",
-                            minLength: {
-                              value: 3,
-                              message: "Al menos 3 caracteres"
-                            },
-                            maxLength: {
-                              value: 40,
-                              message: "Máximo 40 caracteres"
-                            },
-                            pattern: {
-                              value: /^[a-zA-Z\s]*$/,
-                              message: "Solo letras"
-                            }
-                          }}
-                          render={({ field }) => (
-                            <Input
-                              {...field}
-                              type="text"
-                              label="Tipo"
-                              variant="bordered"
-                              endContent={<RequiredIcon/>}
-                              color={errors.type ? "danger" : ""}
-                              errorMessage={errors.type?.message}
-                              className="max-w-xs"
-                            />
-                          )}
-                        /> 
-                    </div>
-
-                    <div className='flex-col m-3 w-[200px]'>
-                      <Controller
-                            name="model"
-                            control={control}
-                            rules={{
-                              required : 'Campo requerido'
-                            }}
-                            render={({ field }) => (
-                              <Select
-                               {...field} 
-                              aria-labelledby="models"
-                              defaultSelectedKeys={[vehicles.model]}
-                              className="max-w-xs"
-                              endContent={<RequiredIcon/>}
-                              color={errors.model ? "danger" : ""}
-                              errorMessage={errors.model?.message}
-                              variant='bordered'
-                              label='Modelo'
-                              >
-                                {years.map((model) => (
-                                  <SelectItem key={model} value={model.model}>
-                                    {model}
-                                  </SelectItem>
-                                ))}
-                              </Select>
-                            )}
-                          /> 
-                    </div>
-                  </div>
 
                   <div className=" flex">
                     <div className=' flex-col m-3 w-[200px]'>
@@ -347,8 +187,8 @@ export  function EditVehicle (props) {
 
                     <div className='flex flex-col m-3 justify-center items-center'>
                     <Controller
-                          name="technomecanics"
-                          defaultValue={vehicles.technomecanics}
+                          name="technomechanics"
+                          defaultValue={vehicles.technomechanics}
                           control={control}
                           render={({ field }) => (
                             <Input
@@ -356,8 +196,8 @@ export  function EditVehicle (props) {
                               type="date"
                               label="Tecnomecánica"
                               variant="bordered"
-                              color={errors.technomecanics ? "danger" : ""}
-                              errorMessage={errors.technomecanics?.message}
+                              color={errors.technomechanics ? "danger" : ""}
+                              errorMessage={errors.technomechanics?.message}
                               className="max-w-xs"
                             />
                           )}
@@ -602,7 +442,7 @@ export  function EditVehicle (props) {
                                 rules={{
                                   minLength: {
                                     value: 1,
-                                    message: "Al menos 1 caracteres"
+                                    message: "Al menos 1 caracter"
                                   },
                                   maxLength: {
                                     value: 2,
@@ -612,7 +452,7 @@ export  function EditVehicle (props) {
                                 render={({ field }) => (
                                   <Input
                                     {...field}
-                                    type="text"
+                                    type="number"
                                     label="Capacidad"
                                     variant="bordered"
                                     color={errors.capacity ? "danger" : ""}
@@ -630,7 +470,7 @@ export  function EditVehicle (props) {
                             rules={{
                             }}
                             render={({field}) => (
-                              <Select
+                              <Input
                                 {...field}
                                 label="Servicio"
                                 variant="bordered"
@@ -640,10 +480,7 @@ export  function EditVehicle (props) {
                                 onChange={(e) => {
                                   field.onChange(e);
                                 }}
-                              >
-                                <SelectItem key='Publico'>Público</SelectItem>
-                                <SelectItem key='Privado'>Privado</SelectItem>
-                              </Select>
+                              />
                             )}
                           />
                     </div>

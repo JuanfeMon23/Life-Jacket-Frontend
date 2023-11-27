@@ -99,7 +99,7 @@ export function WatchVehicle (props) {
                               <div className=" flex flex-col">
                                 <p className="text-xs md:text-sm font-bold">Gasolina</p> 
                                 <div className=" border-2 border-indigo-500/75 rounded-lg w-[7rem] md:w-[15rem] p-1 ">
-                                    <p className=" text-center">{vehicles.fuel ? vehicles.fue : 'No hay datos.' }</p>
+                                    <p className=" text-center">{vehicles.fuel ? vehicles.fuel : 'No hay datos.' }</p>
                                 </div>
                               </div>
 
