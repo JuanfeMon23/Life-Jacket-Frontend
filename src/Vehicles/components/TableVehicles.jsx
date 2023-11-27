@@ -23,6 +23,9 @@ import {EditVehicle} from './EditVehicle';
 import { StatusVehicle } from './StatusVehicle';
 import { DeleteVehicle } from './DeleteVehicle';
 import {VehicleRegister} from './VehicleRegister';
+import { MdOutlineGppGood } from "react-icons/md"; <MdOutlineGppGood />
+import {TiDeleteOutline} from 'react-icons/ti'; <TiDeleteOutline/>
+
 
   const statusOptions = [
     {name: "Activo" , uid: "true"},
@@ -34,6 +37,8 @@ import {VehicleRegister} from './VehicleRegister';
     {name: "Marca", uid: "Marca", sortable: true},
     {name: "Linea", uid: "Linea", sortable: true},
     {name: "Modelo", uid: "Modelo", sortable: true},
+    {name : "Soat", uuid:"Soat"},
+    {name : "Tecnomecanica", uuid: "Tecno"} ,
     {name: "Estado", uid: "statusV", sortable: true},
     {name: "Acciones", uid: "AccionesV", sortable: true}
   ];  
@@ -45,6 +50,7 @@ export  function TableVehicles() {
     const [selectedKeys, setSelectedKeys] = React.useState(new Set([]));
     const [statusFilter, setStatusFilter] = React.useState("all");
     const [rowsPerPage, setRowsPerPage] = React.useState(5);
+    const actualDate = new Date();
 
     const [page, setPage] = React.useState(1);
 
@@ -233,7 +239,9 @@ export  function TableVehicles() {
                     <TableCell>{item.licensePlate}</TableCell>
                     <TableCell>{item.brand}</TableCell> 
                     <TableCell>{item.line}</TableCell> 
-                    <TableCell>{item.model}</TableCell> 
+                    <TableCell>{item.model}</TableCell>
+                    <TableCell>{item.soat < actualDate ? <TiDeleteOutline className=' text-red-500 text-2xl'/>    :<MdOutlineGppGood className=' text-emerald-500 text-2xl ' />   }</TableCell> 
+                    <TableCell>{item.technomechanics < actualDate ? <TiDeleteOutline className=' text-red-500 text-2xl'/>   :  <MdOutlineGppGood className=' text-emerald-500 text-2xl' /> }</TableCell> 
                     <TableCell>{item.vehicleStatus === "true" ?  <Chip color="success">Activo</Chip> : <Chip color="default">Inactivo</Chip>}</TableCell>
                     <TableCell className=" flex justify-normal">
                         <WatchVehicle vehicle={item} />

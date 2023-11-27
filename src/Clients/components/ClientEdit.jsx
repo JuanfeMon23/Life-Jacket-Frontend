@@ -146,7 +146,7 @@ export  function  ClientEdit(props) {
                               message: "Máximo 40 caracteres"
                             },
                             pattern: {
-                              value: /^[a-zA-Z\s]*$/,
+                              value: /^[a-zA-ZáéíóúÁÉÍÓÚ\s]*$/,
                               message: "Solo letras"
                             }
                           }}
@@ -181,7 +181,7 @@ export  function  ClientEdit(props) {
                               message: "Máximo 40 caracteres"
                             },
                             pattern: {
-                              value: /^[a-zA-Z\s]*$/,
+                              value: /^[a-zA-ZáéíóúÁÉÍÓÚ\s]*$/,
                               message: "Solo letras"
                             }
                           }}
@@ -241,7 +241,7 @@ export  function  ClientEdit(props) {
                                 message: "Máximo 40 caracteres"
                               },
                               pattern: {
-                                value: /^[a-zA-Z\s]*$/,
+                                value: /^[a-zA-ZáéíóúÁÉÍÓÚ\s]*$/,
                                 message: "Solo letras"
                               }
                             }}
@@ -272,11 +272,14 @@ export  function  ClientEdit(props) {
                           required: "Campo requerido",
                           minLength : {
                             value : 7 ,
-                            message : 'Al menos 7 numeros'
+                            message : 'Al menos 7 números'
                           },
-
+                          maxLength : {
+                            value : 12,
+                            message : 'Máximo 12 números'
+                          },
                           pattern: {
-                            value: /^[0-9]*$/, // This pattern will only match numbers
+                            value: /^[0-9]*$/,
                             message: "Solo números"
                           }
                         }}
@@ -304,11 +307,14 @@ export  function  ClientEdit(props) {
                           required: "Campo requerido",
                           minLength : {
                             value : 7 ,
-                            message : 'Al menos 7 numeros'
+                            message : 'Al menos 7 números'
                           },
-
+                          maxLength : {
+                            value : 12,
+                            message : 'Máximo 12 números'
+                          },
                           pattern: {
-                            value: /^[0-9]*$/, // This pattern will only match numbers
+                            value: /^[0-9]*$/,
                             message: "Solo números"
                           }
                         }}

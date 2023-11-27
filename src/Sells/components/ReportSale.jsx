@@ -22,8 +22,8 @@ export function ReportSale() {
                 <ModalHeader className="flex flex-col ">Informe de ventas</ModalHeader>
                 <ModalBody>
                     <form onSubmit={handleSubmit(onSubmit)}>
-                        <div className="flex">
-                            <div className='flex flex-col m-1 justify-center items-center'>
+                        <div className="flex  m-1 justify-center items-center">
+                            <div className='flex '>
                                 <Controller
                                     name="firstParameter"
                                     control={control}
@@ -31,7 +31,7 @@ export function ReportSale() {
                                     render={({ field }) => (
                                         <Input
                                             {...field}
-                                            type="datetime-local"
+                                            type="date"
                                             label="Primera fecha"
                                             variant="bordered"
                                             color={errors.firstParameter ? "danger" : ""}
@@ -50,7 +50,7 @@ export function ReportSale() {
                                     render={({ field }) => (
                                         <Input
                                             {...field}
-                                            type="datetime-local"
+                                            type="date"
                                             label="Segunda fecha"
                                             variant="bordered"
                                             color={errors.secondParameter ? "danger" : ""}
