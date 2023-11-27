@@ -165,14 +165,26 @@ export function WatchVehicle (props) {
                             <div className=" flex flex-col">
                               <p className=" text-xs md:text-sm font-bold">Soat</p> 
                               <div className=" border-2 border-indigo-500/75 rounded-lg w-[7rem] md:w-[15rem] p-1 ">
-                                  <p className=" text-center">{vehicles.soat ? vehicles.soat : 'No hay datos.'}</p>
+                                  <p className=" text-center">{vehicles.soat ? 
+                                  new Date(vehicles.soat).toLocaleString("es-ES", {
+                                    year: "numeric",
+                                    month: "2-digit",
+                                    day: "2-digit"
+                                  }) 
+                                  : 'No hay datos.'}</p>
                               </div>
                             </div>
 
                             <div className=" flex flex-col">
                             <p className=" text-xs md:text-sm font-bold">Tecnomecánica</p> 
                               <div className=" items-end border-2 border-indigo-500/75 rounded-lg w-[7rem] md:w-[15rem] p-1">
-                                  <p className=" text-center">{vehicles.technomechanics ? vehicles.technomechanics : 'No hay datos.'}</p>
+                                  <p className=" text-center">{vehicles.technomechanics ? 
+                                  new Date(vehicles.technomechanics).toLocaleString("es-ES", {
+                                    year: "numeric",
+                                    month: "2-digit",
+                                    day: "2-digit"
+                                  }) 
+                                  : 'No hay datos.'}</p>
                               </div>
                             </div>
                         </div> 

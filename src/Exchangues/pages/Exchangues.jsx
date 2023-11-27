@@ -17,7 +17,7 @@ export function Exchangues() {
 
   useEffect(() => {
     async function verificate(){
-      if(!user.Licenses.includes('Cambios')){
+      if(!user.Licenses.includes('Intercambios')){
         navigate('/DashBoard');
       }
     }
