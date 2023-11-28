@@ -35,7 +35,7 @@ export function SellProvider({children}) {
             getVehicles();
             return res.data;
         } catch (error) {
-            toast.error('Error al registrar una venta' ,{
+            toast.error(error.response.data.message ,{
                 position: toast.POSITION.TOP_CENTER,
                 autoClose : 1500
             });
@@ -75,7 +75,7 @@ export function SellProvider({children}) {
             });
         } catch (error) {
             console.log(error);
-            toast.error('Error al generar el informe', {
+            toast.error(error.response.data.message, {
                 position: toast.POSITION.TOP_CENTER,
                 autoClose: 1500,
             });
@@ -114,7 +114,7 @@ export function SellProvider({children}) {
             getSells();
         } catch (error) {
             console.log(error);
-            toast.error('Error al eliminar la venta' ,{
+            toast.error(error.response.data.message ,{
                 position: toast.POSITION.TOP_CENTER,
                 autoClose : 1500,
             });

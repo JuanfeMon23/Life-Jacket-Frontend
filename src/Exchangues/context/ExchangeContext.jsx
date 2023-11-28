@@ -139,7 +139,7 @@ export function ExchangeProvider({children}){
             });
         } catch (error) {
             console.log(error);
-            toast.error('Error al generar el informe', {
+            toast.error(error.response.data.message, {
                 position: toast.POSITION.TOP_CENTER,
                 autoClose: 1500,
             });
