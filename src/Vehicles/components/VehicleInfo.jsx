@@ -7,6 +7,7 @@ import {Input} from "@nextui-org/react";
 import { useVehicles } from '../context/vehiclesContext.jsx';
 import { RequiredIcon } from '../../components/globalComponents/RequiredIcon.jsx';
 import { years } from './years.js';
+import conection from '../../api/axios.js';
 
 export  function VehicleInfo() {
     const { handleSubmit : handleSubmitVehicle, formState : {errors}, control : controlVehicle, reset : resetVehicle} = useForm();
@@ -26,17 +27,17 @@ export  function VehicleInfo() {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const typesResponse = await fetch('http://localhost:3000/api/vehicle-types');
+        const typesResponse = await fetch(`${conection}/vehicle-types`);
         const typesData = await typesResponse.json();
         setVehicleTypes(typesData);
  
         if (selectedVehicleType) {
-          const brandsResponse = await fetch(`http://localhost:3000/api/vehicles-brand?vehicleType=${selectedVehicleType}`);
+          const brandsResponse = await fetch(`${conection}/vehicles-brand?vehicleType=${selectedVehicleType}`);
           const brandsData = await brandsResponse.json();
           setVehicleBrands(brandsData);
 
           if (selectedBrandName) {
-            const linesResponse = await fetch(`http://localhost:3000/api/vehicles-lines?vehicleType=${selectedVehicleType}&brandName=${selectedBrandName}`);
+            const linesResponse = await fetch(`${conection}/vehicles-lines?vehicleType=${selectedVehicleType}&brandName=${selectedBrandName}`);
             const linesData = await linesResponse.json();
             setVehicleLines(linesData);
           }

@@ -7,6 +7,7 @@ import {AiOutlinePlusCircle} from 'react-icons/Ai';
 import { useSells } from '../context/sellsContext';
 import { RequiredIcon } from '../../components/globalComponents/RequiredIcon.jsx';
 import { ButtonAccept } from '../../components/ButtonAccept';
+import conection from '../../api/axios.js';
 
 
 export function SaleRegister() {
@@ -27,12 +28,12 @@ export function SaleRegister() {
     useEffect(() => {
       const fetchData = async () => {
         try {
-          const typesResponse = await fetch('http://localhost:3000/api/Departments-departments');
+          const typesResponse = await fetch(`${conection}/Departments-departments`);
           const typesData = await typesResponse.json();
           setDepartments(typesData);
   
           if(selectedDepartment) {
-            const municipesResponse = await fetch(`http://localhost:3000/api/Departments-municipes?department=${selectedDepartment}`);
+            const municipesResponse = await fetch(`${conection}/Departments-municipes?department=${selectedDepartment}`);
             const municipesData = await municipesResponse.json();
             setMunicipes(municipesData);
           }
