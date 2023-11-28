@@ -15,7 +15,7 @@ export  function ClientRegister() {
   const {createClient} = useClients();
 
   const onSubmit = (data) => {
-      { onSubmit ? createClient(data) && reset : ''}
+      { onSubmit ? createClient(data) && reset() : '' }
   };
 
   const [departments, setDepartments] = useState([]);

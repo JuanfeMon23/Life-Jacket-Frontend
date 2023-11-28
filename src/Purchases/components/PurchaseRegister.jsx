@@ -11,7 +11,7 @@ import { ButtonAccept } from '../../components/ButtonAccept';
 
 export function PurchaseRegister() {
     const {isOpen, onOpen, onOpenChange} = useDisclosure();
-    const {handleSubmit, formState:{errors}, control} = useForm();
+    const {handleSubmit, formState:{errors}, control, reset} = useForm();
     const {createPurchase} = usePurchases();
     const {clients} = useClients();
     const {vehicles} = useVehicles();
@@ -19,6 +19,7 @@ export function PurchaseRegister() {
     const onSubmit = (data, e) => {
         e.preventDefault();
         createPurchase(data);
+        { onSubmit ? createPurchase(data) && reset() : '' } 
     };
 
     const [departments, setDepartments] = useState([]);

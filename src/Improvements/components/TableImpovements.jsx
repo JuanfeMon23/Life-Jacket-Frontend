@@ -227,15 +227,7 @@ export  function TableImpovements() {
             <TableRow key={item.idImprovements}>
                 <TableCell>{item.vehicle.licensePlate}</TableCell>
                 <TableCell>{item.improvementDescription}</TableCell> 
-                <TableCell>
-                {new Date(item.improvementDate).toLocaleString("es-ES", {
-                            year: "numeric",
-                            month: "2-digit",
-                            day: "2-digit",
-                            hour: "2-digit",
-                            minute: "2-digit"
-                          })}
-                </TableCell> 
+                <TableCell>{item.improvementDate} </TableCell> 
                 <TableCell>
                   {typeof item.improvementPrice === "number" ? item.improvementPrice.toLocaleString("es-ES", { style: "currency", currency: "COP" }) : "No válido"}
                 </TableCell>

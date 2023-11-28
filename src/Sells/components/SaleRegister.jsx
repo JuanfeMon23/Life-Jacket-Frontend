@@ -17,7 +17,7 @@ export function SaleRegister() {
     const {vehicles} = useVehicles();
 
     const onSubmit = (data, e) => {
-        { onSubmit ? createSell(data) && reset() : 2 }        
+        { onSubmit ? createSell(data) && reset() : '' }        
     }
 
     const [departments, setDepartments] = useState([]);

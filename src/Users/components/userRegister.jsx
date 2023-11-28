@@ -270,7 +270,7 @@ export  function UserRegister() {
                           <Input
                             {...field}
                             type="email"
-                            label="Coreero electrónico"
+                            label="Correo electrónico"
                             variant="bordered"
                             endContent={<RequiredIcon/>}
                             color={errors.userEmail ? "danger" : ""}

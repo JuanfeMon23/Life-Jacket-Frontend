@@ -38,7 +38,7 @@ import {TiDeleteOutline} from 'react-icons/ti'; <TiDeleteOutline/>
     {name: "Linea", uid: "Linea", sortable: true},
     {name: "Modelo", uid: "Modelo", sortable: true},
     {name : "Soat", uuid:"Soat"},
-    {name : "Tecnomecanica", uuid: "Tecno"} ,
+    {name : "Tecnomecánica", uuid: "Tecno"} ,
     {name: "Estado", uid: "statusV", sortable: true},
     {name: "Acciones", uid: "AccionesV", sortable: true}
   ];  
@@ -240,8 +240,12 @@ export  function TableVehicles() {
                     <TableCell>{item.brand}</TableCell> 
                     <TableCell>{item.line}</TableCell> 
                     <TableCell>{item.model}</TableCell>
-                    <TableCell>{item.soat < actualDate ? <TiDeleteOutline className=' text-red-500 text-2xl'/>    :<MdOutlineGppGood className=' text-emerald-500 text-2xl ' />   }</TableCell> 
-                    <TableCell>{item.technomechanics < actualDate ? <TiDeleteOutline className=' text-red-500 text-2xl'/>   :  <MdOutlineGppGood className=' text-emerald-500 text-2xl' /> }</TableCell> 
+                    <TableCell>
+                    {new Date(item.soat).getTime() < actualDate.getTime() ? ( <TiDeleteOutline className='text-red-500 text-2xl' /> ) : ( <MdOutlineGppGood className='text-emerald-500 text-2xl' /> )}
+                    </TableCell>
+                    <TableCell>
+                    {new Date(item.technomechanics).getTime() < actualDate.getTime() ? ( <TiDeleteOutline className='text-red-500 text-2xl' /> ) : ( <MdOutlineGppGood className='text-emerald-500 text-2xl' /> )}
+                    </TableCell>
                     <TableCell>{item.vehicleStatus === "true" ?  <Chip color="success">Activo</Chip> : <Chip color="default">Inactivo</Chip>}</TableCell>
                     <TableCell className=" flex justify-normal">
                         <WatchVehicle vehicle={item} />

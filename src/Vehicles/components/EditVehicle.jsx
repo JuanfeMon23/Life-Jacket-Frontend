@@ -276,7 +276,7 @@ export  function EditVehicle (props) {
                             <Input
                               {...field}
                               type="text"
-                              label="Tipo"
+                              label="Empresa"
                               variant="bordered"
                               color={errors.business ? "danger" : ""}
                               errorMessage={errors.business?.message}
@@ -414,7 +414,7 @@ export  function EditVehicle (props) {
                                     message: "Al menos 7 caracteres"
                                   },
                                   maxLength: {
-                                    value: 12,
+                                    value: 20,
                                     message: "Máximo 20 caracteres"
                                   }
                                 }}

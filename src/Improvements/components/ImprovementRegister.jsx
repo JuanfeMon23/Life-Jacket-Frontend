@@ -80,9 +80,9 @@ export function ImprovementRegister() {
                                   if (selectedDate > currentDate) {
                                     return 'La fecha no puede ser mayor a la fecha actual';
                                   }
-                                  const minDate = new Date().setDate(currentDate.getDate() - 15);
+                                  const minDate = new Date().setDate(currentDate.getDate() - 20);
                                   if (selectedDate < minDate) {
-                                    return 'La fecha no puede ser menor a 15 días antes de la fecha actual';
+                                    return 'La fecha no puede ser menor a 20 días antes de la fecha actual';
                                   }
                                   return true;
                                 }
@@ -90,7 +90,7 @@ export function ImprovementRegister() {
                               render={({ field }) => (
                                 <Input
                                   {...field}
-                                  type="datetime-local"
+                                  type="date"
                                   label="Fecha de mejora"
                                   variant="bordered"
                                   endContent={<RequiredIcon/>}
