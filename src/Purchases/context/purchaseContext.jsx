@@ -31,7 +31,7 @@ export function PurchaseProvider ({children}) {
             return res.data;
         } catch (error) {
             console.log(error)
-            toast.error('Error al registrar la compra' ,{
+            toast.error(error.response.data.message ,{
                 position: toast.POSITION.TOP_CENTER,
                 autoClose : 1500
             });
@@ -71,7 +71,7 @@ export function PurchaseProvider ({children}) {
             });
         } catch (error) {
             console.log(error);
-            toast.error('Error al generar el informe', {
+            toast.error(error.response.data.message, {
                 position: toast.POSITION.TOP_CENTER,
                 autoClose: 1500,
             });
@@ -109,7 +109,7 @@ export function PurchaseProvider ({children}) {
             });
             getPurchases();
         } catch (error) {
-            toast.error('Error al eliminar la compra' ,{
+            toast.error(error.response.data.message ,{
                 position: toast.POSITION.TOP_CENTER,
                 autoClose : 1500
             });

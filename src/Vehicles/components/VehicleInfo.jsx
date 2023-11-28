@@ -422,10 +422,6 @@ export  function VehicleInfo() {
                             maxLength: {
                               value: 20,
                               message: "Máximo 20 caracteres"
-                            },
-                            pattern: {
-                              value: /^[a-zA-Z\s]*$/,
-                              message: "Solo letras"
                             }
                           }}
                           render={({ field }) => (
@@ -481,8 +477,8 @@ export  function VehicleInfo() {
                                   message: "Al menos 7 caracteres"
                                 },
                                 maxLength: {
-                                  value: 12,
-                                  message: "Máximo 12 caracteres"
+                                  value: 20,
+                                  message: "Máximo 20 caracteres"
                                 }
                               }}
                               render={({ field }) => (

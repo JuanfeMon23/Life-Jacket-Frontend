@@ -82,7 +82,7 @@ export function ClientProvider({children}){
             });
             getClients();
         } catch (error) {
-            toast.error('Error al eliminar el cliente' ,{
+            toast.error(error.response.data.message ,{
                 autoClose : 1500,
                 position: toast.POSITION.TOP_CENTER
             });
