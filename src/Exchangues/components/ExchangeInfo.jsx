@@ -41,12 +41,13 @@ export  function ExchangeInfo(props) {
     useEffect(() => {
       const fetchData = async () => {
         try {
-          const typesResponse = await fetch(`${conection}/Departments-departments`);
+          const typesResponse = await fetch(`${import.meta.env.VITE_BACKEND}/Departments-departments`);
           const typesData = await typesResponse.json();
           setDepartments(typesData);
   
+  
           if(selectedDepartment) {
-            const municipesResponse = await fetch(`${conection}/Departments-municipes?department=${selectedDepartment}`);
+            const municipesResponse = await fetch(`${import.meta.env.VITE_BACKEND}/Departments-municipes?department=${selectedDepartment}`);
             const municipesData = await municipesResponse.json();
             setMunicipes(municipesData);
           }
