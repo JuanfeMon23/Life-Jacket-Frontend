@@ -1,19 +1,3 @@
-<<<<<<< HEAD
-import { BrowserRouter , Routes, Route} from "react-router-dom"
-import { Login } from "./pages/Login"
-import { Users } from "./pages/Users"
-
-
-function App() {  
-  return (
-    <>
-      <BrowserRouter>
-        <Routes>
-          <Route path='/' element={<Login/>}/>
-          <Route path='/Users' element={<Users/>}/>
-        </Routes>
-      </BrowserRouter>
-=======
 import { BrowserRouter , Routes, Route, useLocation} from "react-router-dom";
 import { Login } from "../src/Login/Pages/Login.jsx";
 import { Users } from "./Users/Pages/Users.jsx";
@@ -98,7 +82,6 @@ function App() {
           </VehicleProvider>
           </RolesProvider>
       </AuthProvider>
->>>>>>> master
     </>
   )
 }
