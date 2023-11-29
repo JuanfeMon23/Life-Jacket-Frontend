@@ -32,7 +32,7 @@ export  function DeleteImprovement(props) {
         <ModalContent>
           {(onClose) => (
             <>
-              <ModalHeader className=" items-center">¿Deseas eliminar la mejora?</ModalHeader>
+              <ModalHeader className="justify-center text-2xl m-4">¿Deseas eliminar la mejora?</ModalHeader>
               <ModalBody>
                 <form onSubmit={handleSubmit(onSubmit)}>
                     <div className=' text-center m-3'>
