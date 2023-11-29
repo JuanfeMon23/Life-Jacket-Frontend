@@ -19,7 +19,7 @@ import {FaSearch} from 'react-icons/fa';
 import {IoIosArrowDown} from 'react-icons/io';
 import {useExchange} from '../context/ExchangeContext'
 import { Navigate, useNavigate, Link } from "react-router-dom";
-import {AiOutlinePlusCircle} from 'react-icons/Ai';
+import {AiOutlinePlusCircle} from '../../../node_modules/react-icons/ai';
 import { ReportExchange } from "./ReportExchange";
 import { WatchExchange } from "./WatchExchange";
 import { StatusExchange } from "./StatusExchange";
