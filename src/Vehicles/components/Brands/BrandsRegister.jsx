@@ -24,32 +24,32 @@ export  function BrandsRegister() {
     const [selectedBrandName, setSelectedBrandName] = useState('');
 
 
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const typesResponse = await fetch('http://localhost:3000/api/vehicle-types');
-        const typesData = await typesResponse.json();
-        setVehicleTypes(typesData);
- 
-        if (selectedVehicleType) {
-          const brandsResponse = await fetch(`http://localhost:3000/api/vehicles-brand?vehicleType=${selectedVehicleType}`);
-          const brandsData = await brandsResponse.json();
-          setVehicleBrands(brandsData);
-
-          if (selectedBrandName) {
-            const linesResponse = await fetch(`http://localhost:3000/api/vehicles-lines?vehicleType=${selectedVehicleType}&brandName=${selectedBrandName}`);
-            const linesData = await linesResponse.json();
-            setVehicleLines(linesData);
+    useEffect(() => {
+      const fetchData = async () => {
+        try {
+          const typesResponse = await fetch(`${import.meta.env.VITE_BACKEND}/vehicle-types`);
+          const typesData = await typesResponse.json();
+          setVehicleTypes(typesData);
+   
+          if (selectedVehicleType) {
+            const brandsResponse = await fetch(`${import.meta.env.VITE_BACKEND}/vehicles-brand?vehicleType=${selectedVehicleType}`);
+            const brandsData = await brandsResponse.json();
+            setVehicleBrands(brandsData);
+  
+            if (selectedBrandName) {
+              const linesResponse = await fetch(`${import.meta.env.VITE_BACKEND}/vehicles-lines?vehicleType=${selectedVehicleType}&brandName=${selectedBrandName}`);
+              const linesData = await linesResponse.json();
+              setVehicleLines(linesData);
+            }
           }
+        } catch (error) {
+          console.error('Error fetching data:', error);
         }
-      } catch (error) {
-        console.error('Error fetching data:', error);
-      }
-    };
-
-
-    fetchData();
-  }, [selectedVehicleType, selectedBrandName]);
+      };
+  
+  
+      fetchData();
+    }, [selectedVehicleType, selectedBrandName]);
 
   return (
     <div className=' flex'>

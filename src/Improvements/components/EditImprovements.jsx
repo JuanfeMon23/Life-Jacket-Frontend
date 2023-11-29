@@ -48,7 +48,19 @@ export  function EditImprovements(props) {
                               defaultValue={improvement.improvementDate}
                               control={control}
                               rules={{
-                                required : 'Campo obligatorio'
+                                required : 'Campo requerido',
+                                validate: value => {
+                                  const currentDate = new Date();
+                                  const selectedDate = new Date(value);
+                                  if (selectedDate > currentDate) {
+                                    return 'La fecha no puede ser mayor a la fecha actual';
+                                  }
+                                  const minDate = new Date().setDate(currentDate.getDate() - 20);
+                                  if (selectedDate < minDate) {
+                                    return 'La fecha no puede ser menor a 20 días antes de la fecha actual';
+                                  }
+                                  return true;
+                                }
                               }}
                               render={({ field }) => (
                                 <Input
@@ -103,18 +115,18 @@ export  function EditImprovements(props) {
                             required: "Campo requerido",
                             minLength: {
                               value: 3,
-                              message: "Almenos 3 caracteres"
+                              message: "Al menos 3 caracteres"
                             },
                             maxLength: {
                               value: 40,
-                              message: "Maximo 40 caracteres"
+                              message: "Máximo 40 caracteres"
                             }
                           }}
                           render={({ field }) => (
                             <Textarea
                               {...field}
                               type="text"
-                              label="Descripcion de la mejora"
+                              label="Descripción de la mejora"
                               variant="bordered"
                               endContent={<RequiredIcon/>}
                               color={errors.improvementDescription ? "danger" : ""}
