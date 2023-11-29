@@ -3,7 +3,7 @@ import { useForm, Controller } from 'react-hook-form';
 import {Modal, ModalContent, ModalHeader, ModalBody, useDisclosure} from "@nextui-org/react";
 import { useRoles } from '../context/rolesContext';
 import {Button, Checkbox} from "@nextui-org/react";
-import {AiOutlinePlusCircle} from 'react-icons/Ai';
+import {AiOutlinePlusCircle} from '../../../node_modules/react-icons/ai';
 import { toast } from "react-toastify";
 import { ButtonAccept } from '../../components/ButtonAccept';
 
