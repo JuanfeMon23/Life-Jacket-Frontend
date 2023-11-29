@@ -3,7 +3,7 @@ import {Modal, ModalContent, ModalHeader, ModalBody, ModalFooter, useDisclosure,
 import {Button} from "@nextui-org/react";
 import {Input} from "@nextui-org/react";
 import {useForm, Controller} from 'react-hook-form';
-import {AiTwotoneEdit} from 'react-icons/Ai';
+import {AiTwotoneEdit} from '../../../node_modules/react-icons/ai';
 import { useUsers } from '../Context/userContext';
 import { toast } from "react-toastify";
 import { useRoles } from '../../Roles/context/rolesContext';

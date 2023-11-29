@@ -5,7 +5,7 @@ import { useForm , Controller } from 'react-hook-form';
 import { useVehicles } from '../context/vehiclesContext.jsx';
 import { toast } from "react-toastify";
 import {Input} from "@nextui-org/react";
-import {AiTwotoneEdit} from 'react-icons/Ai';
+import {AiTwotoneEdit} from '../../../node_modules/react-icons/ai';
 import { RequiredIcon } from '../../components/globalComponents/RequiredIcon.jsx';
 import { years } from './years.js';
 

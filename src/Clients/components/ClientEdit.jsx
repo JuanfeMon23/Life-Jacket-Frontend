@@ -5,7 +5,7 @@ import {Button} from "@nextui-org/react";
 import { ButtonAccept } from '../../components/ButtonAccept';
 import {useForm, Controller} from 'react-hook-form';
 import { useClients } from '../context/clientsContext';
-import {AiTwotoneEdit} from 'react-icons/Ai';
+import {AiTwotoneEdit} from '../../../node_modules/react-icons/ai';
 import { Select, SelectItem } from '@nextui-org/react';
 import { toast } from "react-toastify";
 import { RequiredIcon } from '../../components/globalComponents/RequiredIcon.jsx';
