@@ -2,7 +2,7 @@ import React, { useEffect } from 'react'
 import { useVehicles } from '../../Vehicles/context/vehiclesContext'
 import { useExchange } from '../context/ExchangeContext';
 import {useForm, Controller} from 'react-hook-form';
-import {AiOutlineDelete} from 'react-icons/Ai';
+import {AiOutlineDelete} from '../../../node_modules/react-icons/ai';
 import { RequiredIcon } from '../../components/globalComponents/RequiredIcon.jsx';
 import {
     Table,
