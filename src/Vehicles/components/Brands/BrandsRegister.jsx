@@ -1,7 +1,7 @@
 import React, {useState, useEffect} from 'react'
 import {Modal, ModalContent, ModalHeader, 
     ModalBody, useDisclosure, Button, Select, SelectItem, Input} from "@nextui-org/react";
-import {AiOutlinePlusCircle} from 'react-icons/Ai';
+import {AiOutlinePlusCircle} from '../../../node_modules/react-icons/ai';
 import { useForm , Controller } from 'react-hook-form';
 import { useVehicles } from '../../context/vehiclesContext';
 import { RequiredIcon } from '../../../components/globalComponents/RequiredIcon';
