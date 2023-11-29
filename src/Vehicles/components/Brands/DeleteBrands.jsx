@@ -2,7 +2,7 @@ import React from 'react'
 import {Modal, ModalContent, ModalHeader, ModalBody, ModalFooter, useDisclosure, Button} from "@nextui-org/react";
 import {useForm} from 'react-hook-form';
 import { toast } from "react-toastify";
-import {AiOutlineDelete} from '../../../node_modules/react-icons/ai';;
+import {AiOutlineDelete} from '../../../node_modules/react-icons/ai';
 import { useVehicles } from '../../context/vehiclesContext';
 
 
