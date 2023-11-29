@@ -3,7 +3,7 @@ import {Modal, ModalContent, ModalHeader, ModalBody, ModalFooter, useDisclosure,
 import {useForm, Controller} from 'react-hook-form';
 import { useClients } from '../../Clients/context/clientsContext';
 import { useVehicles } from '../../Vehicles/context/vehiclesContext';
-import {AiOutlinePlusCircle} from 'react-icons/Ai';
+import {AiOutlinePlusCircle} from '../../../node_modules/react-icons/ai';
 import { useSells } from '../context/sellsContext';
 import { RequiredIcon } from '../../components/globalComponents/RequiredIcon.jsx';
 import { ButtonAccept } from '../../components/ButtonAccept';

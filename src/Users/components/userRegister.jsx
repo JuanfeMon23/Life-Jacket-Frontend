@@ -6,7 +6,7 @@ import {useForm, Controller} from 'react-hook-form';
 import { useUsers } from '../Context/userContext';
 import {Select, SelectItem} from "@nextui-org/react";
 import { useRoles } from '../../Roles/context/rolesContext';
-import {AiOutlinePlusCircle} from 'react-icons/Ai';
+import {AiOutlinePlusCircle} from '../../../node_modules/react-icons/ai';
 import { RequiredIcon } from '../../components/globalComponents/RequiredIcon.jsx';
 import { ButtonAccept } from '../../components/ButtonAccept';
 import conection from '../../api/axios.js'

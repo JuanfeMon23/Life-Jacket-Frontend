@@ -4,7 +4,7 @@ import {useForm, Controller} from 'react-hook-form';
 import { usePurchases } from '../context/purchaseContext';
 import { useClients } from '../../Clients/context/clientsContext';
 import { useVehicles } from '../../Vehicles/context/vehiclesContext';
-import {AiOutlinePlusCircle} from 'react-icons/Ai';
+import {AiOutlinePlusCircle} from '../../../node_modules/react-icons/ai';
 import { RequiredIcon } from '../../components/globalComponents/RequiredIcon.jsx';
 import { ButtonAccept } from '../../components/ButtonAccept';
 import conection from '../../api/axios.js';

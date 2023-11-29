@@ -7,7 +7,7 @@ import {Modal, ModalContent, ModalHeader, ModalBody, ModalFooter, useDisclosure}
 import {Select, SelectItem} from "@nextui-org/react";
 import { Button } from '@nextui-org/react';
 import { useParams } from 'react-router-dom';
-import {AiOutlinePlusCircle} from 'react-icons/Ai';
+import {AiOutlinePlusCircle} from '../../../node_modules/react-icons/ai';
 import { RequiredIcon } from '../../components/globalComponents/RequiredIcon.jsx';
 import { ButtonAccept } from '../../components/ButtonAccept';
 

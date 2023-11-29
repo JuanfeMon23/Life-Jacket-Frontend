@@ -2,7 +2,7 @@ import React from 'react'
 import {Modal, ModalContent, ModalHeader, ModalBody, useDisclosure, Button} from "@nextui-org/react";
 import { VehicleInfo } from './VehicleInfo';
 import { useVehicles } from '../context/vehiclesContext';
-import {AiOutlinePlusCircle} from 'react-icons/Ai';
+import {AiOutlinePlusCircle} from '../../../node_modules/react-icons/ai';
 
 export  function VehicleRegister(props) {
     const [scrollBehavior, setScrollBehavior] = React.useState("inside");

@@ -4,7 +4,7 @@ import {Button} from "@nextui-org/react";
 import {useForm} from 'react-hook-form';
 import { useVehicles } from '../context/vehiclesContext';
 import { toast } from "react-toastify";
-import {AiOutlineDelete} from 'react-icons/Ai';
+import {AiOutlineDelete} from '../../../node_modules/react-icons/ai';
 
 export  function DeleteVehicle(props) {
     const {isOpen, onOpen, onOpenChange} = useDisclosure();

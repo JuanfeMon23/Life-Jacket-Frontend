@@ -3,7 +3,7 @@ import {Modal, ModalContent, ModalHeader, ModalBody, useDisclosure} from "@nextu
 import {Button} from "@nextui-org/react";
 import {useForm} from 'react-hook-form';
 import { toast } from "react-toastify";
-import {AiOutlineDelete} from 'react-icons/Ai';
+import {AiOutlineDelete} from '../../../node_modules/react-icons/ai';
 import { useRoles } from '../context/rolesContext';
 
 export  function DeleteRol(props) {

@@ -8,7 +8,7 @@ import {useForm, Controller} from 'react-hook-form';
 import { useRoles } from '../context/rolesContext';
 import {Switch} from "@nextui-org/react";
 import { useUsers } from '../../Users/Context/userContext';
-import {AiOutlinePlusCircle} from 'react-icons/Ai';
+import {AiOutlinePlusCircle} from '../../../node_modules/react-icons/ai';
 import { AddLicenses } from './AddLicenses';
 import { RequiredIcon } from '../../components/globalComponents/RequiredIcon.jsx';
 

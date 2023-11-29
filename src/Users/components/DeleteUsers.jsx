@@ -4,7 +4,7 @@ import {Button} from "@nextui-org/react";
 import {useForm} from 'react-hook-form';
 import { toast } from "react-toastify";
 import { useUsers } from '../Context/userContext';
-import {AiOutlineDelete} from 'react-icons/Ai';
+import {AiOutlineDelete} from '../../../node_modules/react-icons/ai';
 
 export  function DeleteUsers(props) {
     const {isOpen, onOpen, onOpenChange} = useDisclosure();
