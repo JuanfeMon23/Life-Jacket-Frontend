@@ -56,7 +56,7 @@ export function ImprovementProvider({children}){
     const editImprovement = async (idImprovement, improvement) => {
         try {
             await editImprovementRequest(idImprovement, improvement);
-            toast.success('Mejora editada con éxito!',{
+            toast.success('Mejora actualizada con éxito!',{
                 position: toast.POSITION.TOP_CENTER,
                 autoClose :1500
             });

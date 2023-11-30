@@ -6,6 +6,7 @@ import { useForm , Controller } from 'react-hook-form';
 import { useVehicles } from '../../context/vehiclesContext';
 import { RequiredIcon } from '../../../components/globalComponents/RequiredIcon';
 import { ButtonAccept } from '../../../components/ButtonAccept';
+import conection from '../../../api/axios.js';
 
 
 export  function BrandsRegister() {
@@ -27,17 +28,17 @@ export  function BrandsRegister() {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const typesResponse = await fetch('http://localhost:3000/api/vehicle-types');
+        const typesResponse = await fetch(`${import.meta.env.VITE_BACKEND}/vehicle-types`);
         const typesData = await typesResponse.json();
         setVehicleTypes(typesData);
  
         if (selectedVehicleType) {
-          const brandsResponse = await fetch(`http://localhost:3000/api/vehicles-brand?vehicleType=${selectedVehicleType}`);
+          const brandsResponse = await fetch(`${import.meta.env.VITE_BACKEND}/vehicles-brand?vehicleType=${selectedVehicleType}`);
           const brandsData = await brandsResponse.json();
           setVehicleBrands(brandsData);
 
           if (selectedBrandName) {
-            const linesResponse = await fetch(`http://localhost:3000/api/vehicles-lines?vehicleType=${selectedVehicleType}&brandName=${selectedBrandName}`);
+            const linesResponse = await fetch(`${import.meta.env.VITE_BACKEND}/vehicles-lines?vehicleType=${selectedVehicleType}&brandName=${selectedBrandName}`);
             const linesData = await linesResponse.json();
             setVehicleLines(linesData);
           }

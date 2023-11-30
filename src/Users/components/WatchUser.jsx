@@ -24,7 +24,7 @@ export function WatchUser(props) {
         <ModalContent>
           {(onClose) => (
             <>
-              <ModalHeader className="  justify-center font-bold text-2xl ">Información del usuario</ModalHeader>
+              <ModalHeader className="  flex items-center ">Información del usuario</ModalHeader>
                 <ModalBody key={user.id}>
                 <div className="m-5 flex justify-around">
                     <div className=" flex flex-col">
