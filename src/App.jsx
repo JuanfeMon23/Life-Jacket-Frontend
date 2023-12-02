@@ -27,6 +27,16 @@ import { ForgotPassword } from "./Login/components/ForgotPassword.jsx";
 import { Resetpassword } from "./Login/components/Resetpassword.jsx";
 import { Brands } from "./Vehicles/pages/Brands.jsx";
 import { Manuals } from "./Manuals/pages/Manuals.jsx";
+import { DashboardManual } from "./Manuals/components/DashboardManual.jsx";
+import { ClientsManual } from "./Manuals/components/ClientsManual.jsx";
+import { ExchangesManual } from "./Manuals/components/ExchangesManual.jsx";
+import { ImprovementsManual } from "./Manuals/components/ImprovementsManual.jsx";
+import { LoginManual } from "./Manuals/components/LoginManual.jsx";
+import { PurchasesManual } from "./Manuals/components/PurchasesManual.jsx";
+import { RolesManual } from "./Manuals/components/RolesManual.jsx";
+import { SalesManual } from "./Manuals/components/SalesManual.jsx";
+import { UsersManual } from "./Manuals/components/UsersManual.jsx";
+import { VehiclesManual } from "./Manuals/components/VehiclesManual.jsx";
 
 
 function Navigator (){
@@ -67,7 +77,18 @@ function App() {
                                 <Route path="/DashBoard" element={<DashBoard/>}/>
                                 <Route path="/Exchangues" element={<Exchangues/>}/>
                                 <Route path="/Exchangues/create" element={<CreateExchange/>}/>
-                                <Route path="/Manuals" element={<Manuals/>}/>       
+                                <Route path="/Manuals" element={<Manuals/>}/>
+                                <Route path="/Manuals/Login" element={<LoginManual/>}/>
+                                <Route path="/Manuals/Dashboard" element={<DashboardManual/>}/>
+                                <Route path="/Manuals/Roles" element={<RolesManual/>}/>  
+                                <Route path="/Manuals/Users" element={<UsersManual/>}/>     
+                                <Route path="/Manuals/Clients" element={<ClientsManual/>}/>     
+                                <Route path="/Manuals/Vehicles" element={<VehiclesManual/>}/>     
+                                <Route path="/Manuals/Purchases" element={<PurchasesManual/>}/>     
+                                <Route path="/Manuals/Sales" element={<SalesManual/>}/>     
+                                <Route path="/Manuals/Exchanges" element={<ExchangesManual/>}/>     
+                                <Route path="/Manuals/Improvements" element={<ImprovementsManual/>}/>      
+                                
                               </Route>                    
                             </Routes>
                           <ToastContainer/> 
