@@ -253,7 +253,7 @@ export  function VehicleInfo() {
                                 variant="bordered"
                                 color={errors.soat ? "danger" : ""}
                                 errorMessage={errors.soat?.message}
-                                className="max-w-xs"
+                                className="md:w-[22rem]"
                               />
                             )}
                           /> 
@@ -272,7 +272,7 @@ export  function VehicleInfo() {
                               variant="bordered"
                               color={errors.technomechanics ? "danger" : ""}
                               errorMessage={errors.technomechanics?.message}
-                              className="max-w-xs"
+                              className="md:w-[22rem]"
                             />
                           )}
                         /> 

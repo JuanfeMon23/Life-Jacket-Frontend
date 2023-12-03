@@ -26,7 +26,16 @@ export function WatchClient (props) {
               <>
                 <ModalHeader className=" flex items-center ">Información del cliente</ModalHeader>
                   <ModalBody key={client.id}>
-                    
+
+                    <div className=" flex m-5 ml-12">
+                      <div className="flex flex-col">
+                        <p className="text-xs md:text-sm font-bold">Cédula</p>
+                        <div className="border-2 border-indigo-500/75 rounded-lg p-1 w-[16rem] md:w-[20rem] md:w-[33rem]">
+                            <p className=" text-center">{client.clientDocument}</p>
+                        </div>
+                      </div>
+                    </div>
+
                     <div className={styles.firstContainer}>
                       <div className={styles.secondContainer}>
                         <p className={styles.firstP}>Nombres</p> 
@@ -42,16 +51,6 @@ export function WatchClient (props) {
                         </div>
                       </div>
                     </div>                  
-  
-  
-                  <div className=" flex justify-center m-5 ">
-                    <div className="flex flex-col">
-                      <p className="text-xs md:text-sm font-bold">Cédula</p>
-                      <div className="border-2 border-indigo-500/75 rounded-lg p-1 w-[7rem] md:w-[15rem]">
-                          <p className=" text-center">{client.clientDocument}</p>
-                      </div>
-                    </div>
-                  </div>
 
                   <div className=" m-5 flex justify-around ">
                     <div className=" flex flex-col">

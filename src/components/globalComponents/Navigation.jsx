@@ -75,7 +75,7 @@ export  function Navigation() {
     <div className=' bg-white py-3 fixed top-0  left-0 right-0 shadow-md z-50'>     
             <div className=' flex justify-between'>
                 <div>
-                    <button className=' ml-4' onClick={() => setOpen(true)}>
+                    <button title='Abrir barra de navegación' className=' ml-4' onClick={() => setOpen(true)}>
                         <FaBars className=' text-sky-600 '/>
                     </button>
                     <span className=' ml-3 font-bold  text-sky-600'> LifeJacket</span>
@@ -83,7 +83,7 @@ export  function Navigation() {
                 <div className=' mr-3'>   
                     <Dropdown >
                         <DropdownTrigger>
-                            <Button isIconOnly> <BiSolidUser className=' text-2xl text-sky-600'/></Button>
+                            <Button isIconOnly title='Perfil'> <BiSolidUser className=' text-2xl text-sky-600'/></Button>
                         </DropdownTrigger>
                         <DropdownMenu aria-labelledby='logout'>
                             <DropdownItem   className="text-danger" color="danger" onClick={handleLogout} > Cerrar sesión</DropdownItem>

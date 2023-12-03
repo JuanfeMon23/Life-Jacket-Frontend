@@ -72,7 +72,7 @@ export  function Manuals() {
                   <BiSolidUser size={'30px'}/>
                   <p className=' mt-3'>Manual de acceso</p>
                 </div>
-             <Button onClick={handleAcces} color='primary'>ir</Button>
+             <Button title='Ver manual de acceso' onClick={handleAcces} color='primary'>ir</Button>
           </CardBody>
         </Card>
 
@@ -82,7 +82,7 @@ export  function Manuals() {
                   <IoBarChart size={'30px'}/>
                   <p className=' mt-3'>Manual de dashboard</p>
                 </div>
-             <Button onClick={handleDashboard} color='primary'>ir</Button>
+             <Button title='Ver manual de dashboard' onClick={handleDashboard} color='primary'>ir</Button>
           </CardBody>
         </Card>
 
@@ -92,7 +92,7 @@ export  function Manuals() {
                   <PiGearSix size={'30px'}/>
                   <p className=' mt-3'>Manual de roles</p>
                 </div>
-             <Button onClick={handleRoles} color='primary'>ir</Button>
+             <Button title='Ver manual de roles' onClick={handleRoles} color='primary'>ir</Button>
           </CardBody>
         </Card>
         <Card className=' w-[350px]'>
@@ -101,7 +101,7 @@ export  function Manuals() {
                   <FaIdBadge size={'30px'}/>
                   <p className=' mt-3'>Manual de usuarios</p>
                 </div>
-             <Button onClick={handleUsers} color='primary'>ir</Button>
+             <Button title='Ver manual de usuarios' onClick={handleUsers} color='primary'>ir</Button>
           </CardBody>
         </Card>
         <Card className=' w-[350px]'>
@@ -110,7 +110,7 @@ export  function Manuals() {
                   <FaCar size={'30px'}/>
                   <p className=' mt-3'>Manual de vehiculos</p>
                 </div>
-             <Button onClick={handleVehicles} color='primary'>ir</Button>
+             <Button title='Ver manual de vehículos' onClick={handleVehicles} color='primary'>ir</Button>
           </CardBody>
         </Card>
         <Card className=' w-[350px]'>
@@ -119,7 +119,7 @@ export  function Manuals() {
                   <FaUserPlus size={'30px'}/>
                   <p className=' mt-3'>Manual de clientes</p>
                 </div>
-             <Button onClick={handleClients}  color='primary'>ir</Button>
+             <Button title='Ver manual de clientes' onClick={handleClients}  color='primary'>ir</Button>
           </CardBody>
         </Card>
         <Card className=' w-[350px]'>
@@ -128,7 +128,7 @@ export  function Manuals() {
                   <FaCartPlus size={'30px'}/>
                   <p className=' mt-3'>Manual de compras</p>
                 </div>
-             <Button onClick={handlePurchases} color='primary'>ir</Button>
+             <Button title='Ver manual de compras' onClick={handlePurchases} color='primary'>ir</Button>
           </CardBody>
         </Card>
 
@@ -138,7 +138,7 @@ export  function Manuals() {
                   <FaMoneyBillWave size={'30px'}/>
                   <p className=' mt-3'>Manual de ventas</p>
                 </div>
-             <Button onClick={handleSales} color='primary'>ir</Button>
+             <Button title='Ver manual de ventas' onClick={handleSales} color='primary'>ir</Button>
           </CardBody>
         </Card>
 
@@ -148,7 +148,7 @@ export  function Manuals() {
                   <FaExchangeAlt size={'30px'}/>
                   <p className=' mt-3'>Manual de intercambios</p>
                 </div>
-             <Button onClick={handleExchanges} color='primary'>ir</Button>
+             <Button title='Ver manual de intercambios' onClick={handleExchanges} color='primary'>ir</Button>
           </CardBody>
         </Card>
 
@@ -158,7 +158,7 @@ export  function Manuals() {
                   <FaTools size={'30px'}/>
                   <p className=' mt-3'>Manual de mejoras</p>
                 </div>
-             <Button onClick={handleImprovements} color='primary'>ir</Button>
+             <Button title='Ver manual de mejoras' onClick={handleImprovements} color='primary'>ir</Button>
           </CardBody>
         </Card>
 

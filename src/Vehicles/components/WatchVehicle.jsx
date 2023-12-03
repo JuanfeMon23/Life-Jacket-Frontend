@@ -35,12 +35,18 @@ export function WatchVehicle (props) {
                                 <p className=" text-center">{vehicles.licensePlate}</p>
                             </div>
                           </div>
+                          <div className=" flex flex-col">
+                              <p className="text-xs md:text-sm font-bold">Vehículo</p> 
+                                <div className=" items-end border-2 border-indigo-500/75 rounded-lg w-[7rem] md:w-[15rem] p-1">
+                                    <p className=" text-center">{vehicles.vehicleType}</p>
+                                </div>
+                          </div>
                        </div>                      
                           <div className="m-5 flex justify-around">
                               <div className=" flex flex-col">
-                                <p className="text-xs md:text-sm font-bold">Vehículo</p> 
+                                <p className="text-xs md:text-sm font-bold">Tipo de vehículo</p> 
                                 <div className=" border-2 border-indigo-500/75 rounded-lg w-[7rem] md:w-[15rem] p-1 ">
-                                    <p className=" text-center">{vehicles.vehicleType}</p>
+                                    <p className=" text-center">{vehicles.type}</p>
                                 </div>
                               </div>
 
@@ -60,23 +66,16 @@ export function WatchVehicle (props) {
                                 </div>
                               </div>
 
-                            <div className=" flex flex-col">
-                              <p className="text-xs md:text-sm font-bold">Tipo de vehículo</p> 
-                                <div className=" items-end border-2 border-indigo-500/75 rounded-lg w-[7rem] md:w-[15rem] p-1">
-                                    <p className=" text-center">{vehicles.type}</p>
-                                </div>
-                              </div>
-                          </div> 
-
-                          <div className="m-5 flex justify-around">
-                          <div className=" flex flex-col">
-                            <p className="text-xs md:text-sm font-bold">Línea</p> 
-                            <div className=" border-2 border-indigo-500/75 rounded-lg w-[7rem] md:w-[15rem] p-1 ">
+                              <div className=" flex flex-col">
+                                <p className="text-xs md:text-sm font-bold">Línea</p> 
+                                <div className=" border-2 border-indigo-500/75 rounded-lg w-[7rem] md:w-[15rem] p-1 ">
                                 <p className=" text-center">{vehicles.line}</p>
+                              </div>
                             </div>
                           </div>
-                       </div> 
-                           
+
+                    
+
                         </AccordionItem>
                         <AccordionItem key="2" aria-label="Datos fisicos" title="Datos físicos">
                             <div className="m-5 flex justify-around">

@@ -41,8 +41,7 @@ export  function EditImprovements(props) {
                 <ModalHeader className="flex flex-col gap-3">Editar mejora</ModalHeader>
                 <ModalBody>
                     <form onSubmit={handleSubmit(onSubmit)}>
-                        <div className=' flex'>
-                            <div className=' flex-col m-3'>
+                            <div className='flex flex-col m-3 justify-center items-center'>
                             <Controller
                               name="improvementDate"
                               defaultValue={improvement.improvementDate}
@@ -75,9 +74,9 @@ export  function EditImprovements(props) {
                                 />
                             )}
                           /> 
-                            </div>
+                          </div> 
 
-                            <div className=' flex-col m-3'>
+                            <div className='flex flex-col m-3 justify-center items-center'>
                             <Controller
                               name="improvementPrice"
                               defaultValue={improvement.improvementPrice}
@@ -104,7 +103,6 @@ export  function EditImprovements(props) {
                             />
                             </div>  
 
-                        </div>
 
                         <div className='flex flex-col m-3 justify-center items-center'>
                         <Controller

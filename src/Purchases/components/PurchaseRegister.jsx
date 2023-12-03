@@ -208,13 +208,13 @@ export function PurchaseRegister() {
                                   endContent={<RequiredIcon/>}
                                   color={errors.purchaseDate ? "danger" : ""}
                                   errorMessage={errors.purchaseDate?.message}
-                                  className="max-w-xs"
+                                  className="md:w-[23rem]"
                                 />
                             )}
                           /> 
                         </div>
 
-                        <div className='flex flex-col m-3 justify-center items-center'>
+                        <div className='flex flex-col m-5 justify-center items-center'>
                             <Controller
                               name="purchaseFinalPrice"
                               control={control}
@@ -234,14 +234,14 @@ export function PurchaseRegister() {
                                   endContent={<RequiredIcon/>}
                                   color={errors.purchaseFinalPrice? "danger" : ""}
                                   errorMessage={errors.purchaseFinalPrice?.message}
-                                  className="max-w-xs"
+                                  className="md:w-[23rem]"
                                 />
                               )}
                             />
                         </div>  
                   
 
-                    <div className='flex flex-col m-3 justify-center items-center'>
+                    <div className='flex flex-col m-5 justify-center items-center'>
                     <Controller
                           name="purchasePecuniaryPenalty"
                           control={control}
@@ -257,13 +257,13 @@ export function PurchaseRegister() {
                               endContent={<RequiredIcon/>}
                               color={errors.purchasePecuniaryPenalty ? "danger" : ""}
                               errorMessage={errors.purchasePecuniaryPenalty?.message}
-                              className="max-w-xs"
+                              className="md:w-[23rem]"
                             />
                           )}
                         />
                     </div>
 
-                    <div className='flex flex-col m-3 justify-center items-center'>
+                    <div className='flex flex-col m-4 justify-center items-center'>
                             <Controller
                               name="purchaseLimitations"
                               control={control}
@@ -287,7 +287,7 @@ export function PurchaseRegister() {
                                   endContent={<RequiredIcon/>}
                                   color={errors.purchaseLimitations ? "danger" : ""}
                                   errorMessage={errors.purchaseLimitations?.message}
-                                  className="max-w-xs"
+                                  className="md:w-[23rem]"
                                 />
                               )}
                             />
