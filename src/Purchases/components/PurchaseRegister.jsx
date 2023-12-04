@@ -257,7 +257,7 @@ export function PurchaseRegister() {
                               endContent={<RequiredIcon/>}
                               color={errors.purchasePecuniaryPenalty ? "danger" : ""}
                               errorMessage={errors.purchasePecuniaryPenalty?.message}
-                              className="max-w-xs"
+                             className="md:w-[23rem]"
                             />
                           )}
                         />
@@ -287,7 +287,7 @@ export function PurchaseRegister() {
                                   endContent={<RequiredIcon/>}
                                   color={errors.purchaseLimitations ? "danger" : ""}
                                   errorMessage={errors.purchaseLimitations?.message}
-                                  className="max-w-xs"
+                                  className="md:w-[23rem]"
                                 />
                               )}
                             />
