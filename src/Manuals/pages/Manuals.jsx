@@ -65,7 +65,7 @@ export  function Manuals() {
       <div>
         {<Title Title='Manuales'/>}
       </div>
-      <div className=' grid gap-4 grid-cols-1 md:grid-cols-5 ml-3 '>
+      <div className=' grid gap-4 grid-cols-1 md:grid-cols-3 xl:grid-cols-5 ml-3 '>
       <Card className=' w-[350px]'>
             <CardBody>
                 <div className=' flex flex-col justify-center items-center p-5'>
