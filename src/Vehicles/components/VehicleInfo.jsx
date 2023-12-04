@@ -240,6 +240,50 @@ export  function VehicleInfo() {
                           </div>
                   </div>
 
+                  <div className='flex'>
+                  <div className=' flex-col m-3 w-[180px]'>
+                    <Controller
+                          name="color"
+                          control={controlVehicle}
+                          rules={{
+                            required: "Campo requerido",
+                            maxLength: {
+                              value: 15,
+                              message: "Máximo 15 caracteres"
+                            }
+                          }}
+                          render={({ field }) => (
+                            <Input
+                              {...field}
+                              type="text"
+                              label="Color"
+                              variant="bordered"
+                              endContent={<RequiredIcon/>}
+                              color={errors.color ? "danger" : ""}
+                              errorMessage={errors.color?.message}
+                              className="max-w-xs"
+                            />
+                          )}
+                        /> 
+                    </div>
+                    <div className=' flex-col m-3'>
+                      <Controller
+                              name="timingBelt"
+                              control={controlVehicle}
+                              render={({ field }) => (
+                                <Input
+                                  {...field}
+                                  type="text"
+                                  label="Correa dentada"
+                                  variant="bordered"
+                                  color={errors.timingBelt ? "danger" : ""}
+                                  errorMessage={errors.timingBelt?.message}
+                                  className="max-w-xs"
+                                />
+                              )}
+                            /> 
+                      </div>
+                  </div>
 
                     <div className='flex flex-col m-3 justify-center items-center'>
                       <Controller
@@ -253,7 +297,7 @@ export  function VehicleInfo() {
                                 variant="bordered"
                                 color={errors.soat ? "danger" : ""}
                                 errorMessage={errors.soat?.message}
-                                className="md:w-[22rem]"
+                                className="md:w-[24rem]"
                               />
                             )}
                           /> 
@@ -272,7 +316,7 @@ export  function VehicleInfo() {
                               variant="bordered"
                               color={errors.technomechanics ? "danger" : ""}
                               errorMessage={errors.technomechanics?.message}
-                              className="md:w-[22rem]"
+                              className="md:w-[24rem]"
                             />
                           )}
                         /> 
@@ -363,50 +407,6 @@ export  function VehicleInfo() {
                           )}
                         />  
                     </div>
-                  </div>
-                  <div className='flex'>
-                  <div className=' flex-col m-3'>
-                    <Controller
-                          name="color"
-                          control={controlVehicle}
-                          rules={{
-                            required: "Campo requerido",
-                            maxLength: {
-                              value: 15,
-                              message: "Máximo 15 caracteres"
-                            }
-                          }}
-                          render={({ field }) => (
-                            <Input
-                              {...field}
-                              type="text"
-                              label="Color"
-                              variant="bordered"
-                              endContent={<RequiredIcon/>}
-                              color={errors.color ? "danger" : ""}
-                              errorMessage={errors.color?.message}
-                              className="max-w-xs"
-                            />
-                          )}
-                        /> 
-                    </div>
-                    <div className=' flex-col m-3'>
-                      <Controller
-                              name="timingBelt"
-                              control={controlVehicle}
-                              render={({ field }) => (
-                                <Input
-                                  {...field}
-                                  type="text"
-                                  label="Correa dentada"
-                                  variant="bordered"
-                                  color={errors.timingBelt ? "danger" : ""}
-                                  errorMessage={errors.timingBelt?.message}
-                                  className="max-w-xs"
-                                />
-                              )}
-                            /> 
-                      </div>
                   </div>
                   
                   <div className=' flex'>
@@ -581,7 +581,7 @@ export  function VehicleInfo() {
                   </div>
 
                   <div className=' flex'>
-                    <div className='flex-col m-3'>
+                    <div className='flex-col m-3 w-[200px]'>
                       <Controller
                                 name="capacity"
                                 control={controlVehicle}
