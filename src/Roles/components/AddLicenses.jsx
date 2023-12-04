@@ -51,24 +51,26 @@ export const AddLicenses = (props) => {
                 <ModalHeader className="flex flex-col gap-3">Asignar permisos</ModalHeader>
               <ModalBody>
                 <form onSubmit={handleSubmit(onSubmit)}>
-                  <div className=' flex flex-col justify-center items-center p-0 m-0'>
-                  {licenses.map((licenses) => (
-                            <label key={licenses.idLicense}>
-                            <Controller
-                                name={String(licenses.idLicense)}
-                                control={control}
-                                defaultValue={false}
-                                render={({ field }) => (
-                                <Checkbox
-                                  color='success'
-                                    {...field}
-                                />
-                                )}
-                            />
-                            {licenses.licenseName}
-                            </label>
-                        ))}
-                  </div>
+                <div className='flex items-center justify-center'>
+                    <div className=' flex flex-col p-0 m-0'>
+                    {licenses.map((licenses) => (
+                              <label key={licenses.idLicense}>
+                              <Controller
+                                  name={String(licenses.idLicense)}
+                                  control={control}
+                                  defaultValue={false}
+                                  render={({ field }) => (
+                                  <Checkbox
+                                    color='success'
+                                      {...field}
+                                  />
+                                  )}
+                              />
+                              {licenses.licenseName}
+                              </label>
+                          ))}
+                    </div>
+                  </div> 
                   <div className='text-center my-3'>
                     <ButtonAccept/>
                   </div> 

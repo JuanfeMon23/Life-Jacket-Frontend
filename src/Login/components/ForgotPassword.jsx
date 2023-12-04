@@ -54,7 +54,7 @@ export  function ForgotPassword() {
                       />
                     )}
                   />
-                    <button type='submit' className=' mt-4 border-2 border-blue-800 text-blue-800 rounded-full px-12 py-2 inline-block font-semibold hover:bg-blue-800 hover:text-white hover:border-blue-800 '>Enviar</button>
+                    <button type='submit' title='Enviar mensaje al correo electrónico'  className=' mt-4 border-2 border-blue-800 text-blue-800 rounded-full px-12 py-2 inline-block font-semibold hover:bg-blue-800 hover:text-white hover:border-blue-800 '>Enviar</button>
               </form>
             </div>
         </div>

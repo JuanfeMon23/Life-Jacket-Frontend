@@ -179,7 +179,7 @@ export function SaleRegister() {
                           </div>
                       </div>
 
-                        <div className='flex flex-col m-3 justify-center items-center'>
+                        <div className='flex flex-col m-2 justify-center items-center'>
                         <Controller
                               name="saleDate"
                               control={control}
@@ -207,7 +207,7 @@ export function SaleRegister() {
                                   endContent={<RequiredIcon/>}
                                   color={errors.saleDate ? "danger" : ""}
                                   errorMessage={errors.saleDate?.message}
-                                  className="max-w-xs"
+                                  className="md:w-[23rem]"
                                 />
                             )}
                           /> 
@@ -233,12 +233,12 @@ export function SaleRegister() {
                                   endContent={<RequiredIcon/>}
                                   color={errors.saleFinalPrice? "danger" : ""}
                                   errorMessage={errors.saleFinalPrice?.message}
-                                  className="max-w-xs"
+                                  className="md:w-[23rem]"
                                 />
                               )}
                             />
                         </div>  
-                    <div className='flex flex-col m-3 justify-center items-center'>
+                    <div className='flex flex-col m-5 justify-center items-center'>
                     <Controller
                           name="salePecuniaryPenalty"
                           control={control}
@@ -254,7 +254,7 @@ export function SaleRegister() {
                               endContent={<RequiredIcon/>}
                               color={errors.salePecuniaryPenalty ? "danger" : ""}
                               errorMessage={errors.salePecuniaryPenalty?.message}
-                              className="max-w-xs"
+                              className="md:w-[23rem]"
                             />
                           )}
                         />
@@ -284,7 +284,7 @@ export function SaleRegister() {
                                   endContent={<RequiredIcon/>}
                                   color={errors.saleLimitations ? "danger" : ""}
                                   errorMessage={errors.saleLimitations?.message}
-                                  className="max-w-xs"
+                                  className="md:w-[23rem]"
                                 />
                               )}
                             />

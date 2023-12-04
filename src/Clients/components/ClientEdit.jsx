@@ -39,54 +39,6 @@ export  function  ClientEdit(props) {
               <ModalHeader className="flex flex-col gap-3">Editar cliente</ModalHeader>
               <ModalBody>
                 <form onSubmit={handleSubmit(onSubmit)}>
-                  <div className=' flex'> 
-                      <div className='flex-col m-3 w-[200px]'>
-                      <Controller
-                          name="clientDepartment"
-                          control={control}
-                          defaultValue={clients.clientDepartment}
-                          rules={{
-                            required: "Campo requerido",
-                          }}
-                          render={({ field }) => (
-                            <Input
-                              {...field}
-                              label="Departamento"
-                              variant="bordered"
-                              endContent={<RequiredIcon/>}
-                              color={errors.clientDepartment ? "danger" : ""}
-                              errorMessage={errors.clientDepartment?.message}
-                              className="max-w-xs"
-                            />
-                          )}
-                        /> 
-                      </div>
-
-                      <div className='flex-col m-3 w-[200px]'>
-                      <Controller
-                            name="clientMunicipality"
-                            defaultValue={clients.clientMunicipality}
-                            control={control}
-                            rules={{
-                              required: "Campo requerido",
-                            }}
-                            render={({ field }) => (
-                              <Input
-                                {...field}
-                                label="Ciudad o municipio"
-                                variant="bordered"
-                                endContent={<RequiredIcon/>}
-                                color={errors.clientMunicipality ? "danger" : ""}
-                                errorMessage={errors.clientMunicipality?.message}
-                                className="max-w-xs"
-                              />
-                            )}
-                          />
-                      </div>
-                  </div>
-
-
-
                   <div className=" flex">
                     <div className=' flex-col m-3'>
                     <Controller

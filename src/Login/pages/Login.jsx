@@ -85,7 +85,7 @@ export function Login() {
                       <div className=' flex w-84 justify-end  mb-5'>
                         <Link to='/ForgotPassword'><label className=' cursor-pointer mt-3 flex text-blue-800 font-bold items-center text-[10px]  sm:text-xs'>¿Olvidaste tu contraseña?</label></Link> 
                       </div>
-                          <button type='submit' className=' w-[10rem] ml-20 sm:m-0 text-sm border-2 border-blue-800 text-blue-800 rounded-full sm:px-12 p-2  inline-block font-semibold hover:bg-blue-800 hover:text-white hover:border-blue-800 '>Ingresar</button>
+                          <button type='submit' title='Ingresar al sistema' className=' w-[10rem] ml-20 sm:m-0 text-sm border-2 border-blue-800 text-blue-800 rounded-full sm:px-12 p-2  inline-block font-semibold hover:bg-blue-800 hover:text-white hover:border-blue-800 '>Ingresar</button>
                     </form>
                   </div>
               </div>

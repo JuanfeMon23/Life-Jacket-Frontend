@@ -52,10 +52,10 @@ export function WatchSale(props) {
                       </div>
                     </div> 
 
-                    <div className={styles.firstContainer}>
-                    <div className={styles.secondContainer}>
+                    <div className=" flex  m-5 ml-12">
+                    <div className=" flex flex-col">
                       <p className={styles.firstP}>Fecha</p> 
-                      <div className={styles.thirdContainer}>
+                      <div className="border-2 border-indigo-500/75 rounded-lg p-1 w-[16rem] md:w-[20rem] ">
                           <p className={styles.secondP}>{sale.saleDate}</p>
                       </div>
                     </div>

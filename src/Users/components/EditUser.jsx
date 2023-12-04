@@ -44,55 +44,8 @@ export function EditUser(props) {
                     <ModalBody>
                         <form onSubmit={handleSubmit(onSubmit)}>
                     
-                      <div className=' flex'> 
-                          <div className='flex-col m-3 w-[200px]'>
-                          <Controller
-                          name="userDepartment"
-                          control={control}
-                          defaultValue={user.userDepartment}
-                          rules={{
-                            required: "Campo requerido",
-                          }}
-                          render={({ field }) => (
-                            <Input
-                              {...field}
-                              label="Departamento"
-                              variant="bordered"
-                              endContent={<RequiredIcon/>}
-                              color={errors.userDepartment ? "danger" : ""}
-                              errorMessage={errors.userDepartment?.message}
-                              className="max-w-xs"
-                            />
-                          )}
-                        /> 
-                          </div>
-
-                          <div className='flex-col m-3 w-[200px]'>
-                          <Controller
-                          name="userMunicipality"
-                          defaultValue={user.userMunicipality}
-                          control={control}
-                          rules={{
-                            required: "Campo requerido",
-                          }}
-                          render={({ field }) => (
-                            <Input
-                              {...field}
-                              label="Ciudad o municipio"
-                              variant="bordered"
-                              endContent={<RequiredIcon/>}
-                              color={errors.userMunicipality ? "danger" : ""}
-                              errorMessage={errors.userMunicipality?.message}
-                              className="max-w-xs"
-                            />
-                          )}
-                        />
-                          </div>
-                      </div>
-
-
                         <div className="flex ">
-                          <div className=' flex-col m-3'>
+                          <div className=' flex-col m-3 w-[200px]'>
                           <Controller
                               name="userName"
                               control={control}

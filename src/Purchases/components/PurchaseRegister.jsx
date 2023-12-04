@@ -209,7 +209,7 @@ export function PurchaseRegister() {
                                   endContent={<RequiredIcon/>}
                                   color={errors.purchaseDate ? "danger" : ""}
                                   errorMessage={errors.purchaseDate?.message}
-                                  className="max-w-xs"
+                                  className="md:w-[23rem]"
                                 />
                             )}
                           /> 
@@ -235,14 +235,14 @@ export function PurchaseRegister() {
                                   endContent={<RequiredIcon/>}
                                   color={errors.purchaseFinalPrice? "danger" : ""}
                                   errorMessage={errors.purchaseFinalPrice?.message}
-                                  className="max-w-xs"
+                                  className="md:w-[23rem]"
                                 />
                               )}
                             />
                         </div>  
                   
 
-                    <div className='flex flex-col m-3 justify-center items-center'>
+                    <div className='flex flex-col m-5 justify-center items-center'>
                     <Controller
                           name="purchasePecuniaryPenalty"
                           control={control}
@@ -264,7 +264,7 @@ export function PurchaseRegister() {
                         />
                     </div>
 
-                    <div className='flex flex-col m-3 justify-center items-center'>
+                    <div className='flex flex-col m-4 justify-center items-center'>
                             <Controller
                               name="purchaseLimitations"
                               control={control}
