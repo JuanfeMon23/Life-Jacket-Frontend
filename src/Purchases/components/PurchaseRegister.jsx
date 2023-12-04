@@ -19,7 +19,6 @@ export function PurchaseRegister() {
 
     const onSubmit = (data, e) => {
         e.preventDefault();
-        createPurchase(data);
         { onSubmit ? createPurchase(data) && reset() : '' } 
     };
 
