@@ -57,8 +57,7 @@ export  function Navigation() {
         {title : 'Ventas', path:'/Sells', icon: FaMoneyBillWave },
         {title: 'Clientes', path:'/Clients' , icon : FaUserPlus},
         {title : 'Intercambios', path:'/Exchangues', icon : FaExchangeAlt},
-        {title : 'Mejoras', path:'/Improvements', icon : FaTools},
-        {title : 'Manuales', path:'/Manuals', icon : FiBookmark }
+        {title : 'Mejoras', path:'/Improvements', icon : FaTools}
     ];
 
     const [showVehicleSubMenu, setShowVehicleSubMenu] = useState(false);
@@ -70,6 +69,10 @@ export  function Navigation() {
     const closeVehicleSubMenu = () => {
       setShowVehicleSubMenu(false);
     };
+
+    const manuals = () => {
+        navigate('/Manuals')
+    }
 
   return (
     <div className=' bg-white py-3 fixed top-0  left-0 right-0 shadow-md z-50'>     
@@ -86,6 +89,7 @@ export  function Navigation() {
                             <Button isIconOnly title='Perfil'> <BiSolidUser className=' text-2xl text-sky-600'/></Button>
                         </DropdownTrigger>
                         <DropdownMenu aria-labelledby='logout'>
+                            <DropdownItem   onClick={manuals} > Manuales</DropdownItem>
                             <DropdownItem   className="text-danger" color="danger" onClick={handleLogout} > Cerrar sesión</DropdownItem>
                         </DropdownMenu>
                     </Dropdown>
