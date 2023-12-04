@@ -25,7 +25,8 @@ export function PurchaseProvider ({children}) {
         try {
             const res = await createPurchaseRequest(purchase);
             toast.success('Compra creada con éxito!',{
-                position: toast.POSITION.TOP_CENTER
+                position: toast.POSITION.TOP_CENTER,
+                autoClose : 1500
             });
             getPurchases();
             return res.data;

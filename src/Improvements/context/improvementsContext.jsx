@@ -25,13 +25,15 @@ export function ImprovementProvider({children}){
         try {
             const res = await createImprovementsRequest(improvement);
             toast.success('Mejora registrada con éxito!',{
-                position: toast.POSITION.TOP_CENTER
+                position: toast.POSITION.TOP_CENTER,
+                autoClose: 1500
             });
             getImprovements();
             return res.data;
         } catch (error) {
             toast.error('Error al registrar la mejora' ,{
-                position: toast.POSITION.TOP_CENTER
+                position: toast.POSITION.TOP_CENTER,
+                autoClose: 1500
             });
             console.log(error);
             throw new Error(error.message);
@@ -66,7 +68,6 @@ export function ImprovementProvider({children}){
                 position: toast.POSITION.TOP_CENTER,
                 autoClose : 1500
             });
-            console.log(error)
             throw new Error(error.message);
         }
     };
@@ -75,7 +76,8 @@ export function ImprovementProvider({children}){
         try {
             await deleteImprovementRequest(idImprovements);
             toast.success('Mejora eliminada con éxito!',{
-                position: toast.POSITION.TOP_CENTER
+                position: toast.POSITION.TOP_CENTER,
+                autoClose: 1500
             });
             getImprovements();
         } catch (error) {
