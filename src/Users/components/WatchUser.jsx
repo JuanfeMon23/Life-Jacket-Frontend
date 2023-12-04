@@ -24,7 +24,7 @@ export function WatchUser(props) {
         <ModalContent>
           {(onClose) => (
             <>
-              <ModalHeader className="  justify-center font-bold text-2xl ">Información del usuario</ModalHeader>
+              <ModalHeader className="  flex items-center ">Información del usuario</ModalHeader>
                 <ModalBody key={user.id}>
                 <div className="m-5 flex justify-around">
                     <div className=" flex flex-col">
@@ -78,7 +78,7 @@ export function WatchUser(props) {
                 <div className=" flex m-5 ml-12">
                   <div className=" flex flex-col">
                     <p className="text-xs md:text-sm font-bold">Correo electrónico</p>
-                    <div className="border-2 border-indigo-500/75 rounded-lg p-1 w-[16rem] md:w-[20rem] ">
+                    <div className="border-2 border-indigo-500/75 rounded-lg p-1 w-[16rem] md:w-[20rem] md:w-[33rem] ">
                         <p className=" text-center">{user.userEmail}</p>
                     </div>
                   </div>
