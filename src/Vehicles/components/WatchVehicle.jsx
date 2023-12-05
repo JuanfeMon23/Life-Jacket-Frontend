@@ -96,7 +96,7 @@ export function WatchVehicle (props) {
 
                           <div className={styles.firstContainer}>
                               <div className={styles.secondContainer}>
-                                <p className={styles.firstP}>Gasolina</p> 
+                                <p className={styles.firstP}>Combustible</p> 
                                 <div className={styles.thirdContainer}>
                                     <p className=" text-center">{vehicles.fuel ? vehicles.fuel : 'No hay datos.' }</p>
                                 </div>
