@@ -72,7 +72,52 @@ export  function EditVehicle (props) {
               <ModalHeader className="flex flex-col gap-3">Editar vehículo</ModalHeader>
               <ModalBody>
                 <form onSubmit={handleSubmit(onSubmit)}>
-
+                <div className=' flex '>
+                  <div className=' flex-col m-3'>
+                    <Controller
+                          name="color"
+                          control={control}
+                          defaultValue={vehicles.color}
+                          rules={{
+                            required: "Campo requerido",
+                            maxLength: {
+                              value: 15,
+                              message: "Maximo 15 caracteres"
+                            }
+                          }}
+                          render={({ field }) => (
+                            <Input
+                              {...field}
+                              type="text"
+                              label="Color"
+                              variant="bordered"
+                              endContent={<RequiredIcon/>}
+                              color={errors.color ? "danger" : ""}
+                              errorMessage={errors.color?.message}
+                              className="max-w-xs"
+                            />
+                          )}
+                        />      
+                    </div>
+                    <div className=' flex-col m-3'>
+                    <Controller
+                          name="timingBelt"
+                          control={control}
+                          defaultValue={vehicles.timingBelt}
+                          render={({ field }) => (
+                            <Input
+                              {...field}
+                              type="text"
+                              label="Correa dentada"
+                              variant="bordered"
+                              color={errors.timingBelt ? "danger" : ""}
+                              errorMessage={errors.timingBelt?.message}
+                              className="max-w-xs"
+                            />
+                          )}
+                        /> 
+                    </div>
+                  </div>
 
                   <div className=" flex">
                     <div className=' flex-col m-3 w-[200px]'>
@@ -178,7 +223,7 @@ export  function EditVehicle (props) {
                                 variant="bordered"
                                 color={errors.soat ? "danger" : ""}
                                 errorMessage={errors.soat?.message}
-                                className=" md:w-[22rem]"
+                                className=" md:w-[24rem]"
                               />
                             )}
                           /> 
@@ -198,59 +243,14 @@ export  function EditVehicle (props) {
                               variant="bordered"
                               color={errors.technomechanics ? "danger" : ""}
                               errorMessage={errors.technomechanics?.message}
-                              className=" md:w-[22rem]"
+                              className=" md:w-[24rem]"
                             />
                           )}
                         /> 
 
                     </div>
                   
-                  <div className=' flex '>
-                  <div className=' flex-col m-3'>
-                    <Controller
-                          name="color"
-                          control={control}
-                          defaultValue={vehicles.color}
-                          rules={{
-                            required: "Campo requerido",
-                            maxLength: {
-                              value: 15,
-                              message: "Maximo 15 caracteres"
-                            }
-                          }}
-                          render={({ field }) => (
-                            <Input
-                              {...field}
-                              type="text"
-                              label="Color"
-                              variant="bordered"
-                              endContent={<RequiredIcon/>}
-                              color={errors.color ? "danger" : ""}
-                              errorMessage={errors.color?.message}
-                              className="max-w-xs"
-                            />
-                          )}
-                        />      
-                    </div>
-                    <div className=' flex-col m-3'>
-                    <Controller
-                          name="timingBelt"
-                          control={control}
-                          defaultValue={vehicles.timingBelt}
-                          render={({ field }) => (
-                            <Input
-                              {...field}
-                              type="text"
-                              label="Correa dentada"
-                              variant="bordered"
-                              color={errors.timingBelt ? "danger" : ""}
-                              errorMessage={errors.timingBelt?.message}
-                              className="max-w-xs"
-                            />
-                          )}
-                        /> 
-                    </div>
-                  </div>
+
 
                   <div className=' flex'>
                     <div className='flex-col m-3'>
@@ -434,7 +434,7 @@ export  function EditVehicle (props) {
                   </div>
 
                   <div className=' flex'>
-                    <div className='flex-col m-3'>
+                    <div className='flex-col m-3 w-[200px]'>
                       <Controller
                                 name="capacity"
                                 defaultValue={vehicles.othervehicleinformation.capacity}

@@ -201,7 +201,11 @@ export function TableSale() {
   }, [selectedKeys, items.length, page, pages, hasSearchFilter]);
 
   return (
+<<<<<<< HEAD
     <div className=" ml-3 w-[23rem] sm:ml-5 sm:w-full md:w-[53rem] xl:w-[117rem] mx-auto ">
+=======
+    <div className="ml-3 w-[23rem] sm:ml-5 sm:w-full md:w-full lg:w-[80rem] xl:w-[117rem] mx-auto ">
+>>>>>>> 5edb2c64053c481289412e53c26937abb10e2e4f
       <Table
         aria-label="roles Table"
         isCompact

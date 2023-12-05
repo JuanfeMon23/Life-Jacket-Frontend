@@ -55,8 +55,13 @@ export function WatchSale(props) {
                     <div className=" flex  m-5 ml-12">
                     <div className=" flex flex-col">
                       <p className={styles.firstP}>Fecha</p> 
+<<<<<<< HEAD
                       <div className="md:border-2 md:border-indigo-500/75 rounded-lg p-1 w-[16rem] md:w-[20rem] md:w-[31rem]">
                       <p className={styles.secondP}>{new Date(sale.saleDate).toLocaleString("es-ES", {
+=======
+                      <div className="border-2 border-indigo-500/75 rounded-lg p-1 w-[16rem] md:w-[20rem] md:w-[31rem]">
+                        <p className={styles.secondP}>{new Date(sale.saleDate).toLocaleString("es-ES", {
+>>>>>>> 5edb2c64053c481289412e53c26937abb10e2e4f
                             year: "numeric",
                             month: "2-digit",
                             day: "2-digit",
