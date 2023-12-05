@@ -16,6 +16,7 @@ export  function UserRegister() {
   const { handleSubmit, formState:{errors}, control, reset} = useForm();
   const {createUser} = useUsers();
   const {roles} = useRoles();
+  const [scrollBehavior, setScrollBehavior] = React.useState("inside");
 
 
 
@@ -50,7 +51,7 @@ export  function UserRegister() {
   return (
     <div className='flex'>
       <Button title='Agregar usuario' endContent={<AiOutlinePlusCircle className=' text-2xl'/>} color="primary" variant="solid" onPress={onOpen} className=' text-white font-bold'>Agregar</Button>
-      <Modal isOpen={isOpen} onOpenChange={onOpenChange} isDismissable={false}>
+      <Modal isOpen={isOpen} scrollBehavior={scrollBehavior} onOpenChange={onOpenChange} isDismissable={false}>
         <ModalContent>
           {(onClose) => (
             <>

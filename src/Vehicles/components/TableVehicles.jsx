@@ -211,7 +211,7 @@ export  function TableVehicles() {
       }, [selectedKeys, items.length, page, pages, hasSearchFilter]);
 
   return (
-    <div className=" ml-3 w-[23rem] sm:ml-5 sm:w-full md:w-full lg:w-[83rem] xl:w-[117rem] mx-auto ">
+    <div className=" ml-3 w-[23rem] sm:ml-5 sm:w-full md:w-[53rem] xl:w-[117rem] mx-auto ">
         <Table
             aria-label="vehicles Table"
             isCompact

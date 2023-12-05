@@ -39,7 +39,7 @@ export function WatchPurchase(props) {
                     
                     <div className={styles.firstContainer}>
                       <div className={styles.secondContainer}>
-                        <p className={styles.firstP}>Departamento de la compra</p> 
+                        <p className={styles.firstP}>Departamento</p> 
                         <div className={styles.thirdContainer}>
                             <p className={styles.secondP}>{purchase.purchaseDepartment}</p>
                         </div>
@@ -56,7 +56,7 @@ export function WatchPurchase(props) {
                     <div className=" flex  m-5 ml-12">
                     <div className=" flex flex-col">
                       <p className={styles.firstP}>Fecha</p> 
-                      <div className="border-2 border-indigo-500/75 rounded-lg p-1 w-[16rem] md:w-[20rem] md:w-[31rem]">
+                      <div className="md:border-2 md:border-indigo-500/75 rounded-lg p-1 w-[16rem] md:w-[20rem] md:w-[31rem]">
                           <p className={styles.secondP}>{new Date(purchase.purchaseDate).toLocaleString("es-ES", {
                             year: "numeric",
                             month: "2-digit",

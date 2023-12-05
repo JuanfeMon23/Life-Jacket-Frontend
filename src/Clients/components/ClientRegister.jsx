@@ -22,6 +22,7 @@ export  function ClientRegister() {
   const [departments, setDepartments] = useState([]);
   const [municipes, setMunicipes] = useState([]);
   const [selectedDepartment, setselectedDepartment] = useState('');
+  const [scrollBehavior, setScrollBehavior] = React.useState("inside");
 
   useEffect(() => {
     const fetchData = async () => {
@@ -45,7 +46,7 @@ export  function ClientRegister() {
   return (
     <div className='flex'>
          <Button title='Agregar cliente' endContent={<AiOutlinePlusCircle className=' text-2xl'/>} color="primary" variant="solid" onPress={onOpen} className=' text-white font-bold'>Agregar</Button>
-      <Modal isOpen={isOpen} onOpenChange={onOpenChange} isDismissable={false}>
+      <Modal isOpen={isOpen} scrollBehavior={scrollBehavior} onOpenChange={onOpenChange} isDismissable={false}>
         <ModalContent>
           {(onClose) => (
             <>
