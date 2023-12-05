@@ -30,7 +30,7 @@ export function WatchClient (props) {
                     <div className=" flex m-5 ml-12">
                       <div className="flex flex-col">
                         <p className="text-xs md:text-sm font-bold">Cédula</p>
-                        <div className="border-2 border-indigo-500/75 rounded-lg p-1 w-[16rem] md:w-[20rem] md:w-[33rem]">
+                        <div className="md:border-2 md:border-indigo-500/75 rounded-lg p-1 w-[16rem] md:w-[20rem] md:w-[33rem]">
                             <p className=" text-center">{client.clientDocument}</p>
                         </div>
                       </div>
@@ -44,58 +44,59 @@ export function WatchClient (props) {
                         </div>
                       </div>
   
-                      <div className=" flex flex-col">
-                      <p className="text-xs md:text-sm font-bold">Apellidos</p> 
-                        <div className=" items-end border-2 border-indigo-500/75 rounded-lg w-[7rem] md:w-[15rem] p-1">
-                            <p className=" text-center">{client.clientLastName}</p>
+                      <div className={styles.secondContainer}>
+                      <p className={styles.firstP}>Apellidos</p> 
+                        <div className={styles.thirdContainer}>
+                            <p className={styles.secondP}>{client.clientLastName}</p>
                         </div>
                       </div>
-                    </div>                  
+                    </div>   
 
-                  <div className=" m-5 flex justify-around ">
-                    <div className=" flex flex-col">
-                      <p className="text-xs md:text-sm font-bold">Departamento</p>
-                      <div className="border-2 border-indigo-500/75 rounded-lg p-1 w-[7rem] md:w-[15rem]">
-                          <p className=" text-center">{client.clientDepartment}</p>
+                    <div className={styles.firstContainer}>
+                      <div className={styles.secondContainer}>
+                        <p className={styles.firstP}>Departamento</p> 
+                        <div className={styles.thirdContainer}>
+                            <p className={styles.secondP}>{client.clientDepartment}</p>
+                        </div>
                       </div>
-                    </div>
+  
+                      <div className={styles.secondContainer}>
+                      <p className={styles.firstP}>Ciudad o municipio</p> 
+                        <div className={styles.thirdContainer}>
+                            <p className={styles.secondP}>{client.clientMunicipality}</p>
+                        </div>
+                      </div>
+                    </div>                   
 
-                    <div className=" flex flex-col">
-                      <p className="text-xs md:text-sm font-bold">Ciudad o municipio</p>
-                      <div className="border-2 border-indigo-500/75 rounded-lg p-1 w-[7rem] md:w-[15rem]">
-                          <p className=" text-center">{client.clientMunicipality}</p>
-                      </div>
-                    </div>
-                  </div>
                       
-                  <div className="m-5 flex justify-around">
-                      <div className=" flex flex-col">
-                        <p className="text-xs md:text-sm font-bold">Teléfono</p> 
-                        <div className=" border-2 border-indigo-500/75 rounded-lg w-[7rem] md:w-[15rem] p-1 ">
-                            <p className=" text-center">{client.clientPhoneNumber}</p>
+                    <div className={styles.firstContainer}>
+                      <div className={styles.secondContainer}>
+                        <p className={styles.firstP}>Teléfono</p> 
+                        <div className={styles.thirdContainer}>
+                            <p className={styles.secondP}>{client.clientPhoneNumber}</p>
                         </div>
                       </div>
   
-                      <div className=" flex flex-col">
-                      <p className="text-xs md:text-sm font-bold">Otro teléfono</p> 
-                        <div className=" items-end border-2 border-indigo-500/75 rounded-lg w-[7rem] md:w-[15rem] p-1">
-                            <p className=" text-center">{client.clientOtherPhoneNumber}</p>
+                      <div className={styles.secondContainer}>
+                      <p className={styles.firstP}>Otro teléfono</p> 
+                        <div className={styles.thirdContainer}>
+                            <p className={styles.secondP}>{client.clientOtherPhoneNumber}</p>
                         </div>
                       </div>
-                    </div>  
+                    </div>   
   
-                    <div className="m-5 flex justify-around">
-                      <div className=" flex flex-col">
-                        <p className="text-xs md:text-sm font-bold">Dirección</p> 
-                        <div className=" border-2 border-indigo-500/75 rounded-lg w-[7rem] md:w-[15rem] p-1 ">
-                            <p className=" text-center">{client.clientAddress}</p>
+                    <div className={styles.firstContainer}>
+                      <div className={styles.secondContainer}>
+                        <p className={styles.firstP}>Dirección</p> 
+                        <div className={styles.thirdContainer}>
+                            <p className={styles.secondP}>{client.clientAddress}</p>
                         </div>
                       </div>
   
-                      <div className=" flex flex-col">
-                      <p className="text-xs md:text-sm font-bold">Otro contacto</p> 
-                        <div className=" items-end border-2 border-indigo-500/75 rounded-lg w-[7rem] md:w-[15rem] p-1">
-                            <p className=" text-center">{client.clientOtherContact}</p>
+                      <div className={styles.secondContainer}>
+                      <p className={styles.firstP}>Otro contacto</p> 
+                        <div className={styles.thirdContainer}>
+                            <p className={styles.secondP}>{client.clientOtherContact}</p>
                         </div>
                       </div>
                     </div>  

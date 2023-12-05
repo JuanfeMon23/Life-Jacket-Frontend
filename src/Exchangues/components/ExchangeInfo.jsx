@@ -61,7 +61,7 @@ export  function ExchangeInfo(props) {
 
   return (
     <aside className=' border-2 border-blue-600/70 bg-white rounded-lg w-[22rem] ml-5'>
-        <h1 className=' text-3xl text-center font-bold m-5'>Datos del intercambio</h1>
+        <h1 className=' text-xl text-center font-bold m-5'>Datos del intercambio</h1>
         <form onSubmit={handleSubmit(onSubmit)}>
                 <div className=' ml-3 mb-3 '>
                     <Controller

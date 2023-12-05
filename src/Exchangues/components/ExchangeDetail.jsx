@@ -83,7 +83,7 @@ export  function ExchangeDetail(props) {
                     )}
                     />
                 </div>
-                <div className=' w-[400px]'>
+                <div className=' mt-2 mb-2 md:mt-0 md:mb-0 w-[400px]'>
                     <Controller 
                             name='vehicleStatusExchange'
                             control={control}
@@ -118,7 +118,7 @@ export  function ExchangeDetail(props) {
                 </div>
             </div>
             </form>
-    <div className=' w-[22rem] md:w-[50rem] xl:w-[93rem] mt-7'>
+    <div className=' w-[22rem] md:w-[56rem] xl:w-[93rem] mt-7'>
     <Table
         aria-label="Exchange Table"
         isCompact
