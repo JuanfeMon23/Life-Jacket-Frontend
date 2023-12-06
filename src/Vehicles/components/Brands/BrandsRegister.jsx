@@ -45,10 +45,9 @@ export  function BrandsRegister() {
   
       fetchData();
     }, [selectedVehicleType, selectedBrandName]);
-
-  return (
+ return (
     <div className=' flex'>
-        <Button title='Agregar registro' onPress={onOpen} variant='solid' color='secondary' endContent={<AiOutlinePlusCircle className=' text-white text-2xl font-bold'/>}>Marca</Button>
+        <Button title='Agregar registro de marca' onPress={onOpen} variant='solid' color='secondary' endContent={<AiOutlinePlusCircle className=' text-white text-2xl font-bold'/>}>Marca</Button>
         <Modal isOpen={isOpen} onOpenChange={onOpenChange} isDismissable={false}>
         <ModalContent>
           {(onClose) => (
@@ -112,6 +111,7 @@ export  function BrandsRegister() {
                         )}
                       />
                       </div>
+
                             <div className=' text-center my-3 '>
                                     <ButtonAccept/>
                             </div>
