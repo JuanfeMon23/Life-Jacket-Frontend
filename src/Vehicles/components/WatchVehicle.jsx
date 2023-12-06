@@ -3,6 +3,7 @@ import {Modal, ModalContent, ModalHeader, ModalBody, Button, useDisclosure} from
 import {FiEye}from "react-icons/fi";
 import { toast } from "react-toastify";
 import {Accordion, AccordionItem} from "@nextui-org/react";
+import { styles } from "../../components/styles";
 
 export function WatchVehicle (props) {
     const {isOpen, onOpen, onOpenChange} = useDisclosure();
