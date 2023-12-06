@@ -113,7 +113,7 @@ export  function TableBrands() {
               />
             <div className="flex gap-3">
                 <div>
-                  <BrandsRegister/>
+{/*                   <BrandsRegister/> */}
                 </div>
                 <div>
                   <LinesRegister />
