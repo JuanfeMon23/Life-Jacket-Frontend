@@ -110,9 +110,14 @@ export  function TableBrands() {
                 onClear={() => onClear()}
                 onValueChange={onSearchChange}
               />
-              <div className="flex gap-3">
-                <BrandsRegister/>
-              </div>
+            <div className="flex gap-3">
+                <div>
+                  <BrandsRegister/>
+                </div>
+                <div>
+                  <LinesRegister />
+                </div>
+            </div>
             </div>
             <div className="flex justify-between items-center">
               <span className="text-default-400 text-small">Total de datos: {brands.length} </span>

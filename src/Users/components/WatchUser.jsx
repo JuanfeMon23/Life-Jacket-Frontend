@@ -20,7 +20,7 @@ export function WatchUser(props) {
     <>
     {user.userStatus === "true" ? <Button title="Ver usuario" isIconOnly className='bg-gradient-to-r from-[#2D78BE] to-[#6D2CC0] mr-2' onPress={onOpen}><FiEye className="text-white text-2xl"/></Button>
      : <Button isIconOnly title="Ver usuario" className=" mr-2" onClick={handleview}><FiEye className="text-white text-2xl"/></Button>}
-      <Modal isOpen={isOpen} className=" mr-2" onOpenChange={onOpenChange} size="2xl" isDismissable={false}>
+      <Modal isOpen={isOpen} className=" mr-2" onOpenChange={onOpenChange} size="2xl" >
         <ModalContent>
           {(onClose) => (
             <>
@@ -78,11 +78,7 @@ export function WatchUser(props) {
                 <div className=" flex md:m-2 md:ml-12 m-5 ml-12">
                   <div className=" flex flex-col">
                     <p className="text-xs md:text-sm font-bold">Correo electrónico</p>
-<<<<<<< HEAD
-                    <div className="md:border-2 md:border-indigo-500/75 rounded-lg p-1 w-[16rem] md:w-[20rem] md:w-[33rem]">
-=======
                     <div className="border-2 border-indigo-500/75 rounded-lg p-1 w-[16rem] md:w-[20rem] md:w-[33rem] ">
->>>>>>> 5edb2c64053c481289412e53c26937abb10e2e4f
                         <p className=" text-center">{user.userEmail}</p>
                     </div>
                   </div>

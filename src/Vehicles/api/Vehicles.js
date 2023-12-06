@@ -18,6 +18,8 @@ export const deleteVehicleRequest = async (idVehicle) => axios.delete(`/Vehicles
 
 export const getBrandsRequest = async () => axios.get('/Brands');
 
+export const createLinesRequest = async (line) => axios.post('/Lines/Create', line);
+
 export const createBrandsRequest = async (brand) => axios.post('/Brands/Create', brand);
 
 export const deleteBrandsRequest = async (idBrand) => axios.delete(`/Brands/Delete/${idBrand}`);
