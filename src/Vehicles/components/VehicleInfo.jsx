@@ -496,7 +496,7 @@ export  function VehicleInfo() {
                     </div>
                     <div className='flex-col m-3'>
                       <Controller
-                                name="chasis"
+                                name="chassis"
                                 control={controlVehicle}
                                 rules={{
                                   minLength: {
@@ -514,8 +514,8 @@ export  function VehicleInfo() {
                                     type="text"
                                     label="Chasis"
                                     variant="bordered"
-                                    color={errors.chasis ? "danger" : ""}
-                                    errorMessage={errors.chasis?.message}
+                                    color={errors.chassis ? "danger" : ""}
+                                    errorMessage={errors.chassis?.message}
                                     className="max-w-xs"
                                   />
                                 )}
