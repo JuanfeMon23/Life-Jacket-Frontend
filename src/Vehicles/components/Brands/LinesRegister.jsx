@@ -30,7 +30,7 @@ export  function LinesRegister() {
         const typesResponse = await fetch(`${import.meta.env.VITE_BACKEND}/vehicle-types`);
         const typesData = await typesResponse.json();
         setVehicleTypes(typesData);
-
+ 
         if (selectedVehicleType) {
           const brandsResponse = await fetch(`${import.meta.env.VITE_BACKEND}/vehicles-brand?vehicleType=${selectedVehicleType}`);
           const brandsData = await brandsResponse.json();
@@ -154,7 +154,7 @@ export  function LinesRegister() {
                             <div className=' text-center my-3 '>
                                     <ButtonAccept/>
                             </div>
-
+           
 
                 </form>
               </ModalBody>
@@ -162,7 +162,7 @@ export  function LinesRegister() {
           )}
         </ModalContent>
       </Modal>
-
+      
     </div>
   )
 }
