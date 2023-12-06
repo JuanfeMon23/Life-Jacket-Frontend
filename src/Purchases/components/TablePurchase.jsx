@@ -57,7 +57,10 @@ export function TablePurchase() {
       (purchase.purchaseDate.toLowerCase().includes(filterValue.toLowerCase()) ||
         (typeof purchase.purchaseFinalPrice === "number" && purchase.purchaseFinalPrice.toString().toLowerCase().includes(filterValue.toLowerCase())) ||
         purchase.vehicle.licensePlate.toLowerCase().includes(filterValue.toLowerCase()) ||
-        purchase.client.clientName.toLowerCase().includes(filterValue.toLowerCase()))
+        purchase.client.clientName.toLowerCase().includes(filterValue.toLowerCase()) ||
+        purchase.client.clientLastName.toLowerCase().includes(filterValue.toLowerCase()) ||
+        purchase.client.clientDocument.toLowerCase().includes(filterValue.toLowerCase())
+      )
     );
   }
 

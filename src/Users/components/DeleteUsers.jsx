@@ -28,7 +28,7 @@ export  function DeleteUsers(props) {
     <div className='flex'>
     {user.userStatus === "false" ? <Button title='Eliminar usuario' isIconOnly className=' bg-red-400' onPress={onOpen}><AiOutlineDelete className={`text-2xl text-white`}/></Button> 
     : <Button title='Eliminar usuario' isIconOnly onClick={handleDelete} ><AiOutlineDelete className='text-white text-2xl'/></Button>}
-      <Modal isOpen={isOpen} onOpenChange={onOpenChange} isDismissable={false}>
+      <Modal isOpen={isOpen} onOpenChange={onOpenChange} >
         <ModalContent>
           {(onClose) => (
             <> 

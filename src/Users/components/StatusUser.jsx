@@ -20,7 +20,7 @@ export  function StatusUser(props) {
 <div className='flex'>
     {user.userStatus === "true" ? <Button title="Cambiar estado del usuario" isIconOnly className='  bg-yellow-950/70 rounded-lg mr-2' onPress={onOpen}>< TiDeleteOutline className={`text-2xl text-white`}/></Button> 
     : <Button title="Cambiar estado del usuario"  className=' bg-emerald-600 mr-2' isIconOnly onPress={onOpen}>< HiOutlineCheckCircle className='text-white text-2xl'/></Button>}
-      <Modal isOpen={isOpen} onOpenChange={onOpenChange} isDismissable={false}>
+      <Modal isOpen={isOpen} onOpenChange={onOpenChange}>
         <ModalContent>
           {(onClose) => (
             <>

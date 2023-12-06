@@ -53,10 +53,13 @@ export function TableSale() {
 
     if (hasSearchFilter) {
       filteredSales = filteredSales.filter((sales) =>
-        sales.saleDate.toLowerCase().includes(filterValue.toLowerCase()) ||
+        (sales.saleDate.toLowerCase().includes(filterValue.toLowerCase()) ||
         (typeof sales.saleFinalPrice === "number" && sales.saleFinalPrice.toString().toLowerCase().includes(filterValue.toLowerCase())) ||
         sales.vehicle.licensePlate.toLowerCase().includes(filterValue.toLowerCase()) ||
-        sales.client.clientName.toLowerCase().includes(filterValue.toLowerCase())
+        sales.client.clientName.toLowerCase().includes(filterValue.toLowerCase()) ||
+        sales.client.clientLastName.toLowerCase().includes(filterValue.toLowerCase()) ||
+        sales.client.clientDocument.toLowerCase().includes(filterValue.toLowerCase())
+        )
       );
     }
 

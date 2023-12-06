@@ -29,7 +29,7 @@ export  function DeleteVehicle(props) {
         <div className=' flex'>
         {vehicles.sale <= 0 && vehicles.purchase <= 0 && vehicles.exchanges <= 0 ? <Button title='Eliminar vehículo' className=' bg-red-400' isIconOnly onPress={onOpen}><AiOutlineDelete className='text-white text-2xl '/></Button>
          : <Button isIconOnly title='Eliminar vehículo'  onClick={handleDelete}><AiOutlineDelete className='text-white text-2xl'/></Button>}
-        <Modal isOpen={isOpen} onOpenChange={onOpenChange} isDismissable={false}>
+        <Modal isOpen={isOpen} onOpenChange={onOpenChange}>
         <ModalContent>
           {(onClose) => (
             <>

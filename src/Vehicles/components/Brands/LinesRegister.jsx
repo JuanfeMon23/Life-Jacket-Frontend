@@ -9,13 +9,13 @@ import { ButtonAccept } from '../../../components/ButtonAccept';
 import conection from '../../../api/axios.js';
 
 
-export  function BrandsRegister() {
+export  function LinesRegister() {
     const {isOpen, onOpen, onOpenChange} = useDisclosure();
     const { handleSubmit, formState : {errors}, control, reset } = useForm();
-    const {createBrand} = useVehicles();
+    const {createLine} = useVehicles();
 
     const onSubmit = (data) => {
-        createBrand(data);
+        createLine(data);
     }
 
     const [vehicleTypes, setVehicleTypes] = useState([]);
@@ -36,6 +36,12 @@ export  function BrandsRegister() {
           const brandsResponse = await fetch(`${import.meta.env.VITE_BACKEND}/vehicles-brand?vehicleType=${selectedVehicleType}`);
           const brandsData = await brandsResponse.json();
           setVehicleBrands(brandsData);
+
+          if (selectedBrandName) {
+            const linesResponse = await fetch(`${import.meta.env.VITE_BACKEND}/vehicles-lines?vehicleType=${selectedVehicleType}&brandName=${selectedBrandName}`);
+            const linesData = await linesResponse.json();
+            setVehicleLines(linesData);
+          }
         }
       } catch (error) {
         console.error('Error fetching data:', error);
@@ -48,12 +54,12 @@ export  function BrandsRegister() {
 
   return (
     <div className=' flex'>
-        <Button title='Agregar registro de marca' onPress={onOpen} variant='solid' color='secondary' endContent={<AiOutlinePlusCircle className=' text-white text-2xl font-bold'/>}>Marca</Button>
+        <Button title='Agregar registro de línea' onPress={onOpen} variant='solid' color='primary' endContent={<AiOutlinePlusCircle className=' text-white text-2xl font-bold'/>}>Línea</Button>
         <Modal isOpen={isOpen} onOpenChange={onOpenChange} isDismissable={false}>
         <ModalContent>
           {(onClose) => (
             <>
-              <ModalHeader className="flex flex-col gap-3">Crear registro de marca</ModalHeader>
+              <ModalHeader className="flex flex-col gap-3">Crear registro de línea</ModalHeader>
               <ModalBody>
                 <form onSubmit={handleSubmit(onSubmit)}>
                     <div className='flex flex-col m-3 justify-center items-center'>
@@ -91,28 +97,61 @@ export  function BrandsRegister() {
                         name="NameBrand"
                         control={control}
                         rules={{
-                          required : 'Campo requerido',
-                          minLength: {
-                            value: 1,
-                            message: "Al menos 1 caracter"
-                          },
+                          required : 'Campo requerido'
                         }}
                         render={({ field }) => (
-                          <Input
-                            {...field} 
-                            type="text"
-                            aria-labelledby="NameBrand"
-                            className="max-w-xs mb-2"
-                            endContent={<RequiredIcon/>}
-                            color={errors.NameBrand ? "danger" : ""}
-                            errorMessage={errors.NameBrand?.message}
-                            variant='bordered'
-                            label='Marca'
-                          />
+                          <Select
+                           {...field} 
+                           onChange={(e) => {
+                            field.onChange(e);
+                            setSelectedBrandName(e.target.value)
+                          }} 
+                          aria-labelledby="NameBrand"
+                          className="max-w-xs mb-2"
+                          endContent={<RequiredIcon/>}
+                          color={errors.NameBrand ? "danger" : ""}
+                          errorMessage={errors.NameBrand?.message}
+                          variant='bordered'
+                          label='Marca'
+                          >
+                            {vehicleBrands.map((brand) => (
+                              <SelectItem key={brand.NameBrand} value={brand.NameBrand}>
+                                {brand.NameBrand}
+                              </SelectItem>
+                            ))}
+                          </Select>
                         )}
                       />
                       </div>
-
+                      <div className='flex flex-col m-3 justify-center items-center'>
+                            <Controller
+                                name="BrandLine"
+                                control={control}
+                                rules={{
+                                  required: "Campo requerido",
+                                  minLength: {
+                                    value: 3,
+                                    message: "Al menos 3 caracteres"
+                                  },
+                                  maxLength: {
+                                    value: 20,
+                                    message: "Máximo 20 caracteres"
+                                  }
+                                }}
+                                render={({ field }) => (
+                                  <Input
+                                    {...field}
+                                    type="text"
+                                    label="Linea"
+                                    variant="bordered"
+                                    endContent={<RequiredIcon/>}
+                                    color={errors.BrandLine ? "danger" : ""}
+                                    errorMessage={errors.BrandLine?.message}
+                                    className="max-w-xs"
+                                  />
+                                )}
+                              /> 
+                            </div>
                             <div className=' text-center my-3 '>
                                     <ButtonAccept/>
                             </div>

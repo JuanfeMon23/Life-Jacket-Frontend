@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import {Modal, ModalContent, ModalHeader, ModalBody, ModalFooter, useDisclosure, Select, SelectItem} from "@nextui-org/react";
+import {Modal, ModalContent, ModalHeader, ModalBody, useDisclosure, Select, SelectItem} from "@nextui-org/react";
 import {Button} from "@nextui-org/react";
 import {Input} from "@nextui-org/react";
 import {useForm, Controller} from 'react-hook-form';
@@ -17,9 +17,8 @@ export function EditUser(props) {
     const {roles} = useRoles();
     const user = props.user
 
-    const onSubmit = (data, event) => {    
-        event.preventDefault();
-        { onSubmit ? updateUser(user.idUser, data) && reset() :  ''}
+    const onSubmit = (data) => {    
+        { onSubmit ? updateUser(user.idUser, {...data}) && reset :  ''}
     };
 
     const handleEvent = (event) => {
@@ -34,8 +33,7 @@ export function EditUser(props) {
   return (
     <div className='flex'>
       {user.userStatus === "true" ? <Button title="Editar usuario" isIconOnly onPress={onOpen}className=' bg-gradient-to-r from-[#D99C23] to-[#D45229] hover:bg-[#A37D1A] rounded-lg text-white mr-2 font-bold '>{<AiTwotoneEdit className='text-white text-2xl'/>}</Button>
-       : <Button isIconOnly title="Editar usuario" className=" mr-2" onClick={handleEvent}>{<AiTwotoneEdit className='text-white text-2xl'/>}</Button>}
-        
+       : <Button title="Editar usuario" className=" mr-2" isIconOnly onClick={handleEvent}>{<AiTwotoneEdit className='text-white text-2xl'/>}</Button>}
         <Modal isOpen={isOpen} onOpenChange={onOpenChange} isDismissable={false}>
             <ModalContent>
                 {(onclose) => (
@@ -239,7 +237,7 @@ export function EditUser(props) {
 
 
                       <div className=' text-center my-3 '>
-                      <ButtonAccept/>
+                        <ButtonAccept/>
                       </div>
                       
                     </form> 

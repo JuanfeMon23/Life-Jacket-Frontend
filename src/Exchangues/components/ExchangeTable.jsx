@@ -35,7 +35,7 @@ const statusOptions = [
     {name: "Fecha del intercambio", uid: "exchangeDate", sortable: true},
     {name: "Nombre del cliente", uid: "exchangeClient", sortable: true},
     {name: "Efectivo involucrado", uid: "exchangePrice", sortable: true},
-    {name: "Tipo de efectivo", uuid : "exchnageType"},
+    {name: "Tipo de efectivo", uid : "exchangeType"},
     {name: "Estado", uid: "exchangeStatus", sortable: true},
     {name: "Acciones", uid: "exchangeActions"},
   ];
@@ -64,7 +64,10 @@ export function ExchangeTable() {
     
         if (hasSearchFilter) {
           filteredExchanges = filteredExchanges.filter((exchange) =>
-          exchange.saleDate.toLowerCase().includes(filterValue.toLowerCase())
+          exchange.exchangeDate.toLowerCase().includes(filterValue.toLowerCase()) ||
+          exchange.client.clientName.toLowerCase().includes(filterValue.toLowerCase()) ||
+          exchange.client.clientLastName.toLowerCase().includes(filterValue.toLowerCase()) ||
+          exchange.client.clientDocument.toLowerCase().includes(filterValue.toLowerCase())
           );
         }
     

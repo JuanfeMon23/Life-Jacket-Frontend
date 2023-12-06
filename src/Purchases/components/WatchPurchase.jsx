@@ -12,7 +12,7 @@ export function WatchPurchase(props) {
   return (
     <>
       <Button isIconOnly title='Ver compra' className='bg-gradient-to-r from-[#2D78BE] to-[#6D2CC0] mr-2' onPress={onOpen}><FiEye className="text-white text-2xl"/></Button>
-      <Modal isOpen={isOpen} className=" mr-2" onOpenChange={onOpenChange} size="2xl" isDismissable={false}>
+      <Modal isOpen={isOpen} className=" mr-2" onOpenChange={onOpenChange} size="2xl">
         <ModalContent>
           {(onClose) => (
             <>
