@@ -345,7 +345,7 @@ export  function EditVehicle (props) {
                     </div>
                     <div className='flex-col m-3'>
                       <Controller
-                                name="chasis"
+                                name="chassis"
                                 defaultValue={vehicles.othervehicleinformation.chassis}
                                 control={control}
                                 rules={{
@@ -364,8 +364,8 @@ export  function EditVehicle (props) {
                                     type="text"
                                     label="Chasis"
                                     variant="bordered"
-                                    color={errors.chasis ? "danger" : ""}
-                                    errorMessage={errors.chasis?.message}
+                                    color={errors.chassis ? "danger" : ""}
+                                    errorMessage={errors.chassis?.message}
                                     className="max-w-xs"
                                   />
                                 )}
