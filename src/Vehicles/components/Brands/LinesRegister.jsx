@@ -14,7 +14,7 @@ export  function LinesRegister() {
     const {createLine} = useVehicles();
 
     const onSubmit = (data) => {
-        createLine(data);
+      { onSubmit ? createLine(data) && reset() : '' }
     }
 
     const [vehicleTypes, setVehicleTypes] = useState([]);
