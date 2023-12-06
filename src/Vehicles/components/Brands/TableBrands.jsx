@@ -17,6 +17,7 @@ import {
     Pagination,
   } from "@nextui-org/react";
 import {FaSearch} from 'react-icons/fa';
+import { LinesRegister } from './LinesRegister';
 import { BrandsRegister } from './BrandsRegister';
 import { DeleteBrands } from './DeleteBrands';
 
