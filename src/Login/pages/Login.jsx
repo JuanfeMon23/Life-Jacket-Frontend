@@ -27,7 +27,7 @@ export function Login() {
 
   return (
       <>
-        <section className=" flex sm:flex-col sm:items-center sm:justify-center w-[30rem] sm:w-full flex-1 px-20 text-center">
+        <section className=" flex sm:flex-col sm:items-center sm:justify-center w-[50rem] mt-20 sm:m-0 h-[35rem] sm:h-screen sm:w-full flex-1 text-center">
           <div className=' bg-white rounded-2xl shadow-2xl flex w-2/3 max-w-4xl'>
             <div className=' w-3/5 p-5'>
               <div className=' text-left font-bold'>

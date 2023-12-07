@@ -1,6 +1,6 @@
 import { createContext, useContext, useState } from "react";
 import { toast } from "react-toastify";
-import { createRolRequest, addLicensesRequest, getRolesRequest , deleteRolRequest , getLicensesRequest} from "../api/Roles";
+import { createRolRequest, addLicensesRequest, getRolesRequest , deleteRolRequest , getLicensesRequest, statusRolRequest} from "../api/Roles";
 
 const RolesContext = createContext();
 
@@ -50,6 +50,24 @@ export function RolesProvider({children}) {
         }
     };
 
+    const statusRol = async (idRol) => {
+        try {
+            const res = await statusRolRequest(idRol);
+            toast.success('Estado actualizado con éxito!',{
+                position: toast.POSITION.TOP_CENTER,
+                autoClose : 1500
+            }); 
+            getRoles();
+            return res.data;
+        } catch (error) {
+            toast.error(error.response.data.message ,{
+                position: toast.POSITION.TOP_CENTER,
+                autoClose : 1500
+            });
+            throw new Error(error.message);
+        }
+    };
+
 
     const deleteRol = async (idRol) => {
         try {
@@ -81,7 +99,7 @@ export function RolesProvider({children}) {
 
     return(
         <RolesContext.Provider 
-        value={{roles, licenses, getRoles, createRol, deleteRol, getLicenses, addLicenses}}>
+        value={{roles, licenses, getRoles, createRol, deleteRol, statusRol, getLicenses, addLicenses}}>
             {children}
         </RolesContext.Provider>
     )

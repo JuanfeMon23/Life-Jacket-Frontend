@@ -10,7 +10,13 @@ import { ButtonAccept } from '../../../components/ButtonAccept';
 
 export  function LinesRegister() {
     const {isOpen, onOpen, onOpenChange} = useDisclosure();
-    const { handleSubmit, formState : {errors}, control, reset } = useForm();
+    const { handleSubmit, formState : {errors}, control, reset } = useForm({
+      defaultValues: {
+        VehicleType: '',
+        NameBrand: '',
+        BrandLine: ''
+      }
+    });
     const {createLine} = useVehicles();
 
     const onSubmit = (data) => {

@@ -10,7 +10,18 @@ import { RequiredIcon } from '../../components/globalComponents/RequiredIcon.jsx
 import conection from '../../api/axios.js';
 
 export  function ExchangeInfo(props) {
-    const { handleSubmit, formState:{errors}, control, reset} = useForm();
+  const { handleSubmit, formState:{errors}, control, reset} = useForm({
+    defaultValues: {
+      idClientExchange: '',
+      exchangeDate: '',
+      exchangeDepartment: '',
+      exchangeMunicipality: '',
+      exchangeCashPrice: '',
+      exchangeCashPriceStatus: '',
+      exchangePecuniaryPenalty: '',
+      exchangeLimitations: ''
+    }
+  });
     const {updateExchange, cancelExchange, createExchange} = useExchange();
     const {clients, getClients} = useClients();
     const navigate = useNavigate();

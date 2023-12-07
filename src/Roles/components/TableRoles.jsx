@@ -21,6 +21,7 @@ import {IoIosArrowDown} from 'react-icons/io';
 import { useRoles } from "../context/rolesContext";
 import { AddLicenses } from "./AddLicenses";
 import { DeleteRol } from "./DeleteRol";
+import { StatusRol } from "./StatusRol";
 
 
 const statusOptions = [
@@ -230,6 +231,7 @@ export  function TableRoles() {
                     <TableCell className=" flex justify-normal">
                         <AddLicenses roles={item} />
                         <DeleteRol roles={item} />
+                        <StatusRol roles={item}/>
                     </TableCell>
                 </TableRow>
             ))}
