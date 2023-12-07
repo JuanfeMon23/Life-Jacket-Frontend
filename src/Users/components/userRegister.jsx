@@ -13,7 +13,22 @@ import conection from '../../api/axios.js'
 
 export  function UserRegister() {
   const {isOpen, onOpen, onOpenChange} = useDisclosure();
-  const { handleSubmit, formState:{errors}, control, reset} = useForm();
+  const { handleSubmit, formState:{errors}, control, reset} = useForm({
+    defaultValues : {
+      userTypeDocument : '',
+      userDocument : '' ,
+      userDepartment: '' ,
+      userMunicipality : '' ,
+      userName : '' ,
+      userLastName : '' ,
+      userEmail: '',
+      userPassword: '',
+      userAddress: '',
+      userPhoneNumber : '',
+      userOtherPhoneNumber: '',
+      idRolUser : ''
+    }
+  });
   const {createUser} = useUsers();
   const {roles} = useRoles();
   const [scrollBehavior, setScrollBehavior] = React.useState("inside");

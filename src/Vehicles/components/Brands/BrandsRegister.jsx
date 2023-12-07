@@ -11,7 +11,13 @@ import conection from '../../../api/axios.js';
 
 export  function BrandsRegister() {
     const {isOpen, onOpen, onOpenChange} = useDisclosure();
-    const { handleSubmit, formState : {errors}, control, reset } = useForm();
+    const { handleSubmit, formState : {errors}, control, reset } = useForm({
+      defaultValues: {
+        VehicleType: '',
+        NameBrand : '',
+        
+      }
+    });
     const {createBrand} = useVehicles();
 
     const onSubmit = (data) => {

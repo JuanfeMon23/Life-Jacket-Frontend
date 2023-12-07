@@ -37,7 +37,7 @@ export  function Resetpassword() {
     const { handleSubmit, formState:{errors}, control, reset} = useForm(formOptions);
 
   return (
-    <section className=" flex flex-col items-center justify-center w-full flex-1 px-20 text-center">
+    <section className=" flex flex-col sm:items-center mt-40  sm:justify-center w-full flex-1 text-center">
     <div className=' bg-white rounded-2xl shadow-2xl flex w-[100%] max-w-4xl'>
       <div className=' w-[100%] p-5'>
         <div className=' text-left font-bold '>
@@ -59,7 +59,7 @@ export  function Resetpassword() {
                     variant="bordered"
                     color={errors.newUserPassword ? "danger" : ""}
                     errorMessage={errors.newUserPassword?.message}
-                    className=" w-[17rem] mb-5"
+                    className=" w-[12rem] sm:w-[17rem] mb-5"
                 />
                 )}
                 />

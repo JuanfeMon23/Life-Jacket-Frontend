@@ -120,7 +120,7 @@ export  function TableUsers() {
           <Input
           title="Buscar usuario"
             isClearable
-            className=" max-w-[50%] "
+            className=" sm:max-w-[30%] "
             placeholder="Buscar..."
             startContent={<FaSearch />}
             value={filterValue}

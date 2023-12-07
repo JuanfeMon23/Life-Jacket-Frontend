@@ -14,7 +14,14 @@ import { ButtonAccept } from '../../components/ButtonAccept';
 export function ImprovementRegister() {
     const {isOpen, onOpen, onOpenChange} = useDisclosure();
     const {getVehicles, vehicles} = useVehicles();
-    const {register , setValue, handleSubmit, formState:{errors}, control, reset} = useForm();
+    const {register , setValue, handleSubmit, formState:{errors}, control, reset} = useForm({
+      defaultValues: {
+        idVehicleImprovement : '',
+        improvementDate: '',
+        improvementPrice: '',
+        improvementDescription: ''
+      }
+    });
     const {createImprovement} = useImprovements();
 
 

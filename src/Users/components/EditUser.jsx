@@ -10,12 +10,13 @@ import { useRoles } from '../../Roles/context/rolesContext';
 import { RequiredIcon } from '../../components/globalComponents/RequiredIcon.jsx';
 import { ButtonAccept } from '../../components/ButtonAccept';
 
+
 export function EditUser(props) {
     const {isOpen, onOpen, onOpenChange} = useDisclosure();
-    const {register , setValue, handleSubmit, formState:{errors}, control, reset} = useForm();
+    const user = props.user
+    const {register , setValue, handleSubmit, formState:{errors}, control, reset} = useForm({});
     const {updateUser } = useUsers();
     const {roles} = useRoles();
-    const user = props.user
 
     const onSubmit = (data) => {    
         { onSubmit ? updateUser(user.idUser, {...data}) && reset :  ''}
@@ -41,6 +42,38 @@ export function EditUser(props) {
                     <ModalHeader className="flex flex-col gap-3">Editar usuario</ModalHeader>
                     <ModalBody>
                         <form onSubmit={handleSubmit(onSubmit)}>
+                          <div className=' flex'>
+                            <div className="flex-col m-3 w-[24rem]">
+                            <Controller
+                                  name='idRolUser'
+                                  control={control}
+                                  rules={{
+                                    required : 'Campo obligatorio'
+                                  }}
+                                  render={({field}) => (
+                                    <Select
+                                      {...field}
+                                      label="Rol"
+                                      variant="bordered"
+                                      endContent={<RequiredIcon/>}
+                                      color={errors.idRolUser ? "danger" : ""}
+                                      errorMessage={errors.idRolUser?.message}
+                                      className="max-w-xs"
+                                      onChange={(e) => {
+                                        field.onChange(e);
+                                      }}
+                                    >
+                                    {roles.map((roles) => (
+                                      <SelectItem key={roles.idRol} value={roles.rolName}>
+                                          {roles.rolName}
+                                      </SelectItem>
+                                  ))}
+                                    </Select>
+                                  )}
+                                />
+                          </div>  
+                          </div>
+ 
 
                         <div className="flex ">
                           <div className=' flex-col m-3 w-[200px]'>

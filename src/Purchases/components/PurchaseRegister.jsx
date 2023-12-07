@@ -12,7 +12,19 @@ import conection from '../../api/axios.js';
 
 export function PurchaseRegister() {
     const {isOpen, onOpen, onOpenChange} = useDisclosure();
-    const {handleSubmit, formState:{errors}, control, reset} = useForm();
+    const {handleSubmit, formState:{errors}, control, reset} = useForm({
+      defaultValues : {
+        idClientPurchase: '',
+        idVehiclePurchase : '',
+        purchaseDepartment: '',
+        purchaseMunicipality: '',
+        purchaseDate: '',
+        purchaseFinalPrice: '',
+        purchasePecuniaryPenalty: '',
+        purchaseLimitations: ''
+      }
+    });
+    
     const {createPurchase} = usePurchases();
     const {clients} = useClients();
     const {vehicles} = useVehicles();

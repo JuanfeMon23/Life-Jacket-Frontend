@@ -12,7 +12,18 @@ import conection from '../../api/axios.js';
 
 export function SaleRegister() {
     const {isOpen, onOpen, onOpenChange} = useDisclosure();
-    const {register , setValue, handleSubmit, formState:{errors}, control, reset} = useForm();
+    const {register , setValue, handleSubmit, formState:{errors}, control, reset} = useForm({
+      defaultValues: {
+        idClientSale: '',
+        idVehicleSale: '',
+        saleDepartment: '',
+        saleMunicipality : '',
+        saleDate : '',
+        saleFinalPrice: '',
+        salePecuniaryPenalty: '',
+        saleLimitations: ''
+      }
+    });
     const {createSell} = useSells();
     const {clients} = useClients();
     const {vehicles} = useVehicles();
