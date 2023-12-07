@@ -5,45 +5,48 @@ import { getDashboardExchangesRequest } from "../api/dashboard";
 import { SelectItem, Select } from "@nextui-org/select";
 
 export function DashboardExchanges() {
-    const [filterByStatus, setFilterByStatus] = useState("");
-    const [data, setData] = useState([]);
-    const [selectedYear, setSelectedYear] = useState(new Date().getFullYear());
-    const [years, setYears] = useState([]);
-    const months = [
-        'Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio',
-        'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre'
-    ];
+  const [filterByStatus, setFilterByStatus] = useState("");
+  const [data, setData] = useState({ trueExchanges: [], falseExchanges: [] });
+  const [selectedYear, setSelectedYear] = useState(new Date().getFullYear());
+  const [years, setYears] = useState([]);
+  const months = [
+    'Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio',
+    'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre'
+  ];
 
-    useEffect(() => {
-        const fetchExchanges = async () => {
-            const result = await getDashboardExchangesRequest();
-            setData(result.data);
-            const uniqueYears = [...new Set(result.data.map(item => item.year))];
-            setYears(uniqueYears);
-        }
-        fetchExchanges();
-    }, []);
-
-    const prepareChartData = () => {
-        const filteredData = data.filter(item => item.year === selectedYear && item.exchangeCashPriceStatus.toString() === filterByStatus);
-        const monthlyExchanges = months.map(month => {
-            const exchangesData = filteredData.find(item => monthNames[item.month] === month);
-            return exchangesData ? exchangesData.totalAmount : 0;
-        });
-
-        return monthlyExchanges;
+  useEffect(() => {
+    const fetchExchanges = async () => {
+      try {
+        const result = await getDashboardExchangesRequest();
+        setData(result.data);
+        const uniqueYears = [...new Set(result.data.trueExchanges.concat(result.data.falseExchanges).map(item => item.year))];
+        setYears(uniqueYears);
+      } catch (error) {
+        console.error("Error fetching data:", error);
+      }
     };
+    fetchExchanges();
+  }, []);
 
-    ChartJS.register(
-        LineElement,
-        CategoryScale,
-        LinearScale,
-        PointElement,
-        Title,
-        Tooltip,
-        Legend
-    );
+  const prepareChartData = () => {
+    const filteredData = filterByStatus ? data[`${filterByStatus}Exchanges`] : [];
+    const monthlyExchanges = months.map(month => {
+      const exchangesData = filteredData.find(item => monthNames[item.month] === month);
+      return exchangesData ? exchangesData.totalAmount : 0;
+    });
 
+    return monthlyExchanges;
+  };
+
+  ChartJS.register(
+    LineElement,
+    CategoryScale,
+    LinearScale,
+    PointElement,
+    Title,
+    Tooltip,
+    Legend
+  );
     const chartData = {
         labels: months,
         datasets: [{
@@ -102,10 +105,10 @@ export function DashboardExchanges() {
                         value={filterByStatus}
                         onChange={handleStatusChange}
                     >
-                        <SelectItem key="true" value="true">
+                        <SelectItem key={true} value={true}>
                             Entrante
                         </SelectItem>
-                        <SelectItem key="false" value="false">
+                        <SelectItem key={false} value={false}>
                             Saliente
                         </SelectItem>
                     </Select>
