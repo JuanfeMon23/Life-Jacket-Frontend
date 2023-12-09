@@ -230,8 +230,8 @@ export  function TableRoles() {
                     <TableCell>{item.rolStatus === "true" ?  <Chip color="success">Activo</Chip> : <Chip color="default">Inactivo</Chip>}</TableCell>
                     <TableCell className=" flex justify-normal">
                         <AddLicenses roles={item} />
-                        <DeleteRol roles={item} />
                         <StatusRol roles={item}/>
+                        <DeleteRol roles={item} />
                     </TableCell>
                 </TableRow>
             ))}
