@@ -10,32 +10,7 @@ import { years } from './years.js';
 import conection from '../../api/axios.js';
 
 export  function VehicleInfo() {
-  const { handleSubmit : handleSubmitVehicle, formState : {errors}, control : controlVehicle, reset : resetVehicle} = useForm({
-    defaultValues: {
-      licensePlate: '',
-      vehicleType: '',
-      brand: '',
-      line: '',
-      model: '',
-      type: '',
-      color: '',
-      timingBelt: '',
-      soat: '',
-      technomechanics: '',
-      mileage: '',
-      cylinderCapacity: '',
-      fuel: '',
-      traction: '',
-      business: '',
-      series: '',
-      motor: '',
-      identificationCard: '',
-      register: '',
-      capacity: '',
-      service: ''
-
-    }
-  });
+  const { handleSubmit : handleSubmitVehicle, formState : {errors}, control : controlVehicle, reset : resetVehicle} = useForm({});
     const {createVehicle} = useVehicles();
 
     const onSubmit = (data) => {   
