@@ -298,7 +298,7 @@ export  function VehicleInfo() {
                                 variant="bordered"
                                 color={errors.soat ? "danger" : ""}
                                 errorMessage={errors.soat?.message}
-                                className="md:w-[24rem]"
+                                className="md:w-[22rem]"
                               />
                             )}
                           /> 
@@ -317,7 +317,7 @@ export  function VehicleInfo() {
                               variant="bordered"
                               color={errors.technomechanics ? "danger" : ""}
                               errorMessage={errors.technomechanics?.message}
-                              className="md:w-[24rem]"
+                              className="md:w-[22rem]"
                             />
                           )}
                         /> 

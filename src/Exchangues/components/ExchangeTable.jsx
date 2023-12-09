@@ -67,7 +67,11 @@ export function ExchangeTable() {
           exchange.exchangeDate.toLowerCase().includes(filterValue.toLowerCase()) ||
           exchange.client.clientName.toLowerCase().includes(filterValue.toLowerCase()) ||
           exchange.client.clientLastName.toLowerCase().includes(filterValue.toLowerCase()) ||
-          exchange.client.clientDocument.toLowerCase().includes(filterValue.toLowerCase())
+          exchange.client.clientDocument.toLowerCase().includes(filterValue.toLowerCase()) ||
+          exchange.exchangeCashPriceStatus.toLowerCase().includes(filterValue.toLowerCase()) ||
+          exchange.exchangeLimitations.toLowerCase().includes(filterValue.toLowerCase()) ||
+          exchange.exchangeDepartment.toLowerCase().includes(filterValue.toLowerCase()) ||
+          exchange.exchangeMunicipality.toLowerCase().includes(filterValue.toLowerCase())
           );
         }
     

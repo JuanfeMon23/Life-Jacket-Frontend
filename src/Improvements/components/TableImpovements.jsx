@@ -52,8 +52,12 @@ export  function TableImpovements() {
   
       if (hasSearchFilter) {
         filteredImprovements = filteredImprovements.filter((improvement) =>
-          improvement.vehicle.licensePlate.toLowerCase().includes(filterValue.toLowerCase()) 
-
+          improvement.vehicle.licensePlate.toLowerCase().includes(filterValue.toLowerCase()) ||
+          improvement.improvementDate.toLowerCase().includes(filterValue.toLowerCase())  ||
+          (typeof improvement.improvementPrice === "number" && improvement.improvementPrice.toString().toLowerCase().includes(filterValue.toLowerCase())) ||
+          improvement.vehicle.brand.toLowerCase().includes(filterValue.toLowerCase())  ||
+          improvement.vehicle.type.toLowerCase().includes(filterValue.toLowerCase())  ||
+          improvement.vehicle.line.toLowerCase().includes(filterValue.toLowerCase())
         );
       }
   
