@@ -54,11 +54,15 @@ export  function TableClients() {
   
       if (hasSearchFilter) {
         filteredClients = filteredClients.filter((client) =>
-          client.clientName.toLowerCase().includes(filterValue.toLowerCase()) ||
-          client.clientLastName.toLowerCase().includes(filterValue.toLowerCase()) ||
-          client.clientDocument.toLowerCase().includes(filterValue.toLowerCase())
-        );
-      }
+        client.clientName.toLowerCase().includes(filterValue.toLowerCase()) ||
+        client.clientLastName.toLowerCase().includes(filterValue.toLowerCase()) ||
+        client.clientDocument.toLowerCase().includes(filterValue.toLowerCase()) ||
+        client.clientDepartment.toLowerCase().includes(filterValue.toLowerCase()) ||
+        client.clientMunicipality.toLowerCase().includes(filterValue.toLowerCase()) ||
+        client.clientOtherContact.toLowerCase().includes(filterValue.toLowerCase()) ||
+        client.clientPhoneNumber.toLowerCase().includes(filterValue.toLowerCase())
+      );
+    }
   
       if (statusFilter !== "all" && Array.from(statusFilter).length !== statusOptions.length) {
         filteredClients = filteredClients.filter((client) => 

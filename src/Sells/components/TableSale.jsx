@@ -58,7 +58,10 @@ export function TableSale() {
         sales.vehicle.licensePlate.toLowerCase().includes(filterValue.toLowerCase()) ||
         sales.client.clientName.toLowerCase().includes(filterValue.toLowerCase()) ||
         sales.client.clientLastName.toLowerCase().includes(filterValue.toLowerCase()) ||
-        sales.client.clientDocument.toLowerCase().includes(filterValue.toLowerCase())
+        sales.client.clientDocument.toLowerCase().includes(filterValue.toLowerCase()) ||
+        sales.saleLimitations.toLowerCase().includes(filterValue.toLowerCase()) ||
+        sales.saleDepartment.toLowerCase().includes(filterValue.toLowerCase()) ||
+        sales.saleMunicipality.toLowerCase().includes(filterValue.toLowerCase())
         )
       );
     }

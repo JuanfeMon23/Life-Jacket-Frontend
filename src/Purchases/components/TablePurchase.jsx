@@ -54,15 +54,19 @@ export function TablePurchase() {
 
   if (hasSearchFilter) {
     filteredPurchases = filteredPurchases.filter((purchase) =>
-      (purchase.purchaseDate.toLowerCase().includes(filterValue.toLowerCase()) ||
-        (typeof purchase.purchaseFinalPrice === "number" && purchase.purchaseFinalPrice.toString().toLowerCase().includes(filterValue.toLowerCase())) ||
-        purchase.vehicle.licensePlate.toLowerCase().includes(filterValue.toLowerCase()) ||
-        purchase.client.clientName.toLowerCase().includes(filterValue.toLowerCase()) ||
-        purchase.client.clientLastName.toLowerCase().includes(filterValue.toLowerCase()) ||
-        purchase.client.clientDocument.toLowerCase().includes(filterValue.toLowerCase())
-      )
-    );
-  }
+    (
+      purchase.purchaseDate.toLowerCase().includes(filterValue.toLowerCase()) ||
+      (typeof purchase.purchaseFinalPrice === "number" && purchase.purchaseFinalPrice.toString().toLowerCase().includes(filterValue.toLowerCase())) ||
+      purchase.vehicle.licensePlate.toLowerCase().includes(filterValue.toLowerCase()) ||
+      purchase.client.clientName.toLowerCase().includes(filterValue.toLowerCase()) ||
+      purchase.client.clientLastName.toLowerCase().includes(filterValue.toLowerCase()) ||
+      purchase.client.clientDocument.toLowerCase().includes(filterValue.toLowerCase()) ||
+      purchase.purchaseLimitations.toLowerCase().includes(filterValue.toLowerCase()) ||
+      purchase.purchaseDepartment.toLowerCase().includes(filterValue.toLowerCase()) ||
+      purchase.purchaseMunicipality.toLowerCase().includes(filterValue.toLowerCase())
+    )
+  );
+}
 
   if (statusFilter !== "all" && Array.from(statusFilter).length !== statusOptions.length) {
     filteredPurchases = filteredPurchases.filter((purchase) =>
