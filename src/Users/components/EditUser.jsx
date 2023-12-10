@@ -43,7 +43,7 @@ export function EditUser(props) {
                     <ModalBody>
                         <form onSubmit={handleSubmit(onSubmit)}>
                           <div className=' flex'>
-                            <div className="flex-col m-3 w-[24rem]">
+                            <div className="flex flex-col m-3 justify-center items-center">
                             <Controller
                                   name='idRolUser'
                                   control={control}
@@ -58,7 +58,7 @@ export function EditUser(props) {
                                       endContent={<RequiredIcon/>}
                                       color={errors.idRolUser ? "danger" : ""}
                                       errorMessage={errors.idRolUser?.message}
-                                      className="max-w-xs"
+                                      className=" md:w-[23rem]"
                                       onChange={(e) => {
                                         field.onChange(e);
                                       }}
