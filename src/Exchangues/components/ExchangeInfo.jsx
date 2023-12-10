@@ -27,8 +27,6 @@ export  function ExchangeInfo(props) {
     const navigate = useNavigate();
     const idExchange = props.idExchange
 
-    console.log(idExchange)
-
     useEffect(() => {
         getClients();
   
@@ -37,6 +35,7 @@ export  function ExchangeInfo(props) {
  
     function onSubmit(data){
         updateExchange(idExchange, data)
+        if(updateExchange.status === 200) return navigate('/Exchangues')
     };
 
     function handleCancelExchange(event) {

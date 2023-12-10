@@ -7,16 +7,16 @@ import { Navigate } from 'react-router-dom';
 import { Link } from 'react-router-dom';
 import {useForm, Controller} from 'react-hook-form';
 import {Input} from "@nextui-org/react";
-import { MdOutlineMail } from "react-icons/md";
+
+
 
 export  function Resetpassword() {
-    const params = useParams();
-
-    const {resetPassword} = useAuth();
+    const {resetPassword, newPassword } = useAuth();
     const navigate = useNavigate();
     
     const onSubmit  =  (data) => {
-       {  onSubmit ?  resetPassword(params.idUser, data) &&  <Navigate to="/"  replace/> : 2}
+        resetPassword(newPassword.idUser, data) 
+       if(resetPassword) return navigate('/')
        
     };
     
@@ -34,7 +34,10 @@ export  function Resetpassword() {
     });
     
     const formOptions = { resolver: yupResolver(validationSchema) };
-    const { handleSubmit, formState:{errors}, control, reset} = useForm(formOptions);
+    const { handleSubmit, formState:{errors}, control, reset} = useForm(formOptions, {defaultValues : {
+      newUserPassword: '',
+      confirmPassword: ''
+    }});
 
   return (
     <section className=" flex flex-col sm:items-center mt-40  sm:justify-center w-full flex-1 text-center">

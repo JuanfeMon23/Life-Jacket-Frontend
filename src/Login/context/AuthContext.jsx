@@ -1,6 +1,6 @@
 import { createContext, useContext, useEffect, useState } from "react";
 import { toast } from "react-toastify";
-import { loginRequest, verifyTokenRequest, PasswordRecoveryRequest, resetPasswordRequest } from "../api/Auht";
+import { loginRequest, verifyTokenRequest, PasswordRecoveryRequest, resetPasswordRequest, verifyTokenPasswordRequest } from "../api/Auht";
 import Cookies from "js-cookie";
 
 
@@ -13,6 +13,7 @@ export const useAuth = () => {
 
 export function AuthProvider({children}){
   const [user, setUser] = useState(null);
+  const [newPassword, setNewPassword] = useState(null);
   const [isAutenticated, setIsAutenticated] = useState(false);
   const [loading, setLoading] = useState(true);
 
@@ -36,8 +37,8 @@ export function AuthProvider({children}){
 
     const passwordRecovery = async (userEmail) => {
         try {
-            await PasswordRecoveryRequest(userEmail);
-            toast.success('Se ha enviado un enlace a su correo' ,{
+             await PasswordRecoveryRequest(userEmail);
+            toast.success('Se ha enviado un token a su correo' ,{
                 position: toast.POSITION.TOP_CENTER,
                 autoClose: 1500
               })
@@ -49,6 +50,22 @@ export function AuthProvider({children}){
               })
         }
     };
+
+    const verifyTokenPassword = async (token) => {
+      try {
+       const res = await verifyTokenPasswordRequest(token)
+       setNewPassword(res.data);
+        toast.success('Token valido' ,{
+          position: toast.POSITION.TOP_CENTER,
+          autoClose: 1500
+        })
+      } catch (error) {
+        toast.error(error.response.data.message ,{
+            position: toast.POSITION.TOP_CENTER,
+            autoClose: 1500
+          })
+      }
+    }
 
     const resetPassword = async (idUser, password) => {
         try {
@@ -69,7 +86,7 @@ export function AuthProvider({children}){
     
 
     useEffect(() => {
-        let isMounted = true; // variable de montaje
+        let isMounted = true; 
         async function checkLogin() {
           const cookies = Cookies.get();
           if (!cookies.token) {
@@ -99,7 +116,7 @@ export function AuthProvider({children}){
         }
         checkLogin();
         return () => {
-          isMounted = false; // limpiar el efecto si el componente se desmonta antes de que la solicitud se complete
+          isMounted = false; 
         };
       }, []);
 
@@ -112,7 +129,7 @@ export function AuthProvider({children}){
     };
 
     return (
-        <AuthContext.Provider value={{user, login, logout, isAutenticated, loading, loading, passwordRecovery, resetPassword} } >
+        <AuthContext.Provider value={{user, login, logout, isAutenticated, loading, loading, passwordRecovery, resetPassword, verifyTokenPassword, newPassword} } >
             {children}
         </AuthContext.Provider>
     )

@@ -41,8 +41,7 @@ import { VehiclesManual } from "./Manuals/components/VehiclesManual.jsx";
 
 function Navigator (){
   const location = useLocation();
-  const resetPasswordRegex = /^\/ResetPassword\/\d+$/;
-  return location.pathname !== "/" && location.pathname !== "/ForgotPassword" && !resetPasswordRegex.test(location.pathname) &&  <Navigation/> ;
+  return location.pathname !== "/" && location.pathname !== "/ForgotPassword" && location.pathname !== "/ResetPassword" &&  <Navigation/> ;
 };
 
 function App() { 
@@ -64,7 +63,7 @@ function App() {
                             <Routes>
                               <Route path='/' element={<Login/>}/>
                               <Route path='/ForgotPassword' element={<ForgotPassword/>}/>
-                              <Route path='/ResetPassword/:idUser' element={<Resetpassword/>}/>
+                              <Route path='/ResetPassword' element={<Resetpassword/>}/>
                               
                               <Route element={<ProtectedRoute/>}>
                                 <Route path='/Users' element={<Users/>}/>
