@@ -1,5 +1,5 @@
 import { BrowserRouter , Routes, Route, useLocation} from "react-router-dom";
-import {Login} from './Login/pages/Login.jsx'
+import { Login } from "../src/Login/Pages/Login.jsx";
 import { Users } from "./Users/Pages/Users.jsx";
 import { Clients } from "./Clients/pages/Clients.jsx";
 import { Vehicles } from "./Vehicles/pages/Vehicles.jsx";
@@ -41,8 +41,7 @@ import { VehiclesManual } from "./Manuals/components/VehiclesManual.jsx";
 
 function Navigator (){
   const location = useLocation();
-  const resetPasswordRegex = /^\/ResetPassword\/\d+$/;
-  return location.pathname !== "/" && location.pathname !== "/ForgotPassword" && !resetPasswordRegex.test(location.pathname) &&  <Navigation/> ;
+  return location.pathname !== "/" && location.pathname !== "/ForgotPassword" && location.pathname !== "/ResetPassword" &&  <Navigation/> ;
 };
 
 function App() { 
@@ -64,7 +63,7 @@ function App() {
                             <Routes>
                               <Route path='/' element={<Login/>}/>
                               <Route path='/ForgotPassword' element={<ForgotPassword/>}/>
-                              <Route path='/ResetPassword/:idUser' element={<Resetpassword/>}/>
+                              <Route path='/ResetPassword' element={<Resetpassword/>}/>
                               
                               <Route element={<ProtectedRoute/>}>
                                 <Route path='/Users' element={<Users/>}/>
@@ -78,7 +77,8 @@ function App() {
                                 <Route path="/DashBoard" element={<DashBoard/>}/>
                                 <Route path="/Exchangues" element={<Exchangues/>}/>
                                 <Route path="/Exchangues/create" element={<CreateExchange/>}/>
-                                <Route path="/Manuals" element={<Manuals/>}/>       
+                                
+                                <Route path="/Manuals" element={<Manuals/>}/>
                                 <Route path="/Manuals/Login" element={<LoginManual/>}/>
                                 <Route path="/Manuals/Dashboard" element={<DashboardManual/>}/>
                                 <Route path="/Manuals/Roles" element={<RolesManual/>}/>  
@@ -88,7 +88,8 @@ function App() {
                                 <Route path="/Manuals/Purchases" element={<PurchasesManual/>}/>     
                                 <Route path="/Manuals/Sales" element={<SalesManual/>}/>     
                                 <Route path="/Manuals/Exchanges" element={<ExchangesManual/>}/>     
-                                <Route path="/Manuals/Improvements" element={<ImprovementsManual/>}/>   
+                                <Route path="/Manuals/Improvements" element={<ImprovementsManual/>}/>      
+                                
                               </Route>                    
                             </Routes>
                           <ToastContainer/> 
