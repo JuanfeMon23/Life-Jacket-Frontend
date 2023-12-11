@@ -1,110 +1,136 @@
-import { createContext, useContext, useState } from "react";
+import { createContext, useContext, useEffect, useState } from "react";
 import { toast } from "react-toastify";
-import { createUserRequest, getUsersRequest, updateUserRequest, deleteUserRequest, stateUserRequest } from "../api/Users.js";
+import { loginRequest, verifyTokenRequest, PasswordRecoveryRequest, resetPasswordRequest, verifyTokenPasswordRequest } from "../api/Auht";
+import Cookies from "js-cookie";
 
 
-const UserContext = createContext();
+const AuthContext = createContext();
 
-export const useUsers = () => {
-    const context = useContext(UserContext);
+export const useAuth = () => {
+    const context = useContext(AuthContext);
     return context;
- };
+};
 
- 
-export function UserProvider ({children}) {
-    const [users, setUsers] = useState([]);
+export function AuthProvider({children}){
+  const [user, setUser] = useState(null);
+  const [newPassword, setNewPassword] = useState(null);
+  const [isAutenticated, setIsAutenticated] = useState(false);
+  const [loading, setLoading] = useState(true);
 
-    const getUsers = async () => {
+    const login = async (data) => {
         try {
-
-            const res = await getUsersRequest();
-            setUsers(res.data);
-            
+            const res = await loginRequest(data);
+            setIsAutenticated(true);
+            setUser(res.data);
+            toast.success('Bienvenid@',{
+                      position: toast.POSITION.TOP_CENTER,
+                      autoClose : 1500
+            });
         } catch (error) {
+            toast.error(error.response.data.message,{
+                position: toast.POSITION.TOP_CENTER,
+                autoClose : 1500
+            })
             throw new Error(error.message);
         }
     };
 
-    const createUser = async (user) => {
+    const passwordRecovery = async (userEmail) => {
         try {
-            const res = await createUserRequest(user );
-            toast.success('Usuario registrado con éxito!',{
+             await PasswordRecoveryRequest(userEmail);
+            toast.success('Se ha enviado un token a su correo' ,{
                 position: toast.POSITION.TOP_CENTER,
-                autoClose : 1500
-            });
-            getUsers();
-            console.log(res.data);
-            return res.data;
+                autoClose: 1500
+              })
         } catch (error) {
             console.log(error)
             toast.error(error.response.data.message ,{
                 position: toast.POSITION.TOP_CENTER,
-                autoClose : 1500
-            });
-            throw new Error(error.message);
+                autoClose: 1500
+              })
         }
     };
 
-    const updateUser = async (idUser, user) => {
+    const verifyTokenPassword = async (token) => {
+      try {
+       const res = await verifyTokenPasswordRequest(token)
+       setNewPassword(res.data);
+        toast.success('Token valido' ,{
+          position: toast.POSITION.TOP_CENTER,
+          autoClose: 1500
+        })
+      } catch (error) {
+        toast.error(error.response.data.message ,{
+            position: toast.POSITION.TOP_CENTER,
+            autoClose: 1500
+          })
+      }
+    }
+
+    const resetPassword = async (idUser, password) => {
         try {
-            await updateUserRequest(idUser, user);
-            toast.success('Usuario actualizado con éxito!',{
+            await resetPasswordRequest(idUser, password);
+            toast.success('Contraseña actualizada con éxito!' ,{
                 position: toast.POSITION.TOP_CENTER,
-                autoClose : 1500
-            });
-            getUsers();
+                autoClose: 1500
+              })
         } catch (error) {
+            console.log(error)
             toast.error(error.response.data.message ,{
                 position: toast.POSITION.TOP_CENTER,
-                autoClose : 1500
-            });
-            throw new Error(error.message);
-            
+                autoClose: 1500
+              })
         }
     };
 
-    const statusUser = async (idUser) => {
-        try {
-            await stateUserRequest(idUser);
-            toast.success('Estado actualizado con éxito!',{
-                position: toast.POSITION.TOP_CENTER,
-                autoClose : 1500
-            });
-            getUsers();
-        } catch (error) {
-            toast.error(error.response.data.message ,{
-                position: toast.POSITION.TOP_CENTER,
-                autoClose : 1500
-            });
-            throw new Error(error.message);
-        }
-    };
+    
 
-    const deleteUser = async (idUser) => {
-        try {
-             await deleteUserRequest(idUser);
-            toast.success('Usuario eliminado con éxito!',{
-                position: toast.POSITION.TOP_CENTER,
-                autoClose : 1500
-            });
-            getUsers();
-        } catch (error) {
-            toast.success(error.response.data.message,{
-                position: toast.POSITION.TOP_CENTER,
-                autoClose : 1500
-            });
-            throw new Error(error.message);
+    useEffect(() => {
+        let isMounted = true; 
+        async function checkLogin() {
+          const cookies = Cookies.get();
+          if (!cookies.token) {
+            if (isMounted) {
+              setIsAutenticated(false);
+              setLoading(false);
+              setUser(null);
+            }
+          } else {
+            try {
+              const res = await verifyTokenRequest(cookies.token);
+              if (res.data && isMounted) {
+                setIsAutenticated(true);
+                setUser(res.data);
+                setLoading(false);
+              } else if (isMounted) {
+                setIsAutenticated(false);
+                setLoading(false);
+              }
+            } catch (error) {
+              if (isMounted) {
+                setIsAutenticated(false);
+                setUser(null);
+              }
+            }
+          }
         }
+        checkLogin();
+        return () => {
+          isMounted = false; 
+        };
+      }, []);
+
+    console.log(user)
+
+    const logout = () => {
+        Cookies.remove("token");
+        setUser(null);
+        setIsAutenticated(false);
     };
 
     return (
-        <UserContext.Provider
-        value={{users,getUsers,createUser,updateUser,deleteUser, statusUser
-        }}
-        >
-            {children}         
-        </UserContext.Provider>
-    );
-
-
-}
+        <AuthContext.Provider value={{user, login, logout, isAutenticated, loading, loading, passwordRecovery, resetPassword, verifyTokenPassword, newPassword} } >
+            {children}
+        </AuthContext.Provider>
+    )
+};
