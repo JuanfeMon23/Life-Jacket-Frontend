@@ -1,13 +1,12 @@
 import axios from '../../api/axios.js';
 
-export const getUsersRequest = async () => axios.get('/Users');
+export const loginRequest = async (user) => axios.post('/Login', user);
 
-export const createUserRequest = async (user) => axios.post('/Users', user);
+export const verifyTokenRequest = async () => axios.get('/Verify' );
 
-export const updateUserRequest = async (idUser, user) => axios.put(`/Users/${idUser}`, user);
+export const PasswordRecoveryRequest = async (userEmail) => axios.post('/Password', userEmail);
 
-export const stateUserRequest = async (idUser) => axios.patch(`/Users/${idUser}`);
+export const resetPasswordRequest = async (idUser, password) => axios.patch(`/ResetPassword/${idUser}`, password );
 
-export const deleteUserRequest = async (id) => axios.delete(`/Users/${id}`);
-
+export const verifyTokenPasswordRequest = async (token) => axios.post('/Verify-token-password', token);
 
