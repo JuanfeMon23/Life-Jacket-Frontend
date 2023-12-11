@@ -17,6 +17,7 @@ import {
     Pagination,
   } from "@nextui-org/react";
 import {FaSearch} from 'react-icons/fa';
+import { LinesRegister } from './LinesRegister';
 import { BrandsRegister } from './BrandsRegister';
 import { DeleteBrands } from './DeleteBrands';
 
@@ -110,9 +111,14 @@ export  function TableBrands() {
                 onClear={() => onClear()}
                 onValueChange={onSearchChange}
               />
-              <div className="flex gap-3">
-                <BrandsRegister/>
-              </div>
+            <div className="flex gap-3">
+                <div>
+                  <BrandsRegister/> 
+                </div>
+                <div>
+                  <LinesRegister />
+                </div>
+            </div>
             </div>
             <div className="flex justify-between items-center">
               <span className="text-default-400 text-small">Total de datos: {brands.length} </span>

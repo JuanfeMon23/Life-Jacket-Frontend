@@ -37,8 +37,8 @@ import {TiDeleteOutline} from 'react-icons/ti'; <TiDeleteOutline/>
     {name: "Marca", uid: "Marca", sortable: true},
     {name: "Linea", uid: "Linea", sortable: true},
     {name: "Modelo", uid: "Modelo", sortable: true},
-    {name : "Soat", uuid:"Soat"},
-    {name : "Tecnomecánica", uuid: "Tecno"} ,
+    {name : "Soat", uid:"Soat"},
+    {name : "Tecnomecánica", uid: "Tecno"} ,
     {name: "Estado", uid: "statusV", sortable: true},
     {name: "Acciones", uid: "AccionesV", sortable: true}
   ];  
@@ -65,7 +65,8 @@ export  function TableVehicles() {
           vehicles.brand.toLowerCase().includes(filterValue.toLowerCase())  ||
           vehicles.line.toLowerCase().includes(filterValue.toLowerCase())  ||
           vehicles.model.toLowerCase().includes(filterValue.toLowerCase())  ||
-          vehicles.vehicleType.toLowerCase().includes(filterValue.toLowerCase()) 
+          vehicles.vehicleType.toLowerCase().includes(filterValue.toLowerCase()) ||
+          vehicles.color.toLowerCase().includes(filterValue.toLowerCase()) 
           );
         }
     

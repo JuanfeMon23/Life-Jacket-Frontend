@@ -3,6 +3,7 @@ import {Modal, ModalContent, ModalHeader, ModalBody, Button, useDisclosure} from
 import {FiEye}from "react-icons/fi";
 import { toast } from "react-toastify";
 import {Accordion, AccordionItem} from "@nextui-org/react";
+import { styles } from "../../components/styles";
 
 export function WatchVehicle (props) {
     const {isOpen, onOpen, onOpenChange} = useDisclosure();
@@ -20,7 +21,7 @@ export function WatchVehicle (props) {
         <>
         {vehicles.vehicleStatus === "true" ? <Button title='Ver vehículo' isIconOnly  className='bg-gradient-to-r from-[#2D78BE] to-[#6D2CC0] mr-2' onPress={onOpen}><FiEye className="text-white text-2xl"/></Button>
          : <Button isIconOnly title='Ver vehículo' className=" mr-2" onClick={handleWatch} ><FiEye className="text-white text-2xl"/></Button> }
-        <Modal isOpen={isOpen} onOpenChange={onOpenChange} size="2xl" scrollBehavior={'inside'} isDismissable={false}>
+        <Modal isOpen={isOpen} onOpenChange={onOpenChange} size="2xl" scrollBehavior={'inside'} >
           <ModalContent>
             {(onClose) => (
               <>

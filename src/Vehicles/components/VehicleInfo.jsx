@@ -10,7 +10,7 @@ import { years } from './years.js';
 import conection from '../../api/axios.js';
 
 export  function VehicleInfo() {
-    const { handleSubmit : handleSubmitVehicle, formState : {errors}, control : controlVehicle, reset : resetVehicle} = useForm();
+  const { handleSubmit : handleSubmitVehicle, formState : {errors}, control : controlVehicle, reset : resetVehicle} = useForm({});
     const {createVehicle} = useVehicles();
 
     const onSubmit = (data) => {   
@@ -296,7 +296,7 @@ export  function VehicleInfo() {
                                 variant="bordered"
                                 color={errors.soat ? "danger" : ""}
                                 errorMessage={errors.soat?.message}
-                                className="md:w-[24rem]"
+                                className="md:w-[22rem]"
                               />
                             )}
                           /> 
@@ -315,7 +315,7 @@ export  function VehicleInfo() {
                               variant="bordered"
                               color={errors.technomechanics ? "danger" : ""}
                               errorMessage={errors.technomechanics?.message}
-                              className=" md:w-[24rem]"
+                              className=" md:w-[22rem]"
                             />
                           )}
                         /> 
@@ -496,7 +496,7 @@ export  function VehicleInfo() {
                     </div>
                     <div className='flex-col m-3'>
                       <Controller
-                                name="chasis"
+                                name="chassis"
                                 control={controlVehicle}
                                 rules={{
                                   minLength: {
@@ -514,8 +514,8 @@ export  function VehicleInfo() {
                                     type="text"
                                     label="Chasis"
                                     variant="bordered"
-                                    color={errors.chasis ? "danger" : ""}
-                                    errorMessage={errors.chasis?.message}
+                                    color={errors.chassis ? "danger" : ""}
+                                    errorMessage={errors.chassis?.message}
                                     className="max-w-xs"
                                   />
                                 )}

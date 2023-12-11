@@ -223,7 +223,7 @@ export  function EditVehicle (props) {
                                 variant="bordered"
                                 color={errors.soat ? "danger" : ""}
                                 errorMessage={errors.soat?.message}
-                                className=" md:w-[24rem]"
+                                className=" md:w-[22rem]"
                               />
                             )}
                           /> 
@@ -243,7 +243,7 @@ export  function EditVehicle (props) {
                               variant="bordered"
                               color={errors.technomechanics ? "danger" : ""}
                               errorMessage={errors.technomechanics?.message}
-                              className=" md:w-[24rem]"
+                              className=" md:w-[22rem]"
                             />
                           )}
                         /> 
@@ -346,7 +346,7 @@ export  function EditVehicle (props) {
                     </div>
                     <div className='flex-col m-3'>
                       <Controller
-                                name="chasis"
+                                name="chassis"
                                 defaultValue={vehicles.othervehicleinformation.chassis}
                                 control={control}
                                 rules={{
@@ -365,8 +365,8 @@ export  function EditVehicle (props) {
                                     type="text"
                                     label="Chasis"
                                     variant="bordered"
-                                    color={errors.chasis ? "danger" : ""}
-                                    errorMessage={errors.chasis?.message}
+                                    color={errors.chassis ? "danger" : ""}
+                                    errorMessage={errors.chassis?.message}
                                     className="max-w-xs"
                                   />
                                 )}

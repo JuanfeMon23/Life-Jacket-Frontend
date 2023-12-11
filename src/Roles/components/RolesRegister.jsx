@@ -14,29 +14,27 @@ import { RequiredIcon } from '../../components/globalComponents/RequiredIcon.jsx
 
 export  function RolesRegister() {
 const {isOpen, onOpen, onOpenChange} = useDisclosure();
-const {control , handleSubmit, formState:{errors}, reset} = useForm();
-const {createRol, getRoles} = useRoles();
-const {roles} = useRoles();
-const {getUsers, users} = useUsers();
-const [idRol, setIdRol] = useState();
+const {control , handleSubmit, formState:{errors}, reset} = useForm({
+  defaultValues: {
+    rolName: ''
+  }
+});
+const {createRol, } = useRoles();
+const {getUsers} = useUsers();
 
 const onSubmit = (data) => {
   if (onSubmit){
     createRol(data);
     reset();
-    getRoles();
-    setIdRol(roles.idRol)
+
   }
 };
 
-useEffect(() => {
-  getUsers();
-},[]);
 
 return (
   <div className='flex'>
     <Button title='Agregar rol' endContent={<AiOutlinePlusCircle className=' text-2xl'/>} color="primary" variant="solid" onPress={onOpen} className=' text-white font-bold'>Agregar</Button>      
-    <Modal isOpen={isOpen} onOpenChange={onOpenChange}>
+    <Modal isOpen={isOpen} onOpenChange={onOpenChange} isDismissable={false}>
       <ModalContent>
         {(onClose) => (
           <>

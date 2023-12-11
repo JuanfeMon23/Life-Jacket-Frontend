@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import {Modal, ModalContent, ModalHeader, ModalBody, ModalFooter, useDisclosure, Select, SelectItem} from "@nextui-org/react";
+import {Modal, ModalContent, ModalHeader, ModalBody, useDisclosure, Select, SelectItem} from "@nextui-org/react";
 import {Button} from "@nextui-org/react";
 import {Input} from "@nextui-org/react";
 import {useForm, Controller} from 'react-hook-form';
@@ -12,14 +12,13 @@ import { ButtonAccept } from '../../components/ButtonAccept';
 
 export function EditUser(props) {
     const {isOpen, onOpen, onOpenChange} = useDisclosure();
-    const {register , setValue, handleSubmit, formState:{errors}, control, reset} = useForm();
+    const user = props.user
+    const {register , setValue, handleSubmit, formState:{errors}, control, reset} = useForm({});
     const {updateUser } = useUsers();
     const {roles} = useRoles();
-    const user = props.user
 
-    const onSubmit = (data, event) => {    
-        event.preventDefault();
-        { onSubmit ? updateUser(user.idUser, data) && reset() :  ''}
+    const onSubmit = (data) => {    
+      { onSubmit ? updateUser(user.idUser, {...data}) && reset :  ''}
     };
 
     const handleEvent = (event) => {
@@ -35,7 +34,6 @@ export function EditUser(props) {
     <div className='flex'>
       {user.userStatus === "true" ? <Button title="Editar usuario" isIconOnly onPress={onOpen}className=' bg-gradient-to-r from-[#D99C23] to-[#D45229] hover:bg-[#A37D1A] rounded-lg text-white mr-2 font-bold '>{<AiTwotoneEdit className='text-white text-2xl'/>}</Button>
        : <Button isIconOnly title="Editar usuario" className=" mr-2" onClick={handleEvent}>{<AiTwotoneEdit className='text-white text-2xl'/>}</Button>}
-        
         <Modal isOpen={isOpen} onOpenChange={onOpenChange} isDismissable={false}>
             <ModalContent>
                 {(onclose) => (
@@ -43,7 +41,37 @@ export function EditUser(props) {
                     <ModalHeader className="flex flex-col gap-3">Editar usuario</ModalHeader>
                     <ModalBody>
                         <form onSubmit={handleSubmit(onSubmit)}>
-                    
+                        <div className=' flex'>
+                            <div className="flex-col m-3 justify-center items-center">
+                            <Controller
+                                  name='idRolUser'
+                                  control={control}
+                                  rules={{
+                                    required : 'Campo obligatorio'
+                                  }}
+                                  render={({field}) => (
+                                    <Select
+                                      {...field}
+                                      label="Rol"
+                                      variant="bordered"
+                                      endContent={<RequiredIcon/>}
+                                      color={errors.idRolUser ? "danger" : ""}
+                                      errorMessage={errors.idRolUser?.message}
+                                      className=" md:w-[23rem]"
+                                      onChange={(e) => {
+                                        field.onChange(e);
+                                      }}
+                                    >
+                                    {roles.map((roles) => (
+                                      <SelectItem key={roles.idRol} value={roles.rolName}>
+                                          {roles.rolName}
+                                      </SelectItem>
+                                  ))}
+                                    </Select>
+                                  )}
+                                />
+                          </div>  
+                          </div>
                         <div className="flex ">
                           <div className=' flex-col m-3 w-[200px]'>
                           <Controller
@@ -233,10 +261,6 @@ export function EditUser(props) {
                             />
                         </div>
                       </div>
-
-    
-
-
 
                       <div className=' text-center my-3 '>
                       <ButtonAccept/>

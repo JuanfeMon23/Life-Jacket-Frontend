@@ -32,7 +32,13 @@ import {
 export  function ExchangeDetail(props) {
     const {vehicles, getVehicles} = useVehicles();
     const {createExchangeDetail, exchanges, cancelExchangeDetail} = useExchange()
-    const { handleSubmit, formState:{errors}, control, reset} = useForm();
+    const { handleSubmit, formState:{errors}, control, reset} = useForm({
+        defaultValues: {
+            idVehicleExchange: '',
+            vehicleStatusExchange: ''
+
+        }
+    });
     const idExchange = props.idExchange
 
 

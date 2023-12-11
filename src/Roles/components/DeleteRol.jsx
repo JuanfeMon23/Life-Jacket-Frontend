@@ -29,7 +29,7 @@ export  function DeleteRol(props) {
   return (
     <div className=' flex'>
      <Button isIconOnly title='Eliminar rol' className=' bg-red-400' onPress={onOpen}><AiOutlineDelete className={`text-2xl text-white`}/></Button> 
-    <Modal isOpen={isOpen} onOpenChange={onOpenChange} isDismissable={false}>
+    <Modal isOpen={isOpen} onOpenChange={onOpenChange} >
             <ModalContent>
             {(onClose) => (
                 <> 

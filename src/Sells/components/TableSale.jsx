@@ -53,10 +53,16 @@ export function TableSale() {
 
     if (hasSearchFilter) {
       filteredSales = filteredSales.filter((sales) =>
-        sales.saleDate.toLowerCase().includes(filterValue.toLowerCase()) ||
+        (sales.saleDate.toLowerCase().includes(filterValue.toLowerCase()) ||
         (typeof sales.saleFinalPrice === "number" && sales.saleFinalPrice.toString().toLowerCase().includes(filterValue.toLowerCase())) ||
         sales.vehicle.licensePlate.toLowerCase().includes(filterValue.toLowerCase()) ||
-        sales.client.clientName.toLowerCase().includes(filterValue.toLowerCase())
+        sales.client.clientName.toLowerCase().includes(filterValue.toLowerCase()) ||
+        sales.client.clientLastName.toLowerCase().includes(filterValue.toLowerCase()) ||
+        sales.client.clientDocument.toLowerCase().includes(filterValue.toLowerCase()) ||
+        sales.saleLimitations.toLowerCase().includes(filterValue.toLowerCase()) ||
+        sales.saleDepartment.toLowerCase().includes(filterValue.toLowerCase()) ||
+        sales.saleMunicipality.toLowerCase().includes(filterValue.toLowerCase())
+        )
       );
     }
 
@@ -201,11 +207,8 @@ export function TableSale() {
   }, [selectedKeys, items.length, page, pages, hasSearchFilter]);
 
   return (
-<<<<<<< HEAD
-    <div className=" ml-3 w-[23rem] sm:ml-5 sm:w-full md:w-[53rem] xl:w-[117rem] mx-auto ">
-=======
+
     <div className="ml-3 w-[23rem] sm:ml-5 sm:w-full md:w-full lg:w-[80rem] xl:w-[117rem] mx-auto ">
->>>>>>> 5edb2c64053c481289412e53c26937abb10e2e4f
       <Table
         aria-label="roles Table"
         isCompact

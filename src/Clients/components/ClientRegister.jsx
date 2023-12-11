@@ -12,7 +12,20 @@ import conection from '../../api/axios.js';
 
 export  function ClientRegister() {
   const {isOpen, onOpen, onOpenChange} = useDisclosure();
-  const {register , handleSubmit, setValue,  formState:{errors}, control, reset} = useForm();
+  const {register , handleSubmit, setValue,  formState:{errors}, control, reset} = useForm({
+    defaultValues: {
+      clientTypeDocument: '',
+      clientDocument: '',
+      clientDepartment: '',
+      clientMunicipality: '',
+      clientName: '',
+      clientLastName: '',
+      clientAddress: '',
+      clientOtherContact: '',
+      clientPhoneNumber: '',
+      clientOtherPhoneNumber: ''
+    }
+  });
   const {createClient} = useClients();
 
   const onSubmit = (data) => {

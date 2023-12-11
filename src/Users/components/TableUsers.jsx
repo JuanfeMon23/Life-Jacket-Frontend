@@ -58,7 +58,13 @@ export  function TableUsers() {
         filteredUsers = filteredUsers.filter((user) =>
           user.userName.toLowerCase().includes(filterValue.toLowerCase()) ||
           user.userLastName.toLowerCase().includes(filterValue.toLowerCase()) ||
-          user.Role.rolName.toLowerCase().includes(filterValue.toLowerCase()) 
+          user.Role.rolName.toLowerCase().includes(filterValue.toLowerCase()) ||
+          (typeof user.userDocument === "number" && user.userDocument.toString().toLowerCase().includes(filterValue.toLowerCase())) ||
+          user.userDepartment.toLowerCase().includes(filterValue.toLowerCase()) ||
+          user.userEmail.toLowerCase().includes(filterValue.toLowerCase()) ||
+          user.userMunicipality.toLowerCase().includes(filterValue.toLowerCase()) ||
+          user.userPhoneNumber.toLowerCase().includes(filterValue.toLowerCase()) ||
+          user.userOtherPhoneNumber.toLowerCase().includes(filterValue.toLowerCase())
         );
       }
   
@@ -120,7 +126,7 @@ export  function TableUsers() {
           <Input
           title="Buscar usuario"
             isClearable
-            className=" max-w-[50%] "
+            className=" sm:max-w-[30%] "
             placeholder="Buscar..."
             startContent={<FaSearch />}
             value={filterValue}

@@ -1,7 +1,7 @@
 import { createContext, useContext, useState } from "react";
 import { toast } from "react-toastify";
 import { getVehiclesRequest, createVehiclesRequest, updateVehicleRequest, getVehicleTypeRequest , statusVehicleRequest, deleteVehicleRequest,
-     getBrandsRequest, createBrandsRequest, deleteBrandsRequest } from "../api/Vehicles";
+     getBrandsRequest, createBrandsRequest, createLinesRequest, deleteBrandsRequest } from "../api/Vehicles";
 
 const VehiclesContext = createContext();
 
@@ -23,10 +23,28 @@ export function VehicleProvider({children}){
         }
     };
 
+    const createLine = async (line) => {
+        try {
+            const res = await createLinesRequest(line);
+            toast.success('Línea registrada con éxito!',{
+                position: toast.POSITION.TOP_CENTER,
+                autoClose : 1500
+            });
+            getBrands();
+            return res.data;
+        } catch (error) {
+            toast.error(error.response.data.message ,{
+                position: toast.POSITION.TOP_CENTER,
+                autoClose : 1500
+            });
+            throw new Error(error.message);
+        }
+    };
+
     const createBrand = async (brand) => {
         try {
             const res = await createBrandsRequest(brand);
-            toast.success('Línea  registrada con éxito!',{
+            toast.success('Marca  registrada con éxito!',{
                 position: toast.POSITION.TOP_CENTER,
                 autoClose : 1500
             });
@@ -45,7 +63,7 @@ export function VehicleProvider({children}){
     const deleteBrands = async (idBrand) => {
         try {
             await deleteBrandsRequest(idBrand);
-            toast.success('Línea  eliminada con éxito!',{
+            toast.success('Registro eliminado con éxito!',{
                 position: toast.POSITION.TOP_CENTER,
                 autoClose : 1500
             });
@@ -156,7 +174,7 @@ export function VehicleProvider({children}){
 
     return(
         <VehiclesContext.Provider value={{vehicles, getVehicles, createVehicle, updateVehicle, getVehicletype, statusVehicle, deleteVehicle ,
-            brands, getBrands, createBrand, deleteBrands }}>
+            brands, getBrands, createLine, createBrand, deleteBrands }}>
             {children}
         </VehiclesContext.Provider>
     )
