@@ -19,7 +19,6 @@ export  function ForgotPassword() {
       passwordRecovery(data);        
     }
 
-    console.log(newPassword)
 
   return (
     <section className=" flex flex-col items-center mt-40  justify-center w-full flex-1 px-20 text-center">

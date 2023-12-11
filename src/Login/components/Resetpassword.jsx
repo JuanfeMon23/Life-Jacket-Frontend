@@ -27,16 +27,12 @@ export  function Resetpassword() {
         .matches(
             /^(?=.*[A-Z])(?=.*[\W])/,
             'La contraseña debe contener al menos una letra mayúscula y un caracter especial'
-        ),
-        confirmPassword: Yup.string()
-        .required('Confirmación de contraseña requerida')
-        .oneOf([Yup.ref('newUserPassword')], 'Las contraseñas no coinciden'),
+        )
     });
     
     const formOptions = { resolver: yupResolver(validationSchema) };
     const { handleSubmit, formState:{errors}, control, reset} = useForm(formOptions, {defaultValues : {
-      newUserPassword: '',
-      confirmPassword: ''
+      newUserPassword: ''
     }});
 
   return (
@@ -63,21 +59,6 @@ export  function Resetpassword() {
                     color={errors.newUserPassword ? "danger" : ""}
                     errorMessage={errors.newUserPassword?.message}
                     className=" w-[12rem] sm:w-[17rem] mb-5"
-                />
-                )}
-                />
-                <Controller
-                name="confirmPassword"
-                control={control}
-                render={({ field }) => (
-                <Input
-                    {...field}
-                    type="password"
-                    label="Confirmar contraseña"
-                    variant="bordered"
-                    color={errors.confirmPassword ? "danger" : ""}
-                    errorMessage={errors.confirmPassword?.message}
-                    className="max-w-xs"
                 />
                 )}
                 />
