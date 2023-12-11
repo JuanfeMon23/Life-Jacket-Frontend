@@ -7,16 +7,16 @@ import { Navigate } from 'react-router-dom';
 import { Link } from 'react-router-dom';
 import {useForm, Controller} from 'react-hook-form';
 import {Input} from "@nextui-org/react";
-import { MdOutlineMail } from "react-icons/md";
+
+
 
 export  function Resetpassword() {
-    const params = useParams();
-
-    const {resetPassword} = useAuth();
+    const {resetPassword, newPassword } = useAuth();
     const navigate = useNavigate();
     
     const onSubmit  =  (data) => {
-       {  onSubmit ?  resetPassword(params.idUser, data) &&  <Navigate to="/"  replace/> : 2}
+        resetPassword(newPassword.idUser, data) 
+       if(resetPassword) return navigate('/')
        
     };
     
@@ -27,17 +27,16 @@ export  function Resetpassword() {
         .matches(
             /^(?=.*[A-Z])(?=.*[\W])/,
             'La contraseña debe contener al menos una letra mayúscula y un caracter especial'
-        ),
-        confirmPassword: Yup.string()
-        .required('Confirmación de contraseña requerida')
-        .oneOf([Yup.ref('newUserPassword')], 'Las contraseñas no coinciden'),
+        )
     });
     
     const formOptions = { resolver: yupResolver(validationSchema) };
-    const { handleSubmit, formState:{errors}, control, reset} = useForm(formOptions);
+    const { handleSubmit, formState:{errors}, control, reset} = useForm(formOptions, {defaultValues : {
+      newUserPassword: ''
+    }});
 
   return (
-    <section className=" flex flex-col sm:items-center mt-40 sm:justify-center w-full flex-1 text-center">
+    <section className=" flex flex-col sm:items-center mt-40  sm:justify-center w-full flex-1 text-center">
     <div className=' bg-white rounded-2xl shadow-2xl flex w-[100%] max-w-4xl'>
       <div className=' w-[100%] p-5'>
         <div className=' text-left font-bold '>
@@ -59,21 +58,6 @@ export  function Resetpassword() {
                     variant="bordered"
                     color={errors.newUserPassword ? "danger" : ""}
                     errorMessage={errors.newUserPassword?.message}
-                    className=" w-[12rem] sm:w-[17rem] mb-5"
-                />
-                )}
-                />
-                <Controller
-                name="confirmPassword"
-                control={control}
-                render={({ field }) => (
-                <Input
-                    {...field}
-                    type="password"
-                    label="Confirmar contraseña"
-                    variant="bordered"
-                    color={errors.confirmPassword ? "danger" : ""}
-                    errorMessage={errors.confirmPassword?.message}
                     className=" w-[12rem] sm:w-[17rem] mb-5"
                 />
                 )}
