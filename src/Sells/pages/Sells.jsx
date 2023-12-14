@@ -19,7 +19,7 @@ export  function Sells() {
 
     useEffect(() => {
         async function verificate(){
-          if(!user.Licenses.includes('Usuarios')){
+          if(!user.Licenses.includes('Ventas')){
             navigate('/DashBoard');
           }
         }
