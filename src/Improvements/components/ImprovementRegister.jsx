@@ -9,7 +9,9 @@ import { Button } from '@nextui-org/react';
 import { useParams } from 'react-router-dom';
 import {AiOutlinePlusCircle} from 'react-icons/Ai';
 import { RequiredIcon } from '../../components/globalComponents/RequiredIcon.jsx';
+import { createImprovementsRequest } from '../api/Improvements.js';
 import { ButtonAccept } from '../../components/ButtonAccept';
+import { toast } from "react-toastify";
 
 export function ImprovementRegister() {
     const {isOpen, onOpen, onOpenChange} = useDisclosure();
@@ -22,17 +24,31 @@ export function ImprovementRegister() {
         improvementDescription: ''
       }
     });
-    const {createImprovement} = useImprovements();
+    const {getImprovements} = useImprovements();
 
 
     useEffect(() => {
         getVehicles();
     },[])
 
-    const onSubmit = (data) => {
-        createImprovement(data);
-        reset();
-        
+    const onSubmit = async (data) => {
+      try {
+          const res = await createImprovementsRequest(data);
+          toast.success('Mejora registrada con éxito!',{
+              position: toast.POSITION.TOP_CENTER,
+              autoClose: 1500
+          });
+          getImprovements();
+          reset();
+          return res.data;
+      } catch (error) {
+          toast.error(error.response.data.message ,{
+              position: toast.POSITION.TOP_CENTER,
+              autoClose: 1500
+          });
+          console.log(error);
+          throw new Error(error.message);
+      }
     };
 
   return (

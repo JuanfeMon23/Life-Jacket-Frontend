@@ -1,6 +1,6 @@
 import { createContext, useContext, useState } from "react";
 import { toast } from "react-toastify";
-import { getExchangesRequest,  createExchangeRequest,  updateExchangeRequest, createExchangeDetailRequest ,
+import { getExchangesRequest,  createExchangeRequest, createExchangeDetailRequest ,
     cancelExchangeRequest, cancelExchangeDetailRequest, nullifyExchangeRequest, informPurchaseRequest, getExchangesFiteredRequest } from "../api/Exchangues";
 
 
@@ -40,23 +40,6 @@ export function ExchangeProvider({children}){
             return res.data;
         } catch (error) {
             throw new Error(error.message);
-        }
-    };
-
-    const updateExchange  =  async (idExchange, exchange) => {
-        try {
-            await updateExchangeRequest(idExchange, exchange);
-            toast.success('Intercambio registrado con éxito!',{
-                position: toast.POSITION.TOP_CENTER,
-                autoClose : 1500
-            });
-            getExchanges();
-        } catch (error) {
-            console.log(error)
-            toast.error(error.response.data.message ,{
-                position: toast.POSITION.TOP_CENTER,
-                autoClose : 1500
-            });
         }
     };
 
@@ -150,7 +133,7 @@ export function ExchangeProvider({children}){
 
     return(
         <ExchangeContext.Provider
-        value={{exchanges, getExchanges, createExchange, updateExchange, createExchangeDetail, cancelExchange, cancelExchangeDetail, nullifyExchange, informExchange, getExchangesFiltered, exchangesFiltered}}
+        value={{exchanges, getExchanges, createExchange, createExchangeDetail, cancelExchange, cancelExchangeDetail, nullifyExchange, informExchange, getExchangesFiltered, exchangesFiltered}}
         >
             {children}
         </ExchangeContext.Provider>

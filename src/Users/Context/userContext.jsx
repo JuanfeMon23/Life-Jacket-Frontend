@@ -1,6 +1,6 @@
 import { createContext, useContext, useState } from "react";
 import { toast } from "react-toastify";
-import { createUserRequest, getUsersRequest, updateUserRequest, deleteUserRequest, stateUserRequest } from "../api/Users.js";
+import { getUsersRequest, updateUserRequest, deleteUserRequest, stateUserRequest } from "../api/Users.js";
 
 
 const UserContext = createContext();
@@ -25,25 +25,6 @@ export function UserProvider ({children}) {
         }
     };
 
-    const createUser = async (user) => {
-        try {
-            const res = await createUserRequest(user );
-            toast.success('Usuario registrado con éxito!',{
-                position: toast.POSITION.TOP_CENTER,
-                autoClose : 1500
-            });
-            getUsers();
-            console.log(res.data);
-            return res.data;
-        } catch (error) {
-            console.log(error)
-            toast.error(error.response.data.message ,{
-                position: toast.POSITION.TOP_CENTER,
-                autoClose : 1500
-            });
-            throw new Error(error.message);
-        }
-    };
 
     const updateUser = async (idUser, user) => {
         try {
@@ -99,7 +80,7 @@ export function UserProvider ({children}) {
 
     return (
         <UserContext.Provider
-        value={{users,getUsers,createUser,updateUser,deleteUser, statusUser
+        value={{users,getUsers,updateUser,deleteUser, statusUser
         }}
         >
             {children}         

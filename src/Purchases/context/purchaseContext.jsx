@@ -1,6 +1,6 @@
 import { createContext, useContext, useState } from "react";
 import { toast } from "react-toastify";
-import { createPurchaseRequest, getPurchasesRequest, statusPurchasesRequest, informPurchaseRequest, deletePurchaseRequest, contractPurchaseRequest } from "../api/Purchases";
+import { getPurchasesRequest, statusPurchasesRequest, informPurchaseRequest, deletePurchaseRequest, contractPurchaseRequest } from "../api/Purchases";
 
 const PurchaseContext = createContext();
 
@@ -21,25 +21,6 @@ export function PurchaseProvider ({children}) {
         }
     };
 
-    const createPurchase = async (purchase) => {
-        try {
-            const res = await createPurchaseRequest(purchase);
-            toast.success('Compra registrada con éxito!',{
-                position: toast.POSITION.TOP_CENTER,
-                autoClose : 1500
-            });
-            getPurchases();
-            return res.data;
-        } catch (error) {
-            console.log(error)
-            toast.error(error.response.data.message ,{
-                position: toast.POSITION.TOP_CENTER,
-                autoClose : 1500
-            });
-            console.log(error)
-            throw new Error(error.message);
-        }
-    };
 
     const statusPurchase = async (idPurchase) => {
         try {
@@ -118,7 +99,7 @@ export function PurchaseProvider ({children}) {
     };
 
     return(
-        <PurchaseContext.Provider value={{purchases, getPurchases, createPurchase, statusPurchase, informPurchase, deletePurchase, contractPurchase}}>
+        <PurchaseContext.Provider value={{purchases, getPurchases, statusPurchase, informPurchase, deletePurchase, contractPurchase}}>
             {children}
         </PurchaseContext.Provider>
     )

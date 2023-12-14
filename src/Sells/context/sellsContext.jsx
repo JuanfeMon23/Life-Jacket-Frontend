@@ -1,6 +1,6 @@
 import { createContext, useContext, useState } from "react";
 import { toast } from "react-toastify";
-import { createSellRequest, getSellsRequest , statusSaleRequest, informSaleRequest, deleteSaleRequest, contractSaleRequest } from "../api/Sells";
+import { getSellsRequest , statusSaleRequest, informSaleRequest, deleteSaleRequest, contractSaleRequest } from "../api/Sells";
 import { useVehicles } from "../../Vehicles/context/vehiclesContext";
 
 
@@ -20,26 +20,6 @@ export function SellProvider({children}) {
             const res = await getSellsRequest();
             setSells(res.data);
         } catch (error) {
-            throw new Error(error.message);
-        }
-    };
-
-    const createSell = async (sell) => {
-        try {
-            const res = await createSellRequest(sell);
-            toast.success('Venta registrada con éxito!',{
-                position: toast.POSITION.TOP_CENTER,
-                autoClose : 1500,
-            });
-            getSells();
-            getVehicles();
-            return res.data;
-        } catch (error) {
-            toast.error(error.response.data.message ,{
-                position: toast.POSITION.TOP_CENTER,
-                autoClose : 1500
-            });
-            console.log(error)
             throw new Error(error.message);
         }
     };
@@ -122,7 +102,7 @@ export function SellProvider({children}) {
     };
 
     return(
-        <SellContext.Provider value={{sells, getSells, createSell, statusSale, informSale, deleteSale, contractSale }}>
+        <SellContext.Provider value={{sells, getSells, statusSale, informSale, deleteSale, contractSale }}>
             {children}
         </SellContext.Provider>
     )

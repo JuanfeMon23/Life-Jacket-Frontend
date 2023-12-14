@@ -6,6 +6,8 @@ import { useForm , Controller } from 'react-hook-form';
 import { useVehicles } from '../../context/vehiclesContext';
 import { RequiredIcon } from '../../../components/globalComponents/RequiredIcon';
 import { ButtonAccept } from '../../../components/ButtonAccept';
+import { createLinesRequest } from '../../api/Vehicles.js';
+import { toast } from "react-toastify";
 import conection from '../../../api/axios.js';
 
 
@@ -18,11 +20,26 @@ export  function LinesRegister() {
         BrandLine: ''
       }
     });
-    const {createLine} = useVehicles();
+    const {getBrands} = useVehicles();
 
-    const onSubmit = (data) => {
-        createLine(data);
-    }
+    const onSubmit = async (data) => {
+        try {
+            const res = await createLinesRequest(data);
+            toast.success('Línea registrada con éxito!',{
+                position: toast.POSITION.TOP_CENTER,
+                autoClose : 1500
+            });
+            getBrands();
+            reset();
+            return res.data;
+        } catch (error) {
+            toast.error(error.response.data.message ,{
+                position: toast.POSITION.TOP_CENTER,
+                autoClose : 1500
+            });
+            throw new Error(error.message);
+        }
+    };
 
     const [vehicleTypes, setVehicleTypes] = useState([]);
     const [vehicleBrands, setVehicleBrands] = useState([]);
