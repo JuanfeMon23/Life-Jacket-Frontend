@@ -9,6 +9,8 @@ import { useRoles } from '../../Roles/context/rolesContext';
 import {AiOutlinePlusCircle} from '../../../node_modules/react-icons/ai';
 import { RequiredIcon } from '../../components/globalComponents/RequiredIcon.jsx';
 import { ButtonAccept } from '../../components/ButtonAccept';
+import { createUserRequest } from '../api/Users.js';
+import { toast } from "react-toastify";
 import conection from '../../api/axios.js'
 
 export  function UserRegister() {
@@ -29,14 +31,29 @@ export  function UserRegister() {
       idRolUser : ''
     }
   });
-  const {createUser} = useUsers();
+  const {getUsers} = useUsers();
   const {roles} = useRoles();
   const [scrollBehavior, setScrollBehavior] = React.useState("inside");
 
 
 
-  const onSubmit = (data) => {
-    { onSubmit ? createUser(data) && reset() : ''  }
+  const onSubmit = async (data) => {
+    try {
+        const res = await createUserRequest(data);
+        toast.success('Usuario registrado con éxito!',{
+            position: toast.POSITION.TOP_CENTER,
+            autoClose : 1500
+        });
+        getUsers();
+        reset();
+        return res.data;
+    } catch (error) {
+        toast.error(error.response.data.message ,{
+            position: toast.POSITION.TOP_CENTER,
+            autoClose : 1500
+        });
+        throw new Error(error.message);
+    }
   };
 
   const [departments, setDepartments] = useState([]);

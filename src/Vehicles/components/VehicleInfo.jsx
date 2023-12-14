@@ -7,15 +7,34 @@ import {Input} from "@nextui-org/react";
 import { useVehicles } from '../context/vehiclesContext.jsx';
 import { RequiredIcon } from '../../components/globalComponents/RequiredIcon.jsx';
 import { years } from './years.js';
+import { createVehiclesRequest } from '../api/Vehicles.js';
+import { toast } from "react-toastify";
 import conection from '../../api/axios.js';
 
 export  function VehicleInfo() {
-  const { handleSubmit : handleSubmitVehicle, formState : {errors}, control : controlVehicle, reset : resetVehicle} = useForm({});
-    const {createVehicle} = useVehicles();
+  const { handleSubmit : handleSubmitVehicle, formState : {errors}, control : controlVehicle, reset } = useForm({});
 
-    const onSubmit = (data) => {   
-        {onSubmit ? createVehicle({...data}) && resetVehicle : 2 }
-    };
+  const {getVehicles} = useVehicles();
+
+  const onSubmit = async (data) => {   
+      try {
+          const res = await createVehiclesRequest(data);
+          toast.success('Vehículo creado con éxito!',{
+              position: toast.POSITION.TOP_CENTER,
+              autoClose : 1500
+          });
+          getVehicles();
+          reset();
+          return res.data;
+      } catch (error) {
+          toast.error(error.response.data.message ,{
+              position: toast.POSITION.TOP_CENTER,
+              autoClose : 1500
+          });
+          console.log(error)
+          throw new Error(error.message);
+      }
+  };
 
     const [vehicleTypes, setVehicleTypes] = useState([]);
     const [vehicleBrands, setVehicleBrands] = useState([]);

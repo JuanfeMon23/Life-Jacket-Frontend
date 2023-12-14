@@ -7,6 +7,8 @@ import { useExchange } from '../context/ExchangeContext';
 import { useClients } from '../../Clients/context/clientsContext';
 import { useNavigate } from 'react-router-dom';
 import { RequiredIcon } from '../../components/globalComponents/RequiredIcon.jsx';
+import { updateExchangeRequest } from '../api/Exchangues.js';
+import { toast } from "react-toastify";
 import conection from '../../api/axios.js';
 
 export  function ExchangeInfo(props) {
@@ -22,7 +24,7 @@ export  function ExchangeInfo(props) {
       exchangeLimitations: ''
     }
   });
-    const {updateExchange, cancelExchange, createExchange} = useExchange();
+    const {updateExchange, cancelExchange, getExchanges} = useExchange();
     const {clients, getClients} = useClients();
     const navigate = useNavigate();
     const idExchange = props.idExchange
@@ -35,8 +37,23 @@ export  function ExchangeInfo(props) {
     },[])
 
  
-    function onSubmit(data){
-        updateExchange(idExchange, data)
+    const onSubmit = async (data) => {
+      try {
+          await updateExchangeRequest(idExchange, data);
+          toast.success('Intercambio registrado con éxito!',{
+              position: toast.POSITION.TOP_CENTER,
+              autoClose : 1500
+          });
+          getExchanges();
+          reset();
+          navigate('/Exchangues');
+      } catch (error) {
+          console.log(error)
+          toast.error(error.response.data.message ,{
+              position: toast.POSITION.TOP_CENTER,
+              autoClose : 1500
+          });
+      }
     };
 
     function handleCancelExchange(event) {

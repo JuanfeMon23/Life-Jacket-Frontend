@@ -7,6 +7,8 @@ import { useVehicles } from '../../Vehicles/context/vehiclesContext';
 import {AiOutlinePlusCircle} from '../../../node_modules/react-icons/ai';
 import { RequiredIcon } from '../../components/globalComponents/RequiredIcon.jsx';
 import { ButtonAccept } from '../../components/ButtonAccept';
+import { createPurchaseRequest } from '../api/Purchases.js';
+import { toast } from "react-toastify";
 import conection from '../../api/axios.js';
 
 
@@ -24,14 +26,30 @@ export function PurchaseRegister() {
         purchaseLimitations: ''
       }
     });
-    const {createPurchase} = usePurchases();
+    const {getPurchases} = usePurchases();
     const {clients} = useClients();
     const {vehicles} = useVehicles();
     const [scrollBehavior, setScrollBehavior] = React.useState("inside");
 
-    const onSubmit = (data, e) => {
-        e.preventDefault();
-        { onSubmit ? createPurchase(data) && reset() : '' } 
+    const onSubmit = async (data) => {
+      try {
+          const res = await createPurchaseRequest(data);
+          toast.success('Compra registrada con éxito!',{
+              position: toast.POSITION.TOP_CENTER,
+              autoClose : 1500
+          });
+          getPurchases();
+          reset();
+          return res.data;
+      } catch (error) {
+          console.log(error)
+          toast.error(error.response.data.message ,{
+              position: toast.POSITION.TOP_CENTER,
+              autoClose : 1500
+          });
+          console.log(error)
+          throw new Error(error.message);
+      }
     };
 
     const [departments, setDepartments] = useState([]);

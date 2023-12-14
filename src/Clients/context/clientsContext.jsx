@@ -1,6 +1,6 @@
 import { createContext, useContext, useState } from "react";
 import { toast } from "react-toastify";
-import { createClientRequest, getClientsRequest, stateClientRequest, updateClientRequest, deleteClientRequest } from "../api/Clients";
+import { getClientsRequest, stateClientRequest, updateClientRequest, deleteClientRequest } from "../api/Clients";
 
 const ClientContext = createContext();
 
@@ -22,23 +22,6 @@ export function ClientProvider({children}){
     };
 
 
-    const createClient = async (client) => {
-        try {
-            const res = await createClientRequest(client);
-            toast.success('Cliente registrado con éxito!',{
-                position: toast.POSITION.TOP_CENTER,
-                autoClose : 1500
-            });
-            getClients();
-            return res.data;
-        } catch (error) {
-            toast.error(error.response.data.message ,{
-                position: toast.POSITION.TOP_CENTER,
-                autoClose : 1500
-            });
-            throw new Error(error.message);
-        }
-    };
 
     const updateClient = async (idClient, client) => {
         try {
@@ -93,7 +76,7 @@ export function ClientProvider({children}){
 
 
     return(
-        <ClientContext.Provider value={{clients, getClients, createClient, updateClient, statusClient, deleteClient}}>
+        <ClientContext.Provider value={{clients, getClients, updateClient, statusClient, deleteClient}}>
             {children}
         </ClientContext.Provider>
     )

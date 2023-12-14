@@ -8,6 +8,8 @@ import { useClients } from '../context/clientsContext';
 import { Select, SelectItem } from '@nextui-org/react';
 import {AiOutlinePlusCircle} from '../../../node_modules/react-icons/ai';
 import { RequiredIcon } from '../../components/globalComponents/RequiredIcon.jsx';
+import { createClientRequest } from '../api/Clients.js';
+import { toast } from "react-toastify";
 import conection from '../../api/axios.js';
 
 export  function ClientRegister() {
@@ -26,10 +28,26 @@ export  function ClientRegister() {
       clientOtherPhoneNumber: ''
     }
   });
-  const {createClient} = useClients();
+  
+  const {getClients} = useClients();
 
-  const onSubmit = (data) => {
-      { onSubmit ? createClient(data) && reset() : '' }
+  const onSubmit = async (data) => {
+      try {
+          const res = await createClientRequest(data);
+          toast.success('Cliente registrado con éxito!',{
+              position: toast.POSITION.TOP_CENTER,
+              autoClose : 1500
+          });
+          getClients();
+          reset();
+          return res.data;
+      } catch (error) {
+          toast.error(error.response.data.message ,{
+              position: toast.POSITION.TOP_CENTER,
+              autoClose : 1500
+          });
+          throw new Error(error.message);
+      }
   };
 
   const [departments, setDepartments] = useState([]);
