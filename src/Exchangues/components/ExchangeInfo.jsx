@@ -12,24 +12,12 @@ import { toast } from "react-toastify";
 import conection from '../../api/axios.js';
 
 export  function ExchangeInfo(props) {
-  const { handleSubmit, formState:{errors}, control, reset} = useForm({
-    defaultValues: {
-      idClientExchange: '',
-      exchangeDate: '',
-      exchangeDepartment: '',
-      exchangeMunicipality: '',
-      exchangeCashPrice: '',
-      exchangeCashPriceStatus: '',
-      exchangePecuniaryPenalty: '',
-      exchangeLimitations: ''
-    }
-  });
+  const { handleSubmit, formState:{errors}, control, reset} = useForm({});
     const {updateExchange, cancelExchange, getExchanges} = useExchange();
     const {clients, getClients} = useClients();
     const navigate = useNavigate();
     const idExchange = props.idExchange
 
-    console.log(idExchange)
 
     useEffect(() => {
         getClients();
