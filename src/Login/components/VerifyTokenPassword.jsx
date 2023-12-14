@@ -9,7 +9,7 @@ import { Resetpassword } from './Resetpassword';
 
 
 export  function VerifyTokenPassword() {
-    const {verifyTokenPassword} = useAuth();
+    const { setNewPassword} = useAuth();
     const { handleSubmit, formState:{errors}, control, reset} = useForm({
       defaultValues: {
         token : ''
@@ -18,8 +18,21 @@ export  function VerifyTokenPassword() {
     const navigate = useNavigate()
    
     const onSubmit = async (data) => {
-      verifyTokenPassword(data);
-      if ( verifyTokenPassword) return navigate('/ResetPassword')
+      try {
+        const res = await verifyTokenPasswordRequest(data);
+        setNewPassword(res.data);
+        reset();
+        navigate('/ResetPassword')
+        toast.success('Token valido' ,{
+          position: toast.POSITION.TOP_CENTER,
+          autoClose: 1500
+        })
+      } catch (error) {
+        toast.error(error.response.data.message ,{
+          position: toast.POSITION.TOP_CENTER,
+          autoClose: 1500
+        })
+      }
     };
 
     

@@ -21,6 +21,7 @@ export const AddLicenses = (props) => {
            addLicenses(roles.idRol, licenses );
         }
       }
+      console.log(selectedPermissions)
       toast.success('Permisos asignados con éxito!' ,{
         autoClose : 1500,
         position: toast.POSITION.TOP_CENTER

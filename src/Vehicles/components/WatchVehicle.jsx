@@ -106,7 +106,7 @@ export function WatchVehicle (props) {
                               <div className={styles.secondContainer}>
                               <p className={styles.firstP}>Tracción</p> 
                                 <div className={styles.thirdContainer}>
-                                    <p className=" text-center">{vehicles.othervehicleinformation.traction ? vehicles.othervehicleinformation.traction : 'No hay datos.'}</p>
+                                    <p className=" text-center">{vehicles.traction ? vehicles.traction : 'No hay datos.'}</p>
                                 </div>
                               </div>
                           </div> 
@@ -115,7 +115,7 @@ export function WatchVehicle (props) {
                               <div className={styles.secondContainer}>
                                 <p className={styles.firstP}>Correa dentada</p> 
                                 <div className={styles.thirdContainer}>
-                                    <p className=" text-center">{vehicles.othervehicleinformation.timingBelt ? vehicles.othervehicleinformation.timingBelt : 'No hay datos.' }</p>
+                                    <p className=" text-center">{vehicles.timingBelt ? vehicles.timingBelt : 'No hay datos.' }</p>
                                 </div>
                               </div>
 

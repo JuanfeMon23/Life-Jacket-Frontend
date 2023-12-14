@@ -50,40 +50,7 @@ export function AuthProvider({children}){
               })
         }
     };
-
-    const verifyTokenPassword = async (token) => {
-      try {
-       const res = await verifyTokenPasswordRequest(token)
-       setNewPassword(res.data);
-        toast.success('Token valido' ,{
-          position: toast.POSITION.TOP_CENTER,
-          autoClose: 1500
-        })
-      } catch (error) {
-        toast.error(error.response.data.message ,{
-            position: toast.POSITION.TOP_CENTER,
-            autoClose: 1500
-          })
-      }
-    }
-
-    const resetPassword = async (idUser, password) => {
-        try {
-            await resetPasswordRequest(idUser, password);
-            toast.success('Contraseña actualizada con éxito!' ,{
-                position: toast.POSITION.TOP_CENTER,
-                autoClose: 1500
-              })
-        } catch (error) {
-            console.log(error)
-            toast.error(error.response.data.message ,{
-                position: toast.POSITION.TOP_CENTER,
-                autoClose: 1500
-              })
-        }
-    };
-
-    
+ 
 
     useEffect(() => {
         let isMounted = true; 
@@ -120,7 +87,6 @@ export function AuthProvider({children}){
         };
       }, []);
 
-    console.log(user)
 
     const logout = () => {
         Cookies.remove("token");
@@ -129,7 +95,7 @@ export function AuthProvider({children}){
     };
 
     return (
-        <AuthContext.Provider value={{user, login, logout, isAutenticated, loading, loading, passwordRecovery, resetPassword, verifyTokenPassword, newPassword} } >
+        <AuthContext.Provider value={{user, login, logout, isAutenticated, loading, passwordRecovery, newPassword, setNewPassword} } >
             {children}
         </AuthContext.Provider>
     )

@@ -7,17 +7,29 @@ import { Navigate } from 'react-router-dom';
 import { Link } from 'react-router-dom';
 import {useForm, Controller} from 'react-hook-form';
 import {Input} from "@nextui-org/react";
+import { resetPasswordRequest } from '../api/Auht';
+import { toast } from "react-toastify";
 
 
 
 export  function Resetpassword() {
-    const {resetPassword, newPassword } = useAuth();
+    const { newPassword } = useAuth();
     const navigate = useNavigate();
     
-    const onSubmit  =  (data) => {
-        resetPassword(newPassword.idUser, data) 
-       if(resetPassword) return navigate('/')
-       
+    const onSubmit  = async (data) => {
+       try {
+        await resetPasswordRequest(newPassword.idUser, data)
+        toast.success('Contraseña actualizada con éxito!' ,{
+          position: toast.POSITION.TOP_CENTER,
+          autoClose: 1500
+        })
+        navigate('/')
+       } catch (error) {
+        toast.error(error.response.data.message ,{
+          position: toast.POSITION.TOP_CENTER,
+          autoClose: 1500
+        })
+       }
     };
     
     const validationSchema = Yup.object().shape({

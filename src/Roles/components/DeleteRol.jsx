@@ -19,7 +19,7 @@ export  function DeleteRol(props) {
 
     const handleDelete = (event) => {
         event.preventDefault();
-        toast.error('No puedes eliminar un rol con usuarios asociados' ,{
+        toast.error('No puedes eliminar un rol activo' ,{
           autoClose : 1500,
           position: toast.POSITION.TOP_CENTER
       });
@@ -28,7 +28,8 @@ export  function DeleteRol(props) {
 
   return (
     <div className=' flex'>
-     <Button isIconOnly title='Eliminar rol' className=' bg-red-400' onPress={onOpen}><AiOutlineDelete className={`text-2xl text-white`}/></Button> 
+      {Roles.rolStatus === "false" ? <Button isIconOnly title='Eliminar rol' className=' bg-red-400'  onPress={onOpen}><AiOutlineDelete className={`text-2xl text-white`}/></Button> 
+      : <Button isIconOnly title='Eliminar rol'   onClick={handleDelete}><AiOutlineDelete className={`text-2xl text-white`}/></Button>   }
     <Modal isOpen={isOpen} onOpenChange={onOpenChange} >
             <ModalContent>
             {(onClose) => (

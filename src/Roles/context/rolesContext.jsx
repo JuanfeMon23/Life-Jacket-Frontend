@@ -32,23 +32,7 @@ export function RolesProvider({children}) {
         }
     };
 
-    const createRol = async (roles) => {
-        try {
-            const res = await createRolRequest(roles);
-            toast.success('Rol registrado con éxito!',{
-                position: toast.POSITION.TOP_CENTER,
-                autoClose : 1500
-            }); 
-            getRoles();
-            return res.data;
-        } catch (error) {
-            toast.error(error.response.data.message ,{
-                position: toast.POSITION.TOP_CENTER,
-                autoClose : 1500
-            });
-            throw new Error(error.message);
-        }
-    };
+
 
     const statusRol = async (idRol) => {
         try {
@@ -99,7 +83,7 @@ export function RolesProvider({children}) {
 
     return(
         <RolesContext.Provider 
-        value={{roles, licenses, getRoles, createRol, deleteRol, statusRol, getLicenses, addLicenses}}>
+        value={{roles, licenses, getRoles, deleteRol, statusRol, getLicenses, addLicenses}}>
             {children}
         </RolesContext.Provider>
     )

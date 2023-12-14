@@ -45,6 +45,7 @@ function Navigator (){
 };
 
 function App() { 
+  
 
   return (
     <>
@@ -66,7 +67,7 @@ function App() {
                               <Route path='/ResetPassword' element={<Resetpassword/>}/>
                               
                               <Route element={<ProtectedRoute/>}>
-                                <Route path='/Users' element={<Users/>}/>
+                                <Route path='/Users'  element={<Users/>}/>
                                 <Route path='/Roles' element={<Roles/>}/>
                                 <Route path='/Clients' element={<Clients/>}/>
                                 <Route path='/Sells' element={<Sells/>}/>

@@ -11,6 +11,9 @@ import { useUsers } from '../../Users/Context/userContext';
 import {AiOutlinePlusCircle} from '../../../node_modules/react-icons/ai';
 import { AddLicenses } from './AddLicenses';
 import { RequiredIcon } from '../../components/globalComponents/RequiredIcon.jsx';
+import { createRolRequest } from '../api/Roles.js';
+import { toast } from "react-toastify";
+import { useNavigate } from 'react-router-dom';
 
 export  function RolesRegister() {
 const {isOpen, onOpen, onOpenChange} = useDisclosure();
@@ -19,16 +22,32 @@ const {control , handleSubmit, formState:{errors}, reset} = useForm({
     rolName: ''
   }
 });
-const {createRol, } = useRoles();
+
+const {getRoles} = useRoles();
 const {getUsers} = useUsers();
+const navigate = useNavigate()
 
-const onSubmit = (data) => {
-  if (onSubmit){
-    createRol(data);
-    reset();
+const onSubmit = async  (data) => {
+    try {
+        const res = await createRolRequest(data);
+        toast.success('Rol registrado con éxito!',{
+            position: toast.POSITION.TOP_CENTER,
+            autoClose : 1500
+        }); 
+        getRoles();
+        reset()
+        return res.data;
+    } catch (error) {
+        toast.error(error.response.data.message ,{
+            position: toast.POSITION.TOP_CENTER,
+            autoClose : 1500
+        });
+        throw new Error(error.message);
+    }
 
-  }
 };
+
+
 
 
 return (
