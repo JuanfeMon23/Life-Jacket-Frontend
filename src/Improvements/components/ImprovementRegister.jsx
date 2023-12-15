@@ -135,6 +135,10 @@ export function ImprovementRegister() {
                                   value : 3,
                                   message : 'Al menos 3 números'
                                 },
+                                maxLength : {
+                                  value : 9,
+                                  message : 'Máximo 9 números'
+                                },
                                 pattern: {
                                   value: /^[0-9]*$/, 
                                   message: "Solo números"

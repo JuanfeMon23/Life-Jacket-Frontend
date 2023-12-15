@@ -254,8 +254,8 @@ export function PurchaseRegister() {
                                   message : 'Al menos 5 números'
                                 },
                                 maxLength : {
-                                  value : 11,
-                                  message : 'Máximo 11 números'
+                                  value : 9,
+                                  message : 'Máximo 9 números'
                                 },
                                 pattern: {
                                   value: /^[0-9]*$/, 

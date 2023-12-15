@@ -213,8 +213,8 @@ export  function ExchangeInfo(props) {
                                 message : 'Al menos 1 número'
                             },
                             maxLength : {
-                                value : 12,
-                                message : 'Máximo 12 números'
+                                value : 9,
+                                message : 'Máximo 9 números'
                             },
                             pattern: {
                                 value: /^[0-9]*$/, 
