@@ -82,7 +82,7 @@ export  function ExchangeDetail(props) {
                     >
                     {vehicles.filter(vehicles => vehicles.vehicleStatus === "true").map((vehicles) => (
                         <SelectItem key={vehicles.idVehicle} value={vehicles.licensePlate}>
-                            {vehicles.licensePlate}
+                            {`${vehicles.licensePlate} - ${vehicles.brand}`}
                         </SelectItem>
                         ))}
                     </Select>

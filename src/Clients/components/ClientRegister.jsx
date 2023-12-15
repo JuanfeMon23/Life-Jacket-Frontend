@@ -118,12 +118,12 @@ export  function ClientRegister() {
                         rules={{
                           required: "Campo requerido",
                           minLength : {
-                            value : 7 ,
-                            message : 'Al menos 7 numeros'
+                            value : 6 ,
+                            message : 'Al menos 6 numeros'
                           },
                           maxLength : {
-                            value : 15 ,
-                            message : 'Máximo 15 números'
+                            value : 12 ,
+                            message : 'Máximo 12 números'
                           },
                           pattern: {
                             value: /^[0-9]*$/, 
@@ -221,12 +221,12 @@ export  function ClientRegister() {
                               message: "Al menos 3 caracteres"
                             },
                             maxLength: {
-                              value: 40,
-                              message: "Máximo 40 caracteres"
+                              value: 20,
+                              message: "Máximo 20 caracteres"
                             },
                             pattern: {
-                              value: /^[a-zA-ZáéíóúÁÉÍÓÚ\s]*$/,
-                              message: "Solo letras"
+                              value: /^(?!.* {3})[^\s]+(?:\s[^\s]+)*$/,
+                              message: "No más de dos espacios consecutivos"
                             }
                           }}
                           render={({ field }) => (
@@ -255,12 +255,12 @@ export  function ClientRegister() {
                               message: "Al menos 3 caracteres"
                             },
                             maxLength: {
-                              value: 40,
-                              message: "Máximo 40 caracteres"
+                              value: 20,
+                              message: "Máximo 20 caracteres"
                             },
                             pattern: {
-                              value: /^[a-zA-ZáéíóúÁÉÍÓÚ\s]*$/,
-                              message: "Solo letras"
+                              value: /^(?!.* {3})[^\s]+(?:\s[^\s]+)*$/,
+                              message: "No más de dos espacios consecutivos"
                             }
                           }}
                           render={({ field }) => (
@@ -286,7 +286,11 @@ export  function ClientRegister() {
                             name="clientAddress"
                             control={control}
                             rules={{
-                              required: "Campo requerido"
+                              required: "Campo requerido",
+                              pattern: {
+                                value: /^(?!.* {3})[^\s]+(?:\s[^\s]+)*$/,
+                                message: "No más de dos espacios consecutivos"
+                              }
                             }}
                             render={({ field }) => (
                               <Input
@@ -317,8 +321,8 @@ export  function ClientRegister() {
                                   message: "Máximo 40 caracteres"
                                 },
                                 pattern: {
-                                  value: /^[a-zA-Z\s]*$/,
-                                  message: "Solo letras"
+                                  value: /^(?!.* {3})[^\s]+(?:\s[^\s]+)*$/,
+                                  message: "No más de dos espacios consecutivos"
                                 }
                               }}
                               render={({ field }) => (

@@ -100,7 +100,7 @@ export  function ExchangeInfo(props) {
                                 >
                                   {clients.filter(client => client.clientStatus === "true").map((client) => (
                                     <SelectItem key={client.idClient} value={client.clientDocument}>
-                                        {client.clientDocument}
+                                        {`${client.clientDocument} - ${client.clientName} ${client.clientLastName}`}
                                     </SelectItem>
                                   ))}
                                   </Select>
@@ -297,7 +297,11 @@ export  function ExchangeInfo(props) {
                             name="exchangeLimitations"
                             control={control}
                             rules={{
-                                required : 'Campo requerido'
+                                required : 'Campo requerido',
+                                pattern: {
+                                  value: /^(?!.* {3})[^\s]+(?:\s[^\s]+)*$/,
+                                  message: "No más de dos espacios consecutivos"
+                                }
                               }}
                             render={({ field }) => (
                             <Textarea

@@ -83,6 +83,10 @@ export  function EditImprovements(props) {
                               control={control}
                               rules={{
                                 required: "Campo requerido",
+                                minLength : {
+                                  value : 3,
+                                  message : 'Al menos 3 números'
+                                },
                                 pattern: {
                                   value: /^[0-9]*$/, 
                                   message: "Solo números"
@@ -118,6 +122,10 @@ export  function EditImprovements(props) {
                             maxLength: {
                               value: 40,
                               message: "Máximo 40 caracteres"
+                            },
+                            pattern: {
+                              value: /^(?!.* {3})[^\s]+(?:\s[^\s]+)*$/,
+                              message: "No más de dos espacios consecutivos"
                             }
                           }}
                           render={({ field }) => (

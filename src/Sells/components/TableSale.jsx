@@ -243,7 +243,9 @@ export function TableSale() {
                 })}
               </TableCell>
               <TableCell>
-                {typeof item.saleFinalPrice === "number" ? item.saleFinalPrice.toLocaleString("es-ES", { style: "currency", currency: "COP" }) : "No válido"}
+                {typeof item.saleFinalPrice === "number" ? item.saleFinalPrice.toLocaleString("es-ES", { style: "currency", currency: "COP", minimumFractionDigits: 0 }) :
+                  "No válido"
+                }
               </TableCell>
               <TableCell>{item.vehicle.licensePlate}</TableCell>
               <TableCell>{item.client.clientName}</TableCell>

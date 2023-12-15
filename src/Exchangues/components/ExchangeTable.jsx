@@ -264,7 +264,9 @@ export function ExchangeTable() {
                                 </TableCell>
                                 <TableCell>{item.client.clientName}</TableCell> 
                                 <TableCell>
-                                    {typeof item.exchangeCashPrice === "number" ? item.exchangeCashPrice.toLocaleString("es-ES", { style: "currency", currency: "COP" }) : "No válido"}
+                                {typeof item.exchangeCashPrice === "number" ? item.exchangeCashPrice.toLocaleString("es-ES", { style: "currency", currency: "COP", minimumFractionDigits: 0 }) :
+                                      "No válido"
+                                    }
                                 </TableCell> 
                                 <TableCell>
                                   {item.exchangeCashPriceStatus === "true" ? <Chip color="success">Entrante</Chip> 

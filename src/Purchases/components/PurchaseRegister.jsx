@@ -85,8 +85,8 @@ export function PurchaseRegister() {
               <ModalHeader className="flex flex-col gap-3">Datos de la compra</ModalHeader>
               <ModalBody>
                 <form onSubmit={handleSubmit(onSubmit)}>
-                    <div className=' flex'>
-                        <div className='flex-col m-3 w-[200px]'>
+                  
+                        <div className='flex flex-col m-5 justify-center items-center'>
                             <Controller
                               name='idClientPurchase'
                               control={control}
@@ -101,14 +101,14 @@ export function PurchaseRegister() {
                                   endContent={<RequiredIcon/>}
                                   color={errors.idClientPurchase ? "danger" : ""}
                                   errorMessage={errors.idClientPurchase?.message}
-                                  className="max-w-xs"
+                                  className="md:w-[23rem]"
                                   onChange={(e) => {
                                     field.onChange(e);
                                   }}
                                 >
                                   {clients.filter(client => client.clientStatus === "true").map((client, i) => (
                                     <SelectItem key={client.idClient} value={client.clientDocument}>
-                                        {client.clientDocument}
+                                        {`${client.clientDocument} - ${client.clientName} ${client.clientLastName}`}
                                     </SelectItem>
                                   ))}
                                   </Select>
@@ -116,7 +116,7 @@ export function PurchaseRegister() {
                             />
                         </div>
 
-                        <div className='flex-col m-3 w-[200px]'>
+                        <div className='flex flex-col m-5 justify-center items-center'>
                         <Controller
                               name='idVehiclePurchase'
                               control={control}
@@ -131,21 +131,20 @@ export function PurchaseRegister() {
                                   endContent={<RequiredIcon/>}
                                   color={errors.idVehiclePurchase ? "danger" : ""}
                                   errorMessage={errors.idVehiclePurchase?.message}
-                                  className="max-w-xs"
+                                  className="md:w-[23rem]"
                                   onChange={(e) => {
                                     field.onChange(e);
                                   }}
                                 >
                                 {vehicles.filter(vehicles => vehicles.vehicleStatus === "true").map((vehicles, i) => (
                                     <SelectItem key={vehicles.idVehicle} value={vehicles.licensePlate}>
-                                        {vehicles.licensePlate}
+                                        {`${vehicles.licensePlate} - ${vehicles.brand}`}
                                     </SelectItem>
                                   ))}
                                   </Select>
                               )}
                             />
                         </div>
-                    </div>
                       
 
                     <div className=' flex'> 
@@ -250,6 +249,14 @@ export function PurchaseRegister() {
                               control={control}
                               rules={{
                                 required: "Campo requerido",
+                                minLength : {
+                                  value : 5,
+                                  message : 'Al menos 5 números'
+                                },
+                                maxLength : {
+                                  value : 11,
+                                  message : 'Máximo 11 números'
+                                },
                                 pattern: {
                                   value: /^[0-9]*$/, 
                                   message: "Solo números"
@@ -306,6 +313,10 @@ export function PurchaseRegister() {
                                 maxLength: {
                                   value: 200,
                                   message: "Máximo 200 caracteres"
+                                },
+                                pattern: {
+                                  value: /^(?!.* {3})[^\s]+(?:\s[^\s]+)*$/,
+                                  message: "No más de dos espacios consecutivos"
                                 }
                               }}
                               render={({ field }) => (

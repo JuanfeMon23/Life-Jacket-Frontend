@@ -15,22 +15,7 @@ import conection from '../../api/axios.js'
 
 export  function UserRegister() {
   const {isOpen, onOpen, onOpenChange} = useDisclosure();
-  const { handleSubmit, formState:{errors}, control, reset} = useForm({
-    defaultValues : {
-      userTypeDocument : '',
-      userDocument : '' ,
-      userDepartment: '' ,
-      userMunicipality : '' ,
-      userName : '' ,
-      userLastName : '' ,
-      userEmail: '',
-      userPassword: '',
-      userAddress: '',
-      userPhoneNumber : '',
-      userOtherPhoneNumber: '',
-      idRolUser : ''
-    }
-  });
+  const { handleSubmit, formState:{errors}, control, reset} = useForm({});
   const {getUsers} = useUsers();
   const {roles} = useRoles();
   const [scrollBehavior, setScrollBehavior] = React.useState("inside");
@@ -124,8 +109,8 @@ export  function UserRegister() {
                         rules={{
                           required: "Campo requerido",
                           minLength : {
-                            value : 7 ,
-                            message : 'Al menos 7 numeros'
+                            value : 6 ,
+                            message : 'Al menos 6 numeros'
                           },
                           maxLength : {
                             value : 12,
@@ -229,12 +214,12 @@ export  function UserRegister() {
                               message: "Al menos 3 caracteres"
                             },
                             maxLength: {
-                              value: 40,
-                              message: "Máximo 40 caracteres"
+                              value: 20,
+                              message: "Máximo 20 caracteres"
                             },
                             pattern: {
-                              value: /^[a-zA-ZáéíóúÁÉÍÓÚ\s]*$/,
-                              message: "Solo letras"
+                              value: /^(?!.* {3})[^\s]+(?:\s[^\s]+)*$/,
+                              message: "No más de dos espacios consecutivos"
                             }
                           }}
                           render={({ field }) => (
@@ -263,12 +248,12 @@ export  function UserRegister() {
                               message: "Al menos 3 caracteres"
                             },
                             maxLength: {
-                              value: 40,
-                              message: "Máximo 40 caracteres"
+                              value: 20,
+                              message: "Máximo 20 caracteres"
                             },
                             pattern: {
-                              value: /^[a-zA-ZáéíóúÁÉÍÓÚ\s]*$/,
-                              message: "Solo letras"
+                              value: /^(?!.* {3})[^\s]+(?:\s[^\s]+)*$/,
+                              message: "No más de dos espacios consecutivos"
                             }
                           }}
                           render={({ field }) => (
@@ -424,7 +409,11 @@ export  function UserRegister() {
                           name="userAddress"
                           control={control}
                           rules={{
-                            required: "Campo requerido"
+                            required: "Campo requerido",
+                            pattern: {
+                              value: /^(?!.* {3})[^\s]+(?:\s[^\s]+)*$/,
+                              message: "No más de dos espacios consecutivos"
+                            }
                           }}
                           render={({ field }) => (
                             <Input

@@ -82,7 +82,7 @@ export  function EditVehicle (props) {
                             required: "Campo requerido",
                             maxLength: {
                               value: 15,
-                              message: "Maximo 15 caracteres"
+                              message: "Máximo 15 caracteres"
                             }
                           }}
                           render={({ field }) => (
