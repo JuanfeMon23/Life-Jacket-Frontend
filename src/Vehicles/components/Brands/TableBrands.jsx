@@ -43,10 +43,10 @@ export  function TableBrands() {
         let filteredBrands = [...brands];
     
         if (hasSearchFilter) {
-          filteredBrands = filteredBrands.filter((brands) =>
-          brands.VehicleType.toLowerCase().includes(filterValue.toLowerCase()) ||
-          brands.NameBrand.toLowerCase().includes(filterValue.toLowerCase())  ||
-          brands.BrandLine.toLowerCase().includes(filterValue.toLowerCase()) 
+          filteredBrands = filteredBrands.filter((brand) =>
+          (brand.VehicleType?.toLowerCase() || '').includes(filterValue.toLowerCase()) ||
+          (brand.NameBrand?.toLowerCase() || '').includes(filterValue.toLowerCase()) ||
+          (brand.BrandLine?.toLowerCase() || '').includes(filterValue.toLowerCase())
           );
         }
     
