@@ -27,18 +27,18 @@ export function Login() {
 
   return (
       <>
-        <section className=" flex flex-col sm:items-center sm:justify-center w-[50rem] mt-20 sm:m-0 h-[4rem] sm:h-screen sm:w-full flex-1 text-center">
+        <section className=" flex flex-col sm:items-center sm:justify-center w-[50rem] mt-20 sm:m-0  h-screen sm:w-full flex-1 text-center">
           <div className=' bg-white rounded-2xl shadow-2xl flex w-2/3 max-w-4xl'>
-            <div className=' w-3/5 p-5'>
+            <div className=' w-3/5 sm:w-5/6 md:3/5 p-5'>
               <div className=' text-left font-bold'>
                 <span className='  text-blue-800'>Alejandro Garzón</span> Vehículos
               </div>
-              <div className=' py-10'>
-                  <h2 className=' relative left-9 sm:relative sm:left-0 text-center text-3xl font-bold text-blue-800'>Iniciar sesión</h2>
+              <div className=' sm:flex sm:flex-col sm:justify-center sm:items-center  py-10'>
+                  <h2 className=' relative left-9 sm:relative sm:left-7 md:left-0 text-center text-3xl font-bold text-blue-800'>Iniciar sesión</h2>
                   <div className='border-2 w-10 border-blue-800 inline-block mb-2'></div>
-                  <div className=' flex flex-col items-center mt-8'>
+                  <div className=' mt-8 sm:relative sm:left-7 md:left-0'>
                     <form onSubmit={handleSubmit(onSubmit)}>
-                      <div className=' relative left-20 w-[10rem] sm:w-[20rem] sm:relative sm:left-0 mb-10'>
+                      <div className=' mb-10 w-[13rem] relative left-20  sm:w-[20rem] sm:relative sm:left-0 '>
                         <Controller
                             name="userEmail"
                             control={control}
@@ -62,7 +62,7 @@ export function Login() {
                             )}
                           />
                       </div>
-                      <div className=' w-[10rem] relative left-20  sm:w-[20rem] sm:relative sm:left-0  '> 
+                      <div className=' w-[13rem] relative left-20  sm:w-[20rem] sm:relative sm:left-0  '> 
                         <Controller
                           name="userPassword"
                           control={control}
@@ -90,17 +90,13 @@ export function Login() {
                   </div>
               </div>
             </div>
-            <div className=' w-0 sm:w-2/5 sm:bg-blue-800 text-transparent sm:text-white rounded-tr-2xl rounded-br-2xl py-36 px-12 '>
-              <h2 className='  sm:text-3xl font-bold mb-2'>Bienvenido a LifeJacket</h2>
+            <div className='  sm:hidden md:block md:w-2/5 md:bg-blue-800 text-transparent sm:text-white rounded-tr-2xl rounded-br-2xl py-36 px-12 '>
+              <h2 className='   md:text-3xl font-bold mb-2'>Bienvenido a LifeJacket</h2>
               <div className=' border-2 w-10 border-none sm:border-white inline-block mb-2'></div>
               <div className=' items-center justify-center'>
                 <FaCarAlt className=' text-white sm:text-[130px] inline-block' />
               </div>
             </div>
-          </div>
-
-          <div>
-
           </div>
         </section>
       </>

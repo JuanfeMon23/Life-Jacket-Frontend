@@ -1,15 +1,17 @@
-import React from 'react'
+import React,{useEffect} from 'react'
 import { useAuth } from '../Login/context/AuthContext'
 import { Navigate, Outlet } from 'react-router-dom'
 import { useNavigate } from 'react-router-dom';
 
-export  function ProtectedRoute() {
-    const { isAutenticated, loading} = useAuth();
+export function ProtectedRoute() {
+    const { isAutenticated, loading } = useAuth();
     const navigate = useNavigate();
-
-    if(!loading && !isAutenticated) return navigate('/')
-  
-    return <Outlet/>
-
-
-}
+ 
+    useEffect(() => {
+        if (!loading && !isAutenticated) {
+            navigate('/');
+        }
+    }, [isAutenticated, loading, navigate]);
+ 
+    return <Outlet/>;
+ }
