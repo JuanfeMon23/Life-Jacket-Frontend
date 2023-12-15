@@ -122,8 +122,8 @@ export  function ClientRegister() {
                             message : 'Al menos 6 numeros'
                           },
                           maxLength : {
-                            value : 11,
-                            message : 'Máximo 11 números'
+                            value : 10,
+                            message : 'Máximo 10 números'
                           },
                           pattern: {
                             value: /^[0-9]*$/, 
