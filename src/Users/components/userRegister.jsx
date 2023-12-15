@@ -6,7 +6,7 @@ import {useForm, Controller} from 'react-hook-form';
 import { useUsers } from '../Context/userContext';
 import {Select, SelectItem} from "@nextui-org/react";
 import { useRoles } from '../../Roles/context/rolesContext';
-import {AiOutlinePlusCircle} from 'react-icons/Ai';
+import {AiOutlinePlusCircle} from '../../../node_modules/react-icons/ai';
 import { RequiredIcon } from '../../components/globalComponents/RequiredIcon.jsx';
 import { ButtonAccept } from '../../components/ButtonAccept';
 import { createUserRequest } from '../api/Users.js';
@@ -44,7 +44,6 @@ export  function UserRegister() {
   const [departments, setDepartments] = useState([]);
   const [municipes, setMunicipes] = useState([]);
   const [selectedDepartment, setselectedDepartment] = useState('');
-  
 
 
   useEffect(() => {
@@ -53,7 +52,6 @@ export  function UserRegister() {
         const typesResponse = await fetch(`${import.meta.env.VITE_BACKEND}/Departments-departments`);
         const typesData = await typesResponse.json();
         setDepartments(typesData);
-
 
         if(selectedDepartment) {
           const municipesResponse = await fetch(`${import.meta.env.VITE_BACKEND}/Departments-municipes?department=${selectedDepartment}`);
@@ -115,8 +113,8 @@ export  function UserRegister() {
                             message : 'Al menos 6 numeros'
                           },
                           maxLength : {
-                            value : 12,
-                            message : 'Máximo 12 números'
+                            value : 11,
+                            message : 'Máximo 11 números'
                           },
                           pattern: {
                             value: /^[0-9]*$/, 
