@@ -83,7 +83,7 @@ export function ImprovementRegister() {
                                     >
                                 {vehicles.filter(vehicles => vehicles.vehicleStatus === "true").map((vehicles) => (
                                     <SelectItem key={vehicles.idVehicle} value={vehicles.licensePlate}>
-                                        {vehicles.licensePlate}
+                                        {`${vehicles.licensePlate} - ${vehicles.brand}`}
                                     </SelectItem>
                                   ))}
                                     </Select>
@@ -131,6 +131,10 @@ export function ImprovementRegister() {
                               control={control}
                               rules={{
                                 required: "Campo requerido",
+                                minLength : {
+                                  value : 3,
+                                  message : 'Al menos 3 números'
+                                },
                                 pattern: {
                                   value: /^[0-9]*$/, 
                                   message: "Solo números"
@@ -164,6 +168,10 @@ export function ImprovementRegister() {
                             maxLength: {
                               value: 40,
                               message: "Máximo 40 caracteres"
+                            },
+                            pattern: {
+                              value: /^(?!.* {3})[^\s]+(?:\s[^\s]+)*$/,
+                              message: "No más de dos espacios consecutivos"
                             }
                           }}
                           render={({ field }) => (

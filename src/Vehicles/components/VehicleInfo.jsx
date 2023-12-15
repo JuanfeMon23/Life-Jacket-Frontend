@@ -58,7 +58,11 @@ export  function VehicleInfo() {
           if (selectedBrandName) {
             const linesResponse = await fetch(`${import.meta.env.VITE_BACKEND}/vehicles-lines?vehicleType=${selectedVehicleType}&brandName=${selectedBrandName}`);
             const linesData = await linesResponse.json();
-            setVehicleLines(linesData);
+            // Filtra las líneas que no son nulas antes de establecer el estado
+            const filteredLines = linesData.filter(line => line.BrandLine !== null);
+            setVehicleLines(filteredLines);
+          } else {
+              setVehicleLines([]);
           }
         }
       } catch (error) {
@@ -239,8 +243,8 @@ export  function VehicleInfo() {
                                     message: "Máximo 40 caracteres"
                                   },
                                   pattern: {
-                                    value: /^[a-zA-Z\s]*$/,
-                                    message: "Solo letras"
+                                    value: /^(?!.* {3})[^\s]+(?:\s[^\s]+)*$/,
+                                    message: "No más de dos espacios consecutivos"
                                   }
                                 }}
                                 render={({ field }) => (
@@ -268,7 +272,11 @@ export  function VehicleInfo() {
                             required: "Campo requerido",
                             maxLength: {
                               value: 15,
-                              message: "Máximo 15 caracteres"
+                              message: "Máximo 15 caracteres",
+                              pattern: {
+                                value: /^(?!.* {3})[^\s]+(?:\s[^\s]+)*$/,
+                                message: "No más de dos espacios consecutivos"
+                              }
                             }
                           }}
                           render={({ field }) => (

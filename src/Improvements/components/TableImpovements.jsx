@@ -233,7 +233,10 @@ export  function TableImpovements() {
                 <TableCell>{item.improvementDescription}</TableCell> 
                 <TableCell>{item.improvementDate} </TableCell> 
                 <TableCell>
-                  {typeof item.improvementPrice === "number" ? item.improvementPrice.toLocaleString("es-ES", { style: "currency", currency: "COP" }) : "No válido"}
+                {typeof item.improvementPrice === "number" ?
+                  item.improvementPrice.toLocaleString("es-ES", { style: "currency", currency: "COP", minimumFractionDigits: 0 }) :
+                  "No válido"
+                }
                 </TableCell>
                 <TableCell>{item.improvementStatus === "true" ?  <Chip color="success">Activa</Chip> : <Chip color="default">Inactiva</Chip>}</TableCell>
                 <TableCell className=" flex">

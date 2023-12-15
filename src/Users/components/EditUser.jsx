@@ -92,8 +92,8 @@ export function EditUser(props) {
                                   message: "Máximo 40 caracteres"
                                 },
                                 pattern: {
-                                  value: /^[a-zA-Z\s]*$/,
-                                  message: "Solo letras"
+                                  value: /^(?!.* {3})[^\s]+(?:\s[^\s]+)*$/,
+                                  message: "No más de dos espacios consecutivos"
                                 }
                               }}
                               render={({ field }) => (
@@ -127,8 +127,8 @@ export function EditUser(props) {
                                   message: "Máximo 40 caracteres"
                                 },
                                 pattern: {
-                                  value: /^[a-zA-Z\s]*$/,
-                                  message: "Solo letras"
+                                  value: /^(?!.* {3})[^\s]+(?:\s[^\s]+)*$/,
+                                  message: "No más de dos espacios consecutivos"
                                 }
                               }}
                               render={({ field }) => (
@@ -215,7 +215,11 @@ export function EditUser(props) {
                               control={control}
                               defaultValue={user.userAddress}
                               rules={{
-                                required: "Campo requerido"
+                                required: "Campo requerido",
+                                pattern: {
+                                  value: /^(?!.* {3})[^\s]+(?:\s[^\s]+)*$/,
+                                  message: "No más de dos espacios consecutivos"
+                                }
                               }}
                               render={({ field }) => (
                                 <Input
