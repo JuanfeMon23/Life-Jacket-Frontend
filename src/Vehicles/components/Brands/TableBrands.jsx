@@ -44,10 +44,10 @@ export  function TableBrands() {
     
         if (hasSearchFilter) {
           filteredBrands = filteredBrands.filter((brand) =>
-          (brand.VehicleType?.toLowerCase() || '').includes(filterValue.toLowerCase()) ||
-          (brand.NameBrand?.toLowerCase() || '').includes(filterValue.toLowerCase()) ||
-          (brand.BrandLine?.toLowerCase() || '').includes(filterValue.toLowerCase())
-          );
+          (brand.VehicleType && brand.VehicleType.toLowerCase() || '').includes(filterValue.toLowerCase()) ||
+          (brand.NameBrand && brand.NameBrand.toLowerCase() || '').includes(filterValue.toLowerCase()) ||
+          (brand.BrandLine && brand.BrandLine.toLowerCase() || '').includes(filterValue.toLowerCase())
+        );
         }
     
     
