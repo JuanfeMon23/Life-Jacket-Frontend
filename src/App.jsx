@@ -37,12 +37,24 @@ import { RolesManual } from "./Manuals/components/RolesManual.jsx";
 import { SalesManual } from "./Manuals/components/SalesManual.jsx";
 import { UsersManual } from "./Manuals/components/UsersManual.jsx";
 import { VehiclesManual } from "./Manuals/components/VehiclesManual.jsx";
-
+import { useNavigate } from 'react-router-dom';
+import { useEffect } from "react";
 
 function Navigator (){
   const location = useLocation();
   return location.pathname !== "/" && location.pathname !== "/ForgotPassword" && location.pathname !== "/ResetPassword" &&  <Navigation/> ;
 };
+
+function NotFound() {
+  const navigate = useNavigate();
+ 
+  useEffect(() => {
+    navigate('/');
+  }, [navigate]);
+ 
+  return null;
+ }
+
 
 function App() { 
   
@@ -65,7 +77,7 @@ function App() {
                               <Route path='/' element={<Login/>}/>
                               <Route path='/ForgotPassword' element={<ForgotPassword/>}/>
                               <Route path='/ResetPassword' element={<Resetpassword/>}/>
-                              
+
                               <Route element={<ProtectedRoute/>}>
                                 <Route path='/Users'  element={<Users/>}/>
                                 <Route path='/Roles' element={<Roles/>}/>
@@ -89,9 +101,9 @@ function App() {
                                 <Route path="/Manuals/Purchases" element={<PurchasesManual/>}/>     
                                 <Route path="/Manuals/Sales" element={<SalesManual/>}/>     
                                 <Route path="/Manuals/Exchanges" element={<ExchangesManual/>}/>     
-                                <Route path="/Manuals/Improvements" element={<ImprovementsManual/>}/>      
-                                
-                              </Route>                    
+                                <Route path="/Manuals/Improvements" element={<ImprovementsManual/>}/>                              
+                              </Route>       
+                              <Route path="*" element={<NotFound/>}/>             
                             </Routes>
                           <ToastContainer/> 
                           </div>      

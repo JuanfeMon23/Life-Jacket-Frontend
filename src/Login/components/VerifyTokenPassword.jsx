@@ -44,16 +44,12 @@ export  function VerifyTokenPassword() {
          control={control}
          rules={{
           required: "Campo requerido",
-          minLength : {
-            value : 300,
-            message : 'Datos erroneos'
-          }
          }}
          render={({ field }) => (
           <Input
             {...field}
             type="password"
-            label="Token"
+            label="Codigo"
             variant="bordered"
             color={errors.token ? "danger" : ""}
             errorMessage={errors.token?.message}
